@@ -1,0 +1,22 @@
+export const cssVar = {
+  desktopBackgroundLight: '#f6f7f8',
+  desktopBackgroundGray: '#e9ebee',
+  desktopTextPlaceholder: '#9197a3',
+  desktopTextPlaceholderFocused: '#bdc1c9',
+  postBackgroundWhite: '#fff',
+  tooltipColorWhite: '#fff',
+  tooltipBackgroundGray: '#616770',
+  tooltipBackgroundBlack: '#1c1e21',
+  tooltipTopPostion: '1.5em',
+  infoColorGray: '#616770',
+  commentInputBackground: 'transparent',
+  scrollbarFaceActiveColor: '#7d7d7d',
+  scrollbarFaceColor: '#c2c2c2',
+  scrollbarFaceMargin: '4px',
+  scrollbarFaceRadius: '6px',
+  scrollbarSize: '15px',
+  scrollbarSizeLarge: '17px',
+  scrollbarTrackColor: 'rgba(255, 255, 255, 0.8)',
+  alignItems: 'center',
+  fontFamily: 'Microsoft JhengHei'
+}

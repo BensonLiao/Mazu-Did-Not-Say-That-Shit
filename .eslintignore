@@ -1,0 +1,20 @@
+# dependencies
+/node_modules
+
+# testing
+/coverage
+/.storybook
+/stories
+
+# production
+/build
+
+# config
+/src/config
+/src/liff-register
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

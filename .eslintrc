@@ -1,0 +1,61 @@
+{
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:import/recommended",
+    "prettier",
+    "airbnb"
+  ],
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  },
+  "plugins": ["react", "import", "prettier"],
+  "rules": {
+    "no-undef": "warn",
+    "operator-linebreak": ["warn", "after"],
+    "no-use-before-define": ["warn", "nofunc"],
+    "no-param-reassign": "warn",
+    "no-confusing-arrow": ["warn", { "allowParens": true }],
+    "semi": "off",
+    "comma-dangle": "off",
+    "object-curly-newline": ["off"],
+    "object-curly-spacing": ["warn", "always"],
+    "implicit-arrow-linebreak": "warn",
+    "function-paren-newline": "warn",
+    "arrow-body-style": "off",
+    "arrow-parens": ["warn", "as-needed", { "requireForBlockBody": true }],
+    "no-underscore-dangle": "off",
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "import/prefer-default-export": "warn",
+    "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
+    "react/destructuring-assignment": "warn",
+    "react/prop-types": "warn",
+    "react/require-default-props": "warn",
+    "react/forbid-prop-types": "warn",
+    "react/prefer-stateless-function": "warn",
+    "prettier/prettier": ["warn"],
+    "jsx-a11y/label-has-for": "off",
+    "jsx-a11y/label-has-associated-control": [
+      "warn",
+      {
+        "assert": "both"
+      }
+    ]
+  }
+}
