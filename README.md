@@ -2,7 +2,7 @@
 
 # \*currently under development
 
-A mocking post of facebook [Facebook](https://www.facebook.com/)
+A mocking post of [Facebook](https://www.facebook.com/)
 
 ## How it work
 
