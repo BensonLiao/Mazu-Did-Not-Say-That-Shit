@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { theme, cssVar, displayFlex, alignCenter } from './pages/styles'
+import { createReactions } from './utils/dataMock'
 import Header from './pages/components/Header'
 import PostContent from './pages/components/PostContent'
+import FeedbackReactions from './pages/components/FeedbackReactions'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -29,7 +31,8 @@ const poster = {
   profileName: '媽祖',
   profileUrl: 'https://www.facebook.com/themazhou/posts/307433766601772',
   postTime: '4月17日下午6:12 ·',
-  postContent: '我根本沒說。'
+  postContent: '我根本沒說。',
+  reactions: createReactions(200)
 }
 
 class App extends Component {
@@ -45,6 +48,7 @@ class App extends Component {
               postTime={poster.postTime}
             />
             <PostContent postContent={poster.postContent} />
+            <FeedbackReactions reactions={poster.reactions} />
           </PostContainer>
         </Root>
       </ThemeProvider>

@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import FeedbackReactions from './FeedbackReactions'
-import { createReactions } from '../../utils/dataMock'
 
 const propTypes = {
   /**
@@ -23,12 +21,7 @@ const PostContentContainer = styled.div`
 const defaultProps = { postContent: 'Fake Post Content' }
 
 const PostContent = ({ postContent }) => {
-  return (
-    <PostContentContainer>
-      {postContent}
-      <FeedbackReactions reactions={createReactions(200)} />
-    </PostContentContainer>
-  )
+  return <PostContentContainer>{postContent}</PostContentContainer>
 }
 
 PostContent.displayName = 'PostContent'
