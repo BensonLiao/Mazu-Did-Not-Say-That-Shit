@@ -24,14 +24,14 @@ const ReactionFirstIconContainer = styled.i`
   ${reactionFirstIconStyle(reactionIconImg)}
 `
 
-const ReactionFirstIcon = ({ reactionType = 'Like' }) => {
+const ReactionFirstIcon = ({ reactionType = 'Like', countSummary = '' }) => {
   const tooltipId = 'tip-for-post-first-most-reaction'
   return (
     <React.Fragment>
       <ReactionFirstIconContainer
         reactionType={reactionType}
         data-for={tooltipId}
-        data-tip={reactionType}
+        data-tip={countSummary}
       />
       <StyledTooltip
         id={tooltipId}
