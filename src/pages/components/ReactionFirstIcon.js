@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import StyledTooltip from './StyledTooltip'
 import { cssVar } from '../styles'
 import {
+  reactionIconContainerStyle,
   reactionFirstIconStyle,
   reactionLikeIconStyle,
   reactionHahaIconStyle,
@@ -10,7 +11,11 @@ import {
 } from '../styles/post'
 import reactionIconImg from '../../assets/img/fb-emojis.0d754b03.png'
 
-const ReactionFirstIconContainer = styled.i`
+const ReactionFirstIconContainer = styled.div`
+  ${reactionIconContainerStyle}
+`
+
+const FirstIcon = styled.i`
   ${props => {
     switch (props.reactionType) {
       default:
@@ -27,18 +32,15 @@ const ReactionFirstIconContainer = styled.i`
 const ReactionFirstIcon = ({ reactionType = 'Like', countSummary = '' }) => {
   const tooltipId = 'tip-for-post-first-most-reaction'
   return (
-    <React.Fragment>
-      <ReactionFirstIconContainer
-        reactionType={reactionType}
-        data-for={tooltipId}
-        data-tip={countSummary}
-      />
+    <ReactionFirstIconContainer data-for={tooltipId} data-tip={countSummary}>
+      <FirstIcon reactionType={reactionType} />
       <StyledTooltip
         id={tooltipId}
         effect="solid"
+        multiline
         bg={cssVar.tooltipBackgroundBlack}
       />
-    </React.Fragment>
+    </ReactionFirstIconContainer>
   )
 }
 

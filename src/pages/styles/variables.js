@@ -18,5 +18,6 @@ export const cssVar = {
   scrollbarSizeLarge: '17px',
   scrollbarTrackColor: 'rgba(255, 255, 255, 0.8)',
   alignItems: 'center',
-  fontFamily: 'Microsoft JhengHei'
+  fontFamily: 'Microsoft JhengHei',
+  reactionsIconSize: '16px'
 }

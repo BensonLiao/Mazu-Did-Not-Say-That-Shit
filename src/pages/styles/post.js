@@ -1,4 +1,5 @@
 import cssesc from 'cssesc'
+import { cssVar } from './variables'
 
 export const privacyIconStyle = iconImg => `
   width: 12px;
@@ -12,6 +13,14 @@ export const privacyIconStyle = iconImg => `
   margin-left: 4px;
 `
 
+export const reactionIconContainerStyle = `
+  height: ${cssVar.reactionsIconSize};
+  width: ${cssVar.reactionsIconSize};
+  div.__react_component_tooltip {
+    padding: 8px 12px !important;
+  }
+`
+
 export const reactionIconStyle = `
   cursor: pointer;
   background: #fff;
@@ -21,8 +30,8 @@ export const reactionIconStyle = `
   overflow: hidden;
   background-repeat: no-repeat;
   background-size: 49px 660px;
-  height: 16px;
-  width: 16px;
+  height: ${cssVar.reactionsIconSize};
+  width: ${cssVar.reactionsIconSize};
   line-height: 16px;
   display: inline-block;
 `
@@ -52,12 +61,12 @@ export const reactionSecondIconStyle = iconImg => `
   background-image: url(${cssesc(iconImg)});
   margin-left: -2px;
   margin-right: 2px;
-  z-index: 2;
+  z-index: 2;=
 `
 
 export const reactionThirdIconStyle = iconImg => `
   ${reactionIconStyle}
   background-image: url(${cssesc(iconImg)});
   margin-left: -2px;
-  margin-right: 4px;
+  margin-right: 4px;=
 `
