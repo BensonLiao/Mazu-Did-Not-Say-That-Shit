@@ -12,6 +12,9 @@ const ReactionCountContainer = styled.span`
   &:hover {
     text-decoration: underline;
   }
+  div.__react_component_tooltip {
+    padding: 8px 12px !important;
+  }
 `
 
 const ReactionCount = props => {
@@ -22,6 +25,7 @@ const ReactionCount = props => {
       <StyledTooltip
         id={tooltipId}
         effect="solid"
+        multiline
         bg={cssVar.tooltipBackgroundBlack}
       />
     </ReactionCountContainer>

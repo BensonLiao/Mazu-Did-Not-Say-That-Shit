@@ -60,6 +60,9 @@ const StyledTooltip = styled(ReactTooltip).attrs({
       border-right: 8px solid ${props => props.bg} !important;
     }
   }
+  span.multi-line {
+    text-align: left !important;
+  }
 `
 
 StyledTooltip.defaultProps = { bg: cssVar.tooltipBackgroundGray }

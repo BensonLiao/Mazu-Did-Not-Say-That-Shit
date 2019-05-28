@@ -8,7 +8,7 @@ body {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #e9ebee
+  background: #e9ebee;
 }
 
 #app {
@@ -16,20 +16,21 @@ body {
   height: 1105px;
   background: #fff;
   border: 1px solid #dddfe2;
-  border-radius: 4px
+  border-radius: 4px;
 }
 
 #app .header {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  padding: 12px 12px 0
+  padding: 12px 12px 0;
 }
 
-#app .header,#app .header .left-info {
+#app .header,
+#app .header .left-info {
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex
+  display: flex;
 }
 
 #app .header .left-info {
@@ -38,7 +39,7 @@ body {
   justify-content: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
-  align-items: center
+  align-items: center;
 }
 
 #app .header .left-info .thumbnail img {
@@ -46,21 +47,21 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  margin-right: 8px
+  margin-right: 8px;
 }
 
 #app .header .left-info .name-info .name {
   cursor: pointer;
-  font-weight: 600
+  font-weight: 600;
 }
 
 #app .header .left-info .name-info .name a {
   text-decoration: none;
-  color: #365899
+  color: #365899;
 }
 
 #app .header .left-info .name-info .name a:hover {
-  text-decoration: underline
+  text-decoration: underline;
 }
 
 #app .header .left-info .name-info .time {
@@ -75,7 +76,7 @@ body {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  font-family: Microsoft JhengHei
+  font-family: Microsoft JhengHei;
 }
 
 #app .header .left-info .name-info .time .global-icon {
@@ -86,7 +87,7 @@ body {
   background-size: 73px 540px;
   background-repeat: no-repeat;
   display: inline-block;
-  margin-left: 4px
+  margin-left: 4px;
 }
 
 #app .header .right-info {
@@ -96,7 +97,7 @@ body {
   background-position: -242px -245px;
   width: 20px;
   height: 20px;
-  cursor: pointer
+  cursor: pointer;
 }
 
 #app .content {
@@ -105,7 +106,7 @@ body {
   letter-spacing: 0;
   line-height: 28px;
   margin: 0 0 7px 0;
-  padding: 12px 12px 0
+  padding: 12px 12px 0;
 }
 
 #app .feedback-info {
@@ -117,7 +118,7 @@ body {
   justify-content: space-between;
   border-bottom: 1px solid #dadde1;
   margin: 10px 12px 0 12px;
-  padding: 0 0 10px 0
+  padding: 0 0 10px 0;
 }
 
 #app .feedback-info .threads-and-share {
@@ -125,7 +126,7 @@ body {
   display: -ms-flexbox;
   display: flex;
   font-size: 14px;
-  font-family: Microsoft JhengHei
+  font-family: Microsoft JhengHei;
 }
 
 #app .feedback-info .feedback-emojis {
@@ -136,7 +137,7 @@ body {
   display: flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
-  align-items: center
+  align-items: center;
 }
 
 #app .feedback-info .feedback-emojis .icons {
@@ -154,26 +155,26 @@ body {
   line-height: 16px;
   display: inline-block;
   margin-left: -2px;
-  margin-right: 2px
+  margin-right: 2px;
 }
 
 #app .feedback-info .feedback-emojis .icons.like-icon {
   background-position: 0 -526px;
-  z-index: 3
+  z-index: 3;
 }
 
 #app .feedback-info .feedback-emojis .icons.haha-icon {
   background-position: -17px -475px;
-  z-index: 2
+  z-index: 2;
 }
 
 #app .feedback-info .feedback-emojis .icons.love-icon {
   background-position: -17px -492px;
-  margin-right: 4px
+  margin-right: 4px;
 }
 
 #app .feedback-info .threads-and-share .share {
-  margin-left: 8px
+  margin-left: 8px;
 }
 
 #app .feedback-action {
@@ -191,11 +192,11 @@ body {
   color: #606770;
   margin: 0 12px;
   min-height: 32px;
-  padding: 4px 0
+  padding: 4px 0;
 }
 
 #app .feedback-action div {
-  cursor: pointer
+  cursor: pointer;
 }
 
 #app .feedback-action .fb-wrapper {
@@ -209,13 +210,13 @@ body {
   -ms-flex-align: center;
   align-items: center;
   width: 100%;
-  min-height: 32px
+  min-height: 32px;
 }
 
 #app .feedback-action .fb-wrapper:hover {
-  background-color: rgba(29,33,41,.04);
+  background-color: rgba(29, 33, 41, 0.04);
   border-radius: 2px;
-  text-decoration: none
+  text-decoration: none;
 }
 
 #app .feedback-action .fb-wrapper .fb-icon {
@@ -223,30 +224,30 @@ body {
   height: 18px;
   display: inline-block;
   background-repeat: no-repeat;
-  margin: 0 6px 0 0
+  margin: 0 6px 0 0;
 }
 
 #app .feedback-action .fb-wrapper .fb-icon.thumb-up {
   background-image: url(../img/thumbUp.7dd2ef48.png);
   background-size: 55px 237px;
-  background-position: -19px -131px
+  background-position: -19px -131px;
 }
 
 #app .feedback-action .fb-wrapper .fb-icon.response {
   background-image: url(../img/responseShare.9c75973b.png);
   background-size: 161px 376px;
-  background-position: -42px -249px
+  background-position: -42px -249px;
 }
 
 #app .feedback-action .fb-wrapper .fb-icon.share {
   background-image: url(../img/responseShare.9c75973b.png);
   background-size: 161px 376px;
-  background-position: -61px -249px
+  background-position: -61px -249px;
 }
 
 #app .comments {
   margin: 0 12px;
-  border-top: 1px solid #dadde1
+  border-top: 1px solid #dadde1;
 }
 
 #app .comments .relevant {
@@ -259,7 +260,7 @@ body {
   margin: 8px 0;
   color: #444950;
   font-size: 14px;
-  cursor: pointer
+  cursor: pointer;
 }
 
 #app .comments .relevant .relevant-icon {
@@ -272,7 +273,7 @@ body {
   margin-left: 2px;
   margin-top: 2px;
   vertical-align: top;
-  width: 12px
+  width: 12px;
 }
 
 #app .my-comment-wrapper {
@@ -281,7 +282,7 @@ body {
   display: flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
-  align-items: center
+  align-items: center;
 }
 
 #app .my-comment-wrapper .my-avatar img {
@@ -290,7 +291,7 @@ body {
   border-radius: 50%;
   display: block;
   overflow: hidden;
-  margin-right: 6px
+  margin-right: 6px;
 }
 
 #app .my-comment-wrapper .my-comment {
@@ -312,18 +313,22 @@ body {
   flex: 1 1 auto;
   line-height: 16px;
   overflow: hidden;
-  padding: 7px 12px
+  padding: 7px 12px;
 }
 
 #app .my-comment-wrapper .my-comment .my-comment-placeholder {
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap!important;
+  white-space: nowrap !important;
   color: #8d949e;
-  font-size: 14px
+  font-size: 14px;
 }
 
-#app .my-comment-wrapper .my-comment .my-comment-placeholder input[type=text] {
+#app
+  .my-comment-wrapper
+  .my-comment
+  .my-comment-placeholder
+  input[type='text'] {
   width: 300px;
   appearance: none;
   -moz-appearance: none;
@@ -335,11 +340,11 @@ body {
   padding: 0;
   border: 0 solid transparent;
   background: transparent;
-  font-size: 14px
+  font-size: 14px;
 }
 
 #app .my-comment-wrapper .my-comment .my-comment-emojis div {
-  padding: 8px 6px
+  padding: 8px 6px;
 }
 
 #app .my-comment-wrapper .my-comment .my-comment-emojis span {
@@ -350,23 +355,23 @@ body {
   height: 16px;
   width: 16px;
   margin-left: 10px;
-  cursor: pointer
+  cursor: pointer;
 }
 
 #app .my-comment-wrapper .my-comment .my-comment-emojis span.add-emojis {
-  background-position: -34px -169px
+  background-position: -34px -169px;
 }
 
 #app .my-comment-wrapper .my-comment .my-comment-emojis span.add-photo {
-  background-position: -36px -150px
+  background-position: -36px -150px;
 }
 
 #app .my-comment-wrapper .my-comment .my-comment-emojis span.add-gif {
-  background-position: -34px -186px
+  background-position: -34px -186px;
 }
 
 #app .my-comment-wrapper .my-comment .my-comment-emojis span.add-sticker {
-  background-position: -34px -203px
+  background-position: -34px -203px;
 }
 
 #app .people-comment-wrapper {
@@ -376,13 +381,13 @@ body {
   display: flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
-  align-items: center
+  align-items: center;
 }
 
 #app .people-comment-wrapper.university {
   -webkit-box-align: start;
   -ms-flex-align: start;
-  align-items: flex-start
+  align-items: flex-start;
 }
 
 #app .people-comment-wrapper .people-avatar img {
@@ -391,7 +396,7 @@ body {
   border-radius: 50%;
   display: block;
   overflow: hidden;
-  margin-right: 6px
+  margin-right: 6px;
 }
 
 #app .people-comment-wrapper .people-comment {
@@ -400,43 +405,64 @@ body {
   color: #1c1e21;
   line-height: 16px;
   padding: 8px 12px;
-  position: relative
+  position: relative;
 }
 
 #app .people-comment-wrapper .people-comment .people-comment-container {
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap!important;
+  white-space: nowrap !important;
   color: #1c1e21;
   font-size: 14px;
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex
+  display: flex;
 }
 
-#app .people-comment-wrapper .people-comment .people-comment-container.university {
+#app
+  .people-comment-wrapper
+  .people-comment
+  .people-comment-container.university {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
-  flex-direction: column
+  flex-direction: column;
 }
 
-#app .people-comment-wrapper .people-comment .people-comment-container .people-name {
+#app
+  .people-comment-wrapper
+  .people-comment
+  .people-comment-container
+  .people-name {
   font-weight: 600;
   cursor: pointer;
-  margin-right: 4px
+  margin-right: 4px;
 }
 
-#app .people-comment-wrapper .people-comment .people-comment-container .people-name a {
+#app
+  .people-comment-wrapper
+  .people-comment
+  .people-comment-container
+  .people-name
+  a {
   text-decoration: none;
-  color: #365899
+  color: #365899;
 }
 
-#app .people-comment-wrapper .people-comment .people-comment-container .people-name:hover {
-  text-decoration: underline
+#app
+  .people-comment-wrapper
+  .people-comment
+  .people-comment-container
+  .people-name:hover {
+  text-decoration: underline;
 }
 
-#app .people-comment-wrapper .people-comment .people-comment-container .people-name .blue-check {
+#app
+  .people-comment-wrapper
+  .people-comment
+  .people-comment-container
+  .people-name
+  .blue-check {
   margin-left: 4px;
   background-image: url(../img/blue-check.c49fa063.png);
   background-repeat: no-repeat;
@@ -445,35 +471,59 @@ body {
   height: 15px;
   vertical-align: -2px;
   width: 15px;
-  display: inline-block
+  display: inline-block;
 }
 
-#app .people-comment-wrapper .people-comment .people-comment-container .people-saying.university {
-  margin: 5px 0
+#app
+  .people-comment-wrapper
+  .people-comment
+  .people-comment-container
+  .people-saying.university {
+  margin: 5px 0;
 }
 
-#app .people-comment-wrapper .people-comment .people-comment-container .people-saying.secret-magic {
-  margin: 12px 0 8px 0
+#app
+  .people-comment-wrapper
+  .people-comment
+  .people-comment-container
+  .people-saying.secret-magic {
+  margin: 12px 0 8px 0;
 }
 
-#app .people-comment-wrapper .people-comment .people-comment-container .people-saying.hashtag {
+#app
+  .people-comment-wrapper
+  .people-comment
+  .people-comment-container
+  .people-saying.hashtag {
   margin-top: 15px;
   color: #365899;
-  cursor: pointer
+  cursor: pointer;
 }
 
-#app .people-comment-wrapper .people-comment .people-comment-container .people-saying.hashtag.hashtag-last {
-  margin-top: 0
+#app
+  .people-comment-wrapper
+  .people-comment
+  .people-comment-container
+  .people-saying.hashtag.hashtag-last {
+  margin-top: 0;
 }
 
-#app .people-comment-wrapper .people-comment .people-comment-container .people-saying.hashtag:hover {
-  text-decoration: underline
+#app
+  .people-comment-wrapper
+  .people-comment
+  .people-comment-container
+  .people-saying.hashtag:hover {
+  text-decoration: underline;
 }
 
-#app .people-comment-wrapper .people-comment .people-comment-container .inner-image {
+#app
+  .people-comment-wrapper
+  .people-comment
+  .people-comment-container
+  .inner-image {
   width: 360px;
   height: 204px;
-  margin-bottom: 5px
+  margin-bottom: 5px;
 }
 
 #app .people-comment-wrapper .people-comment .comment-reactions {
@@ -489,12 +539,12 @@ body {
   align-items: center;
   background: #fff;
   border-radius: 10px;
-  -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.2);
-  box-shadow: 0 1px 3px 0 rgba(0,0,0,.2);
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
   color: #8d949e;
   font-size: 12px;
   font-weight: 400;
-  padding: 2px 1px 2px 4px
+  padding: 2px 1px 2px 4px;
 }
 
 #app .people-comment-wrapper .people-comment .comment-reactions .icons {
@@ -512,30 +562,50 @@ body {
   line-height: 16px;
   display: inline-block;
   margin-left: -2px;
-  margin-right: 2px
+  margin-right: 2px;
 }
 
-#app .people-comment-wrapper .people-comment .comment-reactions .icons.like-icon {
+#app
+  .people-comment-wrapper
+  .people-comment
+  .comment-reactions
+  .icons.like-icon {
   background-position: 0 -526px;
-  z-index: 3
+  z-index: 3;
 }
 
-#app .people-comment-wrapper .people-comment .comment-reactions .icons.haha-icon {
+#app
+  .people-comment-wrapper
+  .people-comment
+  .comment-reactions
+  .icons.haha-icon {
   background-position: -17px -475px;
-  z-index: 2
+  z-index: 2;
 }
 
-#app .people-comment-wrapper .people-comment .comment-reactions .icons.ohhh-icon {
+#app
+  .people-comment-wrapper
+  .people-comment
+  .comment-reactions
+  .icons.ohhh-icon {
   background-position: 0 -543px;
-  margin-right: 4px
+  margin-right: 4px;
 }
 
-#app .people-comment-wrapper .people-comment .comment-reactions .icons.angry-icon {
-  background-position: -17px -441px
+#app
+  .people-comment-wrapper
+  .people-comment
+  .comment-reactions
+  .icons.angry-icon {
+  background-position: -17px -441px;
 }
 
-#app .people-comment-wrapper .people-comment .comment-reactions .icons.cry-icon {
-  background-position: -17px -509px
+#app
+  .people-comment-wrapper
+  .people-comment
+  .comment-reactions
+  .icons.cry-icon {
+  background-position: -17px -509px;
 }
 
 #app .people-comment-wrapper .people-comment .comment-reactions .number {
@@ -543,7 +613,7 @@ body {
   padding: 0 3px 0 2px;
   font-size: 12px;
   line-height: 16px;
-  font-family: Microsoft JhengHei
+  font-family: Microsoft JhengHei;
 }
 
 #app .like-and-response-wrapper {
@@ -554,20 +624,22 @@ body {
   font-size: 13px;
   line-height: 13px;
   margin-top: 5px;
-  margin-left: 50px
+  margin-left: 50px;
 }
 
 #app .like-and-response-wrapper .nbsp {
   margin-left: 2px;
-  color: #8d949e
+  color: #8d949e;
 }
 
-#app .like-and-response-wrapper .like-comment,#app .like-and-response-wrapper .response-comment {
+#app .like-and-response-wrapper .like-comment,
+#app .like-and-response-wrapper .response-comment {
   color: #365899;
   cursor: pointer;
-  margin-right: 2px
+  margin-right: 2px;
 }
 
-#app .like-and-response-wrapper .like-comment a:hover,#app .like-and-response-wrapper .response-comment a:hover {
-  text-decoration: underline
+#app .like-and-response-wrapper .like-comment a:hover,
+#app .like-and-response-wrapper .response-comment a:hover {
+  text-decoration: underline;
 }
