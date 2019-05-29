@@ -29,10 +29,10 @@ const ThirdIcon = styled.i`
   ${reactionThirdIconStyle(reactionIconImg)}
 `
 
-const ReactionThirdIcon = ({ reactionType = 'Love' }) => {
+const ReactionThirdIcon = ({ reactionType = 'Love', countSummary = '' }) => {
   const tooltipId = 'tip-for-post-third-most-reaction'
   return (
-    <ReactionThirdIconContainer data-for={tooltipId} data-tip={reactionType}>
+    <ReactionThirdIconContainer data-for={tooltipId} data-tip={countSummary}>
       <ThirdIcon reactionType={reactionType} />
       <StyledTooltip
         id={tooltipId}

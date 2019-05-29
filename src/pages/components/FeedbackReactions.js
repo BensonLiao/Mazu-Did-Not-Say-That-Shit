@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types'
 import styled from 'styled-components'
 import { alignCenter } from '../styles'
 import textFormat from '../../utils/textFormat'
-import ReactionCount from './ReactionCount'
+import FeedbackCount from './FeedbackCount'
 import ReactionFirstIcon from './ReactionFirstIcon'
 import ReactionSecondIcon from './ReactionSecondIcon'
 import ReactionThirdIcon from './ReactionThirdIcon'
@@ -47,13 +47,13 @@ const summaryReactions = (reactions, rank) => {
     reactor => reactor.type === rank.thirdMost.type
   )
   summary.all.forText = textFormat.reactionsCountFormator(reactions)
-  summary.all.forTip = textFormat.reactionsCountTipFormator(reactions, 18)
-  summary.topMost = textFormat.reactionsCountTipFormator(topMostReactions, 18)
-  summary.secondMost = textFormat.reactionsCountTipFormator(
+  summary.all.forTip = textFormat.feedbacksCountTipFormator(reactions, 18)
+  summary.topMost = textFormat.feedbacksCountTipFormator(topMostReactions, 18)
+  summary.secondMost = textFormat.feedbacksCountTipFormator(
     secondMostReactions,
     18
   )
-  summary.thirdMost = textFormat.reactionsCountTipFormator(
+  summary.thirdMost = textFormat.feedbacksCountTipFormator(
     thirdMostReactions,
     18
   )
@@ -76,9 +76,15 @@ const FeedbackReactions = props => {
         reactionType={reactionsRank.topMost.type}
         countSummary={reactionsSummary.topMost}
       />
-      <ReactionSecondIcon reactionType={reactionsRank.secondMost.type} />
-      <ReactionThirdIcon reactionType={reactionsRank.thirdMost.type} />
-      <ReactionCount
+      <ReactionSecondIcon
+        reactionType={reactionsRank.secondMost.type}
+        countSummary={reactionsSummary.secondMost}
+      />
+      <ReactionThirdIcon
+        reactionType={reactionsRank.thirdMost.type}
+        countSummary={reactionsSummary.thirdMost}
+      />
+      <FeedbackCount
         forText={reactionsSummary.all.forText}
         forTip={reactionsSummary.all.forTip}
       />

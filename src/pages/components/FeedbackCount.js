@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import StyledTooltip from './StyledTooltip'
 import { cssVar } from '../styles'
 
-const ReactionCountContainer = styled.span`
+const FeedbackCountContainer = styled.span`
   display: block;
   line-height: 16px;
   max-height: 16px;
@@ -17,10 +17,10 @@ const ReactionCountContainer = styled.span`
   }
 `
 
-const ReactionCount = props => {
-  const tooltipId = 'tip-for-post-reaction-count'
+const FeedbackCount = props => {
+  const tooltipId = `tip-for-post-${props.type}-count`
   return (
-    <ReactionCountContainer data-for={tooltipId} data-tip={props.forTip}>
+    <FeedbackCountContainer data-for={tooltipId} data-tip={props.forTip}>
       {props.forText}
       <StyledTooltip
         id={tooltipId}
@@ -28,15 +28,20 @@ const ReactionCount = props => {
         multiline
         bg={cssVar.tooltipBackgroundBlack}
       />
-    </ReactionCountContainer>
+    </FeedbackCountContainer>
   )
 }
 
-ReactionCount.displayName = 'ReactionCount'
+FeedbackCount.displayName = 'FeedbackCount'
 
-ReactionCount.propTypes = {
+FeedbackCount.propTypes = {
   forTip: PropTypes.string.isRequired,
-  forText: PropTypes.string.isRequired
+  forText: PropTypes.string.isRequired,
+  type: PropTypes.string
 }
 
-export default ReactionCount
+FeedbackCount.defaultProps = {
+  type: 'reaction'
+}
+
+export default FeedbackCount

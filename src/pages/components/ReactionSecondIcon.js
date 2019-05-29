@@ -29,10 +29,10 @@ const SecondIcon = styled.i`
   ${reactionSecondIconStyle(reactionIconImg)}
 `
 
-const ReactionSecondIcon = ({ reactionType = 'Haha' }) => {
+const ReactionSecondIcon = ({ reactionType = 'Haha', countSummary = '' }) => {
   const tooltipId = 'tip-for-post-second-most-reaction'
   return (
-    <ReactionSecondIconContainer data-for={tooltipId} data-tip={reactionType}>
+    <ReactionSecondIconContainer data-for={tooltipId} data-tip={countSummary}>
       <SecondIcon reactionType={reactionType} />
       <StyledTooltip
         id={tooltipId}
