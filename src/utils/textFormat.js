@@ -26,7 +26,11 @@ export default {
     let formattedSummary = ''
     if (reactions.length > 0) {
       for (let i = 0; i < numTopShow; i++) {
-        formattedSummary += `${reactions[i].name}、`
+        const name =
+          i + 1 === numTopShow
+            ? `${reactions[i].name}`
+            : `${reactions[i].name}、`
+        formattedSummary += name
       }
     }
     formattedSummary += `和其他${reactions.length - numTopShow}人`
