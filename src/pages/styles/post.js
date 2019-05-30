@@ -51,22 +51,14 @@ export const reactionLoveIconStyle = `
 export const reactionFirstIconStyle = iconImg => `
   ${reactionIconStyle}
   background-image: url(${cssesc(iconImg)});
-  margin-left: -2px;
-  margin-right: 2px;
-  z-index: 3;
 `
 
 export const reactionSecondIconStyle = iconImg => `
   ${reactionIconStyle}
   background-image: url(${cssesc(iconImg)});
-  margin-left: -2px;
-  margin-right: 2px;
-  z-index: 2;=
 `
 
 export const reactionThirdIconStyle = iconImg => `
   ${reactionIconStyle}
   background-image: url(${cssesc(iconImg)});
-  margin-left: -2px;
-  margin-right: 4px;=
 `

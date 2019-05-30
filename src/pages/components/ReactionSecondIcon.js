@@ -14,6 +14,9 @@ import reactionIconImg from '../../assets/img/fb-emojis.0d754b03.png'
 
 const ReactionSecondIconContainer = styled.div`
   ${reactionIconContainerStyle}
+  margin-left: -2px;
+  margin-right: 2px;
+  z-index: 2;
 `
 
 const SecondIcon = styled.i`
