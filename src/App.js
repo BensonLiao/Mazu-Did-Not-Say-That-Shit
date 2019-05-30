@@ -27,9 +27,11 @@ const PostWrapper = styled.div`
   font-family: ${cssVar.fontFamily};
 `
 
-const poster = {
-  profileName: '媽祖',
-  profileUrl: 'https://www.facebook.com/themazhou/posts/307433766601772',
+const post = {
+  poster: {
+    profileName: '媽祖',
+    profileUrl: 'https://www.facebook.com/themazhou/posts/307433766601772'
+  },
   postTime: '4月17日下午6:12 ·',
   postContent: '我根本沒說。',
   feedback: {
@@ -47,12 +49,12 @@ class App extends Component {
           <GlobalStyle />
           <PostWrapper>
             <Header
-              profileName={poster.profileName}
-              profileUrl={poster.profileUrl}
-              postTime={poster.postTime}
+              profileName={post.poster.profileName}
+              profileUrl={post.poster.profileUrl}
+              postTime={post.postTime}
             />
-            <PostContent postContent={poster.postContent} />
-            <FeedbackSummary feedback={poster.feedback} />
+            <PostContent postContent={post.postContent} />
+            <FeedbackSummary feedback={post.feedback} />
           </PostWrapper>
         </Root>
       </ThemeProvider>
