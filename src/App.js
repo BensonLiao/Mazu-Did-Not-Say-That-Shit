@@ -33,7 +33,7 @@ const poster = {
   postTime: '4月17日下午6:12 ·',
   postContent: '我根本沒說。',
   feedback: {
-    reactions: createReactions(200),
+    reactions: createReactions(),
     comments: createComments(),
     shares: createShares()
   }

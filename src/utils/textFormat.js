@@ -6,6 +6,17 @@ export default {
     }
     return formattedTimeStamp
   },
+  totalCountFormator(total) {
+    let formattedTotal = ''
+    formattedTotal =
+      total > 10000
+        ? (total / 10000)
+            .toFixed(1)
+            .toString()
+            .concat('萬')
+        : total.toString().replace(/\d(?=(\d{3})+)/g, '$&,')
+    return formattedTotal
+  },
   /**
    * A formator that returns a one-lined summary of reactions count
    * for display as always-visible text.
@@ -13,8 +24,6 @@ export default {
    *   An array of objects contains the following properties:
    *   @prop {name}
    *     The reactor's profile name.
-   *   @prop {type}
-   *     The reactor's reaction type: `Like`, `Haha`, `Love`
    * @param {numTopShow}
    *     Show the reactor's name of the top n of @param {reactions}.
    *     (Default of n: 2)
@@ -33,7 +42,9 @@ export default {
         formattedSummary += name
       }
     }
-    formattedSummary += `和其他${reactions.length - numTopShow}人`
+    const totalOthers = reactions.length - numTopShow
+    const formattedTotalOthers = this.totalCountFormator(totalOthers)
+    formattedSummary += `和其他${formattedTotalOthers}人`
     return formattedSummary
   },
   /**
@@ -45,8 +56,8 @@ export default {
    *   Type of feedback, `comment` or `share`.
    */
   feedbacksCountFormator(feedbacks, type) {
-    let formattedTotal = feedbacks.length.toString()
-    formattedTotal = formattedTotal.replace(/\d(?=(\d{3})+)/g, '$&,')
+    const total = feedbacks.length
+    const formattedTotal = this.totalCountFormator(total)
     const formattedSummary =
       type === 'comment' ? `${formattedTotal}則留言` : `${formattedTotal}次分享`
     return formattedSummary
