@@ -18,7 +18,7 @@ const Root = styled.div`
   ${alignCenter}
 `
 
-const PostContainer = styled.div`
+const PostWrapper = styled.div`
   min-width: 500px;
   height: 1200px;
   border: 1px solid #dddfe2;
@@ -45,7 +45,7 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <Root>
           <GlobalStyle />
-          <PostContainer>
+          <PostWrapper>
             <Header
               profileName={poster.profileName}
               profileUrl={poster.profileUrl}
@@ -53,7 +53,7 @@ class App extends Component {
             />
             <PostContent postContent={poster.postContent} />
             <FeedbackSummary feedback={poster.feedback} />
-          </PostContainer>
+          </PostWrapper>
         </Root>
       </ThemeProvider>
     )
