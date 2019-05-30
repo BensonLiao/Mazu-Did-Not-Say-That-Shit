@@ -15,7 +15,7 @@ const summaryFeedbacks = (feedbacks, type) => {
   return summary
 }
 
-const FeedbackCommentAndSharesWrapper = styled.div`
+const CommentAndShareSummaryWrapper = styled.div`
   ${displayFlex}
   font-size: 14px;
 `
@@ -24,11 +24,11 @@ const SharesWrapper = styled.div`
   margin-left: 8px;
 `
 
-const FeedbackCommentAndShares = props => {
+const CommentAndShareSummary = props => {
   const commentsSummary = summaryFeedbacks(props.comments, 'comment')
   const sharesSummary = summaryFeedbacks(props.shares, 'share')
   return (
-    <FeedbackCommentAndSharesWrapper>
+    <CommentAndShareSummaryWrapper>
       <FeedbackCount
         forText={commentsSummary.forText}
         forTip={commentsSummary.forTip}
@@ -41,13 +41,13 @@ const FeedbackCommentAndShares = props => {
           type="share"
         />
       </SharesWrapper>
-    </FeedbackCommentAndSharesWrapper>
+    </CommentAndShareSummaryWrapper>
   )
 }
 
-export default FeedbackCommentAndShares
+export default CommentAndShareSummary
 
-FeedbackCommentAndShares.propTypes = {
+CommentAndShareSummary.propTypes = {
   comments: PropTypes.array.isRequired,
   shares: PropTypes.array.isRequired
 }

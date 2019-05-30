@@ -67,18 +67,18 @@ const summaryReactions = (reactions, rank) => {
   return summary
 }
 
-const FeedbackReactionsWrapper = styled.div`
+const ReactionSummaryWrapper = styled.div`
   display: flex;
   font-size: 14px;
   min-width: 100px;
   ${alignCenter}
 `
 
-const FeedbackReactions = props => {
+const ReactionSummary = props => {
   const reactionsRank = rankingReactions(props.reactions)
   const reactionsSummary = summaryReactions(props.reactions, reactionsRank)
   return (
-    <FeedbackReactionsWrapper>
+    <ReactionSummaryWrapper>
       <ReactionFirstIcon
         reactionType={reactionsRank.topMost.type}
         countSummary={reactionsSummary.topMost}
@@ -95,12 +95,12 @@ const FeedbackReactions = props => {
         forText={reactionsSummary.all.forText}
         forTip={reactionsSummary.all.forTip}
       />
-    </FeedbackReactionsWrapper>
+    </ReactionSummaryWrapper>
   )
 }
 
-export default FeedbackReactions
+export default ReactionSummary
 
-FeedbackReactions.propTypes = {
+ReactionSummary.propTypes = {
   reactions: PropTypes.array.isRequired
 }

@@ -2,8 +2,8 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 import styled from 'styled-components'
 import { displayFlex, justifyContentSpaceBetween } from '../styles/page'
-import FeedbackReactions from './FeedbackReactions'
-import FeedbackCommentAndShares from './FeedbackCommentAndShares'
+import ReactionSummary from './ReactionSummary'
+import CommentAndShareSummary from './CommentAndShareSummary'
 
 const FeedbackSummaryWrapper = styled.div`
   ${displayFlex}
@@ -16,8 +16,8 @@ const FeedbackSummaryWrapper = styled.div`
 const FeedbackSummary = props => {
   return (
     <FeedbackSummaryWrapper>
-      <FeedbackReactions reactions={props.feedback.reactions} />
-      <FeedbackCommentAndShares
+      <ReactionSummary reactions={props.feedback.reactions} />
+      <CommentAndShareSummary
         comments={props.feedback.comments}
         shares={props.feedback.shares}
       />
