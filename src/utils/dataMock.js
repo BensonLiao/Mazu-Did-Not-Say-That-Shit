@@ -1,3 +1,5 @@
+import { REACTIONS } from '../pages/actions'
+
 /**
  * create fake reactions with default ratio of
  * 1/2 of Likes, 1/3 of Hahas and 1/6 of Loves
@@ -23,12 +25,12 @@
  */
 export const createReactions = (numberTotal = 16419, ratio = [3, 2, 1]) => {
   const reactor = [
-    { name: '鍋苔冥', type: 'Like' },
-    { name: '憨摑娛', type: 'Like' },
-    { name: '找到田大學', type: 'Haha' },
-    { name: '菜應蚊', type: 'Haha' },
-    { name: '台灣工具伯 王進坪', type: 'Love' },
-    { name: '叮守鐘', type: 'Love' }
+    { name: '鍋苔冥', type: REACTIONS.LIKE },
+    { name: '憨摑娛', type: REACTIONS.LIKE },
+    { name: '找到田大學', type: REACTIONS.HAHA },
+    { name: '菜應蚊', type: REACTIONS.HAHA },
+    { name: '台灣工具伯 王進坪', type: REACTIONS.LOVE },
+    { name: '叮守鐘', type: REACTIONS.LOVE }
   ]
   if (numberTotal < 2) {
     throw new Error('Number of total must greater than 2.')
@@ -60,23 +62,23 @@ export const createReactions = (numberTotal = 16419, ratio = [3, 2, 1]) => {
     ratioAngers === 0 ? 0 : Math.ceil((numberTotal - 1) / ratioAngers)
   for (let i = 0; i < numberTotal; i++) {
     if (i < totalLikes) {
-      reactor.push({ name: `假帳號${i}`, type: 'Like' })
+      reactor.push({ name: `假帳號${i}`, type: REACTIONS.LIKE })
     } else if (i < totalLikes + totalHahas) {
-      reactor.push({ name: `假帳號${i}`, type: 'Haha' })
+      reactor.push({ name: `假帳號${i}`, type: REACTIONS.HAHA })
     } else if (i < totalLikes + totalHahas + totalLoves) {
-      reactor.push({ name: `假帳號${i}`, type: 'Love' })
+      reactor.push({ name: `假帳號${i}`, type: REACTIONS.LOVE })
     } else if (i < totalLikes + totalHahas + totalLoves + totalWows) {
-      reactor.push({ name: `假帳號${i}`, type: 'Wow' })
+      reactor.push({ name: `假帳號${i}`, type: REACTIONS.WOW })
     } else if (
       i <
       totalLikes + totalHahas + totalLoves + totalWows + totalSads
     ) {
-      reactor.push({ name: `假帳號${i}`, type: 'Sad' })
+      reactor.push({ name: `假帳號${i}`, type: REACTIONS.SAD })
     } else if (
       i <
       totalLikes + totalHahas + totalLoves + totalWows + totalSads + totalAngers
     ) {
-      reactor.push({ name: `假帳號${i}`, type: 'Anger' })
+      reactor.push({ name: `假帳號${i}`, type: REACTIONS.ANGRY })
     }
   }
   return reactor

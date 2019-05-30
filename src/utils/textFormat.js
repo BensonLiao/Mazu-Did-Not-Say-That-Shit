@@ -45,10 +45,10 @@ export default {
    *   Type of feedback, `comment` or `share`.
    */
   feedbacksCountFormator(feedbacks, type) {
+    let formattedTotal = feedbacks.length.toString()
+    formattedTotal = formattedTotal.replace(/\d(?=(\d{3})+)/g, '$&,')
     const formattedSummary =
-      type === 'comment'
-        ? `${feedbacks.length}則留言`
-        : `${feedbacks.length}次分享`
+      type === 'comment' ? `${formattedTotal}則留言` : `${formattedTotal}次分享`
     return formattedSummary
   },
   /**

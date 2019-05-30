@@ -18,7 +18,7 @@ const FeedbackCountContainer = styled.span`
 `
 
 const FeedbackCount = props => {
-  const tooltipId = `tip-for-post-${props.type}-count`
+  const tooltipId = `tip-for-post-${props.type.toLowerCase()}-count`
   return (
     <FeedbackCountContainer data-for={tooltipId} data-tip={props.forTip}>
       {props.forText}

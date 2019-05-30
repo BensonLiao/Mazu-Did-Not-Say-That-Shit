@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { REACTIONS } from '../actions'
 import StyledTooltip from './StyledTooltip'
 import { cssVar } from '../styles'
 import {
@@ -20,16 +21,19 @@ const FirstIcon = styled.i`
     switch (props.reactionType) {
       default:
         return reactionLikeIconStyle
-      case 'Haha':
+      case REACTIONS.HAHA:
         return reactionHahaIconStyle
-      case 'Love':
+      case REACTIONS.LOVE:
         return reactionLoveIconStyle
     }
   }}
   ${reactionFirstIconStyle(reactionIconImg)}
 `
 
-const ReactionFirstIcon = ({ reactionType = 'Like', countSummary = '' }) => {
+const ReactionFirstIcon = ({
+  reactionType = REACTIONS.LIKE,
+  countSummary = ''
+}) => {
   const tooltipId = 'tip-for-post-first-most-reaction'
   return (
     <ReactionFirstIconContainer data-for={tooltipId} data-tip={countSummary}>

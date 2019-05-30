@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types'
 import styled from 'styled-components'
 import { alignCenter } from '../styles'
 import textFormat from '../../utils/textFormat'
+import { REACTIONS } from '../actions'
 import FeedbackCount from './FeedbackCount'
 import ReactionFirstIcon from './ReactionFirstIcon'
 import ReactionSecondIcon from './ReactionSecondIcon'
@@ -10,12 +11,18 @@ import ReactionThirdIcon from './ReactionThirdIcon'
 
 const rankingReactions = reactions => {
   const reactionsCounts = []
-  const reactionLikes = reactions.filter(reactor => reactor.type === 'like')
-  const reactionHahas = reactions.filter(reactor => reactor.type === 'haha')
-  const reactionLoves = reactions.filter(reactor => reactor.type === 'love')
-  reactionsCounts.push({type: 'Like', total: reactionLikes.length})
-  reactionsCounts.push({type: 'Haha', total: reactionHahas.length})
-  reactionsCounts.push({type: 'Love', total: reactionLoves.length})
+  const reactionLikes = reactions.filter(
+    reactor => reactor.type === REACTIONS.LIKE
+  )
+  const reactionHahas = reactions.filter(
+    reactor => reactor.type === REACTIONS.HAHA
+  )
+  const reactionLoves = reactions.filter(
+    reactor => reactor.type === REACTIONS.LOVE
+  )
+  reactionsCounts.push({type: REACTIONS.LIKE, total: reactionLikes.length})
+  reactionsCounts.push({type: REACTIONS.HAHA, total: reactionHahas.length})
+  reactionsCounts.push({type: REACTIONS.LOVE, total: reactionLoves.length})
   const sortedReactions = reactionsCounts.sort((a, b) => {
     return b.total - a.total
   })

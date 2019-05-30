@@ -1,18 +1,66 @@
-export const likeToPost = byWho => ({
-  type: 'LIKE_TO_POST',
-  reaction: 'Like',
+export const REACTIONS = {
+  LIKE: 'LIKE',
+  HAHA: 'HAHA',
+  LOVE: 'LOVE',
+  WOW: 'WOW',
+  SAD: 'SAD',
+  ANGRY: 'ANGRY'
+}
+
+export const likeThisPost = byWho => ({
+  type: 'REACT_THIS_POST',
+  reaction: REACTIONS.LIKE,
   name: byWho
 })
 
-export const hahaToPost = byWho => ({
-  type: 'HAHA_TO_POST',
-  reaction: 'Haha',
+export const hahaThisPost = byWho => ({
+  type: 'REACT_THIS_POST',
+  reaction: REACTIONS.HAHA,
   name: byWho
 })
 
-export const loveToPost = byWho => ({
-  type: 'LOVE_TO_POST',
-  reaction: 'Love',
+export const loveThisPost = byWho => ({
+  type: 'REACT_THIS_POST',
+  reaction: REACTIONS.LOVE,
+  name: byWho
+})
+
+export const wowThisPost = byWho => ({
+  type: 'REACT_THIS_POST',
+  reaction: REACTIONS.WOW,
+  name: byWho
+})
+
+export const sadThisPost = byWho => ({
+  type: 'REACT_THIS_POST',
+  reaction: REACTIONS.SAD,
+  name: byWho
+})
+
+export const angryThisPost = byWho => ({
+  type: 'REACT_THIS_POST',
+  reaction: REACTIONS.ANGRY,
+  name: byWho
+})
+
+export const commentThisPost = (
+  byWho,
+  comment = '',
+  time = Date().now(),
+  attachMedia = '',
+  mediaType = ''
+) => ({
+  type: 'COMMENT_THIS_POST',
+  comment,
+  time,
+  attachMedia,
+  mediaType,
+  name: byWho
+})
+
+export const shareThisPost = (byWho, time = Date().now()) => ({
+  type: 'SHARE_THIS_POST',
+  time,
   name: byWho
 })
 

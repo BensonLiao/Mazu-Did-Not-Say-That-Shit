@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { REACTIONS } from '../actions'
 import StyledTooltip from './StyledTooltip'
 import { cssVar } from '../styles'
 import {
@@ -20,16 +21,19 @@ const ThirdIcon = styled.i`
     switch (props.reactionType) {
       default:
         return reactionLikeIconStyle
-      case 'Haha':
+      case REACTIONS.HAHA:
         return reactionHahaIconStyle
-      case 'Love':
+      case REACTIONS.LOVE:
         return reactionLoveIconStyle
     }
   }}
   ${reactionThirdIconStyle(reactionIconImg)}
 `
 
-const ReactionThirdIcon = ({ reactionType = 'Love', countSummary = '' }) => {
+const ReactionThirdIcon = ({
+  reactionType = REACTIONS.LOVE,
+  countSummary = ''
+}) => {
   const tooltipId = 'tip-for-post-third-most-reaction'
   return (
     <ReactionThirdIconContainer data-for={tooltipId} data-tip={countSummary}>
