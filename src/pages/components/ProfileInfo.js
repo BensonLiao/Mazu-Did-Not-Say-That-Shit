@@ -15,7 +15,7 @@ const propTypes = {
   profileUrl: PropTypes.string
 }
 
-const ProfileInfoContainer = styled.div`
+const ProfileInfoWrapper = styled.div`
   display: block;
 `
 
@@ -26,9 +26,9 @@ const defaultProps = {
 
 const ProfileInfo = ({ profileName, profileUrl }) => {
   return (
-    <ProfileInfoContainer>
+    <ProfileInfoWrapper>
       <ProfileLink profileName={profileName} profileUrl={profileUrl} />
-    </ProfileInfoContainer>
+    </ProfileInfoWrapper>
   )
 }
 

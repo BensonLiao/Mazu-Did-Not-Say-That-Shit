@@ -5,7 +5,7 @@ import StyledTooltip from './StyledTooltip'
 import { cssVar } from '../styles'
 import { styledTooltipOverrideStyle } from '../styles/post'
 
-const FeedbackCountContainer = styled.span`
+const FeedbackCountWrapper = styled.span`
   display: block;
   line-height: 16px;
   max-height: 16px;
@@ -19,7 +19,7 @@ const FeedbackCountContainer = styled.span`
 const FeedbackCount = props => {
   const tooltipId = `tip-for-post-${props.type.toLowerCase()}-count`
   return (
-    <FeedbackCountContainer data-for={tooltipId} data-tip={props.forTip}>
+    <FeedbackCountWrapper data-for={tooltipId} data-tip={props.forTip}>
       {props.forText}
       <StyledTooltip
         id={tooltipId}
@@ -27,7 +27,7 @@ const FeedbackCount = props => {
         multiline
         bg={cssVar.tooltipBackgroundBlack}
       />
-    </FeedbackCountContainer>
+    </FeedbackCountWrapper>
   )
 }
 

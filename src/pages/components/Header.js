@@ -22,7 +22,7 @@ const propTypes = {
   postTime: PropTypes.string
 }
 
-const HeaderContainer = styled.div`
+const HeaderWrapper = styled.div`
   ${displayFlex}
   ${justifyContentSpaceBetween}
   padding: 12px 12px 0;
@@ -36,14 +36,14 @@ const defaultProps = {
 
 const Header = ({ profileName, profileUrl, postTime }) => {
   return (
-    <HeaderContainer>
+    <HeaderWrapper>
       <LeftInfo
         profileName={profileName}
         profileUrl={profileUrl}
         postTime={postTime}
       />
       <RightInfo />
-    </HeaderContainer>
+    </HeaderWrapper>
   )
 }
 

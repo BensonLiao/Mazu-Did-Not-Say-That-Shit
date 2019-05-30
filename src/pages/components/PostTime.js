@@ -7,12 +7,12 @@ import textFormat from '../../utils/textFormat'
 
 const propTypes = {
   /**
-   * Sets content on body of `PostTimeContainer`
+   * Sets content on body of `PostTimeWrapper`
    */
   postTimeStamp: PropTypes.string.isRequired
 }
 
-const PostTimeContainer = styled.div`
+const PostTimeWrapper = styled.div`
   color: ${cssVar.infoColorGray};
   font-size: 13px;
   font-family: ${cssVar.fontFamily};
@@ -21,13 +21,13 @@ const PostTimeContainer = styled.div`
 const PostTime = ({ postTimeStamp }) => {
   const tooltipId = 'tip-for-post-time'
   return (
-    <PostTimeContainer
+    <PostTimeWrapper
       data-for={tooltipId}
       data-tip={textFormat.timeStampFormator(postTimeStamp)}
     >
       {postTimeStamp}
       <StyledTooltip id={tooltipId} effect="solid" />
-    </PostTimeContainer>
+    </PostTimeWrapper>
   )
 }
 

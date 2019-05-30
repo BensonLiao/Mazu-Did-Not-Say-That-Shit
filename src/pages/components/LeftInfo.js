@@ -23,12 +23,12 @@ const propTypes = {
   postTime: PropTypes.string
 }
 
-const LeftInfoContainer = styled.div`
+const LeftInfoWrapper = styled.div`
   ${displayFlex}
   ${alignCenter}
 `
 
-const InfoBlockContainer = styled.div`
+const InfoBlockWrapper = styled.div`
   dislpay: block;
 `
 
@@ -40,13 +40,13 @@ const defaultProps = {
 
 const LeftInfo = ({ profileName, profileUrl, postTime }) => {
   return (
-    <LeftInfoContainer>
+    <LeftInfoWrapper>
       <Thumbnail />
-      <InfoBlockContainer>
+      <InfoBlockWrapper>
         <ProfileInfo profileName={profileName} profileUrl={profileUrl} />
         <PostInfo postTime={postTime} />
-      </InfoBlockContainer>
-    </LeftInfoContainer>
+      </InfoBlockWrapper>
+    </LeftInfoWrapper>
   )
 }
 

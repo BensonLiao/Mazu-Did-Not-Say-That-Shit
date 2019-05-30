@@ -19,7 +19,7 @@ export const styledTooltipOverrideStyle = `
   }
 `
 
-export const reactionIconContainerStyle = `
+export const reactionIconWrapperStyle = `
   height: ${cssVar.reactionsIconSize};
   width: ${cssVar.reactionsIconSize};
   ${styledTooltipOverrideStyle}

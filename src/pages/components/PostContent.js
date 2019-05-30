@@ -4,12 +4,12 @@ import styled from 'styled-components'
 
 const propTypes = {
   /**
-   * Sets content on body of `PostContentContainer`
+   * Sets content on body of `PostContentWrapper`
    */
   postContent: PropTypes.string
 }
 
-const PostContentContainer = styled.div`
+const PostContentWrapper = styled.div`
   font-size: 25px;
   font-weight: 300;
   letter-spacing: 0;
@@ -21,7 +21,7 @@ const PostContentContainer = styled.div`
 const defaultProps = { postContent: 'Fake Post Content' }
 
 const PostContent = ({ postContent }) => {
-  return <PostContentContainer>{postContent}</PostContentContainer>
+  return <PostContentWrapper>{postContent}</PostContentWrapper>
 }
 
 PostContent.displayName = 'PostContent'

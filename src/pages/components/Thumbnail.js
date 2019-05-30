@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import thumbnailImg from '../../assets/img/mazu.1b5fa982.jpg'
 
-const ThumbnailContainer = styled.div`
+const ThumbnailWrapper = styled.div`
   display: block;
 `
 
@@ -16,9 +16,9 @@ const ThumbnailImg = styled.img`
 
 const Thumbnail = () => {
   return (
-    <ThumbnailContainer>
+    <ThumbnailWrapper>
       <ThumbnailImg src={thumbnailImg} alt="Mazu" />
-    </ThumbnailContainer>
+    </ThumbnailWrapper>
   )
 }
 

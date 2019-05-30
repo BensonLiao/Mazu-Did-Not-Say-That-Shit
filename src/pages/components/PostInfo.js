@@ -12,7 +12,7 @@ const propTypes = {
   postTime: PropTypes.string
 }
 
-const PostInfoContainer = styled.div`
+const PostInfoWrapper = styled.div`
   ${displayFlex}
   ${alignCenter}
 `
@@ -23,10 +23,10 @@ const defaultProps = {
 
 const PostInfo = ({ postTime }) => {
   return (
-    <PostInfoContainer>
+    <PostInfoWrapper>
       <PostTime postTimeStamp={postTime} />
       <PrivacyIcon />
-    </PostInfoContainer>
+    </PostInfoWrapper>
   )
 }
 

@@ -5,7 +5,7 @@ import { displayFlex, justifyContentSpaceBetween } from '../styles/page'
 import FeedbackReactions from './FeedbackReactions'
 import FeedbackCommentAndShares from './FeedbackCommentAndShares'
 
-const FeedbackSummaryContainer = styled.div`
+const FeedbackSummaryWrapper = styled.div`
   ${displayFlex}
   ${justifyContentSpaceBetween}
   border-bottom: 1px solid #dadde1;
@@ -15,13 +15,13 @@ const FeedbackSummaryContainer = styled.div`
 
 const FeedbackSummary = props => {
   return (
-    <FeedbackSummaryContainer>
+    <FeedbackSummaryWrapper>
       <FeedbackReactions reactions={props.feedback.reactions} />
       <FeedbackCommentAndShares
         comments={props.feedback.comments}
         shares={props.feedback.shares}
       />
-    </FeedbackSummaryContainer>
+    </FeedbackSummaryWrapper>
   )
 }
 

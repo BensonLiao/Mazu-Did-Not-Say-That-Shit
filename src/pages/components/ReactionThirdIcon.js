@@ -4,7 +4,7 @@ import { REACTIONS } from '../actions'
 import StyledTooltip from './StyledTooltip'
 import { cssVar } from '../styles'
 import {
-  reactionIconContainerStyle,
+  reactionIconWrapperStyle,
   reactionThirdIconStyle,
   reactionLikeIconStyle,
   reactionHahaIconStyle,
@@ -12,8 +12,8 @@ import {
 } from '../styles/post'
 import reactionIconImg from '../../assets/img/fb-emojis.0d754b03.png'
 
-const ReactionThirdIconContainer = styled.div`
-  ${reactionIconContainerStyle}
+const ReactionThirdIconWrapper = styled.div`
+  ${reactionIconWrapperStyle}
   margin-left: -2px;
   margin-right: 4px;
   z-index: 1;
@@ -39,7 +39,7 @@ const ReactionThirdIcon = ({
 }) => {
   const tooltipId = 'tip-for-post-third-most-reaction'
   return (
-    <ReactionThirdIconContainer data-for={tooltipId} data-tip={countSummary}>
+    <ReactionThirdIconWrapper data-for={tooltipId} data-tip={countSummary}>
       <ThirdIcon reactionType={reactionType} />
       <StyledTooltip
         id={tooltipId}
@@ -47,7 +47,7 @@ const ReactionThirdIcon = ({
         multiline
         bg={cssVar.tooltipBackgroundBlack}
       />
-    </ReactionThirdIconContainer>
+    </ReactionThirdIconWrapper>
   )
 }
 
