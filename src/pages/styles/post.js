@@ -13,12 +13,16 @@ export const privacyIconStyle = iconImg => `
   margin-left: 4px;
 `
 
-export const reactionIconContainerStyle = `
-  height: ${cssVar.reactionsIconSize};
-  width: ${cssVar.reactionsIconSize};
+export const styledTooltipOverrideStyle = `
   div.__react_component_tooltip {
     padding: 8px 12px !important;
   }
+`
+
+export const reactionIconContainerStyle = `
+  height: ${cssVar.reactionsIconSize};
+  width: ${cssVar.reactionsIconSize};
+  ${styledTooltipOverrideStyle}
 `
 
 export const reactionIconStyle = `

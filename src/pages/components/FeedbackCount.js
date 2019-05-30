@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types'
 import styled from 'styled-components'
 import StyledTooltip from './StyledTooltip'
 import { cssVar } from '../styles'
+import { styledTooltipOverrideStyle } from '../styles/post'
 
 const FeedbackCountContainer = styled.span`
   display: block;
@@ -12,9 +13,7 @@ const FeedbackCountContainer = styled.span`
   &:hover {
     text-decoration: underline;
   }
-  div.__react_component_tooltip {
-    padding: 8px 12px !important;
-  }
+  ${styledTooltipOverrideStyle}
 `
 
 const FeedbackCount = props => {
