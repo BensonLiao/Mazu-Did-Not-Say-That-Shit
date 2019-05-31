@@ -5,12 +5,11 @@ import StyledTooltip from './StyledTooltip'
 import { cssVar } from '../styles'
 import {
   reactionIconWrapperStyle,
-  reactionSecondIconStyle,
+  reactionIconBaseStyle,
   reactionLikeIconStyle,
   reactionHahaIconStyle,
   reactionLoveIconStyle
 } from '../styles/post'
-import reactionIconImg from '../../assets/img/fb-emojis.0d754b03.png'
 
 const ReactionSecondIconWrapper = styled.div`
   ${reactionIconWrapperStyle}
@@ -20,6 +19,7 @@ const ReactionSecondIconWrapper = styled.div`
 `
 
 const SecondIcon = styled.i`
+  ${reactionIconBaseStyle}
   ${props => {
     switch (props.reactionType) {
       default:
@@ -30,7 +30,6 @@ const SecondIcon = styled.i`
         return reactionLoveIconStyle
     }
   }}
-  ${reactionSecondIconStyle(reactionIconImg)}
 `
 
 const ReactionSecondIcon = ({

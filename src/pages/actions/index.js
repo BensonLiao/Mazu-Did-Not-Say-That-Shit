@@ -1,3 +1,10 @@
+export const FEEDBACK = {
+  REACT: 'REACT',
+  UNDO_REACT: 'UNDO_REACT',
+  COMMENT: 'COMMENT',
+  SHARE: 'SHARE'
+}
+
 export const REACTIONS = {
   LIKE: 'LIKE',
   HAHA: 'HAHA',
@@ -7,64 +14,74 @@ export const REACTIONS = {
   ANGRY: 'ANGRY'
 }
 
-export const likeThisPost = byWho => ({
-  type: 'REACT_THIS_POST',
+export const feedbackLike = (byWho, targetId) => ({
+  type: FEEDBACK.REACT,
   reaction: REACTIONS.LIKE,
-  name: byWho
+  name: byWho,
+  comment_or_post_id: targetId
 })
 
-export const hahaThisPost = byWho => ({
-  type: 'REACT_THIS_POST',
+export const feedbackHaha = (byWho, targetId) => ({
+  type: FEEDBACK.REACT,
   reaction: REACTIONS.HAHA,
-  name: byWho
+  name: byWho,
+  comment_or_post_id: targetId
 })
 
-export const loveThisPost = byWho => ({
-  type: 'REACT_THIS_POST',
+export const feedbackLove = (byWho, targetId) => ({
+  type: FEEDBACK.REACT,
   reaction: REACTIONS.LOVE,
-  name: byWho
+  name: byWho,
+  comment_or_post_id: targetId
 })
 
-export const wowThisPost = byWho => ({
-  type: 'REACT_THIS_POST',
+export const feedbackWow = (byWho, targetId) => ({
+  type: FEEDBACK.REACT,
   reaction: REACTIONS.WOW,
-  name: byWho
+  name: byWho,
+  comment_or_post_id: targetId
 })
 
-export const sadThisPost = byWho => ({
-  type: 'REACT_THIS_POST',
+export const feedbackSad = (byWho, targetId) => ({
+  type: FEEDBACK.REACT,
   reaction: REACTIONS.SAD,
-  name: byWho
+  name: byWho,
+  comment_or_post_id: targetId
 })
 
-export const angryThisPost = byWho => ({
-  type: 'REACT_THIS_POST',
+export const feedbackAngry = (byWho, targetId) => ({
+  type: FEEDBACK.REACT,
   reaction: REACTIONS.ANGRY,
-  name: byWho
+  name: byWho,
+  comment_or_post_id: targetId
 })
 
-export const commentThisPost = (
+export const feedbackComment = (
   byWho,
+  targetId,
   comment = '',
   time = Date().now(),
   attachMedia = '',
   mediaType = ''
 ) => ({
-  type: 'COMMENT_THIS_POST',
+  type: FEEDBACK.COMMENT,
   comment,
   time,
   attachMedia,
   mediaType,
-  name: byWho
+  name: byWho,
+  comment_or_post_id: targetId
 })
 
-export const shareThisPost = (byWho, time = Date().now()) => ({
-  type: 'SHARE_THIS_POST',
+export const feedbackShare = (byWho, time = Date().now(), postId) => ({
+  type: FEEDBACK.SHARE,
   time,
-  name: byWho
+  name: byWho,
+  post_id: postId
 })
 
-export const undoReactionToPost = byWho => ({
-  type: 'UNDO_REACTION_TO_POST',
-  name: byWho
+export const undoReact = (byWho, targetId) => ({
+  type: FEEDBACK.UNDO_REACT,
+  name: byWho,
+  comment_or_post_id: targetId
 })

@@ -19,5 +19,7 @@ export const cssVar = {
   scrollbarTrackColor: 'rgba(255, 255, 255, 0.8)',
   alignItems: 'center',
   fontFamily: 'Microsoft JhengHei',
-  reactionsIconSize: '16px'
+  baseFontSize: '14px',
+  reactionIconSize: '16px',
+  feedbackActionButtonIconSize: '18px'
 }

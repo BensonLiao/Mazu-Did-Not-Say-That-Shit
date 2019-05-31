@@ -5,6 +5,7 @@ import { createReactions, createComments, createShares } from './utils/dataMock'
 import Header from './pages/components/Header'
 import PostContent from './pages/components/PostContent'
 import FeedbackSummary from './pages/components/FeedbackSummary'
+import FeedbackAction from './pages/components/FeedbackAction'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -55,6 +56,7 @@ class App extends Component {
             />
             <PostContent postContent={post.postContent} />
             <FeedbackSummary feedback={post.feedback} />
+            <FeedbackAction />
           </PostWrapper>
         </Root>
       </ThemeProvider>
