@@ -1,16 +1,17 @@
 import cssesc from 'cssesc'
 import { cssVar } from './variables'
 import { displayFlex, alignCenter } from './page'
-import reactionIconImg from '../../assets/img/fb-emojis.0d754b03.png'
-import reactionButtonImg from '../../assets/img/thumbUp.7dd2ef48.png'
-import commentAndShareButtonImg from '../../assets/img/responseShare.9c75973b.png'
+import privacyIconImg from '../../assets/img/global.png'
+import reactionIconImg from '../../assets/img/fb-emojis.png'
+import reactionButtonImg from '../../assets/img/thumbUp.png'
+import commentAndShareButtonImg from '../../assets/img/responseShare.png'
 
-export const privacyIconStyle = iconImg => `
+export const privacyIconStyle = `
   width: 12px;
   height: 12px;
   vertical-align: middle;
   background-position: -28px -499px;
-  background-image: url(${cssesc(iconImg)});
+  background-image: url(${cssesc(privacyIconImg)});
   background-size: 73px 540px;
   background-repeat: no-repeat;
   display: inline-block;

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import rightMenu from '../../assets/img/menu.0f1c98c8.png'
+import rightMenu from '../../assets/img/menu.png'
 
 export const RightInfo = styled.div`
   background-image: url(${rightMenu});

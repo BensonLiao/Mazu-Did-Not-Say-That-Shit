@@ -2,17 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 import StyledTooltip from './StyledTooltip'
 import { cssVar, privacyIconStyle } from '../styles'
-import privacyIconImg from '../../assets/img/global.36b90f96.png'
 
 const PrivacyIconWrapper = styled.i`
-  ${privacyIconStyle(privacyIconImg)}
+  ${privacyIconStyle}
 `
 
 const PrivacyIcon = () => {
   const tooltipId = 'tip-for-post-privacy'
   return (
     <React.Fragment>
-      <PrivacyIconWrapper data-for={tooltipId} data-tip="Public" />
+      <PrivacyIconWrapper data-for={tooltipId} data-tip="公開" />
       <StyledTooltip
         id={tooltipId}
         effect="solid"
