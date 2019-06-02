@@ -2,7 +2,8 @@ import cssesc from 'cssesc'
 import { cssVar } from './variables'
 import { displayFlex, alignCenter } from './page'
 import privacyIconImg from '../../assets/img/global.png'
-import reactionIconImg from '../../assets/img/fb-emojis.png'
+// import reactionIconImg from '../../assets/img/fb-emojis.png'
+import reactionIconImg from '../../assets/img/fb-emojis-new.png'
 import reactionButtonImg from '../../assets/img/thumbUp.png'
 import commentAndShareButtonImg from '../../assets/img/responseShare.png'
 
@@ -45,19 +46,40 @@ export const reactionIconBaseStyle = `
   display: inline-block;
 `
 
+// export const reactionLikeIconStyle = `
+//   background-image: url(${cssesc(reactionIconImg)});
+//   background-position: 0 -526px !important;
+// `
+
+// export const reactionHahaIconStyle = `
+//   background-image: url(${cssesc(reactionIconImg)});
+//   background-position: -17px -475px !important;
+// `
+
+// export const reactionLoveIconStyle = `
+//   background-image: url(${cssesc(reactionIconImg)});
+//   background-position: -17px -492px !important;
+// `
+
 export const reactionLikeIconStyle = `
   background-image: url(${cssesc(reactionIconImg)});
-  background-position: 0 -526px !important;
+  background-repeat: no-repeat !important;
+  background-size: 97px 1200px !important;
+  background-position: -49px -1037px !important;
 `
 
 export const reactionHahaIconStyle = `
   background-image: url(${cssesc(reactionIconImg)});
-  background-position: -17px -475px !important;
+  background-repeat: no-repeat !important;
+  background-size: 97px 1200px !important;
+  background-position: -68px -1018px !important;
 `
 
 export const reactionLoveIconStyle = `
   background-image: url(${cssesc(reactionIconImg)});
-  background-position: -17px -492px !important;
+  background-repeat: no-repeat !important;
+  background-size: 97px 1200px !important;
+  background-position: -68px -1037px !important;
 `
 
 export const feedbackActionWrapperStyle = `

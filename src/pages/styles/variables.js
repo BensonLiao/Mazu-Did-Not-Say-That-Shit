@@ -20,6 +20,6 @@ export const cssVar = {
   alignItems: 'center',
   fontFamily: 'Microsoft JhengHei',
   baseFontSize: '14px',
-  reactionIconSize: '16px',
+  reactionIconSize: '18px',
   feedbackActionButtonIconSize: '18px'
 }
