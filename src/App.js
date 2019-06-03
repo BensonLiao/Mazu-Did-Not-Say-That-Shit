@@ -1,7 +1,19 @@
 import React, { Component } from 'react'
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
-import { theme, cssVar, displayFlex, alignCenter } from './pages/styles'
-import { createReactions, createComments, createShares } from './utils/dataMock'
+import PropTypes from 'prop-types'
+import styled,
+{
+  ThemeProvider,
+  createGlobalStyle
+} from 'styled-components'
+import { connect } from 'react-redux'
+import { feedbackLike } from './pages/actions'
+import {
+  theme,
+  cssVar,
+  displayFlex,
+  alignCenter
+} from './pages/styles'
+import { definedUsers } from './utils/dataMock'
 import Header from './pages/components/Header'
 import PostContent from './pages/components/PostContent'
 import FeedbackSummary from './pages/components/FeedbackSummary'
@@ -29,34 +41,42 @@ const PostWrapper = styled.div`
 `
 
 const post = {
-  poster: {
-    profileName: '媽祖',
-    profileUrl: 'https://www.facebook.com/themazhou/posts/307433766601772'
-  },
+  poster: definedUsers.theMazu,
   postTime: '4月17日下午6:12 ·',
-  postContent: '我根本沒說。',
-  feedback: {
-    reactions: createReactions(2000),
-    comments: createComments(),
-    shares: createShares()
-  }
+  postContent: '我根本沒說。'
 }
 
 class App extends Component {
+  handleFeedbackLike = () => {
+    this.props.dispatch(feedbackLike())
+  }
+
   render() {
+    const {
+      feedback: {
+        reactions,
+        comments,
+        shares
+      }
+    } = this.props
     return (
       <ThemeProvider theme={theme}>
         <Root>
           <GlobalStyle />
           <PostWrapper>
             <Header
-              profileName={post.poster.profileName}
-              profileUrl={post.poster.profileUrl}
+              profileInfo={post.poster}
               postTime={post.postTime}
             />
             <PostContent postContent={post.postContent} />
-            <FeedbackSummary feedback={post.feedback} />
-            <FeedbackAction />
+            <FeedbackSummary
+              reactions={reactions}
+              comments={comments}
+              shares={shares}
+            />
+            <FeedbackAction
+              handleFeedbackLike={this.handleFeedbackLike}
+            />
           </PostWrapper>
         </Root>
       </ThemeProvider>
@@ -64,4 +84,28 @@ class App extends Component {
   }
 }
 
-export default App
+const mapStateToProps = state => {
+  const {
+    feedback: {
+      reactions,
+      comments,
+      shares
+    }
+  } = state
+
+  return {
+    reactions,
+    comments,
+    shares
+  }
+}
+
+App.propTypes = {
+  feedback: PropTypes.shape({
+    reactions: PropTypes.array,
+    comments: PropTypes.array,
+    shares: PropTypes.array
+  })
+}
+
+export default connect(mapStateToProps)(App)

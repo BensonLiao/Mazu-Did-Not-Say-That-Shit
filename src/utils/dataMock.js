@@ -1,12 +1,95 @@
+import uuidv1 from 'uuid/v1'
 import { REACTIONS } from '../pages/actions'
+
+export const definedUsers = {
+  theMazu: {
+    id: uuidv1(),
+    profileName: '媽祖',
+    profileLink: 'https://www.facebook.com/themazhou/',
+    profileImg: 'mazu.png'
+  },
+  terryGoodTiming: {
+    id: uuidv1(),
+    profileName: '鍋苔冥',
+    profileLink: 'https://www.facebook.com/TerryGou1018/',
+    profileImg: 'terry.png'
+  },
+  dingDing: {
+    id: uuidv1(),
+    profileName: '叮守鐘',
+    profileLink: 'https://www.youtube.com/watch?v=_97bLScvHWs',
+    profileImg: 'dingding.png'
+  },
+  toolMan: {
+    id: uuidv1(),
+    profileName: '台灣工具伯 汪進坪',
+    profileLink: 'https://www.facebook.com/jingping.tw/',
+    profileImg: 'toolman.png'
+  },
+  english: {
+    id: uuidv1(),
+    profileName: '菜應蚊',
+    profileLink: 'https://www.facebook.com/tsaiingwen/',
+    profileImg: 'english.png'
+  },
+  koreanFish: {
+    id: uuidv1(),
+    profileName: '憨摑娛',
+    profileLink: 'https://www.facebook.com/twherohan/',
+    profileImg: 'korean-fish.png'
+  },
+  careWheelEveryday: {
+    id: uuidv1(),
+    profileName: '每天關心愛情摩天輪的興建狀況',
+    profileLink: 'https://www.facebook.com/CareLoveFerrisWheelEveryday/',
+    profileImg: 'wheel.png'
+  },
+  universityFoundField: {
+    id: uuidv1(),
+    profileName: '找到田大學',
+    profileLink: '#',
+    profileImg: 'anonymous-university.png'
+  },
+  sparkJoy: {
+    id: uuidv1(),
+    profileName: '尛理惠的整理魔法',
+    profileLink: '#',
+    profileImg: 'sparkJoy.png'
+  }
+}
+
+/**
+ * Get fake user object with the following properties:
+ *   @prop {id}
+ *   @prop {profileName}
+ *   @prop {profileLink}
+ *   @prop {profileImg}
+ * @param {nameId} nameId
+ *  An id to distinguish from users,
+ *  will append to @prop {profileName}.
+ * @param {gender} gender
+ *  Choose an img represent gender, `MALE` if ommited.
+ */
+export const getFakeUser = (nameId, gender = 'MALE') => {
+  const maleUserImg = 'anonymous-male.png'
+  const femaleUserImg = 'anonymous-female.png'
+  const userImg = gender === 'MALE' ? maleUserImg : femaleUserImg
+  return {
+    id: uuidv1(),
+    profileName: `假帳號${nameId}`,
+    profileLink: '#',
+    profileImg: userImg
+  }
+}
 
 /**
  * create fake reactions with default ratio of
  * 1/2 of Likes, 1/3 of Hahas and 1/6 of Loves
- * if @param {ratio} was omitted.
- * @param {numberTotal}
- *  How many reactions to make, must be greater than 2.
- * @param {ratio}
+ * if @param {ratio} ratio was omitted.
+ * @param {numberTotal} numberTotal
+ *  How many reactions to make, must be greater than 2,
+ *  16419 will pass down if omitted.
+ * @param {ratio} ratio
  *  How to distribute the ratio of reaction type,
  *  accept only an array of 1 to 6 numbers,
  *  and ignore the omitted numbers.
@@ -15,22 +98,31 @@ import { REACTIONS } from '../pages/actions'
  *  1/(3+2+1) of `Love` and empty ratio for the rest of types.
  *  eg2. `[0,0,0,0,0,1]` will distribute the raio for full of `Anger`.
  *  eg3. `[0,0,0,0,1]` will distribute the raio for full of `Sad`.
- * @returns {reactor}
+ * @returns {react}
  *  An array of objects contains the following properties:
  *  @prop {name}
  *    The reactor's profile name
  *  @prop {type}
- *    The reactor's reaction type: `Like`, `Haha`, `Love`,
+ *    The react's reaction type: `Like`, `Haha`, `Love`,
  *    `Wow`, `Sad`, `Anger`
  */
 export const createReactions = (numberTotal = 16419, ratio = [3, 2, 1]) => {
-  const reactor = [
-    { name: '鍋苔冥', type: REACTIONS.LIKE },
-    { name: '憨摑娛', type: REACTIONS.LIKE },
-    { name: '找到田大學', type: REACTIONS.HAHA },
-    { name: '菜應蚊', type: REACTIONS.HAHA },
-    { name: '台灣工具伯 王進坪', type: REACTIONS.LOVE },
-    { name: '叮守鐘', type: REACTIONS.LOVE }
+  const react = [
+    {
+      user: definedUsers.terryGoodTiming,
+      type: REACTIONS.LIKE
+    },
+    {
+      user: definedUsers.koreanFish,
+      type: REACTIONS.LIKE
+    },
+    {
+      user: definedUsers.universityFoundField,
+      type: REACTIONS.HAHA
+    },
+    { user: definedUsers.english, type: REACTIONS.HAHA },
+    { user: definedUsers.toolMan, type: REACTIONS.LOVE },
+    { user: definedUsers.dingDing, type: REACTIONS.LOVE }
   ]
   if (numberTotal < 2) {
     throw new Error('Number of total must greater than 2.')
@@ -62,71 +154,78 @@ export const createReactions = (numberTotal = 16419, ratio = [3, 2, 1]) => {
     ratioAngers === 0 ? 0 : Math.ceil((numberTotal - 1) / ratioAngers)
   for (let i = 0; i < numberTotal; i++) {
     if (i < totalLikes) {
-      reactor.push({ name: `假帳號${i}`, type: REACTIONS.LIKE })
+      react.push({ user: getFakeUser(i), type: REACTIONS.LIKE })
     } else if (i < totalLikes + totalHahas) {
-      reactor.push({ name: `假帳號${i}`, type: REACTIONS.HAHA })
+      react.push({ user: getFakeUser(i), type: REACTIONS.HAHA })
     } else if (i < totalLikes + totalHahas + totalLoves) {
-      reactor.push({ name: `假帳號${i}`, type: REACTIONS.LOVE })
+      react.push({ user: getFakeUser(i), type: REACTIONS.LOVE })
     } else if (i < totalLikes + totalHahas + totalLoves + totalWows) {
-      reactor.push({ name: `假帳號${i}`, type: REACTIONS.WOW })
+      react.push({ user: getFakeUser(i), type: REACTIONS.WOW })
     } else if (
       i <
       totalLikes + totalHahas + totalLoves + totalWows + totalSads
     ) {
-      reactor.push({ name: `假帳號${i}`, type: REACTIONS.SAD })
+      react.push({ user: getFakeUser(i), type: REACTIONS.SAD })
     } else if (
       i <
       totalLikes + totalHahas + totalLoves + totalWows + totalSads + totalAngers
     ) {
-      reactor.push({ name: `假帳號${i}`, type: REACTIONS.ANGRY })
+      react.push({ user: getFakeUser(i), type: REACTIONS.ANGRY })
     }
   }
-  return reactor
+  return react
 }
 
 /**
  * create fake comments.
- * @param {numberTotal}
- *  How many comments to make, must be greater than 2.
- * @returns {commenter}
+ * @param {numberTotal} numberTotal
+ *  How many comments to make, must be greater than 2,
+ *  1526 will pass down if omitted.
+ * @returns {comments}
  *  An array of objects contains the following properties:
  *  @prop {name}
  *    The commenter's profile name
  */
 export const createComments = (numberTotal = 1526) => {
-  const commenter = [
+  const comments = [
     {
-      name: '鍋苔冥',
+      id: uuidv1(),
+      user: definedUsers.terryGoodTiming,
       comment: '謝謝樓主托夢，三樓的民主不能當飯吃！',
       time: '3天',
       reactions: createReactions(531, [0, 0, 0, 0, 0, 1])
     },
     {
-      name: '憨摑娛',
+      id: uuidv1(),
+      user: definedUsers.koreanFish,
       comment: '樓上為什麼不考慮吃個包子呢？',
       time: '3天',
       reactions: createReactions(980, [2, 0, 0, 0, 0, 1])
     },
     {
-      name: '菜應蚊',
+      id: uuidv1(),
+      user: definedUsers.english,
       comment: '我也這麼覺得',
       time: '4天',
       reactions: createReactions(1211, [2, 1])
     },
     {
-      name: '台灣工具伯 王進坪',
+      id: uuidv1(),
+      user: definedUsers.toolMan,
       comment: '這個我想，要查證比較難啦',
       time: '5天',
       reactions: createReactions(556, [3, 2, 0, 1])
     },
     {
-      name: '叮守鐘',
+      id: uuidv1(),
+      user: definedUsers.dingDing,
       comment: '可以托夢讓我重選台北市長嗎？',
       time: '4天',
       reactions: createReactions(556, [2, 0, 0, 1])
     },
     {
-      name: '找到田大學',
+      id: uuidv1(),
+      user: definedUsers.universityFoundField,
       comment: '五樓要不要藉這個機會在神明的面前澄清一下？',
       attachMedia: 'https://i.imgur.com/wvWFAMT.png',
       mediaType: 'pic',
@@ -134,13 +233,15 @@ export const createComments = (numberTotal = 1526) => {
       reactions: createReactions(967, [2, 0, 0, 0, 1])
     },
     {
-      name: '每天關心愛情摩天輪的興建狀況',
+      id: uuidv1(),
+      user: definedUsers.careWheelEveryday,
       comment: '五樓，我快等不及了',
       time: '5天',
       reactions: createReactions(498, [2, 1])
     },
     {
-      name: '尛理惠的整理魔法',
+      id: uuidv1(),
+      user: definedUsers.sparkJoy,
       comment: `臺灣的碰有打家好～
       今天要來教打家年後清理臉書版面的小妙招分享
       1. 點進去五樓的粉絲團
@@ -155,39 +256,41 @@ export const createComments = (numberTotal = 1526) => {
   if (numberTotal < 2) throw new Error('Number of total must greater than 2.')
 
   for (let i = 0; i < numberTotal; i++) {
-    commenter.push({
-      name: `假帳號${i}`,
+    comments.push({
+      id: uuidv1(),
+      user: getFakeUser(i),
       comment: '假留言',
       time: `${i}天`,
       reactions: createReactions(322, [2, 1])
     })
   }
-  return commenter
+  return comments
 }
 
 /**
  * create fake shares.
- * @param {numberTotal}
- *  How many shares to make, must be greater than 2.
- * @returns {sharer}
+ * @param {numberTotal} numberTotal
+ *  How many shares to make, must be greater than 2,
+ *  2903 will pass down if omitted.
+ * @returns {shares}
  *  An array of objects contains the following properties:
  *  @prop {name}
  *    The sharer's profile name
  */
 export const createShares = (numberTotal = 2903) => {
-  const sharer = [
-    { name: '鍋苔冥' },
-    { name: '憨摑娛' },
-    { name: '菜應蚊' },
-    { name: '台灣工具伯 王進坪' },
-    { name: '叮守鐘' },
-    { name: '找到田大學' },
-    { name: '每天關心愛情摩天輪的興建狀況' },
-    { name: '尛理惠的整理魔法' }
+  const shares = [
+    { user: definedUsers.terryGoodTiming },
+    { user: definedUsers.koreanFish },
+    { user: definedUsers.english },
+    { user: definedUsers.toolMan },
+    { user: definedUsers.dingDing },
+    { user: definedUsers.universityFoundField },
+    { user: definedUsers.careWheelEveryday },
+    { user: definedUsers.sparkJoy }
   ]
   if (numberTotal < 2) throw new Error('Number of total must greater than 2.')
   for (let i = 0; i < numberTotal; i++) {
-    sharer.push({ name: `假帳號${i}` })
+    shares.push({ user: getFakeUser(i) })
   }
-  return sharer
+  return shares
 }

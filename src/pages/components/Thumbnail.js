@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import thumbnailImg from '../../assets/img/mazu.png'
+// import thumbnailImg from '../../assets/img/mazu.png'
+
+const imgBaseUrl = require.context('../../assets/img/', true)
 
 const ThumbnailWrapper = styled.div`
   display: block;
@@ -14,10 +16,11 @@ const ThumbnailImg = styled.img`
   margin-right: 8px;
 `
 
-const Thumbnail = () => {
+const Thumbnail = ({ profileName, profileImg }) => {
+  const imgUrl = imgBaseUrl(`./${profileImg}`)
   return (
     <ThumbnailWrapper>
-      <ThumbnailImg src={thumbnailImg} alt="媽祖" />
+      <ThumbnailImg src={imgUrl} alt={profileName} />
     </ThumbnailWrapper>
   )
 }

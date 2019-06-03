@@ -18,10 +18,10 @@ const FeedbackSummaryWrapper = styled.div`
 const FeedbackSummary = props => {
   return (
     <FeedbackSummaryWrapper>
-      <ReactionSummary reactions={props.feedback.reactions} />
+      <ReactionSummary reactions={props.reactions} />
       <CommentAndShareSummary
-        comments={props.feedback.comments}
-        shares={props.feedback.shares}
+        comments={props.comments}
+        shares={props.shares}
       />
     </FeedbackSummaryWrapper>
   )
@@ -30,11 +30,9 @@ const FeedbackSummary = props => {
 FeedbackSummary.displayName = 'FeedbackSummary'
 
 FeedbackSummary.propTypes = {
-  feedback: PropTypes.shape({
-    reactions: PropTypes.array.isRequired,
-    comments: PropTypes.array.isRequired,
-    shares: PropTypes.array.isRequired
-  }).isRequired
+  reactions: PropTypes.array.isRequired,
+  comments: PropTypes.array.isRequired,
+  shares: PropTypes.array.isRequired
 }
 
 export default FeedbackSummary

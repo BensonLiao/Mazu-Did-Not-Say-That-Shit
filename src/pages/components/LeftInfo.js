@@ -4,21 +4,22 @@ import styled from 'styled-components'
 import ProfileInfo from './ProfileInfo'
 import PostInfo from './PostInfo'
 import Thumbnail from './Thumbnail'
+import { getFakeUser } from '../../utils/dataMock'
 import { displayFlex, alignCenter } from '../styles'
 
 const propTypes = {
+  profileInfo: PropTypes.shape({
+    /**
+     * Sets content on body of child `LeftInfo`.`PostprofileNameInfo`.`PosterprofileName`
+     */
+    profileName: PropTypes.string,
+    /**
+     * Sets href on attr of child `LeftInfo`.`PostprofileNameInfo`.`PosterprofileName`
+     */
+    profileLink: PropTypes.string
+  }),
   /**
-   * Sets content on body of child `ProfileInfo`.`ProfileLink`
-   */
-  profileName: PropTypes.string,
-
-  /**
-   * Sets href on attr of child `ProfileInfo`.`ProfileLink`
-   */
-  profileUrl: PropTypes.string,
-
-  /**
-   * Sets content on body of `PostInfo`.`PostTime`
+   * Sets content on body of `RightInfo`.`PostprofileNameInfo`.`PostTime`
    */
   postTime: PropTypes.string
 }
@@ -33,17 +34,22 @@ const InfoBlockWrapper = styled.div`
 `
 
 const defaultProps = {
-  profileName: 'Fake Profile Name',
-  profileUrl: 'https://fake.profile.url',
+  profileInfo: getFakeUser('fakeuser123', 'FEMALE'),
   postTime: 'Fake Post Time'
 }
 
-const LeftInfo = ({ profileName, profileUrl, postTime }) => {
+const LeftInfo = ({ profileInfo, postTime }) => {
   return (
     <LeftInfoWrapper>
-      <Thumbnail />
+      <Thumbnail
+        profileName={profileInfo.profileName}
+        profileImg={profileInfo.profileImg}
+      />
       <InfoBlockWrapper>
-        <ProfileInfo profileName={profileName} profileUrl={profileUrl} />
+        <ProfileInfo
+          profileName={profileInfo.profileName}
+          profileLink={profileInfo.profileLink}
+        />
         <PostInfo postTime={postTime} />
       </InfoBlockWrapper>
     </LeftInfoWrapper>

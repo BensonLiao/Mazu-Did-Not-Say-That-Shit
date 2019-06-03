@@ -12,9 +12,12 @@
   "private": true,
   "dependencies": {
     "@storybook/react": "^5.0.11",
+    "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.6",
     "cssesc": "^3.0.0",
+    "humps": "^2.0.1",
     "lodash": "^4.17.11",
+    "normalizr": "^3.4.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
@@ -22,6 +25,7 @@
     "react-scripts": "^3.0.0",
     "react-tooltip": "^3.10.0",
     "redux": "^4.0.1",
+    "redux-saga": "^1.0.2",
     "styled-components": "^4.2.0",
     "styled-system": "^4.1.0",
     "uuid": "^3.3.2"
@@ -35,7 +39,8 @@
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
     "prettier": "^1.16.4",
-    "react-test-renderer": "^16.8.6"
+    "react-test-renderer": "^16.8.6",
+    "redux-devtools-extension": "^2.13.8"
   },
   "scripts": {
     "start": "react-scripts start",

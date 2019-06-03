@@ -1,36 +1,46 @@
 import * as actions from './index'
 
-const byWho = '我是假的!'
+const userInfo = {
+  id: 'fakeusertest',
+  profileName: '我是假的!',
+  profileLink: 'https://www.facebook.com/test/',
+  profileImg: 'test.png'
+}
+const targetId = 'post1'
 
 describe('post reaction actions', () => {
-  it('likeToPost should create LIKE_TO_POST action', () => {
-    expect(actions.likeToPost(byWho)).toEqual({
-      type: 'LIKE_TO_POST',
-      reaction: 'Like',
-      name: byWho
+  it('feedbackLike should create FEEDBACK_LIKE action', () => {
+    expect(actions.feedbackLike(userInfo, targetId)).toEqual({
+      type: actions.FEEDBACK.REACT,
+      reaction: actions.REACTIONS.LIKE,
+      user: userInfo,
+      commentOrPostId: targetId
     })
   })
 
-  it('hahaToPost should create HAHA_TO_POST action', () => {
-    expect(actions.hahaToPost(byWho)).toEqual({
-      type: 'HAHA_TO_POST',
-      reaction: 'Haha',
-      name: byWho
+  it('feedbackHaha should create FEEDBACK_HAHA action', () => {
+    expect(actions.feedbackHaha(userInfo, targetId)).toEqual({
+      type: actions.FEEDBACK.REACT,
+      reaction: actions.REACTIONS.HAHA,
+      user: userInfo,
+      commentOrPostId: targetId
     })
   })
 
-  it('loveToPost should create LOVE_TO_POST action', () => {
-    expect(actions.loveToPost(byWho)).toEqual({
-      type: 'LOVE_TO_POST',
-      reaction: 'Love',
-      name: byWho
+  it('feedbackLove should create FEEDBACK_LOVE action', () => {
+    expect(actions.feedbackLove(userInfo, targetId)).toEqual({
+      type: actions.FEEDBACK.REACT,
+      reaction: actions.REACTIONS.LOVE,
+      user: userInfo,
+      commentOrPostId: targetId
     })
   })
 
-  it('undoReactionToPost should create UNDO_REACTION_TO_POST action', () => {
-    expect(actions.undoReactionToPost(byWho)).toEqual({
-      type: 'UNDO_REACTION_TO_POST',
-      name: byWho
+  it('undoReact should create UNDO_REACT action', () => {
+    expect(actions.undoReact(userInfo, targetId)).toEqual({
+      type: actions.FEEDBACK.UNDO_REACT,
+      user: userInfo,
+      commentOrPostId: targetId
     })
   })
 })

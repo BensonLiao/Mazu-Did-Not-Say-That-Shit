@@ -3,19 +3,20 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { RightInfo } from './RightInfo'
 import LeftInfo from './LeftInfo'
+import { getFakeUser } from '../../utils/dataMock'
 import { displayFlex, justifyContentSpaceBetween } from '../styles'
 
 const propTypes = {
-  /**
-   * Sets content on body of child `LeftInfo`.`PostprofileNameInfo`.`PosterprofileName`
-   */
-  profileName: PropTypes.string,
-
-  /**
-   * Sets href on attr of child `LeftInfo`.`PostprofileNameInfo`.`PosterprofileName`
-   */
-  profileUrl: PropTypes.string,
-
+  profileInfo: PropTypes.shape({
+    /**
+     * Sets content on body of child `LeftInfo`.`PostprofileNameInfo`.`PosterprofileName`
+     */
+    profileName: PropTypes.string,
+    /**
+     * Sets href on attr of child `LeftInfo`.`PostprofileNameInfo`.`PosterprofileName`
+     */
+    profileLink: PropTypes.string
+  }),
   /**
    * Sets content on body of `RightInfo`.`PostprofileNameInfo`.`PostTime`
    */
@@ -29,19 +30,14 @@ const HeaderWrapper = styled.div`
 `
 
 const defaultProps = {
-  profileName: 'Fake Profile profileName',
-  profileUrl: 'https://fake.profile.profileUrl',
+  profileInfo: getFakeUser('fakeuser123', 'FEMALE'),
   postTime: 'Fake Post Time'
 }
 
-const Header = ({ profileName, profileUrl, postTime }) => {
+const Header = ({ profileInfo, postTime }) => {
   return (
     <HeaderWrapper>
-      <LeftInfo
-        profileName={profileName}
-        profileUrl={profileUrl}
-        postTime={postTime}
-      />
+      <LeftInfo profileInfo={profileInfo} postTime={postTime} />
       <RightInfo />
     </HeaderWrapper>
   )

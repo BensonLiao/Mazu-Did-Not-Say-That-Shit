@@ -12,7 +12,7 @@ const propTypes = {
   /**
    * Sets href on attr of child <a>
    */
-  profileUrl: PropTypes.string
+  profileLink: PropTypes.string
 }
 
 const ProfileInfoWrapper = styled.div`
@@ -21,13 +21,13 @@ const ProfileInfoWrapper = styled.div`
 
 const defaultProps = {
   profileName: 'Fake Profile Name',
-  profileUrl: 'https://fake.profile.url'
+  profileLink: 'https://fake.profile.url'
 }
 
-const ProfileInfo = ({ profileName, profileUrl }) => {
+const ProfileInfo = ({ profileName, profileLink }) => {
   return (
     <ProfileInfoWrapper>
-      <ProfileLink profileName={profileName} profileUrl={profileUrl} />
+      <ProfileLink profileName={profileName} profileLink={profileLink} />
     </ProfileInfoWrapper>
   )
 }

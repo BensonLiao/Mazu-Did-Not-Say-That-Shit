@@ -11,7 +11,7 @@ const propTypes = {
   /**
    * Sets href on attr of child <a>
    */
-  profileUrl: PropTypes.string
+  profileLink: PropTypes.string
 }
 
 const PosterWrapper = styled.div`
@@ -29,13 +29,13 @@ const Link = styled.a`
 
 const defaultProps = {
   profileName: 'Fake Name',
-  profileUrl: 'https://fake.url'
+  profileLink: 'https://fake.url'
 }
 
-const ProfileLink = ({ profileName, profileUrl }) => {
+const ProfileLink = ({ profileName, profileLink }) => {
   return (
     <PosterWrapper>
-      <Link target="_blank" href={profileUrl}>
+      <Link target="_blank" href={profileLink}>
         {profileName}
       </Link>
     </PosterWrapper>
