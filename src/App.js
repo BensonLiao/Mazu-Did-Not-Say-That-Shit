@@ -6,6 +6,7 @@ import styled,
   createGlobalStyle
 } from 'styled-components'
 import { connect } from 'react-redux'
+import { normalize, schema } from 'normalizr'
 import { feedbackLike } from './pages/actions'
 import {
   theme,
@@ -13,7 +14,7 @@ import {
   displayFlex,
   alignCenter
 } from './pages/styles'
-import { definedUsers } from './utils/dataMock'
+import { createPostData } from './utils/dataMock'
 import Header from './pages/components/Header'
 import PostContent from './pages/components/PostContent'
 import FeedbackSummary from './pages/components/FeedbackSummary'
@@ -40,11 +41,41 @@ const PostWrapper = styled.div`
   font-family: ${cssVar.fontFamily};
 `
 
-const post = {
-  poster: definedUsers.theMazu,
-  postTime: '4月17日下午6:12 ·',
-  postContent: '我根本沒說。'
-}
+const postData = createPostData(2000)
+
+// Define a users schema
+const userSchema = new schema.Entity('users')
+
+// Define your reactions schema
+const reactSchema = new schema.Entity('reacts', {
+  reactor: userSchema
+})
+
+// Define your comments schema
+const commentSchema = new schema.Entity('comments', {
+  commenter: userSchema
+})
+
+// Define your shares schema
+const shareSchema = new schema.Entity('shares', {
+  sharer: userSchema
+})
+
+// Define your feedback schema
+const feedbackSchema = new schema.Entity('feedback', {
+  reacts: [reactSchema],
+  comments: [commentSchema],
+  shares: [shareSchema]
+})
+
+// Define your post schema
+const postSchema = new schema.Entity('post', {
+  poster: userSchema,
+  feedback: feedbackSchema
+})
+
+const normalizedFeedbackData = normalize(postData, postSchema)
+console.log('normalizedFeedbackData', normalizedFeedbackData)
 
 class App extends Component {
   handleFeedbackLike = () => {
@@ -65,10 +96,10 @@ class App extends Component {
           <GlobalStyle />
           <PostWrapper>
             <Header
-              profileInfo={post.poster}
-              postTime={post.postTime}
+              profileInfo={postData.poster}
+              postTime={postData.postTime}
             />
-            <PostContent postContent={post.postContent} />
+            <PostContent postContent={postData.postContent} />
             <FeedbackSummary
               reactions={reactions}
               comments={comments}

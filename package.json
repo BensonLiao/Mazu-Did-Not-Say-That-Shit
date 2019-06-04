@@ -40,7 +40,8 @@
     "eslint-plugin-react": "^7.12.4",
     "prettier": "^1.16.4",
     "react-test-renderer": "^16.8.6",
-    "redux-devtools-extension": "^2.13.8"
+    "redux-devtools-extension": "^2.13.8",
+    "validator": "^11.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

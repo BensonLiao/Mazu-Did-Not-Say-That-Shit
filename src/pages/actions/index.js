@@ -1,12 +1,11 @@
+import uuidv1 from 'uuid/v1'
+
 export const FEEDBACK = {
   REACT: 'REACT',
   UNDO_REACT: 'UNDO_REACT',
   COMMENT: 'COMMENT',
-  SHARE: 'SHARE'
-}
-
-export const FEEDBACK_TARGET = {
-  POST: 'POST'
+  SHARE: 'SHARE',
+  TARGET: 'POST'
 }
 
 export const REACTIONS = {
@@ -20,9 +19,12 @@ export const REACTIONS = {
 
 export const feedbackLike = (userInfo, target) => ({
   type: FEEDBACK.REACT,
-  reaction: REACTIONS.LIKE,
-  user: userInfo,
-  postOrCommentId: target
+  payload: {
+    id: uuidv1(),
+    reaction: REACTIONS.LIKE,
+    reactor: userInfo,
+    postOrCommentId: target
+  }
 })
 
 export const feedbackHaha = (userInfo, target) => ({

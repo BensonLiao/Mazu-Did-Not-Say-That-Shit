@@ -1,15 +1,42 @@
-import { FEEDBACK, REACTIONS, FEEDBACK_TARGET } from '../actions'
-import {
-  createReactions,
-  createComments,
-  createShares
-} from '../../utils/dataMock'
+import { normalize, schema } from 'normalizr'
+import { FEEDBACK, REACTIONS } from '../actions'
+import { createPostData } from '../../utils/dataMock'
 
-const feedbackMock = {
-  reactions: createReactions(2000),
-  comments: createComments(),
-  shares: createShares()
-}
+const postData = createPostData(2000)
+
+// Define a users schema
+const userSchema = new schema.Entity('users')
+
+// Define your reactions schema
+const reactSchema = new schema.Entity('reacts', {
+  reactor: userSchema
+})
+
+// Define your comments schema
+const commentSchema = new schema.Entity('comments', {
+  commenter: userSchema
+})
+
+// Define your shares schema
+const shareSchema = new schema.Entity('shares', {
+  sharer: userSchema
+})
+
+// Define your feedback schema
+const feedbackSchema = new schema.Entity('feedback', {
+  reacts: [reactSchema],
+  comments: [commentSchema],
+  shares: [shareSchema]
+})
+
+// Define your post schema
+const postSchema = new schema.Entity('post', {
+  poster: userSchema,
+  feedback: feedbackSchema
+})
+
+const normalizedFeedbackData = normalize(postData, postSchema)
+console.log('normalizedFeedbackData', normalizedFeedbackData)
 
 const reactions = (state = [], action) => {
   const { reaction } = action
@@ -39,7 +66,7 @@ const reactions = (state = [], action) => {
         }
       ]
     case FEEDBACK.UNDO_REACT:
-      return state.filter(react => react.user.id !== action.user.id)
+      return state.filter(r => r.user.id !== action.user.id)
     default:
       return state
   }
@@ -47,7 +74,7 @@ const reactions = (state = [], action) => {
 
 const reactionsOnTarget = (state = feedbackMock, action) => {
   switch (action.postOrCommentId) {
-    case FEEDBACK_TARGET.POST:
+    case FEEDBACK.TARGET:
       return {
         ...state,
         reactions: reactions(state.reactions, action)
@@ -55,14 +82,14 @@ const reactionsOnTarget = (state = feedbackMock, action) => {
     default: {
       return {
         ...state,
-        comments: state.comments.map(comment => {
-          if (comment.id === action.postOrCommentId) {
+        comments: state.comments.map(c => {
+          if (c.id === action.postOrCommentId) {
             return {
-              ...comment,
-              reaction: reactions(comment.reactions, action)
+              ...c,
+              reaction: reactions(c.reactions, action)
             }
           }
-          return comment
+          return c
         })
       }
     }
