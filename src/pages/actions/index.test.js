@@ -6,15 +6,18 @@ const userInfo = {
   profileLink: 'https://www.facebook.com/test/',
   profileImg: 'test.png'
 }
-const targetId = 'post1'
+const targetId = 'POST'
 
 describe('post reaction actions', () => {
   it('feedbackLike should create FEEDBACK_LIKE action', () => {
     expect(actions.feedbackLike(userInfo, targetId)).toEqual({
       type: actions.FEEDBACK.REACT,
-      reaction: actions.REACTIONS.LIKE,
-      user: userInfo,
-      commentOrPostId: targetId
+      payload: {
+        id: expect.any(String),
+        reaction: actions.REACTIONS.LIKE,
+        reactor: userInfo,
+        postOrCommentId: targetId
+      }
     })
   })
 
@@ -23,7 +26,7 @@ describe('post reaction actions', () => {
       type: actions.FEEDBACK.REACT,
       reaction: actions.REACTIONS.HAHA,
       user: userInfo,
-      commentOrPostId: targetId
+      postOrCommentId: targetId
     })
   })
 
@@ -32,7 +35,7 @@ describe('post reaction actions', () => {
       type: actions.FEEDBACK.REACT,
       reaction: actions.REACTIONS.LOVE,
       user: userInfo,
-      commentOrPostId: targetId
+      postOrCommentId: targetId
     })
   })
 
@@ -40,7 +43,7 @@ describe('post reaction actions', () => {
     expect(actions.undoReact(userInfo, targetId)).toEqual({
       type: actions.FEEDBACK.UNDO_REACT,
       user: userInfo,
-      commentOrPostId: targetId
+      postOrCommentId: targetId
     })
   })
 })
