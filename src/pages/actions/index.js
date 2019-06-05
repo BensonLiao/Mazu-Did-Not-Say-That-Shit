@@ -29,37 +29,52 @@ export const feedbackLike = (userInfo, target) => ({
 
 export const feedbackHaha = (userInfo, target) => ({
   type: FEEDBACK.REACT,
-  reaction: REACTIONS.HAHA,
-  user: userInfo,
-  postOrCommentId: target
+  payload: {
+    id: uuidv1(),
+    reaction: REACTIONS.HAHA,
+    reactor: userInfo,
+    postOrCommentId: target
+  }
 })
 
 export const feedbackLove = (userInfo, target) => ({
   type: FEEDBACK.REACT,
-  reaction: REACTIONS.LOVE,
-  user: userInfo,
-  postOrCommentId: target
+  payload: {
+    id: uuidv1(),
+    reaction: REACTIONS.LOVE,
+    reactor: userInfo,
+    postOrCommentId: target
+  }
 })
 
 export const feedbackWow = (userInfo, target) => ({
   type: FEEDBACK.REACT,
-  reaction: REACTIONS.WOW,
-  user: userInfo,
-  postOrCommentId: target
+  payload: {
+    id: uuidv1(),
+    reaction: REACTIONS.WOW,
+    reactor: userInfo,
+    postOrCommentId: target
+  }
 })
 
 export const feedbackSad = (userInfo, target) => ({
   type: FEEDBACK.REACT,
-  reaction: REACTIONS.SAD,
-  user: userInfo,
-  postOrCommentId: target
+  payload: {
+    id: uuidv1(),
+    reaction: REACTIONS.SAD,
+    reactor: userInfo,
+    postOrCommentId: target
+  }
 })
 
 export const feedbackAngry = (userInfo, target) => ({
   type: FEEDBACK.REACT,
-  reaction: REACTIONS.ANGRY,
-  user: userInfo,
-  postOrCommentId: target
+  payload: {
+    id: uuidv1(),
+    reaction: REACTIONS.ANGRY,
+    reactor: userInfo,
+    postOrCommentId: target
+  }
 })
 
 export const feedbackComment = (
@@ -71,23 +86,29 @@ export const feedbackComment = (
   mediaType = ''
 ) => ({
   type: FEEDBACK.COMMENT,
-  comment,
-  time,
-  attachMedia,
-  mediaType,
-  user: userInfo,
-  postOrCommentId: target
+  payload: {
+    comment,
+    time,
+    attachMedia,
+    mediaType,
+    user: userInfo,
+    postOrCommentId: target
+  }
 })
 
 export const feedbackShare = (userInfo, time = Date().now(), postId) => ({
   type: FEEDBACK.SHARE,
-  time,
-  user: userInfo,
-  postId
+  payload: {
+    time,
+    user: userInfo,
+    postId
+  }
 })
 
 export const undoReact = (userInfo, target) => ({
   type: FEEDBACK.UNDO_REACT,
-  user: userInfo,
-  postOrCommentId: target
+  payload: {
+    user: userInfo,
+    postOrCommentId: target
+  }
 })
