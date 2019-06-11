@@ -1,15 +1,8 @@
-import { createStore, applyMiddleware } from 'redux'
-import { composeWithDevTools } from 'redux-devtools-extension'
-import rootReducer from './reducers'
-import createSagaMiddleware from 'redux-saga'
+import { createStore } from 'redux'
+import rootReducer from './pages/reducers'
 
-export default function configureStore() {
-  const sagaMiddleware = createSagaMiddleware()
-  return {
-    ...createStore(
-      rootReducer,
-      composeWithDevTools(applyMiddleware(sagaMiddleware))
-    ),
-    runSaga: sagaMiddleware.run
-  }
+const configureStore = preloadedState => {
+  return createStore(rootReducer, preloadedState)
 }
+
+export default configureStore

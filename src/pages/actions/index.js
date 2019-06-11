@@ -1,5 +1,12 @@
 import uuidv1 from 'uuid/v1'
 
+export const ADD_DATA = 'ADD_DATA'
+
+export const addData = ({ entities }) => ({
+  type: ADD_DATA,
+  payload: entities
+})
+
 export const FEEDBACK = {
   REACT: 'REACT',
   UNDO_REACT: 'UNDO_REACT',
@@ -80,13 +87,14 @@ export const feedbackAngry = (userInfo, target) => ({
 export const feedbackComment = (
   userInfo,
   target,
-  comment = '',
+  comment,
   time = Date().now(),
   attachMedia = '',
   mediaType = ''
 ) => ({
   type: FEEDBACK.COMMENT,
   payload: {
+    id: uuidv1(),
     comment,
     time,
     attachMedia,

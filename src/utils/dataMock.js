@@ -420,7 +420,6 @@ export const createComments = (commentIds = []) => {
       time: '5天'
     }
   ]
-
   for (let i = 8; i < commentIds.length; i++) {
     comments.push({
       id: commentIds[i],
@@ -460,22 +459,16 @@ export const createShares = (numberTotal = 290) => {
   return shares
 }
 
-export const initPostDatas = {
-  id: 'POST',
-  poster: definedUsers.theMazu,
-  postTime: '4月17日下午6:12 ·',
-  postContent: '我根本沒說。',
-  feedback: {}
-}
-
 export const createPostData = (postReactions = 12419) => {
   const reactionsData = createReactions(postReactions)
-  const feedbackData = {
-    id: 'POST_FEEDBACK',
+  const initPostDatas = {
+    id: 'POST',
+    poster: definedUsers.theMazu,
+    postTime: '4月17日下午6:12 ·',
+    postContent: '我根本沒說。',
     reacts: reactionsData.reacts,
     comments: createComments(reactionsData.commentIds),
     shares: createShares()
   }
-  initPostDatas.feedback = feedbackData
   return initPostDatas
 }

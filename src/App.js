@@ -1,20 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styled,
-{
-  ThemeProvider,
-  createGlobalStyle
-} from 'styled-components'
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { connect } from 'react-redux'
-import { normalize, schema } from 'normalizr'
 import { feedbackLike } from './pages/actions'
-import {
-  theme,
-  cssVar,
-  displayFlex,
-  alignCenter
-} from './pages/styles'
-import { createPostData } from './utils/dataMock'
+import { theme, cssVar, displayFlex, alignCenter } from './pages/styles'
 import Header from './pages/components/Header'
 import PostContent from './pages/components/PostContent'
 import FeedbackSummary from './pages/components/FeedbackSummary'
@@ -41,42 +30,6 @@ const PostWrapper = styled.div`
   font-family: ${cssVar.fontFamily};
 `
 
-const postData = createPostData(2000)
-
-// Define a users schema
-const userSchema = new schema.Entity('users')
-
-// Define your reactions schema
-const reactSchema = new schema.Entity('reacts', {
-  reactor: userSchema
-})
-
-// Define your comments schema
-const commentSchema = new schema.Entity('comments', {
-  commenter: userSchema
-})
-
-// Define your shares schema
-const shareSchema = new schema.Entity('shares', {
-  sharer: userSchema
-})
-
-// Define your feedback schema
-const feedbackSchema = new schema.Entity('feedback', {
-  reacts: [reactSchema],
-  comments: [commentSchema],
-  shares: [shareSchema]
-})
-
-// Define your post schema
-const postSchema = new schema.Entity('post', {
-  poster: userSchema,
-  feedback: feedbackSchema
-})
-
-const normalizedFeedbackData = normalize(postData, postSchema)
-console.log('normalizedFeedbackData', normalizedFeedbackData)
-
 class App extends Component {
   handleFeedbackLike = () => {
     this.props.dispatch(feedbackLike())
@@ -84,30 +37,26 @@ class App extends Component {
 
   render() {
     const {
-      feedback: {
-        reactions,
-        comments,
-        shares
-      }
+      poster,
+      postTime,
+      postContent,
+      reacts,
+      comments,
+      shares
     } = this.props
     return (
       <ThemeProvider theme={theme}>
         <Root>
           <GlobalStyle />
           <PostWrapper>
-            <Header
-              profileInfo={postData.poster}
-              postTime={postData.postTime}
-            />
-            <PostContent postContent={postData.postContent} />
+            <Header profileInfo={poster} postTime={postTime} />
+            <PostContent postContent={postContent} />
             <FeedbackSummary
-              reactions={reactions}
+              reactions={reacts}
               comments={comments}
               shares={shares}
             />
-            <FeedbackAction
-              handleFeedbackLike={this.handleFeedbackLike}
-            />
+            <FeedbackAction handleFeedbackLike={this.handleFeedbackLike} />
           </PostWrapper>
         </Root>
       </ThemeProvider>
@@ -116,27 +65,25 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  const {
-    feedback: {
-      reactions,
-      comments,
-      shares
-    }
-  } = state
+  const { poster, postTime, postContent, reacts, comments, shares } = state
 
   return {
-    reactions,
+    poster,
+    postTime,
+    postContent,
+    reacts,
     comments,
     shares
   }
 }
 
 App.propTypes = {
-  feedback: PropTypes.shape({
-    reactions: PropTypes.array,
-    comments: PropTypes.array,
-    shares: PropTypes.array
-  })
+  poster: PropTypes.array,
+  postTime: PropTypes.string,
+  postContent: PropTypes.string,
+  reacts: PropTypes.array,
+  comments: PropTypes.array,
+  shares: PropTypes.array
 }
 
 export default connect(mapStateToProps)(App)

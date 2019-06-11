@@ -11,9 +11,9 @@ export default {
     formattedTotal =
       total > 10000
         ? (total / 10000)
-            .toFixed(1)
-            .toString()
-            .concat('萬')
+          .toFixed(1)
+          .toString()
+          .concat('萬')
         : total.toString().replace(/\d(?=(\d{3})+)/g, '$&,')
     return formattedTotal
   },

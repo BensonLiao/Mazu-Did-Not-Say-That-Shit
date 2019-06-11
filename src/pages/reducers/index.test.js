@@ -1,85 +1,129 @@
-import reactionsOnTarget from './index'
-import { FEEDBACK, REACTIONS, FEEDBACK_TARGET } from '../actions'
+import rootReducer from './index'
+import { FEEDBACK, REACTIONS } from '../actions'
 
-const byWho = '我是假的!'
-const target = FEEDBACK_TARGET.POST
+const userInfo = {
+  id: 'fakeuserid',
+  profileName: '我是假的!',
+  profileLink: 'https://www.facebook.com/test/',
+  profileImg: 'test.png'
+}
 
-describe('reactionsOnTarget reducer', () => {
+const feedbackReactAction = {
+  type: FEEDBACK.REACT,
+  payload: {
+    id: 'fakereactid',
+    reaction: REACTIONS.LIKE,
+    reactor: userInfo,
+    postOrCommentId: FEEDBACK.TARGET
+  }
+}
+
+const feedbackCommentAction = {
+  type: FEEDBACK.COMMENT,
+  payload: {
+    id: 'fakecommentid',
+    comment: 'fakecomment',
+    commenter: userInfo,
+    postOrCommentId: FEEDBACK.TARGET
+  }
+}
+
+const feedbackShareAction = {
+  type: FEEDBACK.SHARE,
+  payload: {
+    id: 'fakeshareid',
+    sharer: userInfo,
+    postId: FEEDBACK.TARGET
+  }
+}
+
+describe('test rootReducer', () => {
   it('should handle initial state', () => {
-    expect(reactionsOnTarget(undefined, {})).toEqual([])
-  })
-
-  it(`should handle ${FEEDBACK.REACT} ${REACTIONS.LIKE}`, () => {
-    expect(
-      reactionsOnTarget(
-        {
-          reactions: [],
-          comments: [],
-          shares: []
-        },
-        {
-          type: FEEDBACK.REACT,
-          reaction: REACTIONS.LIKE,
-          name: byWho,
-          postOrCommentId: target
-        }
-      )
-    ).toEqual({
-      reactions: [
-        {
-          reaction: REACTIONS.LIKE,
-          name: byWho
-        }
-      ],
-      comments: [],
-      shares: []
+    expect(rootReducer(undefined, {})).toEqual({
+      reactReducer: { byId: {}, allIds: [] },
+      commentReducer: { byId: {}, allIds: [] },
+      shareReducer: { byId: {}, allIds: [] }
     })
   })
 
-  it(`should handle ${FEEDBACK.REACT} ${REACTIONS.HAHA}`, () => {
+  it('should handle rootReducer.reactReducer allIds', () => {
     expect(
-      reactionsOnTarget([], {
-        type: FEEDBACK.REACT,
-        reaction: REACTIONS.HAHA,
-        name: byWho
-      })
-    ).toEqual([
-      {
-        reaction: REACTIONS.HAHA,
-        name: byWho
-      }
-    ])
-  })
-
-  it(`should handle ${FEEDBACK.REACT} ${REACTIONS.LOVE}`, () => {
-    expect(
-      reactionsOnTarget([], {
-        type: FEEDBACK.REACT,
-        reaction: REACTIONS.LOVE,
-        name: byWho
-      })
-    ).toEqual([
-      {
-        reaction: REACTIONS.LOVE,
-        name: byWho
-      }
-    ])
-  })
-
-  it(`should handle ${FEEDBACK.UNDO_REACT}`, () => {
-    expect(
-      reactionsOnTarget(
-        [
-          {
-            reaction: REACTIONS.LOVE,
-            name: byWho
-          }
-        ],
+      rootReducer(
         {
-          type: FEEDBACK.UNDO_REACT,
-          name: byWho
-        }
-      )
-    ).toEqual([])
+          reactReducer: { byId: {}, allIds: [] },
+          commentReducer: { byId: {}, allIds: [] },
+          shareReducer: { byId: {}, allIds: [] }
+        },
+        feedbackReactAction
+      ).reactReducer.allIds
+    ).toEqual([feedbackReactAction.payload.id])
+  })
+  it('should handle rootReducer.reactReducer byId', () => {
+    expect(
+      rootReducer(
+        {
+          reactReducer: { byId: {}, allIds: [] },
+          commentReducer: { byId: {}, allIds: [] },
+          shareReducer: { byId: {}, allIds: [] }
+        },
+        feedbackReactAction
+      ).reactReducer.byId
+    ).toEqual({
+      [feedbackReactAction.payload.id]: feedbackReactAction.payload
+    })
+  })
+
+  it('should handle rootReducer.commentReducer allIds', () => {
+    expect(
+      rootReducer(
+        {
+          reactReducer: { byId: {}, allIds: [] },
+          commentReducer: { byId: {}, allIds: [] },
+          shareReducer: { byId: {}, allIds: [] }
+        },
+        feedbackCommentAction
+      ).commentReducer.allIds
+    ).toEqual([feedbackCommentAction.payload.id])
+  })
+  it('should handle rootReducer.commentReducer byId', () => {
+    expect(
+      rootReducer(
+        {
+          reactReducer: { byId: {}, allIds: [] },
+          commentReducer: { byId: {}, allIds: [] },
+          shareReducer: { byId: {}, allIds: [] }
+        },
+        feedbackCommentAction
+      ).commentReducer.byId
+    ).toEqual({
+      [feedbackCommentAction.payload.id]: feedbackCommentAction.payload
+    })
+  })
+
+  it('should handle rootReducer.shareReducer allIds', () => {
+    expect(
+      rootReducer(
+        {
+          reactReducer: { byId: {}, allIds: [] },
+          commentReducer: { byId: {}, allIds: [] },
+          shareReducer: { byId: {}, allIds: [] }
+        },
+        feedbackShareAction
+      ).shareReducer.allIds
+    ).toEqual([feedbackShareAction.payload.id])
+  })
+  it('should handle rootReducer.shareReducer byId', () => {
+    expect(
+      rootReducer(
+        {
+          reactReducer: { byId: {}, allIds: [] },
+          commentReducer: { byId: {}, allIds: [] },
+          shareReducer: { byId: {}, allIds: [] }
+        },
+        feedbackShareAction
+      ).shareReducer.byId
+    ).toEqual({
+      [feedbackShareAction.payload.id]: feedbackShareAction.payload
+    })
   })
 })
