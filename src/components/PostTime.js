@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { cssVar } from '../styles'
 import StyledTooltip from './StyledTooltip'
-import textFormat from '../../utils/textFormat'
+import textFormat from '../utils/textFormat'
 
 const propTypes = {
   /**

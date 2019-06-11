@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { RightInfo } from './RightInfo'
 import LeftInfo from './LeftInfo'
-import { getFakeUser } from '../../utils/dataMock'
+import { getFakeUser } from '../utils/dataMock'
 import { displayFlex, justifyContentSpaceBetween } from '../styles'
 
 const propTypes = {

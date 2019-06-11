@@ -7,7 +7,7 @@ import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 import { createPostData } from './utils/dataMock'
 import { getNormalizedData } from './utils/dataSchema'
-import { addData } from './pages/actions'
+import { addData } from './actions'
 
 const preloadedState = createPostData(2000)
 console.log('preloadedState', preloadedState)

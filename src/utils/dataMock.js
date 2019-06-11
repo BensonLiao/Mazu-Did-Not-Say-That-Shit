@@ -1,5 +1,5 @@
 import uuidv1 from 'uuid/v1'
-import { REACTIONS, FEEDBACK } from '../pages/actions'
+import { REACTIONS, FEEDBACK } from '../actions'
 
 export const definedUsers = {
   theMazu: {

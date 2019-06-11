@@ -1,11 +1,11 @@
 import cssesc from 'cssesc'
 import { cssVar } from './variables'
 import { displayFlex, alignCenter } from './page'
-import privacyIconImg from '../../assets/img/global.png'
-// import reactionIconImg from '../../assets/img/fb-emojis.png'
-import reactionIconImg from '../../assets/img/fb-emojis-new.png'
-import reactionButtonImg from '../../assets/img/thumbUp.png'
-import commentAndShareButtonImg from '../../assets/img/responseShare.png'
+import privacyIconImg from '../assets/img/global.png'
+// import reactionIconImg from '../assets/img/fb-emojis.png'
+import reactionIconImg from '../assets/img/fb-emojis-new.png'
+import reactionButtonImg from '../assets/img/thumbUp.png'
+import commentAndShareButtonImg from '../assets/img/responseShare.png'
 
 export const privacyIconStyle = `
   width: 12px;

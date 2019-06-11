@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import ProfileInfo from './ProfileInfo'
 import PostInfo from './PostInfo'
 import Thumbnail from './Thumbnail'
-import { getFakeUser } from '../../utils/dataMock'
+import { getFakeUser } from '../utils/dataMock'
 import { displayFlex, alignCenter } from '../styles'
 
 const propTypes = {

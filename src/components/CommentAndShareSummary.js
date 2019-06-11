@@ -2,7 +2,7 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 import styled from 'styled-components'
 import { displayFlex } from '../styles'
-import textFormat from '../../utils/textFormat'
+import textFormat from '../utils/textFormat'
 import FeedbackCount from './FeedbackCount'
 
 const summaryFeedbacks = (feedbacks, type) => {

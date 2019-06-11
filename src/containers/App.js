@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { connect } from 'react-redux'
-import { feedbackLike } from './pages/actions'
-import { theme, cssVar, displayFlex, alignCenter } from './pages/styles'
-import Header from './pages/components/Header'
-import PostContent from './pages/components/PostContent'
-import FeedbackSummary from './pages/components/FeedbackSummary'
-import FeedbackAction from './pages/components/FeedbackAction'
+import { feedbackLike } from '../actions'
+import { theme, cssVar, displayFlex, alignCenter } from '../styles'
+import Header from '../components/Header'
+import PostContent from '../components/PostContent'
+import FeedbackSummary from '../components/FeedbackSummary'
+import FeedbackAction from '../components/FeedbackAction'
 
 const GlobalStyle = createGlobalStyle`
   body {

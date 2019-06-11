@@ -1,5 +1,5 @@
 import { createStore } from 'redux'
-import rootReducer from './pages/reducers'
+import rootReducer from './reducers'
 
 const configureStore = preloadedState => {
   return createStore(rootReducer, preloadedState)
