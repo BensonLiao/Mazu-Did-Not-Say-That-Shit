@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 // import thumbnailImg from '../assets/img/mazu.png'
 
-const imgBaseUrl = require.context('../../assets/img/', true)
+const imgBaseUrl = require.context('../assets/img/', true)
 
 const ThumbnailWrapper = styled.div`
   display: block;
