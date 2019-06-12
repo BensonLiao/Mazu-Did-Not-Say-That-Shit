@@ -12,7 +12,9 @@ import { addData } from './actions'
 const preloadedState = createPostData(2000)
 console.log('preloadedState', preloadedState)
 const store = configureStore()
-store.dispatch(addData(getNormalizedData(preloadedState)))
+const normalizedData = getNormalizedData(preloadedState)
+console.log('normalizedData', normalizedData)
+store.dispatch(addData(normalizedData))
 console.log('store.getState()', store.getState())
 
 ReactDOM.render(

@@ -1,62 +1,62 @@
 import uuidv1 from 'uuid/v1'
 import { REACTIONS, FEEDBACK } from '../actions'
 
-export const definedUsers = {
+export const getDefinedUsers = id => ({
   theMazu: {
-    id: uuidv1(),
+    id,
     profileName: '媽祖',
     profileLink: 'https://www.facebook.com/themazhou/',
     profileImg: 'mazu.png'
   },
   terryGoodTiming: {
-    id: uuidv1(),
+    id,
     profileName: '鍋苔冥',
     profileLink: 'https://www.facebook.com/TerryGou1018/',
     profileImg: 'terry.png'
   },
   dingDing: {
-    id: uuidv1(),
+    id,
     profileName: '叮守鐘',
     profileLink: 'https://www.youtube.com/watch?v=_97bLScvHWs',
     profileImg: 'dingding.png'
   },
   toolMan: {
-    id: uuidv1(),
+    id,
     profileName: '台灣工具伯 汪進坪',
     profileLink: 'https://www.facebook.com/jingping.tw/',
     profileImg: 'toolman.png'
   },
   english: {
-    id: uuidv1(),
+    id,
     profileName: '菜應蚊',
     profileLink: 'https://www.facebook.com/tsaiingwen/',
     profileImg: 'english.png'
   },
   koreanFish: {
-    id: uuidv1(),
+    id,
     profileName: '憨摑娛',
     profileLink: 'https://www.facebook.com/twherohan/',
     profileImg: 'korean-fish.png'
   },
   careWheelEveryday: {
-    id: uuidv1(),
+    id,
     profileName: '每天關心愛情摩天輪的興建狀況',
     profileLink: 'https://www.facebook.com/CareLoveFerrisWheelEveryday/',
     profileImg: 'wheel.png'
   },
   universityFoundField: {
-    id: uuidv1(),
+    id,
     profileName: '找到田大學',
     profileLink: '#',
     profileImg: 'anonymous-university.png'
   },
   sparkJoy: {
-    id: uuidv1(),
+    id,
     profileName: '尛理惠的整理魔法',
     profileLink: '#',
     profileImg: 'sparkJoy.png'
   }
-}
+})
 
 /**
  * Get fake user object with the following properties:
@@ -130,28 +130,28 @@ const addCommentReactions = (
     if (i < totalLikes) {
       reacts.push({
         id: uuidv1(),
-        reactor: getFakeUser(i),
+        user: getFakeUser(i),
         type: REACTIONS.LIKE,
         postOrCommentId: targetId
       })
     } else if (i < totalLikes + totalHahas) {
       reacts.push({
         id: uuidv1(),
-        reactor: getFakeUser(i),
+        user: getFakeUser(i),
         type: REACTIONS.HAHA,
         postOrCommentId: targetId
       })
     } else if (i < totalLikes + totalHahas + totalLoves) {
       reacts.push({
         id: uuidv1(),
-        reactor: getFakeUser(i),
+        user: getFakeUser(i),
         type: REACTIONS.LOVE,
         postOrCommentId: targetId
       })
     } else if (i < totalLikes + totalHahas + totalLoves + totalWows) {
       reacts.push({
         id: uuidv1(),
-        reactor: getFakeUser(i),
+        user: getFakeUser(i),
         type: REACTIONS.WOW,
         postOrCommentId: targetId
       })
@@ -161,7 +161,7 @@ const addCommentReactions = (
     ) {
       reacts.push({
         id: uuidv1(),
-        reactor: getFakeUser(i),
+        user: getFakeUser(i),
         type: REACTIONS.SAD,
         postOrCommentId: targetId
       })
@@ -171,7 +171,7 @@ const addCommentReactions = (
     ) {
       reacts.push({
         id: uuidv1(),
-        reactor: getFakeUser(i),
+        user: getFakeUser(i),
         type: REACTIONS.ANGRY,
         postOrCommentId: targetId
       })
@@ -201,7 +201,7 @@ const addCommentReactions = (
  *  @prop {reacts}
  *   An array of objects contains the following properties:
  *   @prop {name}
- *    The reactor's profile name
+ *    The user's profile name
  *   @prop {type}
  *    The react's reaction type: `Like`, `Haha`, `Love`,
  *    `Wow`, `Sad`, `Anger`
@@ -213,37 +213,37 @@ export const createReactions = (numberTotal = 12419, ratio = [3, 2, 1]) => {
   const reacts = [
     {
       id: uuidv1(),
-      reactor: definedUsers.terryGoodTiming,
+      user: getDefinedUsers(uuidv1()).terryGoodTiming,
       type: REACTIONS.LIKE,
       postOrCommentId: FEEDBACK.TARGET
     },
     {
       id: uuidv1(),
-      reactor: definedUsers.koreanFish,
+      user: getDefinedUsers(uuidv1()).koreanFish,
       type: REACTIONS.LIKE,
       postOrCommentId: FEEDBACK.TARGET
     },
     {
       id: uuidv1(),
-      reactor: definedUsers.universityFoundField,
+      user: getDefinedUsers(uuidv1()).universityFoundField,
       type: REACTIONS.HAHA,
       postOrCommentId: FEEDBACK.TARGET
     },
     {
       id: uuidv1(),
-      reactor: definedUsers.english,
+      user: getDefinedUsers(uuidv1()).english,
       type: REACTIONS.HAHA,
       postOrCommentId: FEEDBACK.TARGET
     },
     {
       id: uuidv1(),
-      reactor: definedUsers.toolMan,
+      user: getDefinedUsers(uuidv1()).toolMan,
       type: REACTIONS.LOVE,
       postOrCommentId: FEEDBACK.TARGET
     },
     {
       id: uuidv1(),
-      reactor: definedUsers.dingDing,
+      user: getDefinedUsers(uuidv1()).dingDing,
       type: REACTIONS.LOVE,
       postOrCommentId: FEEDBACK.TARGET
     }
@@ -280,28 +280,28 @@ export const createReactions = (numberTotal = 12419, ratio = [3, 2, 1]) => {
     if (i < totalLikes) {
       reacts.push({
         id: uuidv1(),
-        reactor: getFakeUser(i),
+        user: getFakeUser(i),
         type: REACTIONS.LIKE,
         postOrCommentId: FEEDBACK.TARGET
       })
     } else if (i < totalLikes + totalHahas) {
       reacts.push({
         id: uuidv1(),
-        reactor: getFakeUser(i),
+        user: getFakeUser(i),
         type: REACTIONS.HAHA,
         postOrCommentId: FEEDBACK.TARGET
       })
     } else if (i < totalLikes + totalHahas + totalLoves) {
       reacts.push({
         id: uuidv1(),
-        reactor: getFakeUser(i),
+        user: getFakeUser(i),
         type: REACTIONS.LOVE,
         postOrCommentId: FEEDBACK.TARGET
       })
     } else if (i < totalLikes + totalHahas + totalLoves + totalWows) {
       reacts.push({
         id: uuidv1(),
-        reactor: getFakeUser(i),
+        user: getFakeUser(i),
         type: REACTIONS.WOW,
         postOrCommentId: FEEDBACK.TARGET
       })
@@ -311,7 +311,7 @@ export const createReactions = (numberTotal = 12419, ratio = [3, 2, 1]) => {
     ) {
       reacts.push({
         id: uuidv1(),
-        reactor: getFakeUser(i),
+        user: getFakeUser(i),
         type: REACTIONS.SAD,
         postOrCommentId: FEEDBACK.TARGET
       })
@@ -321,7 +321,7 @@ export const createReactions = (numberTotal = 12419, ratio = [3, 2, 1]) => {
     ) {
       reacts.push({
         id: uuidv1(),
-        reactor: getFakeUser(i),
+        user: getFakeUser(i),
         type: REACTIONS.ANGRY,
         postOrCommentId: FEEDBACK.TARGET
       })
@@ -359,43 +359,43 @@ export const createReactions = (numberTotal = 12419, ratio = [3, 2, 1]) => {
  * @returns {comments}
  *  An array of objects contains the following properties:
  *  @prop {name}
- *    The commenter's profile name
+ *    The user's profile name
  */
 export const createComments = (commentIds = []) => {
   const comments = [
     {
       id: commentIds[0],
-      commenter: definedUsers.terryGoodTiming,
+      user: getDefinedUsers(uuidv1()).terryGoodTiming,
       comment: '謝謝樓主托夢，三樓的民主不能當飯吃！',
       time: '3天'
     },
     {
       id: commentIds[1],
-      commenter: definedUsers.koreanFish,
+      user: getDefinedUsers(uuidv1()).koreanFish,
       comment: '樓上為什麼不考慮吃個包子呢？',
       time: '3天'
     },
     {
       id: commentIds[2],
-      commenter: definedUsers.english,
+      user: getDefinedUsers(uuidv1()).english,
       comment: '我也這麼覺得',
       time: '4天'
     },
     {
       id: commentIds[3],
-      user: definedUsers.toolMan,
+      user: getDefinedUsers(uuidv1()).toolMan,
       comment: '這個我想，要查證比較難啦',
       time: '5天'
     },
     {
       id: commentIds[4],
-      commenter: definedUsers.dingDing,
+      user: getDefinedUsers(uuidv1()).dingDing,
       comment: '可以托夢讓我重選台北市長嗎？',
       time: '4天'
     },
     {
       id: commentIds[5],
-      commenter: definedUsers.universityFoundField,
+      user: getDefinedUsers(uuidv1()).universityFoundField,
       comment: '五樓要不要藉這個機會在神明的面前澄清一下？',
       attachMedia: 'https://i.imgur.com/wvWFAMT.png',
       mediaType: 'pic',
@@ -403,13 +403,13 @@ export const createComments = (commentIds = []) => {
     },
     {
       id: commentIds[6],
-      commenter: definedUsers.careWheelEveryday,
+      user: getDefinedUsers(uuidv1()).careWheelEveryday,
       comment: '五樓，我快等不及了',
       time: '5天'
     },
     {
       id: commentIds[7],
-      commenter: definedUsers.sparkJoy,
+      user: getDefinedUsers(uuidv1()).sparkJoy,
       comment: `臺灣的碰有打家好～
       今天要來教打家年後清理臉書版面的小妙招分享
       1. 點進去五樓的粉絲團
@@ -423,7 +423,7 @@ export const createComments = (commentIds = []) => {
   for (let i = 8; i < commentIds.length; i++) {
     comments.push({
       id: commentIds[i],
-      commenter: getFakeUser(i),
+      user: getFakeUser(i),
       comment: '假留言',
       time: `${i}天`
     })
@@ -439,22 +439,22 @@ export const createComments = (commentIds = []) => {
  * @returns {shares}
  *  An array of objects contains the following properties:
  *  @prop {name}
- *    The sharer's profile name
+ *    The user's profile name
  */
 export const createShares = (numberTotal = 290) => {
   const shares = [
-    { id: uuidv1(), sharer: definedUsers.terryGoodTiming },
-    { id: uuidv1(), sharer: definedUsers.koreanFish },
-    { id: uuidv1(), sharer: definedUsers.english },
-    { id: uuidv1(), sharer: definedUsers.toolMan },
-    { id: uuidv1(), sharer: definedUsers.dingDing },
-    { id: uuidv1(), sharer: definedUsers.universityFoundField },
-    { id: uuidv1(), sharer: definedUsers.careWheelEveryday },
-    { id: uuidv1(), sharer: definedUsers.sparkJoy }
+    { id: uuidv1(), user: getDefinedUsers(uuidv1()).terryGoodTiming },
+    { id: uuidv1(), user: getDefinedUsers(uuidv1()).koreanFish },
+    { id: uuidv1(), user: getDefinedUsers(uuidv1()).english },
+    { id: uuidv1(), user: getDefinedUsers(uuidv1()).toolMan },
+    { id: uuidv1(), user: getDefinedUsers(uuidv1()).dingDing },
+    { id: uuidv1(), user: getDefinedUsers(uuidv1()).universityFoundField },
+    { id: uuidv1(), user: getDefinedUsers(uuidv1()).careWheelEveryday },
+    { id: uuidv1(), user: getDefinedUsers(uuidv1()).sparkJoy }
   ]
   if (numberTotal < 2) throw new Error('Number of total must greater than 2.')
   for (let i = 0; i < numberTotal; i++) {
-    shares.push({ id: uuidv1(), sharer: getFakeUser(i) })
+    shares.push({ id: uuidv1(), user: getFakeUser(i) })
   }
   return shares
 }
@@ -463,7 +463,7 @@ export const createPostData = (postReactions = 12419) => {
   const reactionsData = createReactions(postReactions)
   const initPostDatas = {
     id: 'POST',
-    poster: definedUsers.theMazu,
+    poster: getDefinedUsers(uuidv1()).theMazu,
     postTime: '4月17日下午6:12 ·',
     postContent: '我根本沒說。',
     reacts: reactionsData.reacts,

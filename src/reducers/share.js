@@ -3,12 +3,12 @@ import { ADD_DATA, FEEDBACK } from '../actions'
 
 const feedbackShare = (state, action) => {
   const { payload } = action
-  const { id, postId, sharer } = payload
+  const { id, postId, user } = payload
 
   // Create our new Share object
   const share = {
     id,
-    sharer,
+    user,
     postId
   }
 

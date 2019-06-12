@@ -15,7 +15,7 @@ describe('post reaction actions', () => {
       payload: {
         id: expect.any(String),
         reaction: actions.REACTIONS.LIKE,
-        reactor: userInfo,
+        user: userInfo,
         postOrCommentId: targetId
       }
     })
@@ -27,7 +27,7 @@ describe('post reaction actions', () => {
       payload: {
         id: expect.any(String),
         reaction: actions.REACTIONS.HAHA,
-        reactor: userInfo,
+        user: userInfo,
         postOrCommentId: targetId
       }
     })
@@ -39,7 +39,7 @@ describe('post reaction actions', () => {
       payload: {
         id: expect.any(String),
         reaction: actions.REACTIONS.LOVE,
-        reactor: userInfo,
+        user: userInfo,
         postOrCommentId: targetId
       }
     })

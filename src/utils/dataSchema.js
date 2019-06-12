@@ -5,25 +5,25 @@ const userSchema = new schema.Entity('users')
 
 // Define your reactions schema
 const reactSchema = new schema.Entity('reacts', {
-  reactor: userSchema
+  user: userSchema
 })
 
 // Define your comments schema
 const commentSchema = new schema.Entity('comments', {
-  commenter: userSchema
+  user: userSchema
 })
 
 // Define your shares schema
 const shareSchema = new schema.Entity('shares', {
-  sharer: userSchema
+  user: userSchema
 })
 
 // Define your post schema
 export const PostSchema = new schema.Entity('post', {
-  poster: userSchema,
   reacts: [reactSchema],
   comments: [commentSchema],
-  shares: [shareSchema]
+  shares: [shareSchema],
+  users: [userSchema]
 })
 
 export const getNormalizedData = data => normalize(data, PostSchema)

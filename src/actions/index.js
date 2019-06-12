@@ -29,7 +29,7 @@ export const feedbackLike = (userInfo, target) => ({
   payload: {
     id: uuidv1(),
     reaction: REACTIONS.LIKE,
-    reactor: userInfo,
+    user: userInfo,
     postOrCommentId: target
   }
 })
@@ -39,7 +39,7 @@ export const feedbackHaha = (userInfo, target) => ({
   payload: {
     id: uuidv1(),
     reaction: REACTIONS.HAHA,
-    reactor: userInfo,
+    user: userInfo,
     postOrCommentId: target
   }
 })
@@ -49,7 +49,7 @@ export const feedbackLove = (userInfo, target) => ({
   payload: {
     id: uuidv1(),
     reaction: REACTIONS.LOVE,
-    reactor: userInfo,
+    user: userInfo,
     postOrCommentId: target
   }
 })
@@ -59,7 +59,7 @@ export const feedbackWow = (userInfo, target) => ({
   payload: {
     id: uuidv1(),
     reaction: REACTIONS.WOW,
-    reactor: userInfo,
+    user: userInfo,
     postOrCommentId: target
   }
 })
@@ -69,7 +69,7 @@ export const feedbackSad = (userInfo, target) => ({
   payload: {
     id: uuidv1(),
     reaction: REACTIONS.SAD,
-    reactor: userInfo,
+    user: userInfo,
     postOrCommentId: target
   }
 })
@@ -79,7 +79,7 @@ export const feedbackAngry = (userInfo, target) => ({
   payload: {
     id: uuidv1(),
     reaction: REACTIONS.ANGRY,
-    reactor: userInfo,
+    user: userInfo,
     postOrCommentId: target
   }
 })

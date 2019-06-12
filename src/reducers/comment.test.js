@@ -13,7 +13,7 @@ const feedbackCommentAction = {
   payload: {
     id: 'fakecommentid',
     comment: 'fakecomment',
-    commenter: userInfo,
+    user: userInfo,
     postOrCommentId: FEEDBACK.TARGET
   }
 }

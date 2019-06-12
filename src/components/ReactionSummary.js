@@ -74,9 +74,9 @@ const ReactionSummaryWrapper = styled.div`
   ${alignCenter}
 `
 
-const ReactionSummary = props => {
-  const reactionsRank = rankingReactions(props.reactions)
-  const reactionsSummary = summaryReactions(props.reactions, reactionsRank)
+const ReactionSummary = ({ reactions }) => {
+  const reactionsRank = rankingReactions(reactions)
+  const reactionsSummary = summaryReactions(reactions, reactionsRank)
   return (
     <ReactionSummaryWrapper>
       <ReactionFirstIcon

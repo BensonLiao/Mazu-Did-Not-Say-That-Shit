@@ -3,13 +3,13 @@ import { ADD_DATA, FEEDBACK } from '../actions'
 
 const feedbackComment = (state, action) => {
   const { payload } = action
-  const { id, postOrCommentId, comment, commenter } = payload
+  const { id, postOrCommentId, comment, user } = payload
 
   // Create our new Comment object
   const react = {
     id,
     comment,
-    commenter,
+    user,
     postOrCommentId
   }
 

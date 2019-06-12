@@ -1,4 +1,4 @@
-import shareReducer from './share'
+import userReducer from './user'
 import { FEEDBACK } from '../actions'
 
 const userInfo = {
@@ -11,28 +11,28 @@ const userInfo = {
 const feedbackShareAction = {
   type: FEEDBACK.SHARE,
   payload: {
-    id: 'fakeshareid',
+    id: 'fakeuserid',
     user: userInfo,
     postId: FEEDBACK.TARGET
   }
 }
 
-describe('test shareReducer', () => {
+describe('test userReducer', () => {
   it('should handle initial state', () => {
-    expect(shareReducer(undefined, {})).toEqual({ byId: {}, allIds: [] })
+    expect(userReducer(undefined, {})).toEqual({ byId: {}, allIds: [] })
   })
 
   it('should handle allIds', () => {
     expect(
-      shareReducer({ byId: {}, allIds: [] }, feedbackShareAction).allIds
-    ).toEqual([feedbackShareAction.payload.id])
+      userReducer({ byId: {}, allIds: [] }, feedbackShareAction).allIds
+    ).toEqual([feedbackShareAction.payload.user.id])
   })
 
   it('should handle byId', () => {
     expect(
-      shareReducer({ byId: {}, allIds: [] }, feedbackShareAction).byId
+      userReducer({ byId: {}, allIds: [] }, feedbackShareAction).byId
     ).toEqual({
-      [feedbackShareAction.payload.id]: feedbackShareAction.payload
+      [feedbackShareAction.payload.user.id]: feedbackShareAction.payload.user
     })
   })
 })

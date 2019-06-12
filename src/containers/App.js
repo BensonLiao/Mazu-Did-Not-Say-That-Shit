@@ -36,14 +36,7 @@ class App extends Component {
   }
 
   render() {
-    const {
-      poster,
-      postTime,
-      postContent,
-      reacts,
-      comments,
-      shares
-    } = this.props
+    const { poster, postTime, postContent } = this.props
     return (
       <ThemeProvider theme={theme}>
         <Root>
@@ -51,11 +44,7 @@ class App extends Component {
           <PostWrapper>
             <Header profileInfo={poster} postTime={postTime} />
             <PostContent postContent={postContent} />
-            <FeedbackSummary
-              reactions={reacts}
-              comments={comments}
-              shares={shares}
-            />
+            <FeedbackSummary />
             <FeedbackAction handleFeedbackLike={this.handleFeedbackLike} />
           </PostWrapper>
         </Root>
@@ -64,7 +53,14 @@ class App extends Component {
   }
 }
 
+// const initialState = {
+//   poster,
+//   postTime,
+//   postContent
+// }
+
 const mapStateToProps = state => {
+  console.log('state', state)
   const { poster, postTime, postContent, reacts, comments, shares } = state
 
   return {
@@ -80,10 +76,7 @@ const mapStateToProps = state => {
 App.propTypes = {
   poster: PropTypes.array,
   postTime: PropTypes.string,
-  postContent: PropTypes.string,
-  reacts: PropTypes.array,
-  comments: PropTypes.array,
-  shares: PropTypes.array
+  postContent: PropTypes.string
 }
 
 export default connect(mapStateToProps)(App)

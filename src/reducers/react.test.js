@@ -13,7 +13,7 @@ const feedbackReactAction = {
   payload: {
     id: 'fakereactid',
     reaction: REACTIONS.LIKE,
-    reactor: userInfo,
+    user: userInfo,
     postOrCommentId: FEEDBACK.TARGET
   }
 }

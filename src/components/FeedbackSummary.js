@@ -1,10 +1,9 @@
 import React from 'react'
-import { PropTypes } from 'prop-types'
 import styled from 'styled-components'
 import { cssVar } from '../styles/variables'
 import { displayFlex, justifyContentSpaceBetween } from '../styles/page'
-import ReactionSummary from './ReactionSummary'
-import CommentAndShareSummary from './CommentAndShareSummary'
+import DisplayReactSummary from '../containers/DisplayReactSummary'
+import DisplayCommentAndShareSummary from '../containers/DisplayCommentAndShareSummary'
 
 const FeedbackSummaryWrapper = styled.div`
   ${displayFlex}
@@ -15,24 +14,15 @@ const FeedbackSummaryWrapper = styled.div`
   padding: 0 0 10px 0;
 `
 
-const FeedbackSummary = props => {
+const FeedbackSummary = () => {
   return (
     <FeedbackSummaryWrapper>
-      <ReactionSummary reactions={props.reactions} />
-      <CommentAndShareSummary
-        comments={props.comments}
-        shares={props.shares}
-      />
+      <DisplayReactSummary />
+      <DisplayCommentAndShareSummary />
     </FeedbackSummaryWrapper>
   )
 }
 
 FeedbackSummary.displayName = 'FeedbackSummary'
-
-FeedbackSummary.propTypes = {
-  reactions: PropTypes.array.isRequired,
-  comments: PropTypes.array.isRequired,
-  shares: PropTypes.array.isRequired
-}
 
 export default FeedbackSummary
