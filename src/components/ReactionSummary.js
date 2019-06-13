@@ -1,7 +1,9 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
 import styled from 'styled-components'
 import { alignCenter } from '../styles'
+import DataHelper from '../utils/dataHelper'
 import textFormat from '../utils/textFormat'
 import { REACTIONS } from '../actions'
 import FeedbackCount from './FeedbackCount'
@@ -99,8 +101,13 @@ const ReactionSummary = ({ reactions }) => {
   )
 }
 
-export default ReactionSummary
-
 ReactionSummary.propTypes = {
   reactions: PropTypes.array.isRequired
 }
+
+export default connect(state => {
+  const dataHelper = new DataHelper(state)
+  return {
+    reactions: dataHelper.getReactArray()
+  }
+})(ReactionSummary)

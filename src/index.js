@@ -13,13 +13,13 @@ const preloadedState = createPostData(2000)
 console.log('preloadedState', preloadedState)
 const store = configureStore()
 const normalizedData = getNormalizedData(preloadedState)
-console.log('normalizedData', normalizedData)
+// console.log('normalizedData', normalizedData)
 store.dispatch(addData(normalizedData))
 console.log('store.getState()', store.getState())
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <App postData={preloadedState.post} />
   </Provider>,
   document.getElementById('root')
 )

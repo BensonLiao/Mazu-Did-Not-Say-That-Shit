@@ -462,10 +462,12 @@ export const createShares = (numberTotal = 290) => {
 export const createPostData = (postReactions = 12419) => {
   const reactionsData = createReactions(postReactions)
   const initPostDatas = {
-    id: 'POST',
-    poster: getDefinedUsers(uuidv1()).theMazu,
-    postTime: '4月17日下午6:12 ·',
-    postContent: '我根本沒說。',
+    post: {
+      id: 'POST',
+      user: getDefinedUsers(uuidv1()).theMazu,
+      time: '4月17日下午6:12 ·',
+      content: '我根本沒說。'
+    },
     reacts: reactionsData.reacts,
     comments: createComments(reactionsData.commentIds),
     shares: createShares()

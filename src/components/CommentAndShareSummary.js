@@ -1,7 +1,9 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
 import styled from 'styled-components'
 import { displayFlex } from '../styles'
+import DataHelper from '../utils/dataHelper'
 import textFormat from '../utils/textFormat'
 import FeedbackCount from './FeedbackCount'
 
@@ -24,9 +26,9 @@ const SharesWrapper = styled.div`
   margin-left: 8px;
 `
 
-const CommentAndShareSummary = props => {
-  const commentsSummary = summaryFeedbacks(props.comments, 'comment')
-  const sharesSummary = summaryFeedbacks(props.shares, 'share')
+const CommentAndShareSummary = ({ comments, shares }) => {
+  const commentsSummary = summaryFeedbacks(comments, 'comment')
+  const sharesSummary = summaryFeedbacks(shares, 'share')
   return (
     <CommentAndShareSummaryWrapper>
       <FeedbackCount
@@ -45,9 +47,15 @@ const CommentAndShareSummary = props => {
   )
 }
 
-export default CommentAndShareSummary
-
 CommentAndShareSummary.propTypes = {
   comments: PropTypes.array.isRequired,
   shares: PropTypes.array.isRequired
 }
+
+export default connect(state => {
+  const dataHelper = new DataHelper(state)
+  return {
+    comments: dataHelper.getCommentArray(),
+    shares: dataHelper.getShareArray()
+  }
+})(CommentAndShareSummary)

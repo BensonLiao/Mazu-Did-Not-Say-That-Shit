@@ -11,9 +11,9 @@ export default {
     formattedTotal =
       total > 10000
         ? (total / 10000)
-          .toFixed(1)
-          .toString()
-          .concat('萬')
+            .toFixed(1)
+            .toString()
+            .concat('萬')
         : total.toString().replace(/\d(?=(\d{3})+)/g, '$&,')
     return formattedTotal
   },
@@ -29,16 +29,18 @@ export default {
    *     (Default of n: 2)
    */
   reactionsCountFormator(reactions, numTopShow = 2) {
+    // console.log('reactions user', reactions[0].user.profileName)
     if (numTopShow > reactions.length) {
       throw new Error('Number of top n must lesser than number of reactions.')
     }
     let formattedSummary = ''
     if (reactions.length > 0) {
       for (let i = 0; i < numTopShow; i++) {
+        const {
+          user: { profileName }
+        } = reactions[i]
         const name =
-          i + 1 === numTopShow
-            ? `${reactions[i].name}`
-            : `${reactions[i].name}、`
+          i + 1 === numTopShow ? `${profileName}` : `${profileName}、`
         formattedSummary += name
       }
     }
@@ -80,7 +82,10 @@ export default {
     let formattedSummary = ''
     if (feedbacks.length > 0) {
       for (let i = 0; i < numTopShow; i++) {
-        formattedSummary += `${feedbacks[i].name}<br>`
+        const {
+          user: { profileName }
+        } = feedbacks[i]
+        formattedSummary += `${profileName}<br>`
       }
     }
     formattedSummary += `和其他${feedbacks.length - numTopShow}個...`

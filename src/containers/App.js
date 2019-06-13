@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
-import { connect } from 'react-redux'
-import { feedbackLike } from '../actions'
 import { theme, cssVar, displayFlex, alignCenter } from '../styles'
 import Header from '../components/Header'
 import PostContent from '../components/PostContent'
@@ -31,21 +29,21 @@ const PostWrapper = styled.div`
 `
 
 class App extends Component {
-  handleFeedbackLike = () => {
-    this.props.dispatch(feedbackLike())
-  }
+  // handleFeedbackLike = () => {
+  //   this.props.dispatch(feedbackLike())
+  // }
 
   render() {
-    const { poster, postTime, postContent } = this.props
+    const { user, time, content } = this.props.postData
     return (
       <ThemeProvider theme={theme}>
         <Root>
           <GlobalStyle />
           <PostWrapper>
-            <Header profileInfo={poster} postTime={postTime} />
-            <PostContent postContent={postContent} />
+            <Header profileInfo={user} postTime={time} />
+            <PostContent postContent={content} />
             <FeedbackSummary />
-            <FeedbackAction handleFeedbackLike={this.handleFeedbackLike} />
+            <FeedbackAction />
           </PostWrapper>
         </Root>
       </ThemeProvider>
@@ -53,30 +51,16 @@ class App extends Component {
   }
 }
 
-// const initialState = {
-//   poster,
-//   postTime,
-//   postContent
-// }
-
-const mapStateToProps = state => {
-  console.log('state', state)
-  const { poster, postTime, postContent, reacts, comments, shares } = state
-
-  return {
-    poster,
-    postTime,
-    postContent,
-    reacts,
-    comments,
-    shares
-  }
-}
-
 App.propTypes = {
-  poster: PropTypes.array,
-  postTime: PropTypes.string,
-  postContent: PropTypes.string
+  postData: PropTypes.shape({
+    user: PropTypes.shape({
+      profileImg: PropTypes.string.isRequired,
+      profileLink: PropTypes.string.isRequired,
+      profileName: PropTypes.string.isRequired
+    }).isRequired,
+    time: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired
+  }).isRequired
 }
 
-export default connect(mapStateToProps)(App)
+export default App
