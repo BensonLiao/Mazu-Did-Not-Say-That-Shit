@@ -24,17 +24,17 @@ export const REACTIONS = {
   ANGRY: 'ANGRY'
 }
 
-export const feedbackLike = (userInfo, target) => ({
+export const feedbackLike = (userInfo, id, target = FEEDBACK.TARGET) => ({
   type: FEEDBACK.REACT,
   payload: {
-    id: uuidv1(),
+    id,
     reaction: REACTIONS.LIKE,
     user: userInfo,
     postOrCommentId: target
   }
 })
 
-export const feedbackHaha = (userInfo, target) => ({
+export const feedbackHaha = (userInfo, target = FEEDBACK.TARGET) => ({
   type: FEEDBACK.REACT,
   payload: {
     id: uuidv1(),
@@ -44,7 +44,7 @@ export const feedbackHaha = (userInfo, target) => ({
   }
 })
 
-export const feedbackLove = (userInfo, target) => ({
+export const feedbackLove = (userInfo, target = FEEDBACK.TARGET) => ({
   type: FEEDBACK.REACT,
   payload: {
     id: uuidv1(),
@@ -54,7 +54,7 @@ export const feedbackLove = (userInfo, target) => ({
   }
 })
 
-export const feedbackWow = (userInfo, target) => ({
+export const feedbackWow = (userInfo, target = FEEDBACK.TARGET) => ({
   type: FEEDBACK.REACT,
   payload: {
     id: uuidv1(),
@@ -64,7 +64,7 @@ export const feedbackWow = (userInfo, target) => ({
   }
 })
 
-export const feedbackSad = (userInfo, target) => ({
+export const feedbackSad = (userInfo, target = FEEDBACK.TARGET) => ({
   type: FEEDBACK.REACT,
   payload: {
     id: uuidv1(),
@@ -74,7 +74,7 @@ export const feedbackSad = (userInfo, target) => ({
   }
 })
 
-export const feedbackAngry = (userInfo, target) => ({
+export const feedbackAngry = (userInfo, target = FEEDBACK.TARGET) => ({
   type: FEEDBACK.REACT,
   payload: {
     id: uuidv1(),
@@ -86,7 +86,7 @@ export const feedbackAngry = (userInfo, target) => ({
 
 export const feedbackComment = (
   userInfo,
-  target,
+  target = FEEDBACK.TARGET,
   comment,
   time = Date().now(),
   attachMedia = '',
@@ -104,7 +104,11 @@ export const feedbackComment = (
   }
 })
 
-export const feedbackShare = (userInfo, time = Date().now(), postId) => ({
+export const feedbackShare = (
+  userInfo,
+  time = Date().now(),
+  postId = FEEDBACK.TARGET
+) => ({
   type: FEEDBACK.SHARE,
   payload: {
     time,
@@ -113,10 +117,9 @@ export const feedbackShare = (userInfo, time = Date().now(), postId) => ({
   }
 })
 
-export const undoReact = (userInfo, target) => ({
+export const undoReact = id => ({
   type: FEEDBACK.UNDO_REACT,
   payload: {
-    user: userInfo,
-    postOrCommentId: target
+    id
   }
 })

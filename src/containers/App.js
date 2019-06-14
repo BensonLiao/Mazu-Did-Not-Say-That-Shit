@@ -6,6 +6,8 @@ import Header from '../components/Header'
 import PostContent from '../components/PostContent'
 import FeedbackSummary from '../components/FeedbackSummary'
 import FeedbackAction from '../components/FeedbackAction'
+import { definedUsers } from '../utils/dataMock'
+import { StateProvider } from './StateProvider'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -28,25 +30,35 @@ const PostWrapper = styled.div`
   font-family: ${cssVar.fontFamily};
 `
 
-class App extends Component {
-  // handleFeedbackLike = () => {
-  //   this.props.dispatch(feedbackLike())
-  // }
+const initialState = {
+  yourself: definedUsers.goldXFive,
+  shareMenuOpened: false
+}
 
+const appReducer = (state, action) => {
+  switch (action.type) {
+    default:
+      return state
+  }
+}
+
+class App extends Component {
   render() {
     const { user, time, content } = this.props.postData
     return (
-      <ThemeProvider theme={theme}>
-        <Root>
-          <GlobalStyle />
-          <PostWrapper>
-            <Header profileInfo={user} postTime={time} />
-            <PostContent postContent={content} />
-            <FeedbackSummary />
-            <FeedbackAction />
-          </PostWrapper>
-        </Root>
-      </ThemeProvider>
+      <StateProvider initialState={initialState} reducer={appReducer}>
+        <ThemeProvider theme={theme}>
+          <Root>
+            <GlobalStyle />
+            <PostWrapper>
+              <Header profileInfo={user} postTime={time} />
+              <PostContent postContent={content} />
+              <FeedbackSummary />
+              <FeedbackAction />
+            </PostWrapper>
+          </Root>
+        </ThemeProvider>
+      </StateProvider>
     )
   }
 }

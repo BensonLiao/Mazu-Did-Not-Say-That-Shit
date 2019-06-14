@@ -1,62 +1,68 @@
 import uuidv1 from 'uuid/v1'
 import { REACTIONS, FEEDBACK } from '../actions'
 
-export const getDefinedUsers = id => ({
+export const definedUsers = {
+  goldXFive: {
+    id: uuidv1(),
+    profileName: '金城武',
+    profileLink: 'https://www.facebook.com/takeshikaneshirofanspage/',
+    profileImg: 'goldxfive.png'
+  },
   theMazu: {
-    id,
+    id: uuidv1(),
     profileName: '媽祖',
     profileLink: 'https://www.facebook.com/themazhou/',
     profileImg: 'mazu.png'
   },
   terryGoodTiming: {
-    id,
+    id: uuidv1(),
     profileName: '鍋苔冥',
     profileLink: 'https://www.facebook.com/TerryGou1018/',
     profileImg: 'terry.png'
   },
   dingDing: {
-    id,
+    id: uuidv1(),
     profileName: '叮守鐘',
     profileLink: 'https://www.youtube.com/watch?v=_97bLScvHWs',
     profileImg: 'dingding.png'
   },
   toolMan: {
-    id,
+    id: uuidv1(),
     profileName: '台灣工具伯 汪進坪',
     profileLink: 'https://www.facebook.com/jingping.tw/',
     profileImg: 'toolman.png'
   },
   english: {
-    id,
+    id: uuidv1(),
     profileName: '菜應蚊',
     profileLink: 'https://www.facebook.com/tsaiingwen/',
     profileImg: 'english.png'
   },
   koreanFish: {
-    id,
+    id: uuidv1(),
     profileName: '憨摑娛',
     profileLink: 'https://www.facebook.com/twherohan/',
     profileImg: 'korean-fish.png'
   },
   careWheelEveryday: {
-    id,
+    id: uuidv1(),
     profileName: '每天關心愛情摩天輪的興建狀況',
     profileLink: 'https://www.facebook.com/CareLoveFerrisWheelEveryday/',
     profileImg: 'wheel.png'
   },
   universityFoundField: {
-    id,
+    id: uuidv1(),
     profileName: '找到田大學',
     profileLink: '#',
     profileImg: 'anonymous-university.png'
   },
   sparkJoy: {
-    id,
+    id: uuidv1(),
     profileName: '尛理惠的整理魔法',
     profileLink: '#',
     profileImg: 'sparkJoy.png'
   }
-})
+}
 
 /**
  * Get fake user object with the following properties:
@@ -213,37 +219,37 @@ export const createReactions = (numberTotal = 12419, ratio = [3, 2, 1]) => {
   const reacts = [
     {
       id: uuidv1(),
-      user: getDefinedUsers(uuidv1()).terryGoodTiming,
+      user: definedUsers.terryGoodTiming,
       type: REACTIONS.LIKE,
       postOrCommentId: FEEDBACK.TARGET
     },
     {
       id: uuidv1(),
-      user: getDefinedUsers(uuidv1()).koreanFish,
+      user: definedUsers.koreanFish,
       type: REACTIONS.LIKE,
       postOrCommentId: FEEDBACK.TARGET
     },
     {
       id: uuidv1(),
-      user: getDefinedUsers(uuidv1()).universityFoundField,
+      user: definedUsers.universityFoundField,
       type: REACTIONS.HAHA,
       postOrCommentId: FEEDBACK.TARGET
     },
     {
       id: uuidv1(),
-      user: getDefinedUsers(uuidv1()).english,
+      user: definedUsers.english,
       type: REACTIONS.HAHA,
       postOrCommentId: FEEDBACK.TARGET
     },
     {
       id: uuidv1(),
-      user: getDefinedUsers(uuidv1()).toolMan,
+      user: definedUsers.toolMan,
       type: REACTIONS.LOVE,
       postOrCommentId: FEEDBACK.TARGET
     },
     {
       id: uuidv1(),
-      user: getDefinedUsers(uuidv1()).dingDing,
+      user: definedUsers.dingDing,
       type: REACTIONS.LOVE,
       postOrCommentId: FEEDBACK.TARGET
     }
@@ -365,37 +371,37 @@ export const createComments = (commentIds = []) => {
   const comments = [
     {
       id: commentIds[0],
-      user: getDefinedUsers(uuidv1()).terryGoodTiming,
+      user: definedUsers.terryGoodTiming,
       comment: '謝謝樓主托夢，三樓的民主不能當飯吃！',
       time: '3天'
     },
     {
       id: commentIds[1],
-      user: getDefinedUsers(uuidv1()).koreanFish,
+      user: definedUsers.koreanFish,
       comment: '樓上為什麼不考慮吃個包子呢？',
       time: '3天'
     },
     {
       id: commentIds[2],
-      user: getDefinedUsers(uuidv1()).english,
+      user: definedUsers.english,
       comment: '我也這麼覺得',
       time: '4天'
     },
     {
       id: commentIds[3],
-      user: getDefinedUsers(uuidv1()).toolMan,
+      user: definedUsers.toolMan,
       comment: '這個我想，要查證比較難啦',
       time: '5天'
     },
     {
       id: commentIds[4],
-      user: getDefinedUsers(uuidv1()).dingDing,
+      user: definedUsers.dingDing,
       comment: '可以托夢讓我重選台北市長嗎？',
       time: '4天'
     },
     {
       id: commentIds[5],
-      user: getDefinedUsers(uuidv1()).universityFoundField,
+      user: definedUsers.universityFoundField,
       comment: '五樓要不要藉這個機會在神明的面前澄清一下？',
       attachMedia: 'https://i.imgur.com/wvWFAMT.png',
       mediaType: 'pic',
@@ -403,13 +409,13 @@ export const createComments = (commentIds = []) => {
     },
     {
       id: commentIds[6],
-      user: getDefinedUsers(uuidv1()).careWheelEveryday,
+      user: definedUsers.careWheelEveryday,
       comment: '五樓，我快等不及了',
       time: '5天'
     },
     {
       id: commentIds[7],
-      user: getDefinedUsers(uuidv1()).sparkJoy,
+      user: definedUsers.sparkJoy,
       comment: `臺灣的碰有打家好～
       今天要來教打家年後清理臉書版面的小妙招分享
       1. 點進去五樓的粉絲團
@@ -443,14 +449,14 @@ export const createComments = (commentIds = []) => {
  */
 export const createShares = (numberTotal = 290) => {
   const shares = [
-    { id: uuidv1(), user: getDefinedUsers(uuidv1()).terryGoodTiming },
-    { id: uuidv1(), user: getDefinedUsers(uuidv1()).koreanFish },
-    { id: uuidv1(), user: getDefinedUsers(uuidv1()).english },
-    { id: uuidv1(), user: getDefinedUsers(uuidv1()).toolMan },
-    { id: uuidv1(), user: getDefinedUsers(uuidv1()).dingDing },
-    { id: uuidv1(), user: getDefinedUsers(uuidv1()).universityFoundField },
-    { id: uuidv1(), user: getDefinedUsers(uuidv1()).careWheelEveryday },
-    { id: uuidv1(), user: getDefinedUsers(uuidv1()).sparkJoy }
+    { id: uuidv1(), user: definedUsers.terryGoodTiming },
+    { id: uuidv1(), user: definedUsers.koreanFish },
+    { id: uuidv1(), user: definedUsers.english },
+    { id: uuidv1(), user: definedUsers.toolMan },
+    { id: uuidv1(), user: definedUsers.dingDing },
+    { id: uuidv1(), user: definedUsers.universityFoundField },
+    { id: uuidv1(), user: definedUsers.careWheelEveryday },
+    { id: uuidv1(), user: definedUsers.sparkJoy }
   ]
   if (numberTotal < 2) throw new Error('Number of total must greater than 2.')
   for (let i = 0; i < numberTotal; i++) {
@@ -464,7 +470,7 @@ export const createPostData = (postReactions = 12419) => {
   const initPostDatas = {
     post: {
       id: 'POST',
-      user: getDefinedUsers(uuidv1()).theMazu,
+      user: definedUsers.theMazu,
       time: '4月17日下午6:12 ·',
       content: '我根本沒說。'
     },

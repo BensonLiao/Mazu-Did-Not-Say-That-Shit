@@ -6,11 +6,12 @@ const userInfo = {
   profileLink: 'https://www.facebook.com/test/',
   profileImg: 'test.png'
 }
+const reactId = 'fakereactid'
 const targetId = 'POST'
 
 describe('post reaction actions', () => {
   it('feedbackLike should create FEEDBACK_LIKE action', () => {
-    expect(actions.feedbackLike(userInfo, targetId)).toEqual({
+    expect(actions.feedbackLike(userInfo, reactId, targetId)).toEqual({
       type: actions.FEEDBACK.REACT,
       payload: {
         id: expect.any(String),
@@ -46,11 +47,10 @@ describe('post reaction actions', () => {
   })
 
   it('undoReact should create UNDO_REACT action', () => {
-    expect(actions.undoReact(userInfo, targetId)).toEqual({
+    expect(actions.undoReact(reactId)).toEqual({
       type: actions.FEEDBACK.UNDO_REACT,
       payload: {
-        user: userInfo,
-        postOrCommentId: targetId
+        id: reactId
       }
     })
   })

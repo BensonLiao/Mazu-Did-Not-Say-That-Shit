@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+// import uuidv1 from 'uuid/v1'
 import styled from 'styled-components'
 import { FEEDBACK } from '../actions'
 import StyledTooltip from './StyledTooltip'
@@ -9,6 +11,7 @@ import {
   feedbackCommentButtonStyle,
   feedbackShareButtonStyle
 } from '../styles/post'
+import { useState } from '../containers/StateProvider'
 
 const FeedbackActionButtonWrapper = styled.div`
   ${feedbackActionButtonWrapperStyle}
@@ -50,18 +53,68 @@ const getDisplayText = feedbackType => {
   }
 }
 
-const FeedbackActionButton = ({ feedbackType = FEEDBACK.REACT }) => {
+const FeedbackActionButton = ({
+  feedbackType,
+  reacted,
+  doReact,
+  undoReact
+}) => {
+  const [state] = useState()
+  const { shareMenuOpened } = state
   const tooltipId = 'tip-for-post-feedback-action'
+  const toggleReactAction = () => {
+    if (reacted) {
+      undoReact()
+    } else {
+      doReact()
+    }
+  }
+  const focusCommentComp = compId => {
+    document.getElementById(compId).focus()
+  }
+  const toggleShareMenu = menuId => {
+    if (shareMenuOpened) {
+      document.getElementById(menuId).hide()
+    } else {
+      document.getElementById(menuId).show()
+    }
+  }
+  const getOnClick = () => {
+    switch (feedbackType) {
+      default:
+        return toggleReactAction
+      case FEEDBACK.COMMENT:
+        return focusCommentComp
+      case FEEDBACK.SHARE:
+        return toggleShareMenu
+    }
+  }
   return (
     <FeedbackActionButtonWrapper
       data-for={tooltipId}
       data-tip={getTooltipText(feedbackType)}
+      onClick={getOnClick()}
     >
       <FeedbackActionButtonIcon feedbackType={feedbackType} />
+      {reacted ? 'yes' : 'no'}
       {getDisplayText(feedbackType)}
       <StyledTooltip id={tooltipId} effect="float" />
     </FeedbackActionButtonWrapper>
   )
+}
+
+FeedbackActionButton.defaultProps = {
+  feedbackType: FEEDBACK.REACT,
+  reacted: false,
+  doReact: () => {},
+  undoReact: () => {}
+}
+
+FeedbackActionButton.propTypes = {
+  feedbackType: PropTypes.string,
+  reacted: PropTypes.bool,
+  doReact: PropTypes.func,
+  undoReact: PropTypes.func
 }
 
 FeedbackActionButton.displayName = 'FeedbackActionButton'
