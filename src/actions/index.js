@@ -24,7 +24,7 @@ export const REACTIONS = {
   ANGRY: 'ANGRY'
 }
 
-export const feedbackLike = (userInfo, id, target = FEEDBACK.TARGET) => ({
+export const feedbackReactLike = (userInfo, id, target = FEEDBACK.TARGET) => ({
   type: FEEDBACK.REACT,
   payload: {
     id,
@@ -34,7 +34,7 @@ export const feedbackLike = (userInfo, id, target = FEEDBACK.TARGET) => ({
   }
 })
 
-export const feedbackHaha = (userInfo, target = FEEDBACK.TARGET) => ({
+export const feedbackReactHaha = (userInfo, target = FEEDBACK.TARGET) => ({
   type: FEEDBACK.REACT,
   payload: {
     id: uuidv1(),
@@ -44,7 +44,7 @@ export const feedbackHaha = (userInfo, target = FEEDBACK.TARGET) => ({
   }
 })
 
-export const feedbackLove = (userInfo, target = FEEDBACK.TARGET) => ({
+export const feedbackReactLove = (userInfo, target = FEEDBACK.TARGET) => ({
   type: FEEDBACK.REACT,
   payload: {
     id: uuidv1(),
@@ -54,7 +54,7 @@ export const feedbackLove = (userInfo, target = FEEDBACK.TARGET) => ({
   }
 })
 
-export const feedbackWow = (userInfo, target = FEEDBACK.TARGET) => ({
+export const feedbackReactWow = (userInfo, target = FEEDBACK.TARGET) => ({
   type: FEEDBACK.REACT,
   payload: {
     id: uuidv1(),
@@ -64,7 +64,7 @@ export const feedbackWow = (userInfo, target = FEEDBACK.TARGET) => ({
   }
 })
 
-export const feedbackSad = (userInfo, target = FEEDBACK.TARGET) => ({
+export const feedbackReactSad = (userInfo, target = FEEDBACK.TARGET) => ({
   type: FEEDBACK.REACT,
   payload: {
     id: uuidv1(),
@@ -74,7 +74,7 @@ export const feedbackSad = (userInfo, target = FEEDBACK.TARGET) => ({
   }
 })
 
-export const feedbackAngry = (userInfo, target = FEEDBACK.TARGET) => ({
+export const feedbackReactAngry = (userInfo, target = FEEDBACK.TARGET) => ({
   type: FEEDBACK.REACT,
   payload: {
     id: uuidv1(),
