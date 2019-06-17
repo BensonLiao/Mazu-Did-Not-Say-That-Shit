@@ -21,7 +21,7 @@ const ReactionFirstIconWrapper = styled.div`
 const FirstIcon = styled.i`
   ${reactionIconBaseStyle}
   ${props => {
-    switch (props.reactionType) {
+    switch (props.reactFeeling) {
       default:
         return reactionLikeIconStyle
       case REACTIONS.HAHA:
@@ -33,13 +33,13 @@ const FirstIcon = styled.i`
 `
 
 const ReactionFirstIcon = ({
-  reactionType = REACTIONS.LIKE,
+  reactFeeling = REACTIONS.LIKE,
   countSummary = ''
 }) => {
   const tooltipId = 'tip-for-post-first-most-reaction'
   return (
     <ReactionFirstIconWrapper data-for={tooltipId} data-tip={countSummary}>
-      <FirstIcon reactionType={reactionType} />
+      <FirstIcon reactFeeling={reactFeeling} />
       <StyledTooltip
         id={tooltipId}
         effect="solid"

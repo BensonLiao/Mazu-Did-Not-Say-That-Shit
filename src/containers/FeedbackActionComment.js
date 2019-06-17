@@ -1,5 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import { FEEDBACK } from '../actions'
 import FeedbackActionButton from '../components/FeedbackActionButton'
 
@@ -15,12 +15,13 @@ const FeedbackActionComment = () => {
   )
 }
 
-const mapStateToProps = (state, ownProps) => {
-  console.log('state', state)
-  console.log('ownProps', ownProps)
-  return {
-    reacted: false
-  }
-}
+// const mapStateToProps = (state, ownProps) => {
+//   console.log('state', state)
+//   console.log('ownProps', ownProps)
+//   return {
+//     reacted: false
+//   }
+// }
 
-export default connect(mapStateToProps)(FeedbackActionComment)
+// export default connect(mapStateToProps)(FeedbackActionComment)
+export default FeedbackActionComment

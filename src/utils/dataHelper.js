@@ -5,11 +5,13 @@ export default class dataHelper {
 
   getReactArray() {
     const { reactReducer, userReducer } = this.state
+    // console.log('reactReducer.byId', reactReducer.byId)
     const reacts = reactReducer.allIds.map(reactId => {
       const reactObj = reactReducer.byId[reactId]
       reactObj.user = userReducer.byId[reactObj.user]
       return reactObj
     })
+    // console.log('getReactArray', reacts)
     return reacts
   }
 

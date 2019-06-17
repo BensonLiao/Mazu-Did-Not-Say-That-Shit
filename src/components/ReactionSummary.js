@@ -14,17 +14,17 @@ import ReactionThirdIcon from './ReactionThirdIcon'
 const rankingReactions = reactions => {
   const reactionsCounts = []
   const reactionLikes = reactions.filter(
-    reactor => reactor.type === REACTIONS.LIKE
+    reactor => reactor.feeling === REACTIONS.LIKE
   )
   const reactionHahas = reactions.filter(
-    reactor => reactor.type === REACTIONS.HAHA
+    reactor => reactor.feeling === REACTIONS.HAHA
   )
   const reactionLoves = reactions.filter(
-    reactor => reactor.type === REACTIONS.LOVE
+    reactor => reactor.feeling === REACTIONS.LOVE
   )
-  reactionsCounts.push({type: REACTIONS.LIKE, total: reactionLikes.length})
-  reactionsCounts.push({type: REACTIONS.HAHA, total: reactionHahas.length})
-  reactionsCounts.push({type: REACTIONS.LOVE, total: reactionLoves.length})
+  reactionsCounts.push({feeling: REACTIONS.LIKE, total: reactionLikes.length})
+  reactionsCounts.push({feeling: REACTIONS.HAHA, total: reactionHahas.length})
+  reactionsCounts.push({feeling: REACTIONS.LOVE, total: reactionLoves.length})
   const sortedReactions = reactionsCounts.sort((a, b) => {
     return b.total - a.total
   })
@@ -37,6 +37,7 @@ const rankingReactions = reactions => {
 }
 
 const summaryReactions = (reactions, rank) => {
+  // console.log('reactions', reactions)
   const summary = {
     all: {
       forText: '',
@@ -47,13 +48,13 @@ const summaryReactions = (reactions, rank) => {
     thirdMost: ''
   }
   const topMostReactions = reactions.filter(
-    reactor => reactor.type === rank.topMost.type
+    reactor => reactor.feeling === rank.topMost.feeling
   )
   const secondMostReactions = reactions.filter(
-    reactor => reactor.type === rank.secondMost.type
+    reactor => reactor.feeling === rank.secondMost.feeling
   )
   const thirdMostReactions = reactions.filter(
-    reactor => reactor.type === rank.thirdMost.type
+    reactor => reactor.feeling === rank.thirdMost.feeling
   )
   summary.all.forText = textFormat.reactionsCountFormator(reactions)
   summary.all.forTip = textFormat.feedbacksCountTipFormator(reactions, 18)
@@ -82,15 +83,15 @@ const ReactionSummary = ({ reactions }) => {
   return (
     <ReactionSummaryWrapper>
       <ReactionFirstIcon
-        reactionType={reactionsRank.topMost.type}
+        reactFeeling={reactionsRank.topMost.feeling}
         countSummary={reactionsSummary.topMost}
       />
       <ReactionSecondIcon
-        reactionType={reactionsRank.secondMost.type}
+        reactFeeling={reactionsRank.secondMost.feeling}
         countSummary={reactionsSummary.secondMost}
       />
       <ReactionThirdIcon
-        reactionType={reactionsRank.thirdMost.type}
+        reactFeeling={reactionsRank.thirdMost.feeling}
         countSummary={reactionsSummary.thirdMost}
       />
       <FeedbackCount

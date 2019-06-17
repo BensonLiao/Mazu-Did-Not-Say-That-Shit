@@ -9,11 +9,14 @@ import { createPostData } from './utils/dataMock'
 import { getNormalizedData } from './utils/dataSchema'
 import { addData } from './actions'
 
-const preloadedState = createPostData(2000)
+const reacts = 100
+const comments = 50
+const shares = 20
+const preloadedState = createPostData(reacts, comments, shares)
 console.log('preloadedState', preloadedState)
 const store = configureStore()
 const normalizedData = getNormalizedData(preloadedState)
-// console.log('normalizedData', normalizedData)
+console.log('normalizedData', normalizedData)
 store.dispatch(addData(normalizedData))
 console.log('store.getState()', store.getState())
 

@@ -137,28 +137,28 @@ const addCommentReactions = (
       reacts.push({
         id: uuidv1(),
         user: getFakeUser(i),
-        type: REACTIONS.LIKE,
+        feeling: REACTIONS.LIKE,
         postOrCommentId: targetId
       })
     } else if (i < totalLikes + totalHahas) {
       reacts.push({
         id: uuidv1(),
         user: getFakeUser(i),
-        type: REACTIONS.HAHA,
+        feeling: REACTIONS.HAHA,
         postOrCommentId: targetId
       })
     } else if (i < totalLikes + totalHahas + totalLoves) {
       reacts.push({
         id: uuidv1(),
         user: getFakeUser(i),
-        type: REACTIONS.LOVE,
+        feeling: REACTIONS.LOVE,
         postOrCommentId: targetId
       })
     } else if (i < totalLikes + totalHahas + totalLoves + totalWows) {
       reacts.push({
         id: uuidv1(),
         user: getFakeUser(i),
-        type: REACTIONS.WOW,
+        feeling: REACTIONS.WOW,
         postOrCommentId: targetId
       })
     } else if (
@@ -168,7 +168,7 @@ const addCommentReactions = (
       reacts.push({
         id: uuidv1(),
         user: getFakeUser(i),
-        type: REACTIONS.SAD,
+        feeling: REACTIONS.SAD,
         postOrCommentId: targetId
       })
     } else if (
@@ -178,7 +178,7 @@ const addCommentReactions = (
       reacts.push({
         id: uuidv1(),
         user: getFakeUser(i),
-        type: REACTIONS.ANGRY,
+        feeling: REACTIONS.ANGRY,
         postOrCommentId: targetId
       })
     }
@@ -186,13 +186,22 @@ const addCommentReactions = (
   commentIds.push(targetId)
 }
 
+const getCommentReactsTotal = (reactsTotal, ratio = 388) => {
+  const minCommentReacts = 6
+  const commentReacts = Math.ceil(reactsTotal / ratio)
+  return commentReacts > minCommentReacts ? commentReacts : minCommentReacts
+}
+
 /**
  * create fake reactions with default ratio of
  * 1/2 of Likes, 1/3 of Hahas and 1/6 of Loves
  * if @param {ratio} ratio was omitted.
- * @param {numberTotal} numberTotal
+ * @param {totalReactions} totalReactions
  *  How many reactions to make, must be greater than 2,
  *  16419 will pass down if omitted.
+ * @param {totalComments} totalComments
+ *  How many comments to make, must be greater than 2,
+ *  214 will pass down if omitted.
  * @param {ratio} ratio
  *  How to distribute the ratio of reaction type,
  *  accept only an array of 1 to 6 numbers,
@@ -208,53 +217,57 @@ const addCommentReactions = (
  *   An array of objects contains the following properties:
  *   @prop {name}
  *    The user's profile name
- *   @prop {type}
- *    The react's reaction type: `Like`, `Haha`, `Love`,
+ *   @prop {feeling}
+ *    The react's feeling: `Like`, `Haha`, `Love`,
  *    `Wow`, `Sad`, `Anger`
  *  @prop {commentIds}
  *   An array of @prop {commentId}, type is string.
  *   For @function createComments .
  */
-export const createReactions = (numberTotal = 12419, ratio = [3, 2, 1]) => {
+export const createReactions = (
+  totalReactions = 12419,
+  totalComments = 214,
+  ratio = [3, 2, 1]
+) => {
   const reacts = [
     {
       id: uuidv1(),
       user: definedUsers.terryGoodTiming,
-      type: REACTIONS.LIKE,
+      feeling: REACTIONS.LIKE,
       postOrCommentId: FEEDBACK.TARGET
     },
     {
       id: uuidv1(),
       user: definedUsers.koreanFish,
-      type: REACTIONS.LIKE,
+      feeling: REACTIONS.LIKE,
       postOrCommentId: FEEDBACK.TARGET
     },
     {
       id: uuidv1(),
       user: definedUsers.universityFoundField,
-      type: REACTIONS.HAHA,
+      feeling: REACTIONS.HAHA,
       postOrCommentId: FEEDBACK.TARGET
     },
     {
       id: uuidv1(),
       user: definedUsers.english,
-      type: REACTIONS.HAHA,
+      feeling: REACTIONS.HAHA,
       postOrCommentId: FEEDBACK.TARGET
     },
     {
       id: uuidv1(),
       user: definedUsers.toolMan,
-      type: REACTIONS.LOVE,
+      feeling: REACTIONS.LOVE,
       postOrCommentId: FEEDBACK.TARGET
     },
     {
       id: uuidv1(),
       user: definedUsers.dingDing,
-      type: REACTIONS.LOVE,
+      feeling: REACTIONS.LOVE,
       postOrCommentId: FEEDBACK.TARGET
     }
   ]
-  if (numberTotal < 2) {
+  if (totalReactions < 2 || totalComments < 2) {
     throw new Error('Number of total must greater than 2.')
   }
   if (ratio.length > 6 || ratio.length < 1) {
@@ -271,44 +284,44 @@ export const createReactions = (numberTotal = 12419, ratio = [3, 2, 1]) => {
   const ratioSads = ratio[4] ? ratioTotal / ratio[4] : 0
   const ratioAngers = ratio[5] ? ratioTotal / ratio[5] : 0
   const totalLikes =
-    ratioLikes === 0 ? 0 : Math.ceil((numberTotal - 1) / ratioLikes)
+    ratioLikes === 0 ? 0 : Math.ceil((totalReactions - 1) / ratioLikes)
   const totalHahas =
-    ratioHahas === 0 ? 0 : Math.ceil((numberTotal - 1) / ratioHahas)
+    ratioHahas === 0 ? 0 : Math.ceil((totalReactions - 1) / ratioHahas)
   const totalLoves =
-    ratioLoves === 0 ? 0 : Math.ceil((numberTotal - 1) / ratioLoves)
+    ratioLoves === 0 ? 0 : Math.ceil((totalReactions - 1) / ratioLoves)
   const totalWows =
-    ratioWows === 0 ? 0 : Math.ceil((numberTotal - 1) / ratioWows)
+    ratioWows === 0 ? 0 : Math.ceil((totalReactions - 1) / ratioWows)
   const totalSads =
-    ratioSads === 0 ? 0 : Math.ceil((numberTotal - 1) / ratioSads)
+    ratioSads === 0 ? 0 : Math.ceil((totalReactions - 1) / ratioSads)
   const totalAngers =
-    ratioAngers === 0 ? 0 : Math.ceil((numberTotal - 1) / ratioAngers)
-  for (let i = 0; i < numberTotal; i++) {
+    ratioAngers === 0 ? 0 : Math.ceil((totalReactions - 1) / ratioAngers)
+  for (let i = 0; i < totalReactions; i++) {
     if (i < totalLikes) {
       reacts.push({
         id: uuidv1(),
         user: getFakeUser(i),
-        type: REACTIONS.LIKE,
+        feeling: REACTIONS.LIKE,
         postOrCommentId: FEEDBACK.TARGET
       })
     } else if (i < totalLikes + totalHahas) {
       reacts.push({
         id: uuidv1(),
         user: getFakeUser(i),
-        type: REACTIONS.HAHA,
+        feeling: REACTIONS.HAHA,
         postOrCommentId: FEEDBACK.TARGET
       })
     } else if (i < totalLikes + totalHahas + totalLoves) {
       reacts.push({
         id: uuidv1(),
         user: getFakeUser(i),
-        type: REACTIONS.LOVE,
+        feeling: REACTIONS.LOVE,
         postOrCommentId: FEEDBACK.TARGET
       })
     } else if (i < totalLikes + totalHahas + totalLoves + totalWows) {
       reacts.push({
         id: uuidv1(),
         user: getFakeUser(i),
-        type: REACTIONS.WOW,
+        feeling: REACTIONS.WOW,
         postOrCommentId: FEEDBACK.TARGET
       })
     } else if (
@@ -318,7 +331,7 @@ export const createReactions = (numberTotal = 12419, ratio = [3, 2, 1]) => {
       reacts.push({
         id: uuidv1(),
         user: getFakeUser(i),
-        type: REACTIONS.SAD,
+        feeling: REACTIONS.SAD,
         postOrCommentId: FEEDBACK.TARGET
       })
     } else if (
@@ -328,30 +341,70 @@ export const createReactions = (numberTotal = 12419, ratio = [3, 2, 1]) => {
       reacts.push({
         id: uuidv1(),
         user: getFakeUser(i),
-        type: REACTIONS.ANGRY,
+        feeling: REACTIONS.ANGRY,
         postOrCommentId: FEEDBACK.TARGET
       })
     }
   }
   const commentIds = []
   let commentId = uuidv1()
-  addCommentReactions(reacts, commentId, commentIds, 53, [0, 0, 0, 0, 0, 1])
+  let commentsTotal = getCommentReactsTotal(totalReactions, 240)
+  addCommentReactions(reacts, commentId, commentIds, commentsTotal, [
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+  ])
   commentId = uuidv1()
-  addCommentReactions(reacts, commentId, commentIds, 99, [2, 0, 0, 0, 0, 1])
+  commentsTotal = getCommentReactsTotal(totalReactions, 124)
+  addCommentReactions(reacts, commentId, commentIds, commentsTotal, [
+    2,
+    0,
+    0,
+    0,
+    0,
+    1
+  ])
   commentId = uuidv1()
-  addCommentReactions(reacts, commentId, commentIds, 121, [2, 1])
+  commentsTotal = getCommentReactsTotal(totalReactions, 112)
+  addCommentReactions(reacts, commentId, commentIds, commentsTotal, [2, 1])
   commentId = uuidv1()
-  addCommentReactions(reacts, commentId, commentIds, 155, [3, 2, 0, 1])
+  commentsTotal = getCommentReactsTotal(totalReactions, 80)
+  addCommentReactions(reacts, commentId, commentIds, commentsTotal, [
+    3,
+    2,
+    0,
+    1
+  ])
   commentId = uuidv1()
-  addCommentReactions(reacts, commentId, commentIds, 55, [2, 0, 0, 1])
+  commentsTotal = getCommentReactsTotal(totalReactions, 112)
+  addCommentReactions(reacts, commentId, commentIds, commentsTotal, [
+    2,
+    0,
+    0,
+    1
+  ])
   commentId = uuidv1()
-  addCommentReactions(reacts, commentId, commentIds, 96, [2, 0, 0, 0, 0, 1])
+  commentsTotal = getCommentReactsTotal(totalReactions, 125)
+  addCommentReactions(reacts, commentId, commentIds, commentsTotal, [
+    2,
+    0,
+    0,
+    0,
+    0,
+    1
+  ])
   commentId = uuidv1()
-  addCommentReactions(reacts, commentId, commentIds, 49, [2, 1])
+  commentsTotal = getCommentReactsTotal(totalReactions, 244)
+  addCommentReactions(reacts, commentId, commentIds, commentsTotal, [2, 1])
   commentId = uuidv1()
-  addCommentReactions(reacts, commentId, commentIds, 78, [2, 1])
-  for (let i = 0; i < 200; i++) {
-    addCommentReactions(reacts, uuidv1(), commentIds, 32, [2, 1])
+  commentsTotal = getCommentReactsTotal(totalReactions, 160)
+  addCommentReactions(reacts, commentId, commentIds, commentsTotal, [2, 1])
+  commentsTotal = getCommentReactsTotal(totalReactions)
+  for (let i = 0; i < totalComments; i++) {
+    addCommentReactions(reacts, uuidv1(), commentIds, commentsTotal, [2, 1])
   }
   const reactObj = { reacts, commentIds }
   return reactObj
@@ -465,8 +518,12 @@ export const createShares = (numberTotal = 290) => {
   return shares
 }
 
-export const createPostData = (postReactions = 12419) => {
-  const reactionsData = createReactions(postReactions)
+export const createPostData = (
+  reacts = 12419,
+  comments = 214,
+  shares = 152
+) => {
+  const reactionsData = createReactions(reacts, comments)
   const initPostDatas = {
     post: {
       id: 'POST',
@@ -476,7 +533,7 @@ export const createPostData = (postReactions = 12419) => {
     },
     reacts: reactionsData.reacts,
     comments: createComments(reactionsData.commentIds),
-    shares: createShares()
+    shares: createShares(shares)
   }
   return initPostDatas
 }

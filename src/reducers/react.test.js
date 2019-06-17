@@ -8,11 +8,18 @@ const userInfo = {
   profileImg: 'test.png'
 }
 
+const userInfo2 = {
+  id: 'fakeuserid2',
+  profileName: '我是假的2!',
+  profileLink: 'https://www.facebook.com/test2/',
+  profileImg: 'test2.png'
+}
+
 const feedbackReactAction = {
   type: FEEDBACK.REACT,
   payload: {
     id: 'fakereactid',
-    reaction: REACTIONS.LIKE,
+    feeling: REACTIONS.LIKE,
     user: userInfo,
     postOrCommentId: FEEDBACK.TARGET
   }
@@ -40,6 +47,33 @@ describe('test reactReducer', () => {
     expect(
       reactReducer({ byId: {}, allIds: [] }, feedbackReactAction).byId
     ).toEqual({
+      [feedbackReactAction.payload.id]: feedbackReactAction.payload
+    })
+  })
+
+  it('should handle add more to byId', () => {
+    expect(
+      reactReducer(
+        {
+          byId: {
+            afakeid: {
+              id: 'fakereactid2',
+              feeling: REACTIONS.LIKE,
+              user: userInfo2,
+              postOrCommentId: FEEDBACK.TARGET
+            }
+          },
+          allIds: []
+        },
+        feedbackReactAction
+      ).byId
+    ).toEqual({
+      afakeid: {
+        id: 'fakereactid2',
+        feeling: REACTIONS.LIKE,
+        user: userInfo2,
+        postOrCommentId: FEEDBACK.TARGET
+      },
       [feedbackReactAction.payload.id]: feedbackReactAction.payload
     })
   })

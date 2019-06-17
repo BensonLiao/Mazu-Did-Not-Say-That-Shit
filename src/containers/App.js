@@ -31,7 +31,7 @@ const PostWrapper = styled.div`
 `
 
 const initialState = {
-  yourself: definedUsers.goldXFive,
+  you: definedUsers.goldXFive,
   shareMenuOpened: false
 }
 

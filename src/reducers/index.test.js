@@ -12,7 +12,7 @@ const feedbackReactAction = {
   type: FEEDBACK.REACT,
   payload: {
     id: 'fakereactid',
-    reaction: REACTIONS.LIKE,
+    feeling: REACTIONS.LIKE,
     user: userInfo,
     postOrCommentId: FEEDBACK.TARGET
   }

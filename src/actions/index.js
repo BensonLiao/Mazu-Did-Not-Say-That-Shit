@@ -24,61 +24,61 @@ export const REACTIONS = {
   ANGRY: 'ANGRY'
 }
 
-export const feedbackReactLike = (userInfo, id, target = FEEDBACK.TARGET) => ({
+export const feedbackFeelLike = (userInfo, id, target = FEEDBACK.TARGET) => ({
   type: FEEDBACK.REACT,
   payload: {
     id,
-    reaction: REACTIONS.LIKE,
+    user: userInfo,
+    feeling: REACTIONS.LIKE,
+    postOrCommentId: target
+  }
+})
+
+export const feedbackFeelHaha = (userInfo, target = FEEDBACK.TARGET) => ({
+  type: FEEDBACK.REACT,
+  payload: {
+    id: uuidv1(),
+    feeling: REACTIONS.HAHA,
     user: userInfo,
     postOrCommentId: target
   }
 })
 
-export const feedbackReactHaha = (userInfo, target = FEEDBACK.TARGET) => ({
+export const feedbackFeelLove = (userInfo, target = FEEDBACK.TARGET) => ({
   type: FEEDBACK.REACT,
   payload: {
     id: uuidv1(),
-    reaction: REACTIONS.HAHA,
+    feeling: REACTIONS.LOVE,
     user: userInfo,
     postOrCommentId: target
   }
 })
 
-export const feedbackReactLove = (userInfo, target = FEEDBACK.TARGET) => ({
+export const feedbackFeelWow = (userInfo, target = FEEDBACK.TARGET) => ({
   type: FEEDBACK.REACT,
   payload: {
     id: uuidv1(),
-    reaction: REACTIONS.LOVE,
+    feeling: REACTIONS.WOW,
     user: userInfo,
     postOrCommentId: target
   }
 })
 
-export const feedbackReactWow = (userInfo, target = FEEDBACK.TARGET) => ({
+export const feedbackFeelSad = (userInfo, target = FEEDBACK.TARGET) => ({
   type: FEEDBACK.REACT,
   payload: {
     id: uuidv1(),
-    reaction: REACTIONS.WOW,
+    feeling: REACTIONS.SAD,
     user: userInfo,
     postOrCommentId: target
   }
 })
 
-export const feedbackReactSad = (userInfo, target = FEEDBACK.TARGET) => ({
+export const feedbackFeelAngry = (userInfo, target = FEEDBACK.TARGET) => ({
   type: FEEDBACK.REACT,
   payload: {
     id: uuidv1(),
-    reaction: REACTIONS.SAD,
-    user: userInfo,
-    postOrCommentId: target
-  }
-})
-
-export const feedbackReactAngry = (userInfo, target = FEEDBACK.TARGET) => ({
-  type: FEEDBACK.REACT,
-  payload: {
-    id: uuidv1(),
-    reaction: REACTIONS.ANGRY,
+    feeling: REACTIONS.ANGRY,
     user: userInfo,
     postOrCommentId: target
   }

@@ -21,7 +21,7 @@ const ReactionThirdIconWrapper = styled.div`
 const ThirdIcon = styled.i`
   ${reactionIconBaseStyle}
   ${props => {
-    switch (props.reactionType) {
+    switch (props.reactFeeling) {
       default:
         return reactionLikeIconStyle
       case REACTIONS.HAHA:
@@ -33,13 +33,13 @@ const ThirdIcon = styled.i`
 `
 
 const ReactionThirdIcon = ({
-  reactionType = REACTIONS.LOVE,
+  reactFeeling = REACTIONS.LOVE,
   countSummary = ''
 }) => {
   const tooltipId = 'tip-for-post-third-most-reaction'
   return (
     <ReactionThirdIconWrapper data-for={tooltipId} data-tip={countSummary}>
-      <ThirdIcon reactionType={reactionType} />
+      <ThirdIcon reactFeeling={reactFeeling} />
       <StyledTooltip
         id={tooltipId}
         effect="solid"

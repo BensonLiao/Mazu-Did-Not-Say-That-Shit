@@ -1,16 +1,19 @@
 import { combineReducers } from 'redux'
 import pickBy from 'lodash/pickBy'
+// import assign from 'lodash/assign'
 import { ADD_DATA, FEEDBACK } from '../actions'
 
 const feedbackReact = (state, action) => {
   const { payload } = action
-  const { id, postOrCommentId, reaction, user } = payload
+  // console.log('payload', payload)
+  const { id, postOrCommentId, feeling, user: userInfo } = payload
+  // console.log('user', user)
 
   // Create our new React object
   const react = {
     id,
-    reaction,
-    user,
+    user: { ...userInfo },
+    feeling,
     postOrCommentId
   }
 
@@ -19,6 +22,7 @@ const feedbackReact = (state, action) => {
     ...state,
     [id]: react
   }
+  // return state
 }
 
 const removeReact = (state, action) => {
