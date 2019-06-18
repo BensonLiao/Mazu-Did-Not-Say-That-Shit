@@ -1,34 +1,24 @@
 import { combineReducers } from 'redux'
 import pickBy from 'lodash/pickBy'
-// import assign from 'lodash/assign'
+// import merge from 'lodash/merge'
 import { ADD_DATA, FEEDBACK } from '../actions'
 
-const feedbackReact = (state, action) => {
-  const { payload } = action
-  // console.log('payload', payload)
-  const { id, postOrCommentId, feeling, user: userInfo } = payload
-  // console.log('user', user)
-
-  // Create our new React object
-  const react = {
-    id,
-    user: { ...userInfo },
-    feeling,
-    postOrCommentId
-  }
-
-  // Insert the new React object into the updated lookup table
-  return {
-    ...state,
-    [id]: react
-  }
-  // return state
+const addReact = (state, action) => {
+  const {
+    payload: { reacts }
+  } = action
+  const newState = { ...state, ...reacts }
+  // const newState = merge({}, state, reacts)
+  // Note. with spread operator will keep denormalized state consistent
+  // but with merge() it will miss the none primitive property.
+  // Maybe it's not because of merge(), will investigate this issue later.
+  return newState
 }
 
 const removeReact = (state, action) => {
-  const { payload } = action
-  const { id } = payload
-
+  const {
+    payload: { id }
+  } = action
   // Remove the new React object from the updated lookup table
   return pickBy(state, (value, key) => {
     return key !== id
@@ -37,39 +27,39 @@ const removeReact = (state, action) => {
 
 const reactsById = (state = {}, action) => {
   switch (action.type) {
-    case FEEDBACK.REACT:
-      return feedbackReact(state, action)
     case FEEDBACK.UNDO_REACT:
       return removeReact(state, action)
+    case FEEDBACK.REACT:
     case ADD_DATA:
-      return { ...state, ...action.payload.reacts }
+      return addReact(state, action)
     default:
       return state
   }
 }
 
 const addReactId = (state, action) => {
-  const { payload } = action
-  const { id } = payload
+  const {
+    payload: { reacts }
+  } = action
   // Just append the new react's ID to the list of all IDs
-  return state.concat(id)
+  return [...Object.keys(reacts), ...state]
 }
 
 const removeReactId = (state, action) => {
-  const { payload } = action
-  const { id } = payload
+  const {
+    payload: { id }
+  } = action
   // Just remove the react's ID from the list of all IDs
   return state.filter(reactId => reactId !== id)
 }
 
 const allReact = (state = [], action) => {
   switch (action.type) {
-    case FEEDBACK.REACT:
-      return addReactId(state, action)
     case FEEDBACK.UNDO_REACT:
       return removeReactId(state, action)
+    case FEEDBACK.REACT:
     case ADD_DATA:
-      return [...state, ...Object.keys(action.payload.reacts)]
+      return addReactId(state, action)
     default:
       return state
   }

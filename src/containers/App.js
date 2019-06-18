@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import uuidv1 from 'uuid/v1'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { theme, cssVar, displayFlex, alignCenter } from '../styles'
 import Header from '../components/Header'
@@ -32,6 +33,7 @@ const PostWrapper = styled.div`
 
 const initialState = {
   you: definedUsers.goldXFive,
+  reactId: uuidv1(),
   shareMenuOpened: false
 }
 

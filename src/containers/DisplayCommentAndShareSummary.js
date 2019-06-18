@@ -1,12 +1,14 @@
 import { connect } from 'react-redux'
+import DataHelper from '../utils/dataHelper'
 import CommentAndShareSummary from '../components/CommentAndShareSummary'
 
 const mapStateToProps = (state, ownProps) => {
   console.log('state', state)
   console.log('ownProps', ownProps)
+  const dataHelper = new DataHelper(state)
   return {
-    comments: state.commentReducer.allIds,
-    shares: state.shareReducer.allIds
+    comments: dataHelper.getCommentArray,
+    shares: dataHelper.getShareArray
   }
 }
 

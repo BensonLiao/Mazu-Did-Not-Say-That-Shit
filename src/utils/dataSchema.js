@@ -1,18 +1,19 @@
 import { normalize, schema } from 'normalizr'
 
-const userProcessStrategy = (value, parent, key) => {
-  // console.log('value', value)
-  // console.log('parent', parent)
-  // console.log('key', key)
-  // const processed = { ...value, users: [parent.id] }
-  // console.log('processed', processed)
-  switch (key) {
-    case 'user':
-      return value.id
-    default:
-      return { ...value }
-  }
-}
+// const userProcessStrategy = value => {
+// console.log('value', value)
+// console.log('parent', parent)
+// console.log('key', key)
+// const processed = { ...value, users: [parent.id] }
+// console.log('processed', processed)
+// switch (key) {
+//   case 'user':
+//     return value.id
+//   default:
+//     return { ...value }
+// }
+//   return value.id
+// }
 
 // const userMergeStrategy = (entityA, entityB) => {
 //   return {
@@ -23,45 +24,55 @@ const userProcessStrategy = (value, parent, key) => {
 // }
 
 // Define a users schema
-const userSchema = new schema.Entity('users')
+const UserSchema = new schema.Entity('users')
+// const userSchema = new schema.Entity(
+//   'users',
+//   {},
+//   { processStrategy: userProcessStrategy }
+// )
 
-const subUserSchema = new schema.Entity(
-  'users',
-  {},
-  { processStrategy: userProcessStrategy }
-)
+// const subUserSchema = new schema.Entity(
+//   'users',
+//   {},
+//   { processStrategy: userProcessStrategy }
+// )
 
 // Define your reactions schema
-const reactSchema = new schema.Entity(
-  'reacts',
-  {
-    user: subUserSchema
-  },
-  {
-    processStrategy: (value, parent) => {
-      // console.log('value', value)
-      // console.log('parent', parent)
-      return { ...value, post: parent.id }
-    }
-  }
-)
+// const reactSchema = new schema.Entity(
+//   'reacts',
+//   {},
+//   {
+//     processStrategy: value => {
+//       // console.log('value', value)
+//       // console.log('parent', parent)
+//       return { ...value, userId: value.user.id }
+//     }
+//   }
+// )
+export const ReactSchema = new schema.Entity('reacts', {
+  user: UserSchema
+})
 
 // Define your comments schema
-const commentSchema = new schema.Entity('comments', {
-  user: subUserSchema
+export const CommentSchema = new schema.Entity('comments', {
+  user: UserSchema
 })
 
 // Define your shares schema
-const shareSchema = new schema.Entity('shares', {
-  user: subUserSchema
+export const ShareSchema = new schema.Entity('shares', {
+  user: UserSchema
 })
 
 // Define your post schema
 export const PostSchema = new schema.Entity('post', {
-  reacts: [reactSchema],
-  comments: [commentSchema],
-  shares: [shareSchema],
-  users: [userSchema]
+  reacts: [ReactSchema],
+  comments: [CommentSchema],
+  shares: [ShareSchema]
 })
 
-export const getNormalizedData = data => normalize(data, PostSchema)
+// export const AppSchema = new schema.Entity('app', {
+//   post: [PostSchema]
+// })
+
+export const getNormalizedData = (data, dataSchema) =>
+  normalize(data, dataSchema)

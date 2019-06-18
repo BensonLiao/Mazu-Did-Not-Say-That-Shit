@@ -6,9 +6,12 @@ export default class dataHelper {
   getReactArray() {
     const { reactReducer, userReducer } = this.state
     // console.log('reactReducer.byId', reactReducer.byId)
+    // console.log('userReducer.byId', userReducer.byId)
     const reacts = reactReducer.allIds.map(reactId => {
       const reactObj = reactReducer.byId[reactId]
-      reactObj.user = userReducer.byId[reactObj.user]
+      if (typeof reactObj.user === 'string') {
+        reactObj.user = userReducer.byId[reactObj.user]
+      }
       return reactObj
     })
     // console.log('getReactArray', reacts)
@@ -19,7 +22,9 @@ export default class dataHelper {
     const { commentReducer, userReducer } = this.state
     const comments = commentReducer.allIds.map(commentId => {
       const commentObj = commentReducer.byId[commentId]
-      commentObj.user = userReducer.byId[commentObj.user]
+      if (typeof commentObj.user === 'string') {
+        commentObj.user = userReducer.byId[commentObj.user]
+      }
       return commentObj
     })
     return comments
@@ -29,7 +34,9 @@ export default class dataHelper {
     const { shareReducer, userReducer } = this.state
     const shares = shareReducer.allIds.map(shareId => {
       const shareObj = shareReducer.byId[shareId]
-      shareObj.user = userReducer.byId[shareObj.user]
+      if (typeof shareObj.user === 'string') {
+        shareObj.user = userReducer.byId[shareObj.user]
+      }
       return shareObj
     })
     return shares

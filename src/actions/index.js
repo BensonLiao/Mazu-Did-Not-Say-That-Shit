@@ -24,63 +24,15 @@ export const REACTIONS = {
   ANGRY: 'ANGRY'
 }
 
-export const feedbackFeelLike = (userInfo, id, target = FEEDBACK.TARGET) => ({
+export const feedbackReact = ({ entities }) => ({
   type: FEEDBACK.REACT,
-  payload: {
-    id,
-    user: userInfo,
-    feeling: REACTIONS.LIKE,
-    postOrCommentId: target
-  }
+  payload: entities
 })
 
-export const feedbackFeelHaha = (userInfo, target = FEEDBACK.TARGET) => ({
-  type: FEEDBACK.REACT,
+export const undoReact = id => ({
+  type: FEEDBACK.UNDO_REACT,
   payload: {
-    id: uuidv1(),
-    feeling: REACTIONS.HAHA,
-    user: userInfo,
-    postOrCommentId: target
-  }
-})
-
-export const feedbackFeelLove = (userInfo, target = FEEDBACK.TARGET) => ({
-  type: FEEDBACK.REACT,
-  payload: {
-    id: uuidv1(),
-    feeling: REACTIONS.LOVE,
-    user: userInfo,
-    postOrCommentId: target
-  }
-})
-
-export const feedbackFeelWow = (userInfo, target = FEEDBACK.TARGET) => ({
-  type: FEEDBACK.REACT,
-  payload: {
-    id: uuidv1(),
-    feeling: REACTIONS.WOW,
-    user: userInfo,
-    postOrCommentId: target
-  }
-})
-
-export const feedbackFeelSad = (userInfo, target = FEEDBACK.TARGET) => ({
-  type: FEEDBACK.REACT,
-  payload: {
-    id: uuidv1(),
-    feeling: REACTIONS.SAD,
-    user: userInfo,
-    postOrCommentId: target
-  }
-})
-
-export const feedbackFeelAngry = (userInfo, target = FEEDBACK.TARGET) => ({
-  type: FEEDBACK.REACT,
-  payload: {
-    id: uuidv1(),
-    feeling: REACTIONS.ANGRY,
-    user: userInfo,
-    postOrCommentId: target
+    id
   }
 })
 
@@ -114,12 +66,5 @@ export const feedbackShare = (
     time,
     user: userInfo,
     postId
-  }
-})
-
-export const undoReact = id => ({
-  type: FEEDBACK.UNDO_REACT,
-  payload: {
-    id
   }
 })

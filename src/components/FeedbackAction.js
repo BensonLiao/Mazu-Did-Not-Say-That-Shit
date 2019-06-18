@@ -14,10 +14,14 @@ const FeedbackActionWrapper = styled.div`
 
 const FeedbackAction = () => {
   const [state] = useState()
-  const { you } = state
+  const { you, reactId } = state
   return (
     <FeedbackActionWrapper>
-      <FeedbackActionReact you={you} feedbackType={FEEDBACK.REACT} />
+      <FeedbackActionReact
+        you={you}
+        reactId={reactId}
+        feedbackType={FEEDBACK.REACT}
+      />
       <FeedbackActionComment you={you} feedbackType={FEEDBACK.COMMENT} />
       <FeedbackActionShare you={you} feedbackType={FEEDBACK.SHARE} />
     </FeedbackActionWrapper>

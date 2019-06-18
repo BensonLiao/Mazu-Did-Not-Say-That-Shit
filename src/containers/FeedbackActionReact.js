@@ -1,17 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import uuidv1 from 'uuid/v1'
-import { feedbackFeelLike, undoReact } from '../actions'
+import { getNormalizedData, ReactSchema } from '../utils/dataSchema'
+import { feedbackReact, undoReact, FEEDBACK, REACTIONS } from '../actions'
+import { isReacted } from '../reducers/selector'
 import FeedbackActionButton from '../components/FeedbackActionButton'
 
-const FeedbackActionReact = ({ reacted, doReactAction, undoReactAction }) => {
+const FeedbackActionReact = ({
+  reactId,
+  reacted,
+  doReactAction,
+  undoReactAction
+}) => {
   const toggleReactAction = () => {
-    const id = uuidv1()
     if (reacted) {
-      undoReactAction(id)
+      undoReactAction(reactId)
     } else {
-      doReactAction(id)
+      doReactAction(reactId)
     }
     // reacted ? undoReactAction(id) : doReactAction(id)
   }
@@ -19,6 +24,7 @@ const FeedbackActionReact = ({ reacted, doReactAction, undoReactAction }) => {
 }
 
 FeedbackActionReact.propTypes = {
+  reactId: PropTypes.string.isRequired,
   reacted: PropTypes.bool.isRequired,
   doReactAction: PropTypes.func.isRequired,
   undoReactAction: PropTypes.func.isRequired
@@ -28,13 +34,21 @@ const mapStateToProps = (state, ownProps) => {
   console.log('state', state)
   console.log('ownProps', ownProps)
   return {
-    reacted: false
+    reactId: ownProps.reactId,
+    reacted: isReacted(state, ownProps.reactId)
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   doReactAction: reactId => {
-    return dispatch(feedbackFeelLike(ownProps.you, reactId))
+    const actionData = {
+      id: reactId,
+      user: ownProps.you,
+      feeling: REACTIONS.LIKE,
+      postOrCommentId: FEEDBACK.TARGET
+    }
+    const normalizedActionData = getNormalizedData(actionData, ReactSchema)
+    return dispatch(feedbackReact(normalizedActionData))
   },
   undoReactAction: reactId => dispatch(undoReact(reactId))
 })
