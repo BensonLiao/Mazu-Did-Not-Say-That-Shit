@@ -120,6 +120,16 @@ export const feedbackReactionButtonStyle = `
   background-position: -19px -131px !important;
 `
 
+export const feedbackReactedStyle = `
+  color: ${cssVar.reactedButtonTextColor} !important;
+`
+
+export const feedbackReactedButtonStyle = `
+  background-image: url(${cssesc(reactionButtonImg)});
+  background-size: 55px 237px !important;
+  background-position: -21px -110px !important;
+`
+
 export const feedbackCommentButtonStyle = `
   background-image: url(${cssesc(commentAndShareButtonImg)});
   background-size: 161px 376px !important;

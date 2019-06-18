@@ -20,7 +20,7 @@ const FeedbackActionReact = ({
     }
     // reacted ? undoReactAction(id) : doReactAction(id)
   }
-  return <FeedbackActionButton onClick={toggleReactAction} />
+  return <FeedbackActionButton reacted={reacted} onClick={toggleReactAction} />
 }
 
 FeedbackActionReact.propTypes = {
