@@ -23,5 +23,7 @@ export const cssVar = {
   reactionIconSize: '18px',
   feedbackActionButtonIconSize: '18px',
   reactedButtonColor: 'rgb(32, 120, 244)',
-  reactedButtonTextColor: 'rgb(32, 120, 244)'
+  reactedButtonTextColor: 'rgb(32, 120, 244)',
+  commentTextBackgrounfColor: '#f2f3f5',
+  commentPlaceholderColor: '#8d949e'
 }

@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-
-const imgBaseUrl = require.context('../assets/img/', true)
+import { imgBaseUrl } from '../styles/post'
 
 const ThumbnailWrapper = styled.div`
   display: block;

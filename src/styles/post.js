@@ -8,6 +8,8 @@ import reactionButtonImg from '../assets/img/thumbUp.png'
 import commentAndShareButtonImg from '../assets/img/responseShare.png'
 import relevantIconImg from '../assets/img/relevant.png'
 
+export const imgBaseUrl = require.context('../assets/img/', true)
+
 export const privacyIconStyle = `
   width: 12px;
   height: 12px;
@@ -139,4 +141,23 @@ export const relevantIconStyle = `
   margin-top: 2px;
   vertical-align: top;
   width: 12px;
+`
+
+export const baseCommemtInputStyle = `
+  webkit-writing-mode: horizontal-tb !important;
+  text-rendering: auto;
+  color: initial;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  -webkit-appearance: textfield;
+  background-color: white;
+  -webkit-rtl-ordering: logical;
+  cursor: text;
+  margin: 0em;
+  font: 400 11px system-ui;
 `
