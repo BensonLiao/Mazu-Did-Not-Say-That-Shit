@@ -1,6 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
-// import thumbnailImg from '../assets/img/mazu.png'
 
 const imgBaseUrl = require.context('../assets/img/', true)
 
@@ -23,6 +23,16 @@ const Thumbnail = ({ profileName, profileImg }) => {
       <ThumbnailImg src={imgUrl} alt={profileName} />
     </ThumbnailWrapper>
   )
+}
+
+Thumbnail.propTypes = {
+  profileName: PropTypes.string,
+  profileImg: PropTypes.string
+}
+
+Thumbnail.defaultProps = {
+  profileName: '媽祖',
+  profileImg: 'mazu.png'
 }
 
 export default Thumbnail

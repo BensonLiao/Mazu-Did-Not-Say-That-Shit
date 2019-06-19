@@ -6,6 +6,7 @@ import privacyIconImg from '../assets/img/global.png'
 import reactionIconImg from '../assets/img/fb-emojis-new.png'
 import reactionButtonImg from '../assets/img/thumbUp.png'
 import commentAndShareButtonImg from '../assets/img/responseShare.png'
+import relevantIconImg from '../assets/img/relevant.png'
 
 export const privacyIconStyle = `
   width: 12px;
@@ -45,21 +46,6 @@ export const reactionIconBaseStyle = `
   line-height: 16px;
   display: inline-block;
 `
-
-// export const reactionLikeIconStyle = `
-//   background-image: url(${cssesc(reactionIconImg)});
-//   background-position: 0 -526px !important;
-// `
-
-// export const reactionHahaIconStyle = `
-//   background-image: url(${cssesc(reactionIconImg)});
-//   background-position: -17px -475px !important;
-// `
-
-// export const reactionLoveIconStyle = `
-//   background-image: url(${cssesc(reactionIconImg)});
-//   background-position: -17px -492px !important;
-// `
 
 export const reactionLikeIconStyle = `
   background-image: url(${cssesc(reactionIconImg)});
@@ -140,4 +126,17 @@ export const feedbackShareButtonStyle = `
   background-image: url(${cssesc(commentAndShareButtonImg)});
   background-size: 161px 376px !important;
   background-position: -61px -249px !important;
+`
+
+export const relevantIconStyle = `
+  background-image: url(${cssesc(relevantIconImg)});
+  background-repeat: no-repeat !important;
+  background-size: 500px 287px !important;
+  background-position: -408px -270px !important;
+  display: inline-block;
+  height: 12px;
+  margin-left: 2px;
+  margin-top: 2px;
+  vertical-align: top;
+  width: 12px;
 `
