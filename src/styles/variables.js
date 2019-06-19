@@ -25,5 +25,6 @@ export const cssVar = {
   reactedButtonColor: 'rgb(32, 120, 244)',
   reactedButtonTextColor: 'rgb(32, 120, 244)',
   commentTextBackgrounfColor: '#f2f3f5',
-  commentPlaceholderColor: '#8d949e'
+  commentPlaceholderColor: '#8d949e',
+  commentAttachIconSize: '16px'
 }
