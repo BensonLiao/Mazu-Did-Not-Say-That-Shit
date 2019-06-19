@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { imgBaseUrl } from '../styles/post'
 
-const MyAvatarWrapper = styled.div`
+const CommentAvatarWrapper = styled.div`
   display: block;
 `
 
-const MyAvatarImg = styled.img`
+const CommentAvatarImg = styled.img`
   display: block;
   width: 32px;
   height: 32px;
@@ -16,23 +16,23 @@ const MyAvatarImg = styled.img`
   overflow: hidden;
 `
 
-const MyAvatar = ({ profileName, profileImg }) => {
+const CommentAvatar = ({ profileName, profileImg }) => {
   const imgUrl = imgBaseUrl(`./${profileImg}`)
   return (
-    <MyAvatarWrapper>
-      <MyAvatarImg src={imgUrl} alt={profileName} />
-    </MyAvatarWrapper>
+    <CommentAvatarWrapper>
+      <CommentAvatarImg src={imgUrl} alt={profileName} />
+    </CommentAvatarWrapper>
   )
 }
 
-MyAvatar.propTypes = {
+CommentAvatar.propTypes = {
   profileName: PropTypes.string,
   profileImg: PropTypes.string
 }
 
-MyAvatar.defaultProps = {
+CommentAvatar.defaultProps = {
   profileName: '金乘五',
   profileImg: 'goldxfive.png'
 }
 
-export default MyAvatar
+export default CommentAvatar

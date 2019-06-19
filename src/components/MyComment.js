@@ -6,7 +6,7 @@ import {
   alignCenter,
   justifyContentSpaceBetween
 } from '../styles/page'
-import MyAvatar from './MyAvatar'
+import CommentAvatar from './CommentAvatar'
 import MyCommentPlaceholder from './MyCommentPlaceholder'
 import MyCommentAttachButton from './MyCommentAttachButton'
 
@@ -34,7 +34,7 @@ const MyCommentInputWrapper = styled.div`
 const MyComment = () => {
   return (
     <MyCommentWrapper>
-      <MyAvatar />
+      <CommentAvatar />
       <MyCommentInputWrapper>
         <MyCommentPlaceholder />
         <MyCommentAttachButton />
