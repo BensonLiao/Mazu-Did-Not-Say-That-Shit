@@ -209,8 +209,9 @@ const getCommentReactsTotal = (reactsTotal, ratio = 388) => {
  *  eg. `[3,2,1]` will distribute the ratio for
  *  3/(3+2+1) of `Like`, 2/(3+2+1) of `Haha`,
  *  1/(3+2+1) of `Love` and empty ratio for the rest of types.
- *  eg2. `[0,0,0,0,0,1]` will distribute the raio for full of `Anger`.
- *  eg3. `[0,0,0,0,1]` will distribute the raio for full of `Sad`.
+ *  eg2. `[1]` will distribute the ratio for full of `Like`.
+ *  eg3. `[0,0,0,0,0,1]` will distribute the ratio for full of `Anger`.
+ *  eg4. `[0,0,0,0,1]` will distribute the ratio for full of `Sad`.
  * @returns {reactObj}
  *  An object contains th following properties:
  *  @prop {reacts}

@@ -1,6 +1,7 @@
 import cssesc from 'cssesc'
 import { cssVar } from './variables'
 import { displayFlex, alignCenter } from './page'
+import { REACTIONS } from '../actions'
 import privacyIconImg from '../assets/img/global.png'
 // import reactionIconImg from '../assets/img/fb-emojis.png'
 import reactionIconImg from '../assets/img/fb-emojis-new.png'
@@ -50,25 +51,58 @@ export const reactionIconBaseStyle = `
 `
 
 export const reactionLikeIconStyle = `
-  background-image: url(${cssesc(reactionIconImg)});
-  background-repeat: no-repeat !important;
-  background-size: 97px 1200px !important;
   background-position: -49px -1037px !important;
 `
 
 export const reactionHahaIconStyle = `
-  background-image: url(${cssesc(reactionIconImg)});
-  background-repeat: no-repeat !important;
-  background-size: 97px 1200px !important;
   background-position: -68px -1018px !important;
 `
 
 export const reactionLoveIconStyle = `
-  background-image: url(${cssesc(reactionIconImg)});
-  background-repeat: no-repeat !important;
-  background-size: 97px 1200px !important;
   background-position: -68px -1037px !important;
 `
+
+export const reactionWowIconStyle = `
+  background-position: -49px -1075px !important;
+`
+
+export const reactionSadIconStyle = `
+  background-position: -49px -1056px !important;
+`
+
+export const reactionAngryIconStyle = `
+  background-position: -70px -997px !important;
+`
+
+export const reactionIconStyle = reactionFeeling => {
+  let iconStyle = ''
+  switch (reactionFeeling) {
+    default:
+      iconStyle = reactionLikeIconStyle
+      break
+    case REACTIONS.HAHA:
+      iconStyle = reactionHahaIconStyle
+      break
+    case REACTIONS.LOVE:
+      iconStyle = reactionLoveIconStyle
+      break
+    case REACTIONS.WOW:
+      iconStyle = reactionWowIconStyle
+      break
+    case REACTIONS.SAD:
+      iconStyle = reactionSadIconStyle
+      break
+    case REACTIONS.ANGRY:
+      iconStyle = reactionAngryIconStyle
+  }
+  const iconBaseStyle = `
+    background-image: url(${cssesc(reactionIconImg)});
+    background-repeat: no-repeat !important;
+    background-size: 97px 1200px !important;
+    ${iconStyle}
+  `
+  return iconBaseStyle
+}
 
 export const feedbackActionWrapperStyle = `
   font-weight: 600;

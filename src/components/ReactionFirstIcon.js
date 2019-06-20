@@ -6,9 +6,7 @@ import { cssVar } from '../styles'
 import {
   reactionIconWrapperStyle,
   reactionIconBaseStyle,
-  reactionLikeIconStyle,
-  reactionHahaIconStyle,
-  reactionLoveIconStyle
+  reactionIconStyle
 } from '../styles/post'
 
 const ReactionFirstIconWrapper = styled.div`
@@ -20,16 +18,7 @@ const ReactionFirstIconWrapper = styled.div`
 
 const FirstIcon = styled.i`
   ${reactionIconBaseStyle}
-  ${props => {
-    switch (props.reactFeeling) {
-      default:
-        return reactionLikeIconStyle
-      case REACTIONS.HAHA:
-        return reactionHahaIconStyle
-      case REACTIONS.LOVE:
-        return reactionLoveIconStyle
-    }
-  }}
+  ${props => reactionIconStyle(props.reactFeeling)}
 `
 
 const ReactionFirstIcon = ({

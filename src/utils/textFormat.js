@@ -75,20 +75,21 @@ export default {
    *     Show the feedbacker's name of the top n of @param {feedbacks}.
    *     (Default of n: 2)
    */
-  feedbacksCountTipFormator(feedbacks, numTopShow = 2) {
-    if (numTopShow > feedbacks.length) {
-      throw new Error('Number of top n must lesser than number of feedbacks.')
+  feedbacksCountTipFormator(feedbacks, numTopShow = 1) {
+    if (feedbacks.length < 1) {
+      return ''
     }
+    const totalShow = numTopShow > feedbacks.length ? 1 : numTopShow
     let formattedSummary = ''
     if (feedbacks.length > 0) {
-      for (let i = 0; i < numTopShow; i++) {
+      for (let i = 0; i < totalShow; i++) {
         const {
           user: { profileName }
         } = feedbacks[i]
         formattedSummary += `${profileName}<br>`
       }
     }
-    formattedSummary += `和其他${feedbacks.length - numTopShow}個...`
+    formattedSummary += `和其他${feedbacks.length - totalShow}個...`
     return formattedSummary
   }
 }

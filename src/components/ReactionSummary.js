@@ -1,9 +1,7 @@
 import React from 'react'
-// import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
 import styled from 'styled-components'
 import { alignCenter } from '../styles'
-// import DataHelper from '../utils/dataHelper'
 import textFormat from '../utils/textFormat'
 import { REACTIONS } from '../actions'
 import FeedbackCount from './FeedbackCount'
@@ -12,20 +10,13 @@ import ReactionSecondIcon from './ReactionSecondIcon'
 import ReactionThirdIcon from './ReactionThirdIcon'
 
 const rankingReactions = reactions => {
-  const reactionsCounts = []
-  const reactionLikes = reactions.filter(
-    reactor => reactor.feeling === REACTIONS.LIKE
-  )
-  const reactionHahas = reactions.filter(
-    reactor => reactor.feeling === REACTIONS.HAHA
-  )
-  const reactionLoves = reactions.filter(
-    reactor => reactor.feeling === REACTIONS.LOVE
-  )
-  reactionsCounts.push({feeling: REACTIONS.LIKE, total: reactionLikes.length})
-  reactionsCounts.push({feeling: REACTIONS.HAHA, total: reactionHahas.length})
-  reactionsCounts.push({feeling: REACTIONS.LOVE, total: reactionLoves.length})
-  const sortedReactions = reactionsCounts.sort((a, b) => {
+  const reactionsCount = Object.keys(REACTIONS).map(feeling => {
+    const totalFeeling = reactions.filter(
+      reactor => reactor.feeling === feeling
+    ).length
+    return { feeling, total: totalFeeling }
+  })
+  const sortedReactions = reactionsCount.sort((a, b) => {
     return b.total - a.total
   })
   const rank = {
@@ -37,7 +28,6 @@ const rankingReactions = reactions => {
 }
 
 const summaryReactions = (reactions, rank) => {
-  // console.log('reactions', reactions)
   const summary = {
     all: {
       forText: '',
@@ -86,14 +76,18 @@ const ReactionSummary = ({ reactions }) => {
         reactFeeling={reactionsRank.topMost.feeling}
         countSummary={reactionsSummary.topMost}
       />
-      <ReactionSecondIcon
-        reactFeeling={reactionsRank.secondMost.feeling}
-        countSummary={reactionsSummary.secondMost}
-      />
-      <ReactionThirdIcon
-        reactFeeling={reactionsRank.thirdMost.feeling}
-        countSummary={reactionsSummary.thirdMost}
-      />
+      {reactionsRank.secondMost.total > 0 && (
+        <ReactionSecondIcon
+          reactFeeling={reactionsRank.secondMost.feeling}
+          countSummary={reactionsSummary.secondMost}
+        />
+      )}
+      {reactionsRank.thirdMost.total > 0 && (
+        <ReactionThirdIcon
+          reactFeeling={reactionsRank.thirdMost.feeling}
+          countSummary={reactionsSummary.thirdMost}
+        />
+      )}
       <FeedbackCount
         forText={reactionsSummary.all.forText}
         forTip={reactionsSummary.all.forTip}
