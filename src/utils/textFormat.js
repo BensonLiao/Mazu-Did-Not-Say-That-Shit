@@ -1,20 +1,18 @@
+import CommentReactionTipIcon from '../components/CommentReactionTipIcon'
+
 export default {
-  timeStampFormator(timeStamp) {
+  getTimeStamp(timeStamp) {
     let formattedTimeStamp = ''
     if (timeStamp) {
       formattedTimeStamp = '4/17/19, 6:12 PM'
     }
     return formattedTimeStamp
   },
-  totalCountFormator(total) {
-    let formattedTotal = ''
-    formattedTotal =
-      total > 10000
-        ? (total / 10000)
-            .toFixed(1)
-            .toString()
-            .concat('萬')
-        : total.toString().replace(/\d(?=(\d{3})+)/g, '$&,')
+  getTotalCount(total) {
+    const formattedTotal =
+      total > 10000 ?
+        (total / 10000).toFixed(1).concat('萬') :
+        total.toString().replace(/\d(?=(\d{3})+)/g, '$&,')
     return formattedTotal
   },
   /**
@@ -28,7 +26,7 @@ export default {
    *     Show the reactor's name of the top n of @param {reactions}.
    *     (Default of n: 2)
    */
-  reactionsCountFormator(reactions, numTopShow = 2) {
+  getReactionsCount(reactions, numTopShow = 2) {
     // console.log('reactions user', reactions[0].user.profileName)
     if (numTopShow > reactions.length) {
       throw new Error('Number of top n must lesser than number of reactions.')
@@ -45,7 +43,7 @@ export default {
       }
     }
     const totalOthers = reactions.length - numTopShow
-    const formattedTotalOthers = this.totalCountFormator(totalOthers)
+    const formattedTotalOthers = this.getTotalCount(totalOthers)
     formattedSummary += `和其他${formattedTotalOthers}人`
     return formattedSummary
   },
@@ -57,9 +55,9 @@ export default {
    * @param {type}
    *   Type of feedback, `comment` or `share`.
    */
-  feedbacksCountFormator(feedbacks, type) {
+  getFeedbacksCount(feedbacks, type) {
     const total = feedbacks.length
-    const formattedTotal = this.totalCountFormator(total)
+    const formattedTotal = this.getTotalCount(total)
     const formattedSummary =
       type === 'comment' ? `${formattedTotal}則留言` : `${formattedTotal}次分享`
     return formattedSummary
@@ -75,7 +73,7 @@ export default {
    *     Show the feedbacker's name of the top n of @param {feedbacks}.
    *     (Default of n: 2)
    */
-  feedbacksCountTipFormator(feedbacks, numTopShow = 1) {
+  getFeedbacksCountTip(feedbacks, numTopShow = 1) {
     if (feedbacks.length < 1) {
       return ''
     }
@@ -90,6 +88,56 @@ export default {
       }
     }
     formattedSummary += `和其他${feedbacks.length - totalShow}個...`
+    return formattedSummary
+  },
+  /**
+   * A formator that returns a wrapped summary of reactions count
+   * for comment's display as always-visible text.
+   * @param {reactions}
+   *   An array of objects contains the following properties:
+   *   @prop {name}
+   *     The reactor's profile name.
+   */
+  getCommentReactionsCount(reactions) {
+    const formattedTotal = this.getTotalCount(reactions.length)
+    return formattedTotal
+  },
+  /**
+   * A formator that returns a wrapped summary of reactions count
+   * for comment's tootip text.
+   * Shows top 10 reactor's name of reaction if it has only 1 type of reaction,
+   * and the rest of it will be number of sum for each type.
+   * If a comment has more than 1 type of reaction,
+   * it will only show number of sum for each type.
+   * @param {reactions}
+   *   An array of objects contains the following properties:
+   *   @prop {name}
+   *     The reactor's profile name.
+   * @param {rank}
+   *   Ab object contains ranking of reaction types
+   */
+  getCommentReactionsCountTip(reactions, rank) {
+    if (reactions.length < 1) {
+      return ''
+    }
+    if (rank[1].total > 0) {
+      const tipIconText = rank.reduce((acc, react) => {
+        const tipSpan = react.total > 0 ? CommentReactionTipIcon(react) : ''
+        return acc + tipSpan
+      }, '')
+      return `<div>${tipIconText}</div>`
+    }
+    const totalShow = reactions.length > 10 ? 10 : reactions.length
+    const totalOthers =
+      reactions.length > 10 ? `和其他${reactions.length - totalShow}個...` : ''
+    let formattedSummary = ''
+    for (let i = 0; i < totalShow; i++) {
+      const {
+        user: { profileName }
+      } = reactions[i]
+      formattedSummary += `${profileName}<br>`
+    }
+    formattedSummary += totalOthers
     return formattedSummary
   }
 }

@@ -25,7 +25,7 @@ export const privacyIconStyle = `
 
 export const styledTooltipOverrideStyle = `
   div.__react_component_tooltip {
-    padding: 8px 12px !important;
+    padding: 4px 6px !important;
   }
 `
 
@@ -35,19 +35,33 @@ export const reactionIconWrapperStyle = `
   ${styledTooltipOverrideStyle}
 `
 
-export const reactionIconBaseStyle = `
+export const reactionIconBaseStyle = (iconSize = cssVar.reactionIconSize) => `
   cursor: pointer;
   background: #fff;
   border-radius: 12px;
+  background-repeat: no-repeat;
+  background-size: 49px 660px;
+  height: ${iconSize};
+  width: ${iconSize};
+  line-height: 16px;
+  display: inline-block;
+`
+
+export const reactionIconSummaryStyle = `
   -webkit-box-shadow: 2px 0 #fff;
   box-shadow: 2px 0 #fff;
   overflow: hidden;
-  background-repeat: no-repeat;
-  background-size: 49px 660px;
-  height: ${cssVar.reactionIconSize};
-  width: ${cssVar.reactionIconSize};
+`
+
+export const reactionIconTipStyle = `
+  margin-right: 4px;
+`
+
+export const reactionIconTipWrapperStyle = `
+  ${displayFlex}
+  ${alignCenter}
   line-height: 16px;
-  display: inline-block;
+  margin-bottom: 4px;
 `
 
 export const reactionLikeIconStyle = `
