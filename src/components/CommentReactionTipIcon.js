@@ -6,12 +6,13 @@ import {
 } from '../styles/post'
 
 const CommentReactionTipIcon = ({ feeling, total }) => {
+  const withComponent = 'comment'
   return `<span style='${reactionIconTipWrapperStyle}'>
     <i 
       style='
       ${reactionIconBaseStyle}
       ${reactionIconTipStyle}
-      ${reactionIconStyle(feeling)}'
+      ${reactionIconStyle(feeling, withComponent)}'
     >
     </i>
     ${total}

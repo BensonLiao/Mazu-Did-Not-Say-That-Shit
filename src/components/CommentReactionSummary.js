@@ -32,27 +32,33 @@ const CommentReactionSummaryWrapper = styled.div`
 const CommentReactionCount = styled.span`
   color: #777d88;
   padding: 0 3px 0 2px;
-  font-size: 12px;
-  line-height: 16px;
   font-family: Microsoft JhengHei;
 `
 
 const CommentReactionSummary = ({ reactions }) => {
   const reactionsSummary = dataSummary.getCommentReactionSummary(reactions)
   const tooltipId = 'tip-for-comment-reaction'
+  const withComponent = 'comment'
   return (
     <CommentReactionSummaryWrapper
       data-for={tooltipId}
       data-tip={reactionsSummary.forTip}
     >
-      <ReactionFirstIcon reactFeeling={reactionsSummary.topMost.feeling} />
+      <ReactionFirstIcon
+        reactFeeling={reactionsSummary.topMost.feeling}
+        withComponent={withComponent}
+      />
       {reactionsSummary.secondMost.total > 0 && (
         <ReactionSecondIcon
           reactFeeling={reactionsSummary.secondMost.feeling}
+          withComponent={withComponent}
         />
       )}
       {reactionsSummary.thirdMost.total > 0 && (
-        <ReactionThirdIcon reactFeeling={reactionsSummary.thirdMost.feeling} />
+        <ReactionThirdIcon
+          reactFeeling={reactionsSummary.thirdMost.feeling}
+          withComponent={withComponent}
+        />
       )}
       <CommentReactionCount>{reactionsSummary.forText}</CommentReactionCount>
       <StyledTooltip

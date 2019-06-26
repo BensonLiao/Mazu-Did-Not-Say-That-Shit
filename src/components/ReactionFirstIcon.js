@@ -5,34 +5,40 @@ import { REACTIONS } from '../actions'
 import StyledTooltip from './StyledTooltip'
 import { cssVar } from '../styles'
 import {
-  reactionIconWrapperStyle,
+  styledTooltipOverrideStyle,
+  getIconSize,
   reactionIconBaseStyle,
   reactionIconSummaryStyle,
   reactionIconStyle
 } from '../styles/post'
 
 const ReactionFirstIconWrapper = styled.div`
-  ${reactionIconWrapperStyle}
+  ${styledTooltipOverrideStyle}
+  ${props => getIconSize(props.withComponent)}
   margin-left: -2px;
   margin-right: 2px;
   z-index: 3;
 `
 
 const FirstIcon = styled.i`
-  ${props => reactionIconBaseStyle(props.iconSize)}
+  ${reactionIconBaseStyle}
   ${reactionIconSummaryStyle}
-  ${props => reactionIconStyle(props.reactFeeling)}
+  ${props => reactionIconStyle(props.reactFeeling, props.withComponent)}
 `
 
-const ReactionFirstIcon = ({ reactFeeling = REACTIONS.LIKE, countSummary }) => {
+const ReactionFirstIcon = ({
+  reactFeeling = REACTIONS.LIKE,
+  withComponent,
+  countSummary
+}) => {
   const tooltipId = 'tip-for-post-first-most-reaction'
-  const iconSize =
-    countSummary.length > 0
-      ? cssVar.reactionIconSize
-      : cssVar.commentReactionIconSize
   return (
-    <ReactionFirstIconWrapper data-for={tooltipId} data-tip={countSummary}>
-      <FirstIcon reactFeeling={reactFeeling} iconSize={iconSize} />
+    <ReactionFirstIconWrapper
+      data-for={tooltipId}
+      data-tip={countSummary}
+      withComponent={withComponent}
+    >
+      <FirstIcon reactFeeling={reactFeeling} withComponent={withComponent} />
       {countSummary.length > 0 && (
         <StyledTooltip
           id={tooltipId}
@@ -51,6 +57,7 @@ ReactionFirstIcon.defaultProps = {
 
 ReactionFirstIcon.propTypes = {
   reactFeeling: PropTypes.string.isRequired,
+  withComponent: PropTypes.string.isRequired,
   countSummary: PropTypes.string
 }
 

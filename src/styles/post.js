@@ -29,20 +29,12 @@ export const styledTooltipOverrideStyle = `
   }
 `
 
-export const reactionIconWrapperStyle = `
-  height: ${cssVar.reactionIconSize};
-  width: ${cssVar.reactionIconSize};
-  ${styledTooltipOverrideStyle}
-`
-
-export const reactionIconBaseStyle = (iconSize = cssVar.reactionIconSize) => `
+export const reactionIconBaseStyle = `
   cursor: pointer;
   background: #fff;
   border-radius: 12px;
   background-repeat: no-repeat;
   background-size: 49px 660px;
-  height: ${iconSize};
-  width: ${iconSize};
   line-height: 16px;
   display: inline-block;
 `
@@ -64,56 +56,64 @@ export const reactionIconTipWrapperStyle = `
   margin-bottom: 4px;
 `
 
-export const reactionLikeIconStyle = `
-  background-position: -49px -1037px !important;
-`
-
-export const reactionHahaIconStyle = `
-  background-position: -68px -1018px !important;
-`
-
-export const reactionLoveIconStyle = `
-  background-position: -68px -1037px !important;
-`
-
-export const reactionWowIconStyle = `
-  background-position: -49px -1075px !important;
-`
-
-export const reactionSadIconStyle = `
-  background-position: -49px -1056px !important;
-`
-
-export const reactionAngryIconStyle = `
-  background-position: -70px -997px !important;
-`
-
-export const reactionIconStyle = reactionFeeling => {
-  let iconStyle = ''
-  switch (reactionFeeling) {
-    default:
-      iconStyle = reactionLikeIconStyle
-      break
-    case REACTIONS.HAHA:
-      iconStyle = reactionHahaIconStyle
-      break
-    case REACTIONS.LOVE:
-      iconStyle = reactionLoveIconStyle
-      break
-    case REACTIONS.WOW:
-      iconStyle = reactionWowIconStyle
-      break
-    case REACTIONS.SAD:
-      iconStyle = reactionSadIconStyle
-      break
-    case REACTIONS.ANGRY:
-      iconStyle = reactionAngryIconStyle
+const reactionIconImgMap = {
+  default: {
+    ...REACTIONS
+  },
+  comment: {
+    ...REACTIONS
   }
+}
+
+reactionIconImgMap.default.LIKE =
+  'background-position: -49px -1037px !important;'
+reactionIconImgMap.default.HAHA =
+  'background-position: -68px -1018px !important;'
+reactionIconImgMap.default.LOVE =
+  'background-position: -68px -1037px !important;'
+reactionIconImgMap.default.WOW =
+  'background-position: -49px -1075px !important;'
+reactionIconImgMap.default.SAD =
+  'background-position: -49px -1056px !important;'
+reactionIconImgMap.default.ANGRY =
+  'background-position: -70px -997px !important;'
+
+reactionIconImgMap.comment.LIKE =
+  'background-position: -49px -1145px !important;'
+reactionIconImgMap.comment.HAHA =
+  'background-position: -66px -1128px !important;'
+reactionIconImgMap.comment.LOVE =
+  'background-position: -66px -1145px !important;'
+reactionIconImgMap.comment.WOW =
+  'background-position: -49px -1075px !important;'
+reactionIconImgMap.comment.SAD =
+  'background-position: -49px -1056px !important;'
+reactionIconImgMap.comment.ANGRY =
+  'background-position: -70px -997px !important;'
+
+export const getIconSize = withComponent => {
+  switch (withComponent) {
+    default:
+      return `
+        height: ${cssVar.reactionIconSize};
+        width: ${cssVar.reactionIconSize};
+      `
+    case 'comment':
+      return `
+        height: ${cssVar.commentReactionIconSize};
+        width: ${cssVar.commentReactionIconSize};
+      `
+  }
+}
+
+export const reactionIconStyle = (reactionFeeling, withComponent) => {
+  const iconImgStyle = reactionIconImgMap[withComponent][reactionFeeling]
   const iconBaseStyle = `
     background-image: url(${cssesc(reactionIconImg)});
     background-repeat: no-repeat !important;
     background-size: 97px 1200px !important;
-    ${iconStyle}
+    ${getIconSize(withComponent)}
+    ${iconImgStyle}
   `
   return iconBaseStyle
 }

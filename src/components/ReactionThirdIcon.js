@@ -5,34 +5,40 @@ import { REACTIONS } from '../actions'
 import StyledTooltip from './StyledTooltip'
 import { cssVar } from '../styles'
 import {
-  reactionIconWrapperStyle,
+  styledTooltipOverrideStyle,
+  getIconSize,
   reactionIconBaseStyle,
   reactionIconSummaryStyle,
   reactionIconStyle
 } from '../styles/post'
 
 const ReactionThirdIconWrapper = styled.div`
-  ${reactionIconWrapperStyle}
+  ${styledTooltipOverrideStyle}
+  ${props => getIconSize(props.withComponent)}
   margin-left: -2px;
-  margin-right: 4px;
+  margin-right: 2px;
   z-index: 1;
 `
 
 const ThirdIcon = styled.i`
-  ${props => reactionIconBaseStyle(props.iconSize)}
+  ${reactionIconBaseStyle}
   ${reactionIconSummaryStyle}
-  ${props => reactionIconStyle(props.reactFeeling)}
+  ${props => reactionIconStyle(props.reactFeeling, props.withComponent)}
 `
 
-const ReactionThirdIcon = ({ reactFeeling = REACTIONS.LOVE, countSummary }) => {
+const ReactionThirdIcon = ({
+  reactFeeling = REACTIONS.LOVE,
+  withComponent,
+  countSummary
+}) => {
   const tooltipId = 'tip-for-post-third-most-reaction'
-  const iconSize =
-    countSummary.length > 0
-      ? cssVar.reactionIconSize
-      : cssVar.commentReactionIconSize
   return (
-    <ReactionThirdIconWrapper data-for={tooltipId} data-tip={countSummary}>
-      <ThirdIcon reactFeeling={reactFeeling} iconSize={iconSize} />
+    <ReactionThirdIconWrapper
+      data-for={tooltipId}
+      data-tip={countSummary}
+      withComponent={withComponent}
+    >
+      <ThirdIcon reactFeeling={reactFeeling} withComponent={withComponent} />
       {countSummary.length > 0 && (
         <StyledTooltip
           id={tooltipId}
@@ -51,6 +57,7 @@ ReactionThirdIcon.defaultProps = {
 
 ReactionThirdIcon.propTypes = {
   reactFeeling: PropTypes.string.isRequired,
+  withComponent: PropTypes.string.isRequired,
   countSummary: PropTypes.string
 }
 
