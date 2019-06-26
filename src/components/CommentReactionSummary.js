@@ -72,7 +72,23 @@ const CommentReactionSummary = ({ reactions }) => {
 }
 
 CommentReactionSummary.propTypes = {
-  reactions: PropTypes.array.isRequired
+  reactions: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      user: PropTypes.shape({
+        id: PropTypes.string,
+        profileName: PropTypes.string,
+        profileLink: PropTypes.string,
+        profileImg: PropTypes.string
+      }),
+      feeling: PropTypes.string,
+      postOrCommentId: PropTypes.string
+    })
+  )
+}
+
+CommentReactionSummary.defaultProps = {
+  reactions: []
 }
 
 export default CommentReactionSummary

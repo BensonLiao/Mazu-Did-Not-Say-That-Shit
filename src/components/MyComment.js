@@ -16,7 +16,7 @@ const MyCommentWrapper = styled.div`
 `
 
 const MyCommentInputWrapper = styled.div`
-  background-color: ${cssVar.commentTextBackgrounfColor};
+  background-color: ${cssVar.commentTextBackground};
   border: 1px solid #ccd0d5;
   border-radius: 16px;
   ${displayFlex}

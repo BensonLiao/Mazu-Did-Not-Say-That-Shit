@@ -8,6 +8,7 @@ import reactionIconImg from '../assets/img/fb-emojis-new.png'
 import reactionButtonImg from '../assets/img/thumbUp.png'
 import commentAndShareButtonImg from '../assets/img/responseShare.png'
 import relevantIconImg from '../assets/img/relevant.png'
+import blueCheckIconImg from '../assets/img/blue-check.png'
 
 export const imgBaseUrl = require.context('../assets/img/', true)
 
@@ -191,7 +192,27 @@ export const relevantIconStyle = `
   width: 12px;
 `
 
-export const baseCommemtInputStyle = `
+export const verifiedBadgeIconStyle = `
+  background-image: url(${cssesc(blueCheckIconImg)});
+  background-repeat: no-repeat;
+  background-size: 28px 195px;
+  background-position: 0 -165px;
+  height: 15px;
+  width: 15px;
+  vertical-align: -2px;
+  display: inline-block;
+  margin-left: 4px;
+`
+
+export const commentPlaceholderWrapperStyle = `
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap !important;
+  cursor: text;
+  line-height: 16px;
+`
+
+export const baseCommentInputStyle = `
   webkit-writing-mode: horizontal-tb !important;
   text-rendering: auto;
   color: initial;

@@ -1,20 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
 import { cssVar } from '../styles/variables'
-import { baseCommemtInputStyle } from '../styles/post'
+import {
+  commentPlaceholderWrapperStyle,
+  baseCommentInputStyle
+} from '../styles/post'
 
 const MyCommentPlaceholderWrapper = styled.div`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap !important;
   color: ${cssVar.commentPlaceholderColor};
   font-size: ${cssVar.baseFontSize};
-  cursor: text;
-  line-height: 16px;
+  ${commentPlaceholderWrapperStyle}
 `
 
 const MyCommentInput = styled.input`
-  ${baseCommemtInputStyle}
+  ${baseCommentInputStyle}
   width: 300px;
   appearance: none;
   -moz-appearance: none;
