@@ -3,7 +3,7 @@ export default class dataHelper {
     this.state = state
   }
 
-  getReactArray() {
+  getReactArray(commentId = '') {
     const { reactReducer, userReducer } = this.state
     // console.log('reactReducer.byId', reactReducer.byId)
     // console.log('userReducer.byId', userReducer.byId)
@@ -14,6 +14,9 @@ export default class dataHelper {
       }
       return reactObj
     })
+    if (commentId.length > 0) {
+      return reacts.filter(react => react.postOrCommentId === commentId)
+    }
     // console.log('getReactArray', reacts)
     return reacts
   }
@@ -24,6 +27,7 @@ export default class dataHelper {
       const commentObj = commentReducer.byId[commentId]
       if (typeof commentObj.user === 'string') {
         commentObj.user = userReducer.byId[commentObj.user]
+        commentObj.reactions = this.getReactArray(commentId)
       }
       return commentObj
     })

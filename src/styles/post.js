@@ -86,11 +86,10 @@ reactionIconImgMap.comment.HAHA =
 reactionIconImgMap.comment.LOVE =
   'background-position: -66px -1145px !important;'
 reactionIconImgMap.comment.WOW =
-  'background-position: -49px -1075px !important;'
-reactionIconImgMap.comment.SAD =
-  'background-position: -49px -1056px !important;'
+  'background-position: -34px -1168px !important;'
+reactionIconImgMap.comment.SAD = 'background-position: -0px -1168px !important;'
 reactionIconImgMap.comment.ANGRY =
-  'background-position: -70px -997px !important;'
+  'background-position: -66px -1111px !important;'
 
 export const getIconSize = withComponent => {
   switch (withComponent) {

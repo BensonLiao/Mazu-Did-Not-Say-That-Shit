@@ -6,61 +6,71 @@ export const definedUsers = {
     id: uuidv1(),
     profileName: '金城武',
     profileLink: 'https://www.facebook.com/takeshikaneshirofanspage/',
-    profileImg: 'goldxfive.png'
+    profileImg: 'goldxfive.png',
+    isVerified: false
   },
   theMazu: {
     id: uuidv1(),
     profileName: '媽祖',
     profileLink: 'https://www.facebook.com/themazhou/',
-    profileImg: 'mazu.png'
+    profileImg: 'mazu.png',
+    isVerified: false
   },
   terryGoodTiming: {
     id: uuidv1(),
     profileName: '鍋苔冥',
     profileLink: 'https://www.facebook.com/TerryGou1018/',
-    profileImg: 'terry.png'
+    profileImg: 'terry.png',
+    isVerified: true
   },
   dingDing: {
     id: uuidv1(),
     profileName: '叮守鐘',
     profileLink: 'https://www.youtube.com/watch?v=_97bLScvHWs',
-    profileImg: 'dingding.png'
+    profileImg: 'dingding.png',
+    isVerified: false
   },
   toolMan: {
     id: uuidv1(),
     profileName: '台灣工具伯 汪進坪',
     profileLink: 'https://www.facebook.com/jingping.tw/',
-    profileImg: 'toolman.png'
+    profileImg: 'toolman.png',
+    isVerified: true
   },
   english: {
     id: uuidv1(),
     profileName: '菜應蚊',
     profileLink: 'https://www.facebook.com/tsaiingwen/',
-    profileImg: 'english.png'
+    profileImg: 'english.png',
+    isVerified: true
   },
   koreanFish: {
     id: uuidv1(),
     profileName: '憨摑娛',
     profileLink: 'https://www.facebook.com/twherohan/',
-    profileImg: 'korean-fish.png'
+    profileImg: 'korean-fish.png',
+    isVerified: true
   },
   careWheelEveryday: {
     id: uuidv1(),
     profileName: '每天關心愛情摩天輪的興建狀況',
     profileLink: 'https://www.facebook.com/CareLoveFerrisWheelEveryday/',
-    profileImg: 'wheel.png'
+    profileImg: 'wheel.png',
+    isVerified: false
   },
   universityFoundField: {
     id: uuidv1(),
     profileName: '找到田大學',
     profileLink: '#',
-    profileImg: 'anonymous-university.png'
+    profileImg: 'anonymous-university.png',
+    isVerified: false
   },
   sparkJoy: {
     id: uuidv1(),
     profileName: '尛理惠的整理魔法',
     profileLink: '#',
-    profileImg: 'sparkJoy.png'
+    profileImg: 'sparkJoy.png',
+    isVerified: true
   }
 }
 
@@ -84,7 +94,8 @@ export const getFakeUser = (nameId, gender = 'MALE') => {
     id: uuidv1(),
     profileName: `假帳號${nameId}`,
     profileLink: '#',
-    profileImg: userImg
+    profileImg: userImg,
+    isVerified: false
   }
 }
 
@@ -399,13 +410,30 @@ export const createReactions = (
   ])
   commentId = uuidv1()
   commentsTotal = getCommentReactsTotal(totalReactions, 244)
-  addCommentReactions(reacts, commentId, commentIds, commentsTotal, [2, 1])
+  addCommentReactions(reacts, commentId, commentIds, commentsTotal, [
+    2,
+    1,
+    0,
+    1,
+    2
+  ])
   commentId = uuidv1()
   commentsTotal = getCommentReactsTotal(totalReactions, 160)
-  addCommentReactions(reacts, commentId, commentIds, commentsTotal, [2, 1])
+  addCommentReactions(reacts, commentId, commentIds, commentsTotal, [
+    2,
+    1,
+    0,
+    1
+  ])
   commentsTotal = getCommentReactsTotal(totalReactions)
   for (let i = 0; i < totalComments; i++) {
-    addCommentReactions(reacts, uuidv1(), commentIds, commentsTotal, [2, 1])
+    addCommentReactions(reacts, uuidv1(), commentIds, commentsTotal, [
+      2,
+      3,
+      0,
+      1,
+      2
+    ])
   }
   const reactObj = { reacts, commentIds }
   return reactObj
@@ -426,37 +454,37 @@ export const createComments = (commentIds = []) => {
     {
       id: commentIds[0],
       user: definedUsers.terryGoodTiming,
-      comment: '謝謝樓主托夢，三樓的民主不能當飯吃！',
+      saying: '謝謝樓主托夢，三樓的民主不能當飯吃！',
       time: '3天'
     },
     {
       id: commentIds[1],
       user: definedUsers.koreanFish,
-      comment: '樓上為什麼不考慮吃個包子呢？',
+      saying: '樓上為什麼不考慮吃個包子呢？',
       time: '3天'
     },
     {
       id: commentIds[2],
       user: definedUsers.english,
-      comment: '我也這麼覺得',
+      saying: '我也這麼覺得',
       time: '4天'
     },
     {
       id: commentIds[3],
       user: definedUsers.toolMan,
-      comment: '這個我想，要查證比較難啦',
+      saying: '這個我想，要查證比較難啦',
       time: '5天'
     },
     {
       id: commentIds[4],
       user: definedUsers.dingDing,
-      comment: '可以托夢讓我重選台北市長嗎？',
+      saying: '可以托夢讓我重選台北市長嗎？',
       time: '4天'
     },
     {
       id: commentIds[5],
       user: definedUsers.universityFoundField,
-      comment: '五樓要不要藉這個機會在神明的面前澄清一下？',
+      saying: '五樓要不要藉這個機會在神明的面前澄清一下？',
       attachMedia: 'https://i.imgur.com/wvWFAMT.png',
       mediaType: 'pic',
       time: '3天'
@@ -464,13 +492,13 @@ export const createComments = (commentIds = []) => {
     {
       id: commentIds[6],
       user: definedUsers.careWheelEveryday,
-      comment: '五樓，我快等不及了',
+      saying: '五樓，我快等不及了',
       time: '5天'
     },
     {
       id: commentIds[7],
       user: definedUsers.sparkJoy,
-      comment: `臺灣的碰有打家好～
+      saying: `臺灣的碰有打家好～
       今天要來教打家年後清理臉書版面的小妙招分享
       1. 點進去五樓的粉絲團
       2. 啊～原來ＸＸＸ和其他 10 位朋友都說這個讚
@@ -484,7 +512,7 @@ export const createComments = (commentIds = []) => {
     comments.push({
       id: commentIds[i],
       user: getFakeUser(i),
-      comment: '假留言',
+      saying: '假留言',
       time: `${i}天`
     })
   }

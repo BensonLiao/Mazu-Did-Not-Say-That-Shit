@@ -19,19 +19,24 @@ const CommentPlaceholderWrapper = styled.div`
 const CommentContent = styled.span`
   display: block;
   font-size: ${cssVar.baseFontSize};
+  margin-left: 4px;
 `
 
 const VerifiedBadge = styled.i`
   ${verifiedBadgeIconStyle}
 `
 
-const CommentPlaceholder = ({ profileName, profileLink, comment }) => {
-  const isVerified = true
+const CommentPlaceholder = ({
+  profileName,
+  profileLink,
+  isVerified,
+  saying
+}) => {
   return (
     <CommentPlaceholderWrapper>
       <ProfileLink profileName={profileName} profileLink={profileLink} />
       {isVerified && <VerifiedBadge />}
-      <CommentContent>{comment}</CommentContent>
+      <CommentContent>{saying}</CommentContent>
     </CommentPlaceholderWrapper>
   )
 }
@@ -39,13 +44,15 @@ const CommentPlaceholder = ({ profileName, profileLink, comment }) => {
 CommentPlaceholder.propTypes = {
   profileName: PropTypes.string,
   profileLink: PropTypes.string,
-  comment: PropTypes.string
+  isVerified: PropTypes.bool,
+  saying: PropTypes.string
 }
 
 CommentPlaceholder.defaultProps = {
   profileName: '台灣工具伯 汪進坪',
   profileLink: 'https://www.facebook.com/jingping.tw/',
-  comment: '這個我想，要查證比較難啦'
+  isVerified: true,
+  saying: '這個我想，要查證比較難啦'
 }
 
 export default CommentPlaceholder

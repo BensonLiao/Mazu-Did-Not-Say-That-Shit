@@ -4,6 +4,7 @@ export const cssVar = {
   desktopTextPlaceholder: '#9197a3',
   desktopTextPlaceholderFocused: '#bdc1c9',
   postBackgroundWhite: '#fff',
+  postSectionBorder: '1px solid #dadde1',
   tooltipColorWhite: '#fff',
   tooltipBackgroundGray: '#616770',
   tooltipBackgroundBlack: '#1c1e21',
@@ -27,6 +28,8 @@ export const cssVar = {
   commentTextBackground: '#f2f3f5',
   commentPlaceholderColor: '#8d949e',
   commentPlaceholderColorBlack: '#1c1e21',
+  commentFeedbackTextColor: '#90949c',
+  commentFeedbackButtonTextColor: '#385898',
   commentReactionIconSize: '16px',
   commentAttachIconSize: '16px'
 }

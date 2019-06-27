@@ -23,7 +23,7 @@ const PostTime = ({ postTimeStamp }) => {
   return (
     <PostTimeWrapper
       data-for={tooltipId}
-      data-tip={textFormat.timeStampFormator(postTimeStamp)}
+      data-tip={textFormat.getTimeStamp(postTimeStamp)}
     >
       {postTimeStamp}
       <StyledTooltip id={tooltipId} effect="solid" />

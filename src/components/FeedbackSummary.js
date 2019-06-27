@@ -9,7 +9,7 @@ const FeedbackSummaryWrapper = styled.div`
   ${displayFlex}
   ${justifyContentSpaceBetween}
   color: ${cssVar.infoColorGray}
-  border-bottom: 1px solid #dadde1;
+  border-bottom: ${cssVar.postSectionBorder};
   margin: 10px 12px 0 12px;
   padding: 0 0 10px 0;
 `

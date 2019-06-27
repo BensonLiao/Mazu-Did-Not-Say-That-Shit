@@ -7,6 +7,7 @@ import Header from '../components/Header'
 import PostContent from '../components/PostContent'
 import FeedbackSummary from '../components/FeedbackSummary'
 import FeedbackAction from '../components/FeedbackAction'
+import DisplayCommentSection from './DisplayCommentSection'
 import { definedUsers } from '../utils/dataMock'
 import { StateProvider } from './StateProvider'
 
@@ -23,8 +24,8 @@ const Root = styled.div`
 `
 
 const PostWrapper = styled.div`
-  min-width: 500px;
-  height: 1200px;
+  width: 500px;
+  height: auto;
   border: 1px solid #dddfe2;
   border-radius: 4px;
   background: ${cssVar.postBackgroundWhite};
@@ -57,6 +58,7 @@ class App extends Component {
               <PostContent postContent={content} />
               <FeedbackSummary />
               <FeedbackAction />
+              <DisplayCommentSection />
             </PostWrapper>
           </Root>
         </ThemeProvider>

@@ -12,8 +12,8 @@ const summaryFeedbacks = (feedbacks, type) => {
     forText: '',
     forTip: ''
   }
-  summary.forText = textFormat.feedbacksCountFormator(feedbacks, type)
-  summary.forTip = textFormat.feedbacksCountTipFormator(feedbacks, 18)
+  summary.forText = textFormat.getFeedbacksCount(feedbacks, type)
+  summary.forTip = textFormat.getFeedbacksCountTip(feedbacks, 18)
   return summary
 }
 

@@ -1,3 +1,4 @@
+import styled from 'styled-components'
 import { cssVar } from './variables'
 
 export const displayFlex = `
@@ -19,6 +20,13 @@ export const justifyContentSpaceBetween = `
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+`
+
+export const DotSeparator = styled.span`
+  marging-left: 2px;
+  &:before {
+    content: '·';
+  }
 `
 
 export const dataTooltip = (

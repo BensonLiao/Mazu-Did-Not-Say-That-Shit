@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { cssVar } from '../styles/variables'
-import { displayFlex, alignCenter } from '../styles/page'
+import { displayFlex } from '../styles/page'
 import { relevantIconStyle } from '../styles/post'
 
 const RelevantIconWrapper = styled.div`
   ${displayFlex}
-  ${alignCenter}
   font-size: ${cssVar.baseFontSize};
   margin: 8px 0;
   color: #444950;

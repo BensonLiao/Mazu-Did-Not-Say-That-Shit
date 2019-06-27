@@ -18,7 +18,7 @@ const CommentWithReactionSummary = ({
   profileName,
   profileLink,
   isVerified,
-  comment,
+  saying,
   reactions
 }) => {
   return (
@@ -27,7 +27,7 @@ const CommentWithReactionSummary = ({
         profileName={profileName}
         profileLink={profileLink}
         isVerified={isVerified}
-        comment={comment}
+        saying={saying}
       />
       <CommentReactionSummary reactions={reactions} />
     </CommentWithReactionSummaryWrapper>
@@ -38,7 +38,7 @@ CommentWithReactionSummary.propTypes = {
   profileName: PropTypes.string,
   profileLink: PropTypes.string,
   isVerified: PropTypes.bool,
-  comment: PropTypes.string,
+  saying: PropTypes.string,
   reactions: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
@@ -58,7 +58,7 @@ CommentWithReactionSummary.defaultProps = {
   profileName: '台灣工具伯 汪進坪',
   profileLink: 'https://www.facebook.com/jingping.tw/',
   isVerified: true,
-  comment: '這個我想，要查證比較難啦',
+  saying: '這個我想，要查證比較難啦',
   reactions: []
 }
 
