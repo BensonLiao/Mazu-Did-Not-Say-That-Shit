@@ -59,7 +59,9 @@ const appReducer = (state, action) => {
 
 class App extends React.Component {
   render() {
-    const { postData: user, time, content } = this.props
+    const {
+      postData: { user, time, content }
+    } = this.props
     // const inputRef = React.useRef()
     // const focusRef = () => {
     //   inputRef.current.focus()
