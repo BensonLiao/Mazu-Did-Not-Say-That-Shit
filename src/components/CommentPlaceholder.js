@@ -24,6 +24,10 @@ const CommentContent = styled.span`
   display: block;
   font-size: ${cssVar.baseFontSize};
   margin-left: 4px;
+  color: ${props => props.isHashTag
+    ? cssVar.commentFeedbackButtonTextColor
+    : 'inherit'};
+  cursor: ${props => props.isHashTag ? 'pointer' : 'text'};
 `
 
 const VerifiedBadge = styled.i`
@@ -35,7 +39,8 @@ const getSeparateContent = saying => {
   const breaker = '<breaker>'
   const breakedContent = saying.replace(spaceRegex, breaker).split(breaker)
   return breakedContent.map(content => {
-    return { id: uuidv1(), content }
+    const isHashTag = content.startsWith('#')
+    return { id: uuidv1(), content, isHashTag }
   })
 }
 
@@ -49,11 +54,13 @@ const CommentPlaceholder = ({
   return separatedContent.map((c, idx) => {
     return (
       <CommentPlaceholderWrapper>
-        {idx === 0 && isVerified && <VerifiedBadge />}
         {idx === 0 && (
           <ProfileLink profileName={profileName} profileLink={profileLink} />
         )}
-        <CommentContent key={c.id}>{c.content}</CommentContent>
+        {idx === 0 && isVerified && <VerifiedBadge />}
+        <CommentContent key={c.id} isHashTag={c.isHashTag}>
+          {c.content}
+        </CommentContent>
         <br />
       </CommentPlaceholderWrapper>
     )
