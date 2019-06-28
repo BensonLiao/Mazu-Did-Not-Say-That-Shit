@@ -9,6 +9,7 @@ import {
 import CommentAvatar from './CommentAvatar'
 import MyCommentPlaceholder from './MyCommentPlaceholder'
 import MyCommentAttachButton from './MyCommentAttachButton'
+// import { useMyRef } from '../containers/RefProvider'
 
 const MyCommentWrapper = styled.div`
   ${displayFlex}
@@ -36,7 +37,7 @@ const MyComment = () => {
     <MyCommentWrapper>
       <CommentAvatar />
       <MyCommentInputWrapper>
-        <MyCommentPlaceholder />
+        <MyCommentPlaceholder type="text" placeholder="留言......" />
         <MyCommentAttachButton />
       </MyCommentInputWrapper>
     </MyCommentWrapper>

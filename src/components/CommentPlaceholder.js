@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import uuidv1 from 'uuid/v1'
 import styled from 'styled-components'
 import { cssVar } from '../styles/variables'
 import { displayFlex } from '../styles/page'
@@ -14,6 +15,9 @@ const CommentPlaceholderWrapper = styled.div`
   font-size: ${cssVar.baseFontSize};
   ${commentPlaceholderWrapperStyle}
   ${displayFlex}
+  white-space: normal;
+  word-break: break-word;
+  word-wrap: break-word;
 `
 
 const CommentContent = styled.span`
@@ -26,19 +30,34 @@ const VerifiedBadge = styled.i`
   ${verifiedBadgeIconStyle}
 `
 
+const getSeparateContent = saying => {
+  const spaceRegex = /\s{2,}/g
+  const breaker = '<breaker>'
+  const breakedContent = saying.replace(spaceRegex, breaker).split(breaker)
+  return breakedContent.map(content => {
+    return { id: uuidv1(), content }
+  })
+}
+
 const CommentPlaceholder = ({
   profileName,
   profileLink,
   isVerified,
   saying
 }) => {
-  return (
-    <CommentPlaceholderWrapper>
-      <ProfileLink profileName={profileName} profileLink={profileLink} />
-      {isVerified && <VerifiedBadge />}
-      <CommentContent>{saying}</CommentContent>
-    </CommentPlaceholderWrapper>
-  )
+  const separatedContent = getSeparateContent(saying)
+  return separatedContent.map((c, idx) => {
+    return (
+      <CommentPlaceholderWrapper>
+        {idx === 0 && isVerified && <VerifiedBadge />}
+        {idx === 0 && (
+          <ProfileLink profileName={profileName} profileLink={profileLink} />
+        )}
+        <CommentContent key={c.id}>{c.content}</CommentContent>
+        <br />
+      </CommentPlaceholderWrapper>
+    )
+  })
 }
 
 CommentPlaceholder.propTypes = {

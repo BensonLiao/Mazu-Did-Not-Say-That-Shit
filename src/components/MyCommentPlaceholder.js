@@ -28,10 +28,10 @@ const MyCommentInput = styled.input`
   font-size: ${cssVar.baseFontSize};
 `
 
-const MyCommentPlaceholder = () => {
+const MyCommentPlaceholder = props => {
   return (
     <MyCommentPlaceholderWrapper>
-      <MyCommentInput type="text" placeholder="留言......" />
+      <MyCommentInput {...props} />
     </MyCommentPlaceholderWrapper>
   )
 }

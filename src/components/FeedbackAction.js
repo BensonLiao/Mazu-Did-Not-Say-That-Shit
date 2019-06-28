@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { feedbackActionWrapperStyle } from '../styles/post'
 import { FEEDBACK } from '../actions'
 import FeedbackActionReact from '../containers/FeedbackActionReact'
-import FeedbackActionComment from '../containers/FeedbackActionComment'
 import FeedbackActionShare from '../containers/FeedbackActionShare'
+import FeedbackActionButton from './FeedbackActionButton'
 import { useState } from '../containers/StateProvider'
 
 const FeedbackActionWrapper = styled.div`
@@ -21,7 +21,10 @@ const FeedbackAction = () => {
         reactId={reactId}
         feedbackType={FEEDBACK.REACT}
       />
-      <FeedbackActionComment you={you} feedbackType={FEEDBACK.COMMENT} />
+      <FeedbackActionButton
+        // onClick={focusRef}
+        feedbackType={FEEDBACK.COMMENT}
+      />
       <FeedbackActionShare you={you} feedbackType={FEEDBACK.SHARE} />
     </FeedbackActionWrapper>
   )

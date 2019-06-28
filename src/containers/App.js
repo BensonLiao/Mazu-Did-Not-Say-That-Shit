@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import uuidv1 from 'uuid/v1'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
@@ -10,6 +10,7 @@ import FeedbackAction from '../components/FeedbackAction'
 import DisplayCommentSection from './DisplayCommentSection'
 import { definedUsers } from '../utils/dataMock'
 import { StateProvider } from './StateProvider'
+// import { RefProvider } from './RefProvider'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -45,9 +46,24 @@ const appReducer = (state, action) => {
   }
 }
 
-class App extends Component {
+// const initialRef = {
+//   myRef: {}
+// }
+
+// const refReducer = (state, action) => {
+//   switch (action.type) {
+//     default:
+//       return state
+//   }
+// }
+
+class App extends React.Component {
   render() {
-    const { user, time, content } = this.props.postData
+    const { postData: user, time, content } = this.props
+    // const inputRef = React.useRef()
+    // const focusRef = () => {
+    //   inputRef.current.focus()
+    // }
     return (
       <StateProvider initialState={initialState} reducer={appReducer}>
         <ThemeProvider theme={theme}>
@@ -59,6 +75,10 @@ class App extends Component {
               <FeedbackSummary />
               <FeedbackAction />
               <DisplayCommentSection />
+              {/* <RefProvider initialRef={initialRef} reducer={refReducer}>
+                <FeedbackAction />
+                <DisplayCommentSection />
+              </RefProvider> */}
             </PostWrapper>
           </Root>
         </ThemeProvider>
