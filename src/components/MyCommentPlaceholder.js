@@ -31,7 +31,7 @@ const MyCommentInput = styled.input`
 const MyCommentPlaceholder = props => {
   return (
     <MyCommentPlaceholderWrapper>
-      <MyCommentInput {...props} />
+      <MyCommentInput id="test" {...props} />
     </MyCommentPlaceholderWrapper>
   )
 }

@@ -52,7 +52,6 @@ export const reactionIconTipStyle = `
 
 export const reactionIconTipWrapperStyle = `
   ${displayFlex}
-  ${alignCenter}
   line-height: 16px;
   margin-bottom: 4px;
 `

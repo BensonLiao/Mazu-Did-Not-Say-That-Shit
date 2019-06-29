@@ -14,6 +14,7 @@ const Comment = ({ comment }) => {
   const {
     user: { profileName, profileLink, profileImg, isVerified },
     saying,
+    attachMedia,
     reactions
   } = comment
   return (
@@ -24,6 +25,7 @@ const Comment = ({ comment }) => {
         profileLink={profileLink}
         isVerified={isVerified}
         saying={saying}
+        attachMedia={attachMedia}
         reactions={reactions}
       />
     </CommentWrapper>
@@ -41,6 +43,7 @@ Comment.propTypes = {
       profileImg: PropTypes.string,
       isVerified: PropTypes.bool
     }),
+    attachMedia: PropTypes.string,
     postOrCommentId: PropTypes.string,
     reactions: PropTypes.arrayOf(
       PropTypes.shape({
@@ -69,6 +72,7 @@ Comment.defaultProps = {
       profileImg: 'toolman.png',
       isVerified: true
     },
+    attachMedia: '',
     postOrCommentId: 'POST',
     reactions: []
   }

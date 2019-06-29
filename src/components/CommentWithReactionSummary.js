@@ -19,6 +19,7 @@ const CommentWithReactionSummary = ({
   profileLink,
   isVerified,
   saying,
+  attachMedia,
   reactions
 }) => {
   return (
@@ -28,6 +29,7 @@ const CommentWithReactionSummary = ({
         profileLink={profileLink}
         isVerified={isVerified}
         saying={saying}
+        attachMedia={attachMedia}
       />
       <CommentReactionSummary reactions={reactions} />
     </CommentWithReactionSummaryWrapper>
@@ -39,6 +41,7 @@ CommentWithReactionSummary.propTypes = {
   profileLink: PropTypes.string,
   isVerified: PropTypes.bool,
   saying: PropTypes.string,
+  attachMedia: PropTypes.string,
   reactions: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
@@ -59,6 +62,7 @@ CommentWithReactionSummary.defaultProps = {
   profileLink: 'https://www.facebook.com/jingping.tw/',
   isVerified: true,
   saying: '這個我想，要查證比較難啦',
+  attachMedia: '',
   reactions: []
 }
 

@@ -1,4 +1,5 @@
 import CommentReactionTipIcon from '../components/CommentReactionTipIcon'
+import { reactionIconTipWrapperStyle } from '../styles/post'
 
 export default {
   getTimeStamp(timeStamp) {
@@ -127,6 +128,10 @@ export default {
       }, '')
       return `<div>${tipIconText}</div>`
     }
+    const tipIconText = rank.reduce((acc, react) => {
+      const tipSpan = react.total > 0 ? CommentReactionTipIcon(react) : ''
+      return acc + tipSpan
+    }, '')
     const totalShow = reactions.length > 10 ? 10 : reactions.length
     const totalOthers =
       reactions.length > 10 ? `和其他${reactions.length - totalShow}個...` : ''
@@ -138,6 +143,6 @@ export default {
       formattedSummary += `${profileName}<br>`
     }
     formattedSummary += totalOthers
-    return formattedSummary
+    return `<div>${tipIconText}</div><div style='${reactionIconTipWrapperStyle}'>${formattedSummary}</div>`
   }
 }

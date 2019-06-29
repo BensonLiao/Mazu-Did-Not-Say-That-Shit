@@ -30,6 +30,17 @@ const CommentContent = styled.span`
   cursor: ${props => props.isHashTag ? 'pointer' : 'text'};
 `
 
+const CommentMediaWrapper = styled.div`
+  width: 360px;
+  height: 204px;
+`
+
+const CommentMediaImage = styled.img`
+  width: 360px;
+  height: 204px;
+  object-fit: contain;
+`
+
 const VerifiedBadge = styled.i`
   ${verifiedBadgeIconStyle}
 `
@@ -40,7 +51,7 @@ const getSeparateContent = saying => {
   const breakedContent = saying.replace(spaceRegex, breaker).split(breaker)
   return breakedContent.map(content => {
     const isHashTag = content.startsWith('#')
-    return { id: uuidv1(), content, isHashTag }
+    return { id: uuidv1(), content, attachMedia: '', isHashTag }
   })
 }
 
@@ -48,9 +59,16 @@ const CommentPlaceholder = ({
   profileName,
   profileLink,
   isVerified,
-  saying
+  saying,
+  attachMedia
 }) => {
   const separatedContent = getSeparateContent(saying)
+  separatedContent.push({
+    id: uuidv1(),
+    content: '',
+    attachMedia,
+    isHashTag: false
+  })
   return separatedContent.map((c, idx) => {
     return (
       <CommentPlaceholderWrapper>
@@ -58,10 +76,19 @@ const CommentPlaceholder = ({
           <ProfileLink profileName={profileName} profileLink={profileLink} />
         )}
         {idx === 0 && isVerified && <VerifiedBadge />}
-        <CommentContent key={c.id} isHashTag={c.isHashTag}>
-          {c.content}
-        </CommentContent>
-        <br />
+        {c.content !== '' && (
+          <CommentContent key={`c_${c.id}`} isHashTag={c.isHashTag}>
+            {c.content}
+          </CommentContent>
+        )}
+        {c.attachMedia !== '' && (
+          <CommentMediaWrapper key={`i_${c.id}`}>
+            <CommentMediaImage
+              src={c.attachMedia}
+              alt={c.attachMedia}
+            />
+          </CommentMediaWrapper>
+        )}
       </CommentPlaceholderWrapper>
     )
   })
@@ -71,14 +98,16 @@ CommentPlaceholder.propTypes = {
   profileName: PropTypes.string,
   profileLink: PropTypes.string,
   isVerified: PropTypes.bool,
-  saying: PropTypes.string
+  saying: PropTypes.string,
+  attachMedia: PropTypes.string
 }
 
 CommentPlaceholder.defaultProps = {
   profileName: '台灣工具伯 汪進坪',
   profileLink: 'https://www.facebook.com/jingping.tw/',
   isVerified: true,
-  saying: '這個我想，要查證比較難啦'
+  saying: '這個我想，要查證比較難啦',
+  attachMedia: ''
 }
 
 export default CommentPlaceholder

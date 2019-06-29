@@ -14,6 +14,11 @@ const FeedbackActionWrapper = styled.div`
 const FeedbackAction = () => {
   const [state] = useState()
   const { you, reactId } = state
+  const focusRef = () => {
+    const inputRef = document.getElementById('test')
+    console.log('inputRef', inputRef)
+    inputRef.focus()
+  }
   return (
     <FeedbackActionWrapper>
       <FeedbackActionReact
@@ -22,7 +27,7 @@ const FeedbackAction = () => {
         feedbackType={FEEDBACK.REACT}
       />
       <FeedbackActionButton
-        // onClick={focusRef}
+        onClick={focusRef}
         feedbackType={FEEDBACK.COMMENT}
         displayText="留言"
         tooltipText="留言"
