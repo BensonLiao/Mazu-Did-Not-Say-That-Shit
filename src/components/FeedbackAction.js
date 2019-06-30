@@ -5,18 +5,18 @@ import { FEEDBACK } from '../actions'
 import FeedbackActionReact from '../containers/FeedbackActionReact'
 import FeedbackActionShare from '../containers/FeedbackActionShare'
 import FeedbackActionButton from './FeedbackActionButton'
-import { useState } from '../containers/StateProvider'
+// import { useState } from '../containers/StateProvider'
+import appConst from '../utils/constants'
 
 const FeedbackActionWrapper = styled.div`
   ${feedbackActionWrapperStyle}
 `
 
 const FeedbackAction = () => {
-  const [state] = useState()
-  const { you, reactId } = state
+  // const [state] = useState()
+  const { you, reactId, myCommentInputCompId } = appConst
   const focusRef = () => {
-    const inputRef = document.getElementById('test')
-    console.log('inputRef', inputRef)
+    const inputRef = document.getElementById(myCommentInputCompId)
     inputRef.focus()
   }
   return (

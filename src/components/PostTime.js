@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { cssVar } from '../styles'
+import cssConst from '../styles/constants'
 import StyledTooltip from './StyledTooltip'
 import textFormat from '../utils/textFormat'
 
@@ -13,9 +13,9 @@ const propTypes = {
 }
 
 const PostTimeWrapper = styled.div`
-  color: ${cssVar.infoColorGray};
+  color: ${cssConst.infoColorGray};
   font-size: 13px;
-  font-family: ${cssVar.fontFamily};
+  font-family: ${cssConst.fontFamily};
 `
 
 const PostTime = ({ postTimeStamp }) => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { cssVar } from '../styles/variables'
+import cssConst from '../styles/constants'
 
 const CommentFeedbackButtonWrapper = styled.div`
   color: ${props => props.color};
@@ -11,8 +11,8 @@ const CommentFeedbackButtonWrapper = styled.div`
 
 const CommentFeedbackButton = ({ displayText, reacted, onClick }) => {
   const color = reacted
-    ? cssVar.reactedButtonTextColor
-    : cssVar.commentFeedbackButtonTextColor
+    ? cssConst.reactedButtonTextColor
+    : cssConst.commentFeedbackButtonTextColor
   return (
     <CommentFeedbackButtonWrapper onClick={onClick} color={color}>
       <span>{displayText}</span>

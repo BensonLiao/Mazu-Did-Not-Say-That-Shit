@@ -1,6 +1,6 @@
 import ReactTooltip from 'react-tooltip'
 import styled from 'styled-components'
-import { cssVar } from '../styles'
+import cssConst from '../styles/constants'
 
 // Quick fix to turn-off warning by adding
 // .attrs({
@@ -65,6 +65,6 @@ const StyledTooltip = styled(ReactTooltip).attrs({
   }
 `
 
-StyledTooltip.defaultProps = { bg: cssVar.tooltipBackgroundGray }
+StyledTooltip.defaultProps = { bg: cssConst.tooltipBackgroundGray }
 
 export default StyledTooltip

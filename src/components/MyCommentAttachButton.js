@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import cssesc from 'cssesc'
-import { cssVar } from '../styles/variables'
+import cssConst from '../styles/constants'
 import myCommentAttachIconImg from '../assets/img/my-comment.png'
 
 const MyCommentAttachButtonWrapper = styled.div`
@@ -10,8 +10,8 @@ const MyCommentAttachButtonWrapper = styled.div`
 
 const attachButtonBaseStyle = `
   display: inline-block;
-  height: ${cssVar.commentAttachIconSize};
-  width: ${cssVar.commentAttachIconSize};
+  height: ${cssConst.commentAttachIconSize};
+  width: ${cssConst.commentAttachIconSize};
   margin-left: 10px;
   cursor: pointer;
   background-image: url(${cssesc(myCommentAttachIconImg)});

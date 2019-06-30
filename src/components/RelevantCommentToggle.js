@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { cssVar } from '../styles/variables'
+import cssConst from '../styles/constants'
 import { displayFlex } from '../styles/page'
 import { relevantIconStyle } from '../styles/post'
 
 const RelevantIconWrapper = styled.div`
   ${displayFlex}
-  font-size: ${cssVar.baseFontSize};
+  font-size: ${cssConst.baseFontSize};
   margin: 8px 0;
   color: #444950;
   cursor: pointer;

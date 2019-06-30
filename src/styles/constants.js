@@ -1,4 +1,4 @@
-export const cssVar = {
+export default {
   desktopBackgroundLight: '#f6f7f8',
   desktopBackgroundGray: '#e9ebee',
   desktopTextPlaceholder: '#9197a3',

@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { cssVar } from '../styles/variables'
+import cssConst from '../styles/constants'
 import CommentPlaceholder from './CommentPlaceholder'
 import CommentReactionSummary from './CommentReactionSummary'
 
 const CommentWithReactionSummaryWrapper = styled.div`
-  background-color: ${cssVar.commentTextBackground};
-  color: ${cssVar.commentPlaceholderColorBlack};
+  background-color: ${cssConst.commentTextBackground};
+  color: ${cssConst.commentPlaceholderColorBlack};
   border-radius: 18px;
   line-height: 16px;
   padding: 8px 12px;

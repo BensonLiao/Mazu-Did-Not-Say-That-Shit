@@ -1,14 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
-import { cssVar } from '../styles/variables'
+import cssConst from '../styles/constants'
+import appConst from '../utils/constants'
 import {
   commentPlaceholderWrapperStyle,
   baseCommentInputStyle
 } from '../styles/post'
 
 const MyCommentPlaceholderWrapper = styled.div`
-  color: ${cssVar.commentPlaceholderColor};
-  font-size: ${cssVar.baseFontSize};
+  color: ${cssConst.commentPlaceholderColor};
+  font-size: ${cssConst.baseFontSize};
   ${commentPlaceholderWrapperStyle}
 `
 
@@ -25,13 +26,14 @@ const MyCommentInput = styled.input`
   padding: 0;
   border: 0 solid transparent;
   background: transparent;
-  font-size: ${cssVar.baseFontSize};
+  font-size: ${cssConst.baseFontSize};
 `
 
 const MyCommentPlaceholder = props => {
+  const { myCommentInputCompId } = appConst
   return (
     <MyCommentPlaceholderWrapper>
-      <MyCommentInput id="test" {...props} />
+      <MyCommentInput id={myCommentInputCompId} {...props} />
     </MyCommentPlaceholderWrapper>
   )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { cssVar } from '../styles/variables'
+import cssConst from '../styles/constants'
 import RelevantCommentToggle from './RelevantCommentToggle'
 import MyComment from './MyComment'
 import Comment from './Comment'
@@ -9,7 +9,7 @@ import CommentFeedback from './CommentFeedback'
 
 const CommentSectionWrapper = styled.div`
   margin: 0 12px;
-  border-top: ${cssVar.postSectionBorder};
+  border-top: ${cssConst.postSectionBorder};
 `
 
 const CommentSection = ({ comments }) => {

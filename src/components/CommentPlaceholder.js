@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import uuidv1 from 'uuid/v1'
 import styled from 'styled-components'
-import { cssVar } from '../styles/variables'
+import cssConst from '../styles/constants'
 import { displayFlex } from '../styles/page'
 import {
   commentPlaceholderWrapperStyle,
@@ -11,8 +11,8 @@ import {
 import ProfileLink from './ProfileLink'
 
 const CommentPlaceholderWrapper = styled.div`
-  color: ${cssVar.commentPlaceholderColorBlack};
-  font-size: ${cssVar.baseFontSize};
+  color: ${cssConst.commentPlaceholderColorBlack};
+  font-size: ${cssConst.baseFontSize};
   ${commentPlaceholderWrapperStyle}
   ${displayFlex}
   white-space: normal;
@@ -22,10 +22,10 @@ const CommentPlaceholderWrapper = styled.div`
 
 const CommentContent = styled.span`
   display: block;
-  font-size: ${cssVar.baseFontSize};
+  font-size: ${cssConst.baseFontSize};
   margin-left: 4px;
   color: ${props => props.isHashTag
-    ? cssVar.commentFeedbackButtonTextColor
+    ? cssConst.commentFeedbackButtonTextColor
     : 'inherit'};
   cursor: ${props => props.isHashTag ? 'pointer' : 'text'};
 `

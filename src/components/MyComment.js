@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { cssVar } from '../styles/variables'
+import cssConst from '../styles/constants'
 import {
   displayFlex,
   alignCenter,
@@ -17,7 +17,7 @@ const MyCommentWrapper = styled.div`
 `
 
 const MyCommentInputWrapper = styled.div`
-  background-color: ${cssVar.commentTextBackground};
+  background-color: ${cssConst.commentTextBackground};
   border: 1px solid #ccd0d5;
   border-radius: 16px;
   ${displayFlex}

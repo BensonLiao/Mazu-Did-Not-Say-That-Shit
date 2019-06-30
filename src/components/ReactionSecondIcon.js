@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { REACTIONS } from '../actions'
 import StyledTooltip from './StyledTooltip'
-import { cssVar } from '../styles'
+import cssConst from '../styles/constants'
 import {
   styledTooltipOverrideStyle,
   getIconSize,
@@ -44,7 +44,7 @@ const ReactionSecondIcon = ({
           id={tooltipId}
           effect="solid"
           multiline
-          bg={cssVar.tooltipBackgroundBlack}
+          bg={cssConst.tooltipBackgroundBlack}
         />
       )}
     </ReactionSecondIconWrapper>

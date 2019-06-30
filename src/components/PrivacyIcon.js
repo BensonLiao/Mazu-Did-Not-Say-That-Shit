@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import StyledTooltip from './StyledTooltip'
-import { cssVar, privacyIconStyle } from '../styles'
+import cssConst from '../styles/constants'
+import { privacyIconStyle } from '../styles/post'
 
 const PrivacyIconWrapper = styled.i`
   ${privacyIconStyle}
@@ -15,7 +16,7 @@ const PrivacyIcon = () => {
       <StyledTooltip
         id={tooltipId}
         effect="solid"
-        bg={cssVar.tooltipBackgroundBlack}
+        bg={cssConst.tooltipBackgroundBlack}
       />
     </React.Fragment>
   )

@@ -2,7 +2,7 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 import styled from 'styled-components'
 import StyledTooltip from './StyledTooltip'
-import { cssVar } from '../styles'
+import cssConst from '../styles/constants'
 import { styledTooltipOverrideStyle } from '../styles/post'
 
 const FeedbackCountWrapper = styled.span`
@@ -25,7 +25,7 @@ const FeedbackCount = props => {
         id={tooltipId}
         effect="solid"
         multiline
-        bg={cssVar.tooltipBackgroundBlack}
+        bg={cssConst.tooltipBackgroundBlack}
       />
     </FeedbackCountWrapper>
   )

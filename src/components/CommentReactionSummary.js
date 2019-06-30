@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { cssVar } from '../styles/variables'
+import cssConst from '../styles/constants'
 import { displayFlex, alignCenter } from '../styles/page'
 import { styledTooltipOverrideStyle } from '../styles/post'
 import dataSummary from '../utils/dataSummary'
@@ -14,8 +14,8 @@ const CommentReactionSummaryWrapper = styled.div`
   ${displayFlex}
   ${alignCenter}
   ${styledTooltipOverrideStyle}
-  background: ${cssVar.postBackgroundWhite};
-  color: ${cssVar.commentPlaceholderColor};
+  background: ${cssConst.postBackgroundWhite};
+  color: ${cssConst.commentPlaceholderColor};
   position: absolute;
   bottom: -12px;
   right: 2px;
@@ -65,7 +65,7 @@ const CommentReactionSummary = ({ reactions }) => {
         id={tooltipId}
         effect="solid"
         html
-        bg={cssVar.tooltipBackgroundBlack}
+        bg={cssConst.tooltipBackgroundBlack}
       />
     </CommentReactionSummaryWrapper>
   )

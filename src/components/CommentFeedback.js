@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { cssVar } from '../styles/variables'
+import cssConst from '../styles/constants'
 import { displayFlex, DotSeparator } from '../styles/page'
 import CommentFeedbackButton from './CommentFeedbackButton'
 
 const CommentFeedbackWrapper = styled.div`
   ${displayFlex}
-  color: ${cssVar.commentFeedbackTextColor};
+  color: ${cssConst.commentFeedbackTextColor};
   font-size: 13px;
   line-height: 13px;
   margin-top: 5px;

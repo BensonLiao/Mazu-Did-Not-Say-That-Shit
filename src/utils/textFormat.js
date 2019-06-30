@@ -121,13 +121,6 @@ export default {
     if (reactions.length < 1) {
       return ''
     }
-    if (rank[1].total > 0) {
-      const tipIconText = rank.reduce((acc, react) => {
-        const tipSpan = react.total > 0 ? CommentReactionTipIcon(react) : ''
-        return acc + tipSpan
-      }, '')
-      return `<div>${tipIconText}</div>`
-    }
     const tipIconText = rank.reduce((acc, react) => {
       const tipSpan = react.total > 0 ? CommentReactionTipIcon(react) : ''
       return acc + tipSpan
@@ -143,6 +136,9 @@ export default {
       formattedSummary += `${profileName}<br>`
     }
     formattedSummary += totalOthers
-    return `<div>${tipIconText}</div><div style='${reactionIconTipWrapperStyle}'>${formattedSummary}</div>`
+    formattedSummary = rank[1].total > 0
+      ? ''
+      : `<div style='${reactionIconTipWrapperStyle}'>${formattedSummary}</div>`
+    return `<div>${tipIconText}</div>${formattedSummary}`
   }
 }
