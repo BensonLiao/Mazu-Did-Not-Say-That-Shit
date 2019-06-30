@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import uuidv1 from 'uuid/v1'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
-import { theme, cssVar, displayFlex, alignCenter } from '../styles'
+import cssConst, { theme, displayFlex, alignCenter } from '../styles'
 import Header from '../components/Header'
 import PostContent from '../components/PostContent'
 import FeedbackSummary from '../components/FeedbackSummary'
@@ -13,7 +13,7 @@ import { StateProvider } from './StateProvider'
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background: ${cssVar.desktopBackgroundGray};
+    background: ${cssConst.desktopBackgroundGray};
   }
   * { box-sizing: border-box; }
 `
@@ -28,8 +28,8 @@ const PostWrapper = styled.div`
   height: auto;
   border: 1px solid #dddfe2;
   border-radius: 4px;
-  background: ${cssVar.postBackgroundWhite};
-  font-family: ${cssVar.fontFamily};
+  background: ${cssConst.postBackgroundWhite};
+  font-family: ${cssConst.fontFamily};
 `
 
 const initialState = {

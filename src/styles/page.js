@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cssVar } from './variables'
+import cssConst from './constants'
 
 export const displayFlex = `
   display: -webkit-box;
@@ -8,12 +8,12 @@ export const displayFlex = `
 `
 
 export const alignCenter = `
-  -webkit-box-pack: ${cssVar.alignItems};
-  -ms-flex-pack: ${cssVar.alignItems};
-  justify-content: ${cssVar.alignItems};
-  -webkit-box-align: ${cssVar.alignItems};
-  -ms-flex-align: ${cssVar.alignItems};
-  align-items: ${cssVar.alignItems};
+  -webkit-box-pack: ${cssConst.alignItems};
+  -ms-flex-pack: ${cssConst.alignItems};
+  justify-content: ${cssConst.alignItems};
+  -webkit-box-align: ${cssConst.alignItems};
+  -ms-flex-align: ${cssConst.alignItems};
+  align-items: ${cssConst.alignItems};
 `
 
 export const justifyContentSpaceBetween = `
@@ -30,8 +30,8 @@ export const DotSeparator = styled.span`
 `
 
 export const dataTooltip = (
-  tooltipBackground = cssVar.tooltipBackgroundGray,
-  tooltipTopPosition = cssVar.tooltipTopPostion
+  tooltipBackground = cssConst.tooltipBackgroundGray,
+  tooltipTopPosition = cssConst.tooltipTopPostion
 ) => `
   [data-tooltip] {
     position: relative;
@@ -45,7 +45,7 @@ export const dataTooltip = (
     padding: 1px 5px;
     border-radius: 4px;
     display: inline-block !important;
-    color: ${cssVar.tooltipColorWhite};
+    color: ${cssConst.tooltipColorWhite};
     background: ${tooltipBackground};
   }
   &:after {

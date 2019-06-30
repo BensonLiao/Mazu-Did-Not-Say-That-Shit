@@ -1,4 +1,4 @@
-import { cssVar } from './variables'
+import cssConst from './constants'
 
 export const theme = {
   fontSizes: [12, 14, 16, 24, 32, 48, 64, 96, 128],
@@ -14,8 +14,8 @@ export const theme = {
     256
   ],
   colors: {
-    rootBG: cssVar.fbuiDesktopBackgroundGray,
-    appBG: cssVar.fbuiPostBackgroundWhite,
-    commentInputBG: cssVar.commentInputBG
+    rootBG: cssConst.fbuiDesktopBackgroundGray,
+    appBG: cssConst.fbuiPostBackgroundWhite,
+    commentInputBG: cssConst.commentInputBG
   }
 }

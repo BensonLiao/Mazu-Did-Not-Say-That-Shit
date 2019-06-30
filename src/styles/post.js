@@ -1,9 +1,8 @@
 import cssesc from 'cssesc'
-import { cssVar } from './variables'
+import cssConst from './constants'
 import { displayFlex, alignCenter } from './page'
 import { REACTIONS } from '../actions'
 import privacyIconImg from '../assets/img/global.png'
-// import reactionIconImg from '../assets/img/fb-emojis.png'
 import reactionIconImg from '../assets/img/fb-emojis-new.png'
 import reactionButtonImg from '../assets/img/thumbUp.png'
 import commentAndShareButtonImg from '../assets/img/responseShare.png'
@@ -94,13 +93,13 @@ export const getIconSize = withComponent => {
   switch (withComponent) {
     default:
       return `
-        height: ${cssVar.reactionIconSize};
-        width: ${cssVar.reactionIconSize};
+        height: ${cssConst.reactionIconSize};
+        width: ${cssConst.reactionIconSize};
       `
     case 'comment':
       return `
-        height: ${cssVar.commentReactionIconSize};
-        width: ${cssVar.commentReactionIconSize};
+        height: ${cssConst.commentReactionIconSize};
+        width: ${cssConst.commentReactionIconSize};
       `
   }
 }
@@ -142,8 +141,8 @@ export const feedbackActionButtonWrapperStyle = `
 `
 
 export const feedbackActionButtonBaseStyle = `
-  width: ${cssVar.feedbackActionButtonIconSize};
-  height: ${cssVar.feedbackActionButtonIconSize};
+  width: ${cssConst.feedbackActionButtonIconSize};
+  height: ${cssConst.feedbackActionButtonIconSize};
   display: inline-block;
   background-repeat: no-repeat;
   margin: 0 6px 0 0;
@@ -156,7 +155,7 @@ export const feedbackReactionButtonStyle = `
 `
 
 export const feedbackReactedStyle = `
-  color: ${cssVar.reactedButtonTextColor} !important;
+  color: ${cssConst.reactedButtonTextColor} !important;
 `
 
 export const feedbackReactedButtonStyle = `
