@@ -71,18 +71,18 @@ const CommentPlaceholder = ({
   })
   return separatedContent.map((c, idx) => {
     return (
-      <CommentPlaceholderWrapper>
+      <CommentPlaceholderWrapper key={c.id}>
         {idx === 0 && (
           <ProfileLink profileName={profileName} profileLink={profileLink} />
         )}
         {idx === 0 && isVerified && <VerifiedBadge />}
         {c.content !== '' && (
-          <CommentContent key={`c_${c.id}`} isHashTag={c.isHashTag}>
+          <CommentContent isHashTag={c.isHashTag}>
             {c.content}
           </CommentContent>
         )}
         {c.attachMedia !== '' && (
-          <CommentMediaWrapper key={`i_${c.id}`}>
+          <CommentMediaWrapper>
             <CommentMediaImage
               src={c.attachMedia}
               alt={c.attachMedia}
