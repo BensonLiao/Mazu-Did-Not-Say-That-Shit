@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import ProfileInfo from './ProfileInfo'
+import ProfileLink from './ProfileLink'
 import PostInfo from './PostInfo'
 import Thumbnail from './Thumbnail'
 import { getFakeUser } from '../utils/dataMock'
@@ -46,7 +46,7 @@ const LeftInfo = ({ profileInfo, postTime }) => {
         profileImg={profileInfo.profileImg}
       />
       <InfoBlockWrapper>
-        <ProfileInfo
+        <ProfileLink
           profileName={profileInfo.profileName}
           profileLink={profileInfo.profileLink}
         />

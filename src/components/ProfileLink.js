@@ -14,7 +14,8 @@ const propTypes = {
   profileLink: PropTypes.string
 }
 
-const PosterWrapper = styled.div`
+const ProfileLinkWrapper = styled.div`
+  display: block;
   cursor: pointer;
   font-weight: 600;
 `
@@ -34,11 +35,11 @@ const defaultProps = {
 
 const ProfileLink = ({ profileName, profileLink }) => {
   return (
-    <PosterWrapper>
+    <ProfileLinkWrapper>
       <Link target="_blank" href={profileLink}>
         {profileName}
       </Link>
-    </PosterWrapper>
+    </ProfileLinkWrapper>
   )
 }
 
