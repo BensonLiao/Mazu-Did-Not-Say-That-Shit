@@ -7,9 +7,10 @@ import textFormat from '../utils/textFormat'
 
 const propTypes = {
   /**
-   * Sets content on body of `PostTimeWrapper`
+   * Sets content on body of `PostTimeWrapper`,
+   * using UNIX timestamp, ref: https://en.wikipedia.org/wiki/Unix_time
    */
-  postTimeStamp: PropTypes.string.isRequired
+  postTimeStamp: PropTypes.number.isRequired
 }
 
 const PostTimeWrapper = styled.div`
@@ -20,12 +21,10 @@ const PostTimeWrapper = styled.div`
 
 const PostTime = ({ postTimeStamp }) => {
   const tooltipId = 'tip-for-post-time'
+  const formattedime = textFormat.getTimeStamp(postTimeStamp)
   return (
-    <PostTimeWrapper
-      data-for={tooltipId}
-      data-tip={textFormat.getTimeStamp(postTimeStamp)}
-    >
-      {postTimeStamp}
+    <PostTimeWrapper data-for={tooltipId} data-tip={formattedime.forTip}>
+      {formattedime.forText}
       <StyledTooltip id={tooltipId} effect="solid" />
     </PostTimeWrapper>
   )

@@ -18,9 +18,10 @@ const propTypes = {
     profileLink: PropTypes.string
   }),
   /**
-   * Sets content on body of `RightInfo`.`PostprofileNameInfo`.`PostTime`
+   * Sets content on body of `RightInfo`.`PostprofileNameInfo`.`PostTime`,
+   * using UNIX timestamp, ref: https://en.wikipedia.org/wiki/Unix_time
    */
-  postTime: PropTypes.string
+  postTime: PropTypes.number
 }
 
 const HeaderWrapper = styled.div`
@@ -31,7 +32,7 @@ const HeaderWrapper = styled.div`
 
 const defaultProps = {
   profileInfo: getFakeUser('fakeuser123', 'FEMALE'),
-  postTime: 'Fake Post Time'
+  postTime: 1412743274
 }
 
 const Header = ({ profileInfo, postTime }) => {

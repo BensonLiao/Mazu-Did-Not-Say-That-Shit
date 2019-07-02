@@ -76,7 +76,7 @@ App.propTypes = {
       profileLink: PropTypes.string.isRequired,
       profileName: PropTypes.string.isRequired
     }).isRequired,
-    time: PropTypes.string.isRequired,
+    time: PropTypes.number.isRequired,
     content: PropTypes.string.isRequired
   }).isRequired
 }

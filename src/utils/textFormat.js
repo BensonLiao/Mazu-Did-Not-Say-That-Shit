@@ -3,11 +3,11 @@ import { reactionIconTipWrapperStyle } from '../styles/post'
 
 export default {
   getTimeStamp(timeStamp) {
-    let formattedTimeStamp = ''
-    if (timeStamp) {
-      formattedTimeStamp = '4/17/19, 6:12 PM'
+    const date = new Date(timeStamp * 1000)
+    return {
+      forText: `${date.getMonth() + 1}月${date.getDate()}日`,
+      forTip: `${date.toLocaleString('zh-TW')}`
     }
-    return formattedTimeStamp
   },
   getTotalCount(total) {
     const formattedTotal =

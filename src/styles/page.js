@@ -23,6 +23,7 @@ export const justifyContentSpaceBetween = `
 `
 
 export const DotSeparator = styled.span`
+  font-size: 13px; !important;
   marging-left: 2px;
   &:before {
     content: '·';

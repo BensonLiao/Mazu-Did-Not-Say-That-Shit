@@ -1,15 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { DotSeparator } from '../styles/page'
 import PostTime from './PostTime'
 import PrivacyIcon from './PrivacyIcon'
 import { displayFlex, alignCenter } from '../styles'
 
 const propTypes = {
   /**
-   * Sets content on body of `PostTime`
+   * Sets content on body of `PostTime`,
+   * using UNIX timestamp, ref: https://en.wikipedia.org/wiki/Unix_time
    */
-  postTime: PropTypes.string
+  postTime: PropTypes.number
 }
 
 const PostInfoWrapper = styled.div`
@@ -18,13 +20,14 @@ const PostInfoWrapper = styled.div`
 `
 
 const defaultProps = {
-  postTime: 'Fake Post Time'
+  postTime: 1412743274
 }
 
 const PostInfo = ({ postTime }) => {
   return (
     <PostInfoWrapper>
       <PostTime postTimeStamp={postTime} />
+      <DotSeparator />
       <PrivacyIcon />
     </PostInfoWrapper>
   )
