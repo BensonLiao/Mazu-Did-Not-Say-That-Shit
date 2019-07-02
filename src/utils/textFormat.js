@@ -9,6 +9,17 @@ export default {
       forTip: `${date.toLocaleString('zh-TW')}`
     }
   },
+  getTimeSpan(timeStamp) {
+    let timeSpanStamp = Date.now() - timeStamp * 1000
+    const hours = Math.floor(timeSpanStamp / 1000 / 60 / 60)
+    timeSpanStamp -= hours * (1000 * 60 * 60)
+    const minutes = Math.floor(timeSpanStamp / 1000 / 60)
+    timeSpanStamp -= minutes * (1000 * 60)
+    const seconds = Math.floor(timeSpanStamp / 1000)
+    console.log('seconds', seconds)
+    const timeSpan = '1分鐘'
+    return timeSpan
+  },
   getTotalCount(total) {
     const formattedTotal =
       total > 10000 ?

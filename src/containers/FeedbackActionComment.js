@@ -1,27 +1,35 @@
-import React from 'react'
-// import { connect } from 'react-redux'
-import { FEEDBACK } from '../actions'
-import FeedbackActionButton from '../components/FeedbackActionButton'
+import uuidv1 from 'uuid/v1'
+import { connect } from 'react-redux'
+import { getNormalizedData, CommentSchema } from '../utils/dataSchema'
+import { FEEDBACK, feedbackComment } from '../actions'
+import MyCommentPlaceholder from '../components/MyCommentPlaceholder'
 
-const FeedbackActionComment = () => {
-  const focusOnCommentComp = () => console.log('focusOnCommentComp')
-  return (
-    <FeedbackActionButton
-      onClick={focusOnCommentComp}
-      feedbackType={FEEDBACK.COMMENT}
-      displayText="回應"
-      tooltipText="留言"
-    />
-  )
+const mapStateToProps = (state, ownProps) => {
+  console.log('state', state)
+  console.log('ownProps', ownProps)
+  return {
+    reactId: ownProps.reactId
+  }
 }
 
-// const mapStateToProps = (state, ownProps) => {
-//   console.log('state', state)
-//   console.log('ownProps', ownProps)
-//   return {
-//     reacted: false
-//   }
-// }
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  doCommentAction: () => {
+    const saying = document.getElementById(ownProps.myCommentInputCompId).value
+    const actionData = {
+      id: uuidv1(),
+      saying,
+      time: Date.now(),
+      attachMedia: '',
+      mediaType: '',
+      user: ownProps.you,
+      postOrCommentId: FEEDBACK.TARGET
+    }
+    const normalizedActionData = getNormalizedData(actionData, CommentSchema)
+    return dispatch(feedbackComment(normalizedActionData))
+  }
+})
 
-// export default connect(mapStateToProps)(FeedbackActionComment)
-export default FeedbackActionComment
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MyCommentPlaceholder)

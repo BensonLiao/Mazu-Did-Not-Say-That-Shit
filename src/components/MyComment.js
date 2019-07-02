@@ -1,15 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 import cssConst from '../styles/constants'
+import appConst from '../utils/constants'
 import {
   displayFlex,
   alignCenter,
   justifyContentSpaceBetween
 } from '../styles/page'
 import CommentAvatar from './CommentAvatar'
-import MyCommentPlaceholder from './MyCommentPlaceholder'
+import FeedbackActionComment from '../containers/FeedbackActionComment'
 import MyCommentAttachButton from './MyCommentAttachButton'
-// import { useMyRef } from '../containers/RefProvider'
 
 const MyCommentWrapper = styled.div`
   ${displayFlex}
@@ -33,11 +33,17 @@ const MyCommentInputWrapper = styled.div`
 `
 
 const MyComment = () => {
+  const { you, myCommentInputCompId } = appConst
   return (
     <MyCommentWrapper>
       <CommentAvatar />
       <MyCommentInputWrapper>
-        <MyCommentPlaceholder type="text" placeholder="留言......" />
+        <FeedbackActionComment
+          type="text"
+          placeholder="留言......"
+          you={you}
+          myCommentInputCompId={myCommentInputCompId}
+        />
         <MyCommentAttachButton />
       </MyCommentInputWrapper>
     </MyCommentWrapper>

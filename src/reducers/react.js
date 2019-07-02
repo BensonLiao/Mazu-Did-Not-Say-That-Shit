@@ -7,12 +7,11 @@ const addReact = (state, action) => {
   const {
     payload: { reacts }
   } = action
-  const newState = { ...state, ...reacts }
-  // const newState = merge({}, state, reacts)
+  return { ...state, ...reacts }
+  // return merge({}, state, reacts)
   // Note. with spread operator will keep denormalized state consistent
   // but with merge() it will miss the none primitive property.
   // Maybe it's not because of merge(), will investigate this issue later.
-  return newState
 }
 
 const removeReact = (state, action) => {

@@ -1,49 +1,63 @@
 import { combineReducers } from 'redux'
+import pickBy from 'lodash/pickBy'
 import { ADD_DATA, FEEDBACK } from '../actions'
 
-const feedbackComment = (state, action) => {
-  const { payload } = action
-  const { id, postOrCommentId, comment, user } = payload
+const addComment = (state, action) => {
+  const {
+    payload: { comments }
+  } = action
+  return { ...comments, ...state }
+  // return merge({}, state, comments)
+  // Note. with spread operator will keep denormalized state consistent
+  // but with merge() it will miss the none primitive property.
+  // Maybe it's not because of merge(), will investigate this issue later.
+}
 
-  // Create our new Comment object
-  const react = {
-    id,
-    comment,
-    user,
-    postOrCommentId
-  }
-
-  // Insert the new Comment object into the updated lookup table
-  return {
-    ...state,
-    [id]: react
-  }
+const removeComment = (state, action) => {
+  const {
+    payload: { id }
+  } = action
+  // Remove the new Comment object from the updated lookup table
+  return pickBy(state, (value, key) => {
+    return key !== id
+  })
 }
 
 const commentsById = (state = {}, action) => {
   switch (action.type) {
+    case FEEDBACK.UNDO_COMMENT:
+      return removeComment(state, action)
     case FEEDBACK.COMMENT:
-      return feedbackComment(state, action)
     case ADD_DATA:
-      return { ...state, ...action.payload.comments }
+      return addComment(state, action)
     default:
       return state
   }
 }
 
 const addCommentId = (state, action) => {
-  const { payload } = action
-  const { id } = payload
+  const {
+    payload: { comments }
+  } = action
   // Just append the new react's ID to the list of all IDs
-  return state.concat(id)
+  return [...Object.keys(comments), ...state]
+}
+
+const removeCommentId = (state, action) => {
+  const {
+    payload: { id }
+  } = action
+  // Just remove the comment's ID from the list of all IDs
+  return state.filter(reactId => reactId !== id)
 }
 
 const allComment = (state = [], action) => {
   switch (action.type) {
+    case FEEDBACK.UNDO_COMMENT:
+      return removeCommentId(state, action)
     case FEEDBACK.COMMENT:
-      return addCommentId(state, action)
     case ADD_DATA:
-      return [...state, ...Object.keys(action.payload.comments)]
+      return addCommentId(state, action)
     default:
       return state
   }

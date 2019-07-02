@@ -29,11 +29,24 @@ const MyCommentInput = styled.input`
   font-size: ${cssConst.baseFontSize};
 `
 
-const MyCommentPlaceholder = props => {
+const MyCommentPlaceholder = ({ doCommentAction, ...props }) => {
   const { myCommentInputCompId } = appConst
+  const onKeyPress = event => {
+    if (event.key === 'Enter') {
+      if (event.shiftKey) {
+        console.log('doExpandNewLine')
+      } else {
+        doCommentAction()
+      }
+    }
+  }
   return (
     <MyCommentPlaceholderWrapper>
-      <MyCommentInput id={myCommentInputCompId} {...props} />
+      <MyCommentInput
+        onKeyPress={onKeyPress}
+        id={myCommentInputCompId}
+        {...props}
+      />
     </MyCommentPlaceholderWrapper>
   )
 }

@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import cssConst from '../styles/constants'
 import { displayFlex, DotSeparator } from '../styles/page'
 import CommentFeedbackButton from './CommentFeedbackButton'
+import textFormat from '../utils/textFormat'
 
 const CommentFeedbackWrapper = styled.div`
   ${displayFlex}
@@ -16,6 +17,8 @@ const CommentFeedbackWrapper = styled.div`
 
 const CommentFeedback = ({ reacted, time }) => {
   const onClick = () => {}
+  const formattedTime =
+    typeof time === 'string' ? time : textFormat.getTimeSpan(time)
   return (
     <CommentFeedbackWrapper>
       <CommentFeedbackButton reacted={reacted} onClick={onClick} />
@@ -26,7 +29,7 @@ const CommentFeedback = ({ reacted, time }) => {
         onClick={onClick}
       />
       <DotSeparator />
-      <span>{time}</span>
+      <span>{formattedTime}</span>
     </CommentFeedbackWrapper>
   )
 }
@@ -38,7 +41,7 @@ CommentFeedback.defaultProps = {
 
 CommentFeedback.propTypes = {
   reacted: PropTypes.bool,
-  time: PropTypes.string
+  time: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 }
 
 CommentFeedback.displayName = 'CommentFeedback'

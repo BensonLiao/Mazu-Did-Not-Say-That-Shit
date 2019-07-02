@@ -1,4 +1,4 @@
-import uuidv1 from 'uuid/v1'
+// import uuidv1 from 'uuid/v1'
 
 export const ADD_DATA = 'ADD_DATA'
 
@@ -11,6 +11,7 @@ export const FEEDBACK = {
   REACT: 'REACT',
   UNDO_REACT: 'UNDO_REACT',
   COMMENT: 'COMMENT',
+  UNDO_COMMENT: 'UNDO_COMMENT',
   SHARE: 'SHARE',
   TARGET: 'POST'
 }
@@ -36,25 +37,30 @@ export const undoReact = id => ({
   }
 })
 
-export const feedbackComment = (
-  userInfo,
-  target = FEEDBACK.TARGET,
-  comment,
-  time = Date().now(),
-  attachMedia = '',
-  mediaType = ''
-) => ({
+export const feedbackComment = ({ entities }) => ({
   type: FEEDBACK.COMMENT,
-  payload: {
-    id: uuidv1(),
-    comment,
-    time,
-    attachMedia,
-    mediaType,
-    user: userInfo,
-    postOrCommentId: target
-  }
+  payload: entities
 })
+
+// export const feedbackComment = (
+//   userInfo,
+//   target = FEEDBACK.TARGET,
+//   comment,
+//   time = Date().now(),
+//   attachMedia = '',
+//   mediaType = ''
+// ) => ({
+//   type: FEEDBACK.COMMENT,
+//   payload: {
+//     id: uuidv1(),
+//     comment,
+//     time,
+//     attachMedia,
+//     mediaType,
+//     user: userInfo,
+//     postOrCommentId: target
+//   }
+// })
 
 export const feedbackShare = (
   userInfo,
