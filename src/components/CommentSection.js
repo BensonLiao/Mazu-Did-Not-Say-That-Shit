@@ -7,7 +7,7 @@ import MyComment from './MyComment'
 import Comment from './Comment'
 import CommentFeedback from './CommentFeedback'
 import appConst from '../utils/constants'
-import { yourCommentStyle } from '../styles/post'
+import { yourCommentBorderStyle } from '../styles/post'
 
 const CommentSectionWrapper = styled.div`
   border-top: ${cssConst.postSectionBorder};
@@ -17,7 +17,7 @@ const CommentAndFeedbackWrapper = styled.div`
   position: relative;
   padding: 4px 12px 8px 12px;
   ${props => {
-    return props.isYourComment ? yourCommentStyle : ''
+    return props.isYourComment ? yourCommentBorderStyle : ''
   }}
 `
 

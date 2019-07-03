@@ -228,6 +228,7 @@ export const baseCommentInputStyle = `
   font: 400 11px system-ui;
 `
 
+// Facebook's workround
 export const yourCommentStyle = `
   &:before {
     background-color: ${cssConst.commentYoursBorderColor};
@@ -238,4 +239,10 @@ export const yourCommentStyle = `
     top: 0;
     width: 2px;
   }
+`
+
+// border style workround
+export const yourCommentBorderStyle = `
+  border-left: 2px solid ${cssConst.commentYoursBorderColor};
+  padding: 2px 12px 8px 12px !important;
 `
