@@ -7,7 +7,7 @@ import { relevantIconStyle } from '../styles/post'
 const RelevantIconWrapper = styled.div`
   ${displayFlex}
   font-size: ${cssConst.baseFontSize};
-  margin: 8px 0;
+  margin: 8px 12px;
   color: #444950;
   cursor: pointer;
 `

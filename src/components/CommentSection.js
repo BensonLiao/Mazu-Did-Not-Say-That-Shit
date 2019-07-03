@@ -6,10 +6,19 @@ import RelevantCommentToggle from './RelevantCommentToggle'
 import MyComment from './MyComment'
 import Comment from './Comment'
 import CommentFeedback from './CommentFeedback'
+import appConst from '../utils/constants'
+import { yourCommentStyle } from '../styles/post'
 
 const CommentSectionWrapper = styled.div`
-  margin: 0 12px;
   border-top: ${cssConst.postSectionBorder};
+`
+
+const CommentAndFeedbackWrapper = styled.div`
+  position: relative;
+  padding: 4px 12px 8px 12px;
+  ${props => {
+    return props.isYourComment ? yourCommentStyle : ''
+  }}
 `
 
 const CommentSection = ({ comments }) => {
@@ -18,11 +27,21 @@ const CommentSection = ({ comments }) => {
       <RelevantCommentToggle />
       <MyComment />
       {comments.map(comment => {
+        const {
+          user: { profileName }
+        } = comment
+        const {
+          you: { profileName: yourProfileName }
+        } = appConst
+        const isYourComment = yourProfileName === profileName
         return (
-          <React.Fragment key={comment.id}>
+          <CommentAndFeedbackWrapper
+            key={comment.id}
+            isYourComment={isYourComment}
+          >
             <Comment comment={comment} />
             <CommentFeedback time={comment.time} />
-          </React.Fragment>
+          </CommentAndFeedbackWrapper>
         )
       })}
     </CommentSectionWrapper>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { imgBaseUrl } from '../styles/post'
 
-const CommentAvatarWrapper = styled.a`
+const CommentAvatarWrapper = styled.div`
   display: block;
 `
 
@@ -16,10 +16,16 @@ const CommentAvatarImg = styled.img`
   overflow: hidden;
 `
 
-const CommentAvatar = ({ profileName, profileLink, profileImg }) => {
+const CommentAvatar = ({
+  profileName,
+  profileLink,
+  profileImg,
+  withComponent
+}) => {
   const imgUrl = imgBaseUrl(`./${profileImg}`)
+  const renderTag = withComponent === 'Comment' ? 'a' : 'span'
   return (
-    <CommentAvatarWrapper href={profileLink}>
+    <CommentAvatarWrapper href={profileLink} as={renderTag}>
       <CommentAvatarImg src={imgUrl} alt={profileName} />
     </CommentAvatarWrapper>
   )
@@ -28,13 +34,15 @@ const CommentAvatar = ({ profileName, profileLink, profileImg }) => {
 CommentAvatar.propTypes = {
   profileName: PropTypes.string,
   profileLink: PropTypes.string,
-  profileImg: PropTypes.string
+  profileImg: PropTypes.string,
+  withComponent: PropTypes.string
 }
 
 CommentAvatar.defaultProps = {
   profileName: '金乘五',
   profileLink: 'https://www.facebook.com/takeshikaneshirofanspage/',
-  profileImg: 'goldxfive.png'
+  profileImg: 'goldxfive.png',
+  withComponent: 'Comment'
 }
 
 export default CommentAvatar

@@ -30,6 +30,7 @@ export default {
   commentPlaceholderColorBlack: '#1c1e21',
   commentFeedbackTextColor: '#90949c',
   commentFeedbackButtonTextColor: '#385898',
+  commentYoursBorderColor: '#3578e5',
   commentReactionIconSize: '16px',
   commentAttachIconSize: '16px'
 }

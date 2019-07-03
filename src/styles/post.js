@@ -227,3 +227,15 @@ export const baseCommentInputStyle = `
   margin: 0em;
   font: 400 11px system-ui;
 `
+
+export const yourCommentStyle = `
+  &:before {
+    background-color: ${cssConst.commentYoursBorderColor};
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 2px;
+  }
+`

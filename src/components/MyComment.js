@@ -14,6 +14,7 @@ import MyCommentAttachButton from './MyCommentAttachButton'
 const MyCommentWrapper = styled.div`
   ${displayFlex}
   ${alignCenter}
+  padding: 4px 12px 8px 12px;
 `
 
 const MyCommentInputWrapper = styled.div`
@@ -36,7 +37,7 @@ const MyComment = () => {
   const { you, myCommentInputCompId } = appConst
   return (
     <MyCommentWrapper>
-      <CommentAvatar />
+      <CommentAvatar withComponent="MyComment" />
       <MyCommentInputWrapper>
         <FeedbackActionComment
           type="text"

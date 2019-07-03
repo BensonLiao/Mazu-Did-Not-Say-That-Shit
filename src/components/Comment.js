@@ -7,7 +7,6 @@ import CommentWithReactionSummary from './CommentWithReactionSummary'
 
 const CommentWrapper = styled.div`
   ${displayFlex}
-  margin-top: 10px;
 `
 
 const Comment = ({ comment }) => {

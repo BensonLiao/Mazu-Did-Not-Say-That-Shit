@@ -4,7 +4,7 @@ import { REACTIONS, FEEDBACK } from '../actions'
 export const definedUsers = {
   goldXFive: {
     id: uuidv1(),
-    profileName: '金城武',
+    profileName: '金乘五',
     profileLink: 'https://www.facebook.com/takeshikaneshirofanspage/',
     profileImg: 'goldxfive.png',
     isVerified: false
