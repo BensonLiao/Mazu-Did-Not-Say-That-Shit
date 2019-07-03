@@ -12,7 +12,7 @@ import {
   reactionIconStyle
 } from '../styles/post'
 
-const ReactionFirstIconWrapper = styled.div`
+const ReactionTopMostIconWrapper = styled.div`
   ${styledTooltipOverrideStyle}
   ${props => getIconSize(props.withComponent)}
   margin-left: -2px;
@@ -20,25 +20,25 @@ const ReactionFirstIconWrapper = styled.div`
   z-index: 3;
 `
 
-const FirstIcon = styled.i`
+const TopMostIcon = styled.i`
   ${reactionIconBaseStyle}
   ${reactionIconSummaryStyle}
   ${props => reactionIconStyle(props.reactFeeling, props.withComponent)}
 `
 
-const ReactionFirstIcon = ({
+const ReactionTopMostIcon = ({
   reactFeeling = REACTIONS.LIKE,
   withComponent,
   countSummary
 }) => {
   const tooltipId = 'tip-for-post-first-most-reaction'
   return (
-    <ReactionFirstIconWrapper
+    <ReactionTopMostIconWrapper
       data-for={tooltipId}
       data-tip={countSummary}
       withComponent={withComponent}
     >
-      <FirstIcon reactFeeling={reactFeeling} withComponent={withComponent} />
+      <TopMostIcon reactFeeling={reactFeeling} withComponent={withComponent} />
       {countSummary.length > 0 && (
         <StyledTooltip
           id={tooltipId}
@@ -47,20 +47,20 @@ const ReactionFirstIcon = ({
           bg={cssConst.tooltipBackgroundBlack}
         />
       )}
-    </ReactionFirstIconWrapper>
+    </ReactionTopMostIconWrapper>
   )
 }
 
-ReactionFirstIcon.defaultProps = {
+ReactionTopMostIcon.defaultProps = {
   countSummary: ''
 }
 
-ReactionFirstIcon.propTypes = {
+ReactionTopMostIcon.propTypes = {
   reactFeeling: PropTypes.string.isRequired,
   withComponent: PropTypes.string.isRequired,
   countSummary: PropTypes.string
 }
 
-ReactionFirstIcon.displayName = 'ReactionFirstIcon'
+ReactionTopMostIcon.displayName = 'ReactionTopMostIcon'
 
-export default ReactionFirstIcon
+export default ReactionTopMostIcon

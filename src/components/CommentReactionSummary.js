@@ -6,9 +6,9 @@ import { displayFlex, alignCenter } from '../styles/page'
 import { styledTooltipOverrideStyle } from '../styles/post'
 import dataSummary from '../utils/dataSummary'
 import StyledTooltip from './StyledTooltip'
-import ReactionFirstIcon from './ReactionFirstIcon'
-import ReactionSecondIcon from './ReactionSecondIcon'
-import ReactionThirdIcon from './ReactionThirdIcon'
+import ReactionTopMostIcon from './ReactionTopMostIcon'
+import ReactionSecondMostIcon from './ReactionSecondMostIcon'
+import ReactionThirdMostIcon from './ReactionThirdMostIcon'
 
 const CommentReactionSummaryWrapper = styled.div`
   ${displayFlex}
@@ -36,31 +36,31 @@ const CommentReactionCount = styled.span`
 `
 
 const CommentReactionSummary = ({ reactions }) => {
-  const reactionsSummary = dataSummary.getCommentReactionSummary(reactions)
+  const reactionSummary = dataSummary.getCommentReactionSummary(reactions)
   const tooltipId = 'tip-for-comment-reaction'
   const withComponent = 'comment'
   return (
     <CommentReactionSummaryWrapper
       data-for={tooltipId}
-      data-tip={reactionsSummary.forTip}
+      data-tip={reactionSummary.forTip}
     >
-      <ReactionFirstIcon
-        reactFeeling={reactionsSummary.topMost.feeling}
+      <ReactionTopMostIcon
+        reactFeeling={reactionSummary.topMost.feeling}
         withComponent={withComponent}
       />
-      {reactionsSummary.secondMost.total > 0 && (
-        <ReactionSecondIcon
-          reactFeeling={reactionsSummary.secondMost.feeling}
+      {reactionSummary.secondMost.total > 0 && (
+        <ReactionSecondMostIcon
+          reactFeeling={reactionSummary.secondMost.feeling}
           withComponent={withComponent}
         />
       )}
-      {reactionsSummary.thirdMost.total > 0 && (
-        <ReactionThirdIcon
-          reactFeeling={reactionsSummary.thirdMost.feeling}
+      {reactionSummary.thirdMost.total > 0 && (
+        <ReactionThirdMostIcon
+          reactFeeling={reactionSummary.thirdMost.feeling}
           withComponent={withComponent}
         />
       )}
-      <CommentReactionCount>{reactionsSummary.forText}</CommentReactionCount>
+      <CommentReactionCount>{reactionSummary.forText}</CommentReactionCount>
       <StyledTooltip
         id={tooltipId}
         effect="solid"

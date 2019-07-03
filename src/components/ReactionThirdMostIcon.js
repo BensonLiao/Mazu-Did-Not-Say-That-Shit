@@ -12,7 +12,7 @@ import {
   reactionIconStyle
 } from '../styles/post'
 
-const ReactionThirdIconWrapper = styled.div`
+const ReactionThirdMostIconWrapper = styled.div`
   ${styledTooltipOverrideStyle}
   ${props => getIconSize(props.withComponent)}
   margin-left: -2px;
@@ -20,25 +20,28 @@ const ReactionThirdIconWrapper = styled.div`
   z-index: 1;
 `
 
-const ThirdIcon = styled.i`
+const ThirdMostIcon = styled.i`
   ${reactionIconBaseStyle}
   ${reactionIconSummaryStyle}
   ${props => reactionIconStyle(props.reactFeeling, props.withComponent)}
 `
 
-const ReactionThirdIcon = ({
+const ReactionThirdMostIcon = ({
   reactFeeling = REACTIONS.LOVE,
   withComponent,
   countSummary
 }) => {
   const tooltipId = 'tip-for-post-third-most-reaction'
   return (
-    <ReactionThirdIconWrapper
+    <ReactionThirdMostIconWrapper
       data-for={tooltipId}
       data-tip={countSummary}
       withComponent={withComponent}
     >
-      <ThirdIcon reactFeeling={reactFeeling} withComponent={withComponent} />
+      <ThirdMostIcon
+        reactFeeling={reactFeeling}
+        withComponent={withComponent}
+      />
       {countSummary.length > 0 && (
         <StyledTooltip
           id={tooltipId}
@@ -47,20 +50,20 @@ const ReactionThirdIcon = ({
           bg={cssConst.tooltipBackgroundBlack}
         />
       )}
-    </ReactionThirdIconWrapper>
+    </ReactionThirdMostIconWrapper>
   )
 }
 
-ReactionThirdIcon.defaultProps = {
+ReactionThirdMostIcon.defaultProps = {
   countSummary: ''
 }
 
-ReactionThirdIcon.propTypes = {
+ReactionThirdMostIcon.propTypes = {
   reactFeeling: PropTypes.string.isRequired,
   withComponent: PropTypes.string.isRequired,
   countSummary: PropTypes.string
 }
 
-ReactionThirdIcon.displayName = 'ReactionThirdIcon'
+ReactionThirdMostIcon.displayName = 'ReactionThirdMostIcon'
 
-export default ReactionThirdIcon
+export default ReactionThirdMostIcon

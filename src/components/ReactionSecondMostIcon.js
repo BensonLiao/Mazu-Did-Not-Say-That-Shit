@@ -12,7 +12,7 @@ import {
   reactionIconStyle
 } from '../styles/post'
 
-const ReactionSecondIconWrapper = styled.div`
+const ReactionSecondMostIconWrapper = styled.div`
   ${styledTooltipOverrideStyle}
   ${props => getIconSize(props.withComponent)}
   margin-left: -2px;
@@ -20,25 +20,28 @@ const ReactionSecondIconWrapper = styled.div`
   z-index: 2;
 `
 
-const SecondIcon = styled.i`
+const SecondMostIcon = styled.i`
   ${reactionIconBaseStyle}
   ${reactionIconSummaryStyle}
   ${props => reactionIconStyle(props.reactFeeling, props.withComponent)}
 `
 
-const ReactionSecondIcon = ({
+const ReactionSecondMostIcon = ({
   reactFeeling = REACTIONS.HAHA,
   withComponent,
   countSummary
 }) => {
   const tooltipId = 'tip-for-post-second-most-reaction'
   return (
-    <ReactionSecondIconWrapper
+    <ReactionSecondMostIconWrapper
       data-for={tooltipId}
       data-tip={countSummary}
       withComponent={withComponent}
     >
-      <SecondIcon reactFeeling={reactFeeling} withComponent={withComponent} />
+      <SecondMostIcon
+        reactFeeling={reactFeeling}
+        withComponent={withComponent}
+      />
       {countSummary.length > 0 && (
         <StyledTooltip
           id={tooltipId}
@@ -47,20 +50,20 @@ const ReactionSecondIcon = ({
           bg={cssConst.tooltipBackgroundBlack}
         />
       )}
-    </ReactionSecondIconWrapper>
+    </ReactionSecondMostIconWrapper>
   )
 }
 
-ReactionSecondIcon.defaultProps = {
+ReactionSecondMostIcon.defaultProps = {
   countSummary: ''
 }
 
-ReactionSecondIcon.propTypes = {
+ReactionSecondMostIcon.propTypes = {
   reactFeeling: PropTypes.string.isRequired,
   withComponent: PropTypes.string.isRequired,
   countSummary: PropTypes.string
 }
 
-ReactionSecondIcon.displayName = 'ReactionSecondIcon'
+ReactionSecondMostIcon.displayName = 'ReactionSecondMostIcon'
 
-export default ReactionSecondIcon
+export default ReactionSecondMostIcon

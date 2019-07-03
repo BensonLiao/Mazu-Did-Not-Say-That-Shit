@@ -31,7 +31,7 @@ const CommentWithReactionSummary = ({
         saying={saying}
         attachMedia={attachMedia}
       />
-      <CommentReactionSummary reactions={reactions} />
+      {reactions.length > 0 && <CommentReactionSummary reactions={reactions} />}
     </CommentWithReactionSummaryWrapper>
   )
 }
