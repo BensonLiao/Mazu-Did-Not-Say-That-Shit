@@ -7,7 +7,7 @@ const userInfo = {
   profileImg: 'test.png'
 }
 const reactId = 'fakereactid'
-const targetId = 'POST'
+const targetId = actions.FEEDBACK.TARGET
 
 describe('post reaction actions', () => {
   it('feedbackLike should create FEEDBACK_LIKE action', () => {
@@ -17,7 +17,7 @@ describe('post reaction actions', () => {
         id: reactId,
         feeling: actions.REACTIONS.LIKE,
         user: userInfo,
-        postOrCommentId: targetId
+        targetId
       }
     })
   })
@@ -29,7 +29,7 @@ describe('post reaction actions', () => {
         id: expect.any(String),
         feeling: actions.REACTIONS.HAHA,
         user: userInfo,
-        postOrCommentId: targetId
+        targetId
       }
     })
   })
@@ -41,7 +41,7 @@ describe('post reaction actions', () => {
         id: expect.any(String),
         feeling: actions.REACTIONS.LOVE,
         user: userInfo,
-        postOrCommentId: targetId
+        targetId
       }
     })
   })

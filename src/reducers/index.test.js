@@ -14,7 +14,7 @@ const feedbackReactAction = {
     id: 'fakereactid',
     feeling: REACTIONS.LIKE,
     user: userInfo,
-    postOrCommentId: FEEDBACK.TARGET
+    targetId: FEEDBACK.TARGET
   }
 }
 
@@ -24,7 +24,7 @@ const feedbackCommentAction = {
     id: 'fakecommentid',
     comment: 'fakecomment',
     user: userInfo,
-    postOrCommentId: FEEDBACK.TARGET
+    targetId: FEEDBACK.TARGET
   }
 }
 

@@ -28,6 +28,8 @@ const CommentSection = ({ comments }) => {
       <MyComment />
       {comments.map(comment => {
         const {
+          id,
+          time,
           user: { profileName }
         } = comment
         const {
@@ -35,12 +37,9 @@ const CommentSection = ({ comments }) => {
         } = appConst
         const isYourComment = yourProfileName === profileName
         return (
-          <CommentAndFeedbackWrapper
-            key={comment.id}
-            isYourComment={isYourComment}
-          >
+          <CommentAndFeedbackWrapper key={id} isYourComment={isYourComment}>
             <Comment comment={comment} />
-            <CommentFeedback time={comment.time} />
+            <CommentFeedback time={time} targetId={id} />
           </CommentAndFeedbackWrapper>
         )
       })}
@@ -60,7 +59,7 @@ CommentSection.propTypes = {
         profileImg: PropTypes.string,
         isVerified: PropTypes.bool
       }),
-      postOrCommentId: PropTypes.string,
+      targetId: PropTypes.string,
       reactions: PropTypes.arrayOf(
         PropTypes.shape({
           id: PropTypes.string,
@@ -72,7 +71,7 @@ CommentSection.propTypes = {
             isVerified: PropTypes.bool
           }),
           feeling: PropTypes.string,
-          postOrCommentId: PropTypes.string
+          targetId: PropTypes.string
         })
       )
     })
@@ -90,7 +89,7 @@ CommentSection.defaultProps = {
         profileImg: 'toolman.png',
         isVerified: true
       },
-      postOrCommentId: 'POST',
+      targetId: 'POST',
       reactions: []
     }
   ]

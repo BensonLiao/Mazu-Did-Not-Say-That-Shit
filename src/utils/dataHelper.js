@@ -1,9 +1,11 @@
+import { FEEDBACK } from '../actions'
+
 export default class dataHelper {
   constructor(state) {
     this.state = state
   }
 
-  getReactArray(postOrCommentId = 'POST') {
+  getReactArray(targetId = FEEDBACK.TARGET) {
     const { reactReducer, userReducer } = this.state
     // console.log('reactReducer.byId', reactReducer.byId)
     // console.log('userReducer.byId', userReducer.byId)
@@ -15,7 +17,7 @@ export default class dataHelper {
       return reactObj
     })
     // console.log('getReactArray', reacts)
-    return reacts.filter(react => react.postOrCommentId === postOrCommentId)
+    return reacts.filter(react => react.targetId === targetId)
   }
 
   getCommentArray() {

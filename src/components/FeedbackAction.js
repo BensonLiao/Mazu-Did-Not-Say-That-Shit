@@ -23,14 +23,15 @@ const FeedbackAction = () => {
     <FeedbackActionWrapper>
       <FeedbackActionReact
         you={you}
+        targetId={FEEDBACK.TARGET}
         reactId={reactId}
         feedbackType={FEEDBACK.REACT}
       />
       <FeedbackActionButton
-        onClick={focusRef}
         feedbackType={FEEDBACK.COMMENT}
         displayText="留言"
         tooltipText="留言"
+        onClick={focusRef}
       />
       <FeedbackActionShare you={you} feedbackType={FEEDBACK.SHARE} />
     </FeedbackActionWrapper>

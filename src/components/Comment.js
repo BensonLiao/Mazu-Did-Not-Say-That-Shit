@@ -45,7 +45,7 @@ Comment.propTypes = {
       isVerified: PropTypes.bool
     }),
     attachMedia: PropTypes.string,
-    postOrCommentId: PropTypes.string,
+    targetId: PropTypes.string,
     reactions: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string,
@@ -57,7 +57,7 @@ Comment.propTypes = {
           isVerified: PropTypes.bool
         }),
         feeling: PropTypes.string,
-        postOrCommentId: PropTypes.string
+        targetId: PropTypes.string
       })
     )
   })
@@ -74,7 +74,7 @@ Comment.defaultProps = {
       isVerified: true
     },
     attachMedia: '',
-    postOrCommentId: 'POST',
+    targetId: 'POST',
     reactions: []
   }
 }

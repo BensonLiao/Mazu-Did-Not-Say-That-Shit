@@ -149,28 +149,28 @@ const addCommentReactions = (
         id: uuidv1(),
         user: getFakeUser(i),
         feeling: REACTIONS.LIKE,
-        postOrCommentId: targetId
+        targetId
       })
     } else if (i < totalLikes + totalHahas) {
       reacts.push({
         id: uuidv1(),
         user: getFakeUser(i),
         feeling: REACTIONS.HAHA,
-        postOrCommentId: targetId
+        targetId
       })
     } else if (i < totalLikes + totalHahas + totalLoves) {
       reacts.push({
         id: uuidv1(),
         user: getFakeUser(i),
         feeling: REACTIONS.LOVE,
-        postOrCommentId: targetId
+        targetId
       })
     } else if (i < totalLikes + totalHahas + totalLoves + totalWows) {
       reacts.push({
         id: uuidv1(),
         user: getFakeUser(i),
         feeling: REACTIONS.WOW,
-        postOrCommentId: targetId
+        targetId
       })
     } else if (
       i <
@@ -180,7 +180,7 @@ const addCommentReactions = (
         id: uuidv1(),
         user: getFakeUser(i),
         feeling: REACTIONS.SAD,
-        postOrCommentId: targetId
+        targetId
       })
     } else if (
       i <
@@ -190,7 +190,7 @@ const addCommentReactions = (
         id: uuidv1(),
         user: getFakeUser(i),
         feeling: REACTIONS.ANGRY,
-        postOrCommentId: targetId
+        targetId
       })
     }
   }
@@ -246,37 +246,37 @@ export const createReactions = (
       id: uuidv1(),
       user: definedUsers.terryGoodTiming,
       feeling: REACTIONS.LIKE,
-      postOrCommentId: FEEDBACK.TARGET
+      targetId: FEEDBACK.TARGET
     },
     {
       id: uuidv1(),
       user: definedUsers.koreanFish,
       feeling: REACTIONS.LIKE,
-      postOrCommentId: FEEDBACK.TARGET
+      targetId: FEEDBACK.TARGET
     },
     {
       id: uuidv1(),
       user: definedUsers.universityFoundField,
       feeling: REACTIONS.HAHA,
-      postOrCommentId: FEEDBACK.TARGET
+      targetId: FEEDBACK.TARGET
     },
     {
       id: uuidv1(),
       user: definedUsers.english,
       feeling: REACTIONS.HAHA,
-      postOrCommentId: FEEDBACK.TARGET
+      targetId: FEEDBACK.TARGET
     },
     {
       id: uuidv1(),
       user: definedUsers.toolMan,
       feeling: REACTIONS.LOVE,
-      postOrCommentId: FEEDBACK.TARGET
+      targetId: FEEDBACK.TARGET
     },
     {
       id: uuidv1(),
       user: definedUsers.dingDing,
       feeling: REACTIONS.LOVE,
-      postOrCommentId: FEEDBACK.TARGET
+      targetId: FEEDBACK.TARGET
     }
   ]
   if (totalReactions < 2 || totalComments < 2) {
@@ -313,28 +313,28 @@ export const createReactions = (
         id: uuidv1(),
         user: getFakeUser(i),
         feeling: REACTIONS.LIKE,
-        postOrCommentId: FEEDBACK.TARGET
+        targetId: FEEDBACK.TARGET
       })
     } else if (i < totalLikes + totalHahas) {
       reacts.push({
         id: uuidv1(),
         user: getFakeUser(i),
         feeling: REACTIONS.HAHA,
-        postOrCommentId: FEEDBACK.TARGET
+        targetId: FEEDBACK.TARGET
       })
     } else if (i < totalLikes + totalHahas + totalLoves) {
       reacts.push({
         id: uuidv1(),
         user: getFakeUser(i),
         feeling: REACTIONS.LOVE,
-        postOrCommentId: FEEDBACK.TARGET
+        targetId: FEEDBACK.TARGET
       })
     } else if (i < totalLikes + totalHahas + totalLoves + totalWows) {
       reacts.push({
         id: uuidv1(),
         user: getFakeUser(i),
         feeling: REACTIONS.WOW,
-        postOrCommentId: FEEDBACK.TARGET
+        targetId: FEEDBACK.TARGET
       })
     } else if (
       i <
@@ -344,7 +344,7 @@ export const createReactions = (
         id: uuidv1(),
         user: getFakeUser(i),
         feeling: REACTIONS.SAD,
-        postOrCommentId: FEEDBACK.TARGET
+        targetId: FEEDBACK.TARGET
       })
     } else if (
       i <
@@ -354,7 +354,7 @@ export const createReactions = (
         id: uuidv1(),
         user: getFakeUser(i),
         feeling: REACTIONS.ANGRY,
-        postOrCommentId: FEEDBACK.TARGET
+        targetId: FEEDBACK.TARGET
       })
     }
   }
@@ -455,31 +455,36 @@ export const createComments = (commentIds = []) => {
       id: commentIds[0],
       user: definedUsers.terryGoodTiming,
       saying: '謝謝樓主托夢，三樓的民主不能當飯吃！',
-      time: '3天'
+      time: '3天',
+      targetId: FEEDBACK.TARGET
     },
     {
       id: commentIds[1],
       user: definedUsers.koreanFish,
       saying: '樓上為什麼不考慮吃個包子呢？',
-      time: '3天'
+      time: '3天',
+      targetId: FEEDBACK.TARGET
     },
     {
       id: commentIds[2],
       user: definedUsers.english,
       saying: '我也這麼覺得',
-      time: '4天'
+      time: '4天',
+      targetId: FEEDBACK.TARGET
     },
     {
       id: commentIds[3],
       user: definedUsers.toolMan,
       saying: '這個我想，要查證比較難啦',
-      time: '5天'
+      time: '5天',
+      targetId: FEEDBACK.TARGET
     },
     {
       id: commentIds[4],
       user: definedUsers.dingDing,
       saying: '可以托夢讓我重選台北市長嗎？',
-      time: '4天'
+      time: '4天',
+      targetId: FEEDBACK.TARGET
     },
     {
       id: commentIds[5],
@@ -487,13 +492,15 @@ export const createComments = (commentIds = []) => {
       saying: '五樓要不要藉這個機會在神明的面前澄清一下？',
       attachMedia: 'https://i.imgur.com/wvWFAMT.png',
       mediaType: 'pic',
-      time: '3天'
+      time: '3天',
+      targetId: FEEDBACK.TARGET
     },
     {
       id: commentIds[6],
       user: definedUsers.careWheelEveryday,
       saying: '五樓，我快等不及了',
-      time: '5天'
+      time: '5天',
+      targetId: FEEDBACK.TARGET
     },
     {
       id: commentIds[7],
@@ -505,7 +512,8 @@ export const createComments = (commentIds = []) => {
       3. 果斷斷開好友連結
       #怦然心動的臉書整理魔法
       #簡單三步驟打家學會了嗎`,
-      time: '5天'
+      time: '5天',
+      targetId: FEEDBACK.TARGET
     }
   ]
   for (let i = 8; i < commentIds.length; i++) {
@@ -513,7 +521,8 @@ export const createComments = (commentIds = []) => {
       id: commentIds[i],
       user: getFakeUser(i),
       saying: '假留言',
-      time: `${i}天`
+      time: `${i}天`,
+      targetId: FEEDBACK.TARGET
     })
   }
   return comments

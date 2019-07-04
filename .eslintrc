@@ -39,7 +39,7 @@
     "implicit-arrow-linebreak": "warn",
     "function-paren-newline": "warn",
     "arrow-body-style": "off",
-    "arrow-parens": ["warn", "as-needed", { "requireForBlockBody": true }],
+    "arrow-parens": ["warn", "as-needed"],
     "no-underscore-dangle": "off",
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "import/prefer-default-export": "warn",

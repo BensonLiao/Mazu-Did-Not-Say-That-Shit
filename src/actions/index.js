@@ -42,26 +42,6 @@ export const feedbackComment = ({ entities }) => ({
   payload: entities
 })
 
-// export const feedbackComment = (
-//   userInfo,
-//   target = FEEDBACK.TARGET,
-//   comment,
-//   time = Date().now(),
-//   attachMedia = '',
-//   mediaType = ''
-// ) => ({
-//   type: FEEDBACK.COMMENT,
-//   payload: {
-//     id: uuidv1(),
-//     comment,
-//     time,
-//     attachMedia,
-//     mediaType,
-//     user: userInfo,
-//     postOrCommentId: target
-//   }
-// })
-
 export const feedbackShare = (
   userInfo,
   time = Date().now(),

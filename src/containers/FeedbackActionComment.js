@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       attachMedia: '',
       mediaType: '',
       user: ownProps.you,
-      postOrCommentId: FEEDBACK.TARGET
+      targetId: FEEDBACK.TARGET
     }
     const normalizedActionData = getNormalizedData(actionData, CommentSchema)
     return dispatch(feedbackComment(normalizedActionData))

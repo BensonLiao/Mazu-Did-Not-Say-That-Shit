@@ -86,7 +86,7 @@ CommentReactionSummary.propTypes = {
         profileImg: PropTypes.string
       }),
       feeling: PropTypes.string,
-      postOrCommentId: PropTypes.string
+      targetId: PropTypes.string
     })
   )
 }

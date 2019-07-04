@@ -21,7 +21,7 @@ const feedbackReactAction = {
     id: 'fakereactid',
     feeling: REACTIONS.LIKE,
     user: userInfo,
-    postOrCommentId: FEEDBACK.TARGET
+    targetId: FEEDBACK.TARGET
   }
 }
 
@@ -60,7 +60,7 @@ describe('test reactReducer', () => {
               id: 'fakereactid2',
               feeling: REACTIONS.LIKE,
               user: userInfo2,
-              postOrCommentId: FEEDBACK.TARGET
+              targetId: FEEDBACK.TARGET
             }
           },
           allIds: []
@@ -72,7 +72,7 @@ describe('test reactReducer', () => {
         id: 'fakereactid2',
         feeling: REACTIONS.LIKE,
         user: userInfo2,
-        postOrCommentId: FEEDBACK.TARGET
+        targetId: FEEDBACK.TARGET
       },
       [feedbackReactAction.payload.id]: feedbackReactAction.payload
     })

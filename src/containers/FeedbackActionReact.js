@@ -5,8 +5,10 @@ import { getNormalizedData, ReactSchema } from '../utils/dataSchema'
 import { feedbackReact, undoReact, FEEDBACK, REACTIONS } from '../actions'
 import { isReacted } from '../reducers/selector'
 import FeedbackActionButton from '../components/FeedbackActionButton'
+import CommentFeedbackButton from '../components/CommentFeedbackButton'
 
 const FeedbackActionReact = ({
+  targetId,
   reactId,
   reacted,
   doReactAction,
@@ -18,12 +20,15 @@ const FeedbackActionReact = ({
     } else {
       doReactAction(reactId)
     }
-    // reacted ? undoReactAction(id) : doReactAction(id)
   }
-  return <FeedbackActionButton reacted={reacted} onClick={toggleReactAction} />
+  if (targetId === FEEDBACK.TARGET) {
+    return <FeedbackActionButton reacted={reacted} onClick={toggleReactAction} />
+  }
+  return <CommentFeedbackButton reacted={reacted} onClick={toggleReactAction} />
 }
 
 FeedbackActionReact.propTypes = {
+  targetId: PropTypes.string.isRequired,
   reactId: PropTypes.string.isRequired,
   reacted: PropTypes.bool.isRequired,
   doReactAction: PropTypes.func.isRequired,
@@ -34,6 +39,7 @@ const mapStateToProps = (state, ownProps) => {
   console.log('state', state)
   console.log('ownProps', ownProps)
   return {
+    targetId: ownProps.targetId,
     reactId: ownProps.reactId,
     reacted: isReacted(state, ownProps.reactId)
   }
@@ -45,7 +51,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       id: reactId,
       user: ownProps.you,
       feeling: REACTIONS.LIKE,
-      postOrCommentId: FEEDBACK.TARGET
+      targetId: FEEDBACK.TARGET
     }
     const normalizedActionData = getNormalizedData(actionData, ReactSchema)
     return dispatch(feedbackReact(normalizedActionData))
