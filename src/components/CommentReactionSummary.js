@@ -20,7 +20,7 @@ const CommentReactionSummaryWrapper = styled.div`
   position: absolute;
   bottom: ${props => (props.isNarrowComp ? '5px' : '-12px')};
   right: ${props => (props.isNarrowComp ? '-65px' : '2px')};
-  z-index: 9999;
+  z-index: 998;
   border-radius: 10px;
   -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.2);
   box-shadow: 0 1px 3px 0 rgba(0,0,0,.2);
