@@ -15,6 +15,7 @@ const CommentWithReactionSummaryWrapper = styled.div`
 `
 
 const CommentWithReactionSummary = ({
+  commentId,
   profileName,
   profileLink,
   isVerified,
@@ -25,18 +26,22 @@ const CommentWithReactionSummary = ({
   return (
     <CommentWithReactionSummaryWrapper>
       <CommentPlaceholder
+        commentId={commentId}
         profileName={profileName}
         profileLink={profileLink}
         isVerified={isVerified}
         saying={saying}
         attachMedia={attachMedia}
       />
-      {reactions.length > 0 && <CommentReactionSummary reactions={reactions} />}
+      {reactions.length > 0 && (
+        <CommentReactionSummary reactions={reactions} commentId={commentId} />
+      )}
     </CommentWithReactionSummaryWrapper>
   )
 }
 
 CommentWithReactionSummary.propTypes = {
+  commentId: PropTypes.string,
   profileName: PropTypes.string,
   profileLink: PropTypes.string,
   isVerified: PropTypes.bool,
@@ -58,6 +63,7 @@ CommentWithReactionSummary.propTypes = {
 }
 
 CommentWithReactionSummary.defaultProps = {
+  commentId: 'commentId',
   profileName: '台灣工具伯 汪進坪',
   profileLink: 'https://www.facebook.com/jingping.tw/',
   isVerified: true,

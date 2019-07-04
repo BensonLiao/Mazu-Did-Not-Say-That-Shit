@@ -11,6 +11,7 @@ const CommentWrapper = styled.div`
 
 const Comment = ({ comment }) => {
   const {
+    id,
     user: { profileName, profileLink, profileImg, isVerified },
     saying,
     attachMedia,
@@ -20,6 +21,7 @@ const Comment = ({ comment }) => {
     <CommentWrapper>
       <CommentAvatar profileName={profileName} profileImg={profileImg} />
       <CommentWithReactionSummary
+        commentId={id}
         profileName={profileName}
         profileLink={profileLink}
         isVerified={isVerified}

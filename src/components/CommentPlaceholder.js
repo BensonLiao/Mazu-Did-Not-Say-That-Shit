@@ -56,6 +56,7 @@ const getSeparateContent = saying => {
 }
 
 const CommentPlaceholder = ({
+  commentId,
   profileName,
   profileLink,
   isVerified,
@@ -71,7 +72,7 @@ const CommentPlaceholder = ({
   })
   return separatedContent.map((c, idx) => {
     return (
-      <CommentPlaceholderWrapper key={c.id}>
+      <CommentPlaceholderWrapper key={c.id} id={commentId}>
         {idx === 0 && (
           <ProfileLink profileName={profileName} profileLink={profileLink} />
         )}
@@ -95,6 +96,7 @@ const CommentPlaceholder = ({
 }
 
 CommentPlaceholder.propTypes = {
+  commentId: PropTypes.string,
   profileName: PropTypes.string,
   profileLink: PropTypes.string,
   isVerified: PropTypes.bool,
@@ -103,6 +105,7 @@ CommentPlaceholder.propTypes = {
 }
 
 CommentPlaceholder.defaultProps = {
+  commentId: 'commentId',
   profileName: '台灣工具伯 汪進坪',
   profileLink: 'https://www.facebook.com/jingping.tw/',
   isVerified: true,

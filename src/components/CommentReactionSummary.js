@@ -9,6 +9,7 @@ import StyledTooltip from './StyledTooltip'
 import ReactionTopMostIcon from './ReactionTopMostIcon'
 import ReactionSecondMostIcon from './ReactionSecondMostIcon'
 import ReactionThirdMostIcon from './ReactionThirdMostIcon'
+import useCompNarrow from '../hooks/useCompNarrow'
 
 const CommentReactionSummaryWrapper = styled.div`
   ${displayFlex}
@@ -17,8 +18,8 @@ const CommentReactionSummaryWrapper = styled.div`
   background: ${cssConst.postBackgroundWhite};
   color: ${cssConst.commentPlaceholderColor};
   position: absolute;
-  bottom: -12px;
-  right: 2px;
+  bottom: ${props => (props.isNarrowComp ? '5px' : '-12px')};
+  right: ${props => (props.isNarrowComp ? '-65px' : '2px')};
   z-index: 9999;
   border-radius: 10px;
   -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.2);
@@ -35,7 +36,8 @@ const CommentReactionCount = styled.span`
   font-family: Microsoft JhengHei;
 `
 
-const CommentReactionSummary = ({ reactions }) => {
+const CommentReactionSummary = ({ commentId, reactions }) => {
+  const isNarrowComp = useCompNarrow(commentId)
   const reactionSummary = dataSummary.getCommentReactionSummary(reactions)
   const tooltipId = 'tip-for-comment-reaction'
   const withComponent = 'comment'
@@ -43,6 +45,7 @@ const CommentReactionSummary = ({ reactions }) => {
     <CommentReactionSummaryWrapper
       data-for={tooltipId}
       data-tip={reactionSummary.forTip}
+      isNarrowComp={isNarrowComp}
     >
       <ReactionTopMostIcon
         reactFeeling={reactionSummary.topMost.feeling}
@@ -72,6 +75,7 @@ const CommentReactionSummary = ({ reactions }) => {
 }
 
 CommentReactionSummary.propTypes = {
+  commentId: PropTypes.string,
   reactions: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
@@ -88,6 +92,7 @@ CommentReactionSummary.propTypes = {
 }
 
 CommentReactionSummary.defaultProps = {
+  commentId: 'commentId',
   reactions: []
 }
 

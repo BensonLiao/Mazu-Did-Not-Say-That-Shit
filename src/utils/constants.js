@@ -4,5 +4,6 @@ import { definedUsers } from './dataMock'
 export default {
   you: definedUsers.goldXFive,
   reactId: uuidv1(),
-  myCommentInputCompId: 'myCommentInputCompId'
+  myCommentInputCompId: 'myCommentInputCompId',
+  commentPlaceholderCompId: 'commentPlaceholderCompId'
 }
