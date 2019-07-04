@@ -1,5 +1,4 @@
 import React from 'react'
-import uuidv1 from 'uuid/v1'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import cssConst from '../styles/constants'
@@ -7,6 +6,7 @@ import { displayFlex, DotSeparator } from '../styles/page'
 import FeedbackActionReact from '../containers/FeedbackActionReact'
 import CommentFeedbackButton from './CommentFeedbackButton'
 import textFormat from '../utils/textFormat'
+import appConst from '../utils/constants'
 
 const CommentFeedbackWrapper = styled.div`
   ${displayFlex}
@@ -17,18 +17,14 @@ const CommentFeedbackWrapper = styled.div`
   margin-left: 50px;
 `
 
-const CommentFeedback = ({ time, targetId }) => {
+const CommentFeedback = ({ time, targetId, reactId }) => {
   const onClick = () => {}
   const formattedTime =
     typeof time === 'string' ? time : textFormat.getTimeSpan(time)
-  const reactId = uuidv1()
+  const { you } = appConst
   return (
     <CommentFeedbackWrapper>
-      <FeedbackActionReact
-        targetId={targetId}
-        reactId={reactId}
-        onClick={onClick}
-      />
+      <FeedbackActionReact you={you} targetId={targetId} reactId={reactId} />
       <DotSeparator />
       <CommentFeedbackButton displayText="回覆" onClick={onClick} />
       <DotSeparator />
@@ -43,7 +39,8 @@ CommentFeedback.defaultProps = {
 
 CommentFeedback.propTypes = {
   time: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  targetId: PropTypes.string.isRequired
+  targetId: PropTypes.string.isRequired,
+  reactId: PropTypes.string.isRequired
 }
 
 CommentFeedback.displayName = 'CommentFeedback'

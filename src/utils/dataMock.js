@@ -456,35 +456,40 @@ export const createComments = (commentIds = []) => {
       user: definedUsers.terryGoodTiming,
       saying: '謝謝樓主托夢，三樓的民主不能當飯吃！',
       time: '3天',
-      targetId: FEEDBACK.TARGET
+      targetId: FEEDBACK.TARGET,
+      reactId: uuidv1()
     },
     {
       id: commentIds[1],
       user: definedUsers.koreanFish,
       saying: '樓上為什麼不考慮吃個包子呢？',
       time: '3天',
-      targetId: FEEDBACK.TARGET
+      targetId: FEEDBACK.TARGET,
+      reactId: uuidv1()
     },
     {
       id: commentIds[2],
       user: definedUsers.english,
       saying: '我也這麼覺得',
       time: '4天',
-      targetId: FEEDBACK.TARGET
+      targetId: FEEDBACK.TARGET,
+      reactId: uuidv1()
     },
     {
       id: commentIds[3],
       user: definedUsers.toolMan,
       saying: '這個我想，要查證比較難啦',
       time: '5天',
-      targetId: FEEDBACK.TARGET
+      targetId: FEEDBACK.TARGET,
+      reactId: uuidv1()
     },
     {
       id: commentIds[4],
       user: definedUsers.dingDing,
       saying: '可以托夢讓我重選台北市長嗎？',
       time: '4天',
-      targetId: FEEDBACK.TARGET
+      targetId: FEEDBACK.TARGET,
+      reactId: uuidv1()
     },
     {
       id: commentIds[5],
@@ -493,14 +498,16 @@ export const createComments = (commentIds = []) => {
       attachMedia: 'https://i.imgur.com/wvWFAMT.png',
       mediaType: 'pic',
       time: '3天',
-      targetId: FEEDBACK.TARGET
+      targetId: FEEDBACK.TARGET,
+      reactId: uuidv1()
     },
     {
       id: commentIds[6],
       user: definedUsers.careWheelEveryday,
       saying: '五樓，我快等不及了',
       time: '5天',
-      targetId: FEEDBACK.TARGET
+      targetId: FEEDBACK.TARGET,
+      reactId: uuidv1()
     },
     {
       id: commentIds[7],
@@ -513,7 +520,8 @@ export const createComments = (commentIds = []) => {
       #怦然心動的臉書整理魔法
       #簡單三步驟打家學會了嗎`,
       time: '5天',
-      targetId: FEEDBACK.TARGET
+      targetId: FEEDBACK.TARGET,
+      reactId: uuidv1()
     }
   ]
   for (let i = 8; i < commentIds.length; i++) {
@@ -522,7 +530,8 @@ export const createComments = (commentIds = []) => {
       user: getFakeUser(i),
       saying: '假留言',
       time: `${i}天`,
-      targetId: FEEDBACK.TARGET
+      targetId: FEEDBACK.TARGET,
+      reactId: uuidv1()
     })
   }
   return comments

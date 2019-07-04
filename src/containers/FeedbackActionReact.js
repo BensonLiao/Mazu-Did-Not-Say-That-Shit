@@ -22,7 +22,9 @@ const FeedbackActionReact = ({
     }
   }
   if (targetId === FEEDBACK.TARGET) {
-    return <FeedbackActionButton reacted={reacted} onClick={toggleReactAction} />
+    return (
+      <FeedbackActionButton reacted={reacted} onClick={toggleReactAction} />
+    )
   }
   return <CommentFeedbackButton reacted={reacted} onClick={toggleReactAction} />
 }
@@ -36,8 +38,8 @@ FeedbackActionReact.propTypes = {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('state', state)
-  console.log('ownProps', ownProps)
+  // console.log('state', state)
+  // console.log('ownProps', ownProps)
   return {
     targetId: ownProps.targetId,
     reactId: ownProps.reactId,
@@ -51,7 +53,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       id: reactId,
       user: ownProps.you,
       feeling: REACTIONS.LIKE,
-      targetId: FEEDBACK.TARGET
+      targetId: ownProps.targetId
     }
     const normalizedActionData = getNormalizedData(actionData, ReactSchema)
     return dispatch(feedbackReact(normalizedActionData))

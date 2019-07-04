@@ -5,8 +5,6 @@ import { FEEDBACK, feedbackComment } from '../actions'
 import MyCommentPlaceholder from '../components/MyCommentPlaceholder'
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('state', state)
-  console.log('ownProps', ownProps)
   return {
     reactId: ownProps.reactId
   }
@@ -22,7 +20,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       attachMedia: '',
       mediaType: '',
       user: ownProps.you,
-      targetId: FEEDBACK.TARGET
+      targetId: FEEDBACK.TARGET,
+      reactId: uuidv1()
     }
     const normalizedActionData = getNormalizedData(actionData, CommentSchema)
     return dispatch(feedbackComment(normalizedActionData))

@@ -29,6 +29,7 @@ const CommentSection = ({ comments }) => {
       {comments.map(comment => {
         const {
           id,
+          reactId,
           time,
           user: { profileName }
         } = comment
@@ -39,7 +40,7 @@ const CommentSection = ({ comments }) => {
         return (
           <CommentAndFeedbackWrapper key={id} isYourComment={isYourComment}>
             <Comment comment={comment} />
-            <CommentFeedback time={time} targetId={id} />
+            <CommentFeedback time={time} targetId={id} reactId={reactId} />
           </CommentAndFeedbackWrapper>
         )
       })}
