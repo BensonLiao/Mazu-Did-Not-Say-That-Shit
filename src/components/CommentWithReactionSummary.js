@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import cssConst from '../styles/constants'
 import CommentPlaceholder from './CommentPlaceholder'
-// import CommentReactionSummary from './CommentReactionSummary'
-import DisplayCommentReactSummary from '../containers/DisplayCommentReactSummary'
+import CommentReactionSummary from './CommentReactionSummary'
 
 const CommentWithReactionSummaryWrapper = styled.div`
   background-color: ${cssConst.commentTextBackground};
@@ -24,7 +23,6 @@ const CommentWithReactionSummary = ({
   attachMedia,
   reactions
 }) => {
-  console.log('reactions', reactions)
   return (
     <CommentWithReactionSummaryWrapper>
       <CommentPlaceholder
@@ -36,10 +34,7 @@ const CommentWithReactionSummary = ({
         attachMedia={attachMedia}
       />
       {reactions.length > 0 && (
-        <DisplayCommentReactSummary
-          reactions={reactions}
-          commentId={commentId}
-        />
+        <CommentReactionSummary reactions={reactions} commentId={commentId} />
       )}
     </CommentWithReactionSummaryWrapper>
   )

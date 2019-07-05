@@ -7,8 +7,8 @@ export default class dataHelper {
 
   getReactArray(targetId = FEEDBACK.TARGET) {
     const { reactReducer, userReducer } = this.state
-    // console.log('reactReducer.byId', reactReducer.byId)
-    // console.log('userReducer.byId', userReducer.byId)
+    // console.log('reactReducer', reactReducer)
+    // console.log('userReducer', userReducer)
     const reacts = reactReducer.allIds.map(reactId => {
       const reactObj = reactReducer.byId[reactId]
       if (typeof reactObj.user === 'string') {
@@ -26,10 +26,11 @@ export default class dataHelper {
       const commentObj = commentReducer.byId[commentId]
       if (typeof commentObj.user === 'string') {
         commentObj.user = userReducer.byId[commentObj.user]
-        commentObj.reactions = this.getReactArray(commentId)
       }
+      commentObj.reactions = this.getReactArray(commentId)
       return commentObj
     })
+    // console.log('getCommentArray', comments)
     return comments
   }
 
