@@ -14,7 +14,6 @@ export const imgBaseUrl = require.context('../assets/img/', true)
 export const privacyIconStyle = `
   width: 12px;
   height: 12px;
-  vertical-align: middle;
   background-position: -28px -499px;
   background-image: url(${cssesc(privacyIconImg)});
   background-size: 73px 540px;

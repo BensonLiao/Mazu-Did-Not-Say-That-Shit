@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import cssConst from '../styles/constants'
-import StyledTooltip from './StyledTooltip'
 import textFormat from '../utils/textFormat'
 
 const propTypes = {
@@ -13,19 +12,19 @@ const propTypes = {
   postTimeStamp: PropTypes.number.isRequired
 }
 
-const PostTimeWrapper = styled.div`
+const PostTimeWrapper = styled.abbr`
   color: ${cssConst.infoColorGray};
   font-size: 13px;
   font-family: ${cssConst.fontFamily};
+  cursor: pointer;
+  text-decoration: none;
 `
 
 const PostTime = ({ postTimeStamp }) => {
-  const tooltipId = 'tip-for-post-time'
   const formattedime = textFormat.getTimeStamp(postTimeStamp)
   return (
-    <PostTimeWrapper data-for={tooltipId} data-tip={formattedime.forTip}>
+    <PostTimeWrapper title={formattedime.forTip}>
       {formattedime.forText}
-      <StyledTooltip id={tooltipId} effect="solid" />
     </PostTimeWrapper>
   )
 }
