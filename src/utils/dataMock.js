@@ -402,11 +402,10 @@ export const createReactions = (
   commentsTotal = getCommentReactsTotal(totalReactions, 125)
   addCommentReactions(reacts, commentId, commentIds, commentsTotal, [
     2,
+    3,
     0,
     0,
-    0,
-    0,
-    1
+    0
   ])
   commentId = uuidv1()
   commentsTotal = getCommentReactsTotal(totalReactions, 244)
