@@ -28,6 +28,7 @@
   "plugins": ["react", "import", "prettier"],
   "rules": {
     "no-undef": "warn",
+    "no-console": "off",
     "operator-linebreak": ["warn", "after"],
     "no-use-before-define": ["warn", "nofunc"],
     "no-param-reassign": "warn",
