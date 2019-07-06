@@ -17,11 +17,7 @@ const MyCommentInput = styled.input`
   ${baseCommentInputStyle}
   width: 300px;
   appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
   border-radius: 0;
-  -moz-border-radius: 0;
-  -webkit-border-radius: 0;
   outline: none;
   padding: 0;
   border: 0 solid transparent;

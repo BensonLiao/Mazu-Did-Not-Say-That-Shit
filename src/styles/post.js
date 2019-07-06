@@ -40,7 +40,6 @@ export const reactionIconBaseStyle = `
 `
 
 export const reactionIconSummaryStyle = `
-  -webkit-box-shadow: 2px 0 #fff;
   box-shadow: 2px 0 #fff;
   overflow: hidden;
 `
@@ -211,7 +210,7 @@ export const commentPlaceholderWrapperStyle = `
 `
 
 export const baseCommentInputStyle = `
-  webkit-writing-mode: horizontal-tb !important;
+  writing-mode: horizontal-tb !important;
   text-rendering: auto;
   color: initial;
   letter-spacing: normal;
@@ -221,9 +220,9 @@ export const baseCommentInputStyle = `
   text-shadow: none;
   display: inline-block;
   text-align: start;
-  -webkit-appearance: textfield;
+  appearance: textfield;
   background-color: white;
-  -webkit-rtl-ordering: logical;
+  rtl-ordering: logical;
   cursor: text;
   margin: 0em;
   font: 400 11px system-ui;

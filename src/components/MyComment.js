@@ -25,8 +25,6 @@ const MyCommentInputWrapper = styled.div`
   ${alignCenter}
   ${justifyContentSpaceBetween}
   cursor: text;
-  -webkit-box-flex: 1;
-  -ms-flex: 1 1 auto;
   flex: 1 1 auto;
   line-height: 16px;
   overflow: hidden;

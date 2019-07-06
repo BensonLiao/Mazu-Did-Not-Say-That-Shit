@@ -2,8 +2,6 @@ import styled from 'styled-components'
 import cssConst from './constants'
 
 export const displayFlex = `
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 `
 
@@ -12,23 +10,15 @@ export const displayInlineFlex = `
 `
 
 export const alignCenter = `
-  -webkit-box-pack: ${cssConst.alignItems};
-  -ms-flex-pack: ${cssConst.alignItems};
   justify-content: ${cssConst.alignItems};
-  -webkit-box-align: ${cssConst.alignItems};
-  -ms-flex-align: ${cssConst.alignItems};
   align-items: ${cssConst.alignItems};
 `
 
 export const alignYAxisCenter = `
-  -webkit-box-align: ${cssConst.alignItems};
-  -ms-flex-align: ${cssConst.alignItems};
   align-items: ${cssConst.alignItems};
 `
 
 export const alignXAxisCenter = `
-  -webkit-box-pack: ${cssConst.alignItems};
-  -ms-flex-pack: ${cssConst.alignItems};
   justify-content: ${cssConst.alignItems};
 `
 
@@ -41,8 +31,6 @@ export const alignYAxisEnd = `
 `
 
 export const justifyContentSpaceBetween = `
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
   justify-content: space-between;
 `
 
