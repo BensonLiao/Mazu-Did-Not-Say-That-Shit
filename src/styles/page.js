@@ -7,6 +7,10 @@ export const displayFlex = `
   display: flex;
 `
 
+export const displayInlineFlex = `
+  display: inline-flex;
+`
+
 export const alignCenter = `
   -webkit-box-pack: ${cssConst.alignItems};
   -ms-flex-pack: ${cssConst.alignItems};
@@ -14,6 +18,26 @@ export const alignCenter = `
   -webkit-box-align: ${cssConst.alignItems};
   -ms-flex-align: ${cssConst.alignItems};
   align-items: ${cssConst.alignItems};
+`
+
+export const alignYAxisCenter = `
+  -webkit-box-align: ${cssConst.alignItems};
+  -ms-flex-align: ${cssConst.alignItems};
+  align-items: ${cssConst.alignItems};
+`
+
+export const alignXAxisCenter = `
+  -webkit-box-pack: ${cssConst.alignItems};
+  -ms-flex-pack: ${cssConst.alignItems};
+  justify-content: ${cssConst.alignItems};
+`
+
+export const alignXAxisEnd = `
+  justify-content: flex-end;
+`
+
+export const alignYAxisEnd = `
+  align-items: flex-end;
 `
 
 export const justifyContentSpaceBetween = `

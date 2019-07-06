@@ -36,6 +36,7 @@ const CommentMediaWrapper = styled.div`
 `
 
 const CommentMediaImage = styled.img`
+  display: block;
   width: 360px;
   height: 204px;
   object-fit: contain;
@@ -64,12 +65,14 @@ const CommentPlaceholder = ({
   attachMedia
 }) => {
   const separatedContent = getSeparateContent(saying)
-  separatedContent.push({
-    id: uuidv1(),
-    content: '',
-    attachMedia,
-    isHashTag: false
-  })
+  if (attachMedia !== '') {
+    separatedContent.push({
+      id: uuidv1(),
+      content: '',
+      attachMedia,
+      isHashTag: false
+    })
+  }
   return separatedContent.map((c, idx) => {
     return (
       <CommentPlaceholderWrapper key={c.id} id={commentId}>

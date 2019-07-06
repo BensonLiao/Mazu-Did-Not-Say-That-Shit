@@ -10,6 +10,7 @@ import ReactionTopMostIcon from './ReactionTopMostIcon'
 import ReactionSecondMostIcon from './ReactionSecondMostIcon'
 import ReactionThirdMostIcon from './ReactionThirdMostIcon'
 import useCompNarrow from '../hooks/useCompNarrow'
+import useCompWidth from '../hooks/useCompWidth'
 
 const CommentReactionSummaryWrapper = styled.div`
   ${displayFlex}
@@ -19,7 +20,7 @@ const CommentReactionSummaryWrapper = styled.div`
   color: ${cssConst.commentPlaceholderColor};
   position: absolute;
   bottom: ${props => (props.isNarrowComp ? '5px' : '-12px')};
-  right: ${props => (props.isNarrowComp ? '-65px' : '2px')};
+  ${props => (props.isNarrowComp ? `left: ${props.leftPosition}px` : 'right: 2px')};
   z-index: 998;
   border-radius: 10px;
   -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.2);
@@ -38,6 +39,9 @@ const CommentReactionCount = styled.span`
 
 const CommentReactionSummary = ({ commentId, reactions }) => {
   const isNarrowComp = useCompNarrow(commentId)
+  const compWidth = useCompWidth(commentId)
+  const leftPosition = compWidth + 16
+  // 16 are this comp wrapper's right padding + parant comp wrapper's right padding
   const reactionSummary = dataSummary.getCommentReactionSummary(reactions)
   const tooltipId = 'tip-for-comment-reaction'
   const withComponent = 'comment'
@@ -46,6 +50,7 @@ const CommentReactionSummary = ({ commentId, reactions }) => {
       data-for={tooltipId}
       data-tip={reactionSummary.forTip}
       isNarrowComp={isNarrowComp}
+      leftPosition={leftPosition}
     >
       <ReactionTopMostIcon
         reactFeeling={reactionSummary.topMost.feeling}

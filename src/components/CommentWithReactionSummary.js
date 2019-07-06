@@ -6,6 +6,7 @@ import CommentPlaceholder from './CommentPlaceholder'
 import CommentReactionSummary from './CommentReactionSummary'
 
 const CommentWithReactionSummaryWrapper = styled.div`
+  display: block;
   background-color: ${cssConst.commentTextBackground};
   color: ${cssConst.commentPlaceholderColorBlack};
   border-radius: 18px;

@@ -207,6 +207,7 @@ export const commentPlaceholderWrapperStyle = `
   white-space: nowrap !important;
   cursor: text;
   line-height: 16px;
+  flex: 1 1 auto;
 `
 
 export const baseCommentInputStyle = `
