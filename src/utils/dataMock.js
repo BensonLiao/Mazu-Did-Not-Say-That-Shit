@@ -570,7 +570,8 @@ export const createPostData = (reacts = 12419, comments = 2, shares = 152) => {
     post: {
       id: 'POST',
       user: definedUsers.theMazu,
-      time: 1555495920, // unix-timestamp for 2019-04-17 18:12:0
+      time: 1555495920000,
+      // UNIX-timestamp in milli-sec for local time: 2019/04/17 18:12:00
       content: '我根本沒說。'
     },
     reacts: reactionsData.reacts,

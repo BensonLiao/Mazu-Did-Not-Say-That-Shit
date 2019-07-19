@@ -3,7 +3,7 @@ import { reactionIconTipWrapperStyle } from '../styles/post'
 
 export default {
   getTimeStamp(timeStamp) {
-    const date = new Date(timeStamp * 1000)
+    const date = new Date(timeStamp)
     const options = {
       year: 'numeric',
       month: 'numeric',
@@ -21,10 +21,12 @@ export default {
     const hours = Math.floor(timeSpanStamp / 1000 / 60 / 60)
     timeSpanStamp -= hours * (1000 * 60 * 60)
     const minutes = Math.floor(timeSpanStamp / 1000 / 60)
+    console.log('minutes', minutes)
     timeSpanStamp -= minutes * (1000 * 60)
     const seconds = Math.floor(timeSpanStamp / 1000)
     console.log('seconds', seconds)
-    const timeSpan = '1分鐘'
+    let timeSpan = hours > 0 ? `${hours}小時` : '1天'
+    timeSpan = minutes > 0 ? `${minutes}分鐘` : '1分鐘'
     return timeSpan
   },
   getTotalCount(total) {
