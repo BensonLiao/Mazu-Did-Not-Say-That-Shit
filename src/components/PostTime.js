@@ -21,10 +21,10 @@ const PostTimeWrapper = styled.abbr`
 `
 
 const PostTime = ({ postTimeStamp }) => {
-  const formattedime = textFormat.getTimeStamp(postTimeStamp)
+  const formattedTime = textFormat.getTimeStamp(postTimeStamp)
   return (
-    <PostTimeWrapper title={formattedime.forTip}>
-      {formattedime.forText}
+    <PostTimeWrapper title={formattedTime.forTip}>
+      {formattedTime.forText}
     </PostTimeWrapper>
   )
 }
