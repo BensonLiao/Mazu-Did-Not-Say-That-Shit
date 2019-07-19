@@ -10,16 +10,20 @@ import { displayFlex, alignCenter } from '../styles'
 const propTypes = {
   profileInfo: PropTypes.shape({
     /**
-     * Sets content on body of child `LeftInfo`.`PostprofileNameInfo`.`PosterprofileName`
+     * For img src of `Thumbnail`
+     */
+    profileImg: PropTypes.string,
+    /**
+     * For content on body of child `ProfileLink`
      */
     profileName: PropTypes.string,
     /**
-     * Sets href on attr of child `LeftInfo`.`PostprofileNameInfo`.`PosterprofileName`
+     * For href on attr of child `ProfileLink`
      */
     profileLink: PropTypes.string
   }),
   /**
-   * Sets content on body of `RightInfo`.`PostprofileNameInfo`.`PostTime`,
+   * For content on body of `PostInfo`.`PostTime`,
    * using UNIX timestamp, ref: https://en.wikipedia.org/wiki/Unix_time
    */
   postTime: PropTypes.number
