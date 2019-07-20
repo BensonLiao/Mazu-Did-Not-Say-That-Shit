@@ -9,11 +9,15 @@ import { displayFlex, justifyContentSpaceBetween } from '../styles'
 const propTypes = {
   profileInfo: PropTypes.shape({
     /**
-     * Sets content on body of child `LeftInfo`.`PostprofileNameInfo`.`PosterprofileName`
+     * For img src of `LeftInfo`
+     */
+    profileImg: PropTypes.string,
+    /**
+     * For content on body of child `LeftInfo`
      */
     profileName: PropTypes.string,
     /**
-     * Sets href on attr of child `LeftInfo`.`PostprofileNameInfo`.`PosterprofileName`
+     * Sets href on attr of child `LeftInfo`
      */
     profileLink: PropTypes.string
   }),
