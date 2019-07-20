@@ -26,12 +26,9 @@ const TopMostIcon = styled.i`
   ${props => reactionIconStyle(props.reactFeeling, props.withComponent)}
 `
 
-const ReactionTopMostIcon = ({
-  reactFeeling = REACTIONS.LIKE,
-  withComponent,
-  countSummary
-}) => {
-  const tooltipId = 'tip-for-post-first-most-reaction'
+const tooltipId = 'tip-for-post-first-most-reaction'
+
+const ReactionTopMostIcon = ({ reactFeeling, withComponent, countSummary }) => {
   return (
     <ReactionTopMostIconWrapper
       data-for={tooltipId}
@@ -52,13 +49,14 @@ const ReactionTopMostIcon = ({
 }
 
 ReactionTopMostIcon.defaultProps = {
+  reactFeeling: REACTIONS.LIKE,
   countSummary: ''
 }
 
 ReactionTopMostIcon.propTypes = {
-  reactFeeling: PropTypes.string.isRequired,
-  withComponent: PropTypes.string.isRequired,
-  countSummary: PropTypes.string
+  reactFeeling: PropTypes.string,
+  countSummary: PropTypes.string,
+  withComponent: PropTypes.string.isRequired
 }
 
 ReactionTopMostIcon.displayName = 'ReactionTopMostIcon'
