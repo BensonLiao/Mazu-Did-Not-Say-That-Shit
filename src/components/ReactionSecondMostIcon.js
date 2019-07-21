@@ -26,12 +26,13 @@ const SecondMostIcon = styled.i`
   ${props => reactionIconStyle(props.reactFeeling, props.withComponent)}
 `
 
+const tooltipId = 'tip-for-post-second-most-reaction'
+
 const ReactionSecondMostIcon = ({
-  reactFeeling = REACTIONS.HAHA,
+  reactFeeling,
   withComponent,
   countSummary
 }) => {
-  const tooltipId = 'tip-for-post-second-most-reaction'
   return (
     <ReactionSecondMostIconWrapper
       data-for={tooltipId}
@@ -55,11 +56,12 @@ const ReactionSecondMostIcon = ({
 }
 
 ReactionSecondMostIcon.defaultProps = {
+  reactFeeling: REACTIONS.HAHA,
   countSummary: ''
 }
 
 ReactionSecondMostIcon.propTypes = {
-  reactFeeling: PropTypes.string.isRequired,
+  reactFeeling: PropTypes.oneOf(Object.keys(REACTIONS)),
   withComponent: PropTypes.string.isRequired,
   countSummary: PropTypes.string
 }
