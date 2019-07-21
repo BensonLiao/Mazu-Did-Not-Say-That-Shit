@@ -26,12 +26,13 @@ const ThirdMostIcon = styled.i`
   ${props => reactionIconStyle(props.reactFeeling, props.withComponent)}
 `
 
+const tooltipId = 'tip-for-post-third-most-reaction'
+
 const ReactionThirdMostIcon = ({
-  reactFeeling = REACTIONS.LOVE,
+  reactFeeling,
   withComponent,
   countSummary
 }) => {
-  const tooltipId = 'tip-for-post-third-most-reaction'
   return (
     <ReactionThirdMostIconWrapper
       data-for={tooltipId}
@@ -55,11 +56,12 @@ const ReactionThirdMostIcon = ({
 }
 
 ReactionThirdMostIcon.defaultProps = {
+  reactFeeling: REACTIONS.LOVE,
   countSummary: ''
 }
 
 ReactionThirdMostIcon.propTypes = {
-  reactFeeling: PropTypes.string.isRequired,
+  reactFeeling: PropTypes.oneOf(Object.keys(REACTIONS)),
   withComponent: PropTypes.string.isRequired,
   countSummary: PropTypes.string
 }
