@@ -54,7 +54,7 @@ ReactionTopMostIcon.defaultProps = {
 }
 
 ReactionTopMostIcon.propTypes = {
-  reactFeeling: PropTypes.string,
+  reactFeeling: PropTypes.oneOf(Object.keys(REACTIONS)),
   countSummary: PropTypes.string,
   withComponent: PropTypes.string.isRequired
 }
