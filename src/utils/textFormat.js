@@ -48,24 +48,25 @@ export default {
    *     (Default of n: 2)
    */
   getReactionsCount(reactions, numTopShow = 2) {
-    // console.log('reactions user', reactions[0].user.profileName)
-    if (numTopShow > reactions.length) {
-      throw new Error('Number of top n must lesser than number of reactions.')
-    }
     let formattedSummary = ''
+    const availableTopShow =
+      numTopShow > reactions.length ? reactions.length : numTopShow
     if (reactions.length > 0) {
-      for (let i = 0; i < numTopShow; i++) {
+      for (let i = 0; i < availableTopShow; i++) {
         const {
           user: { profileName }
         } = reactions[i]
         const name =
-          i + 1 === numTopShow ? `${profileName}` : `${profileName}、`
+          i + 1 === availableTopShow ? `${profileName}` : `${profileName}、`
         formattedSummary += name
       }
     }
-    const totalOthers = reactions.length - numTopShow
-    const formattedTotalOthers = this.getTotalCount(totalOthers)
-    formattedSummary += `和其他${formattedTotalOthers}人`
+    const totalOthers = reactions.length - availableTopShow > 0 ?
+      reactions.length - availableTopShow : 0
+    if (totalOthers > 0) {
+      const formattedTotalOthers = this.getTotalCount(totalOthers)
+      formattedSummary += `和其他${formattedTotalOthers}人`
+    }
     return formattedSummary
   },
   /**
@@ -92,13 +93,14 @@ export default {
    *     The feedbacker's profile name.
    * @param {numTopShow}
    *     Show the feedbacker's name of the top n of @param {feedbacks}.
-   *     (Default of n: 2)
+   *     (Default of n: 1)
    */
   getFeedbacksCountTip(feedbacks, numTopShow = 1) {
     if (feedbacks.length < 1) {
       return ''
     }
-    const totalShow = numTopShow > feedbacks.length ? 1 : numTopShow
+    const totalShow =
+      numTopShow > feedbacks.length ? feedbacks.length : numTopShow
     let formattedSummary = ''
     if (feedbacks.length > 0) {
       for (let i = 0; i < totalShow; i++) {
@@ -108,7 +110,9 @@ export default {
         formattedSummary += `${profileName}<br>`
       }
     }
-    formattedSummary += `和其他${feedbacks.length - totalShow}個...`
+    if (feedbacks.length - totalShow > 0) {
+      formattedSummary += `和其他${feedbacks.length - totalShow}個...`
+    }
     return formattedSummary
   },
   /**
