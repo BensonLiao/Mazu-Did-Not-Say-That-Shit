@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types'
 import styled from 'styled-components'
 import { displayFlex, alignCenter } from '../styles'
 import { styledTooltipOverrideStyle } from '../styles/post'
+import appConst from '../utils/constants'
 import dataSummary from '../utils/dataSummary'
 import FeedbackCount from './FeedbackCount'
 import ReactionTopMostIcon from './ReactionTopMostIcon'
@@ -19,7 +20,7 @@ const ReactionSummaryWrapper = styled.div`
 
 const ReactionSummary = ({ reactions }) => {
   const reactionSummary = dataSummary.getReactionSummary(reactions)
-  const withComponent = 'default'
+  const withComponent = appConst.component.DEFAULT
   return (
     <ReactionSummaryWrapper>
       <ReactionTopMostIcon
