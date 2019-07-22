@@ -74,6 +74,43 @@ export const definedUsers = {
   }
 }
 
+const definedReactors = [
+  definedUsers.terryGoodTiming,
+  definedUsers.koreanFish,
+  definedUsers.universityFoundField,
+  definedUsers.english,
+  definedUsers.toolMan,
+  definedUsers.dingDing
+]
+
+/**
+ * Get user object for reactions with the following properties:
+ *   @prop {id}
+ *   @prop {profileName}
+ *   @prop {profileLink}
+ *   @prop {profileImg}
+ * @param {nameId} nameId
+ *  An id to distinguish from users,
+ *  will append to @prop {profileName}.
+ * @param {gender} gender
+ *  Choose an img represent gender, `MALE` if ommited.
+ */
+export const getReactor = (nameId, gender = 'MALE') => {
+  const maleUserImg = 'anonymous-male.png'
+  const femaleUserImg = 'anonymous-female.png'
+  const userImg = gender === 'MALE' ? maleUserImg : femaleUserImg
+  const user = nameId < definedReactors.length ?
+    definedReactors[nameId] :
+    {
+      id: uuidv1(),
+      profileName: `假帳號${nameId}`,
+      profileLink: '#',
+      profileImg: userImg,
+      isVerified: false
+    }
+  return user
+}
+
 /**
  * Get fake user object with the following properties:
  *   @prop {id}
@@ -103,7 +140,7 @@ const addCommentReactions = (
   reacts,
   targetId,
   commentIds,
-  numberTotal = 200,
+  commentReactsTotal = 200,
   ratio = [3, 2, 1]
 ) => {
   if (!Array.isArray(reacts)) {
@@ -115,35 +152,35 @@ const addCommentReactions = (
   if (!Array.isArray(commentIds)) {
     throw new Error('commentIds must be array.')
   }
-  if (numberTotal < 2) {
-    throw new Error('Number of total must greater than 2.')
-  }
   if (ratio.length > 6 || ratio.length < 1) {
     throw new Error('Ratio must be 1 to 6 numbers.')
   }
   if (ratio.filter(r => typeof r !== 'number').length > 0) {
     throw new Error('Array of ratio must be type of number.')
   }
+  // Calculate reations feeling distribution by ratio
+  // If commentReactsTotal < ratioTotal, ratio will be [1] for full of Likes
   const ratioTotal = ratio.reduce((r, acc) => r + acc)
-  const ratioLikes = ratioTotal / ratio[0]
-  const ratioHahas = ratio[1] ? ratioTotal / ratio[1] : 0
-  const ratioLoves = ratio[2] ? ratioTotal / ratio[2] : 0
-  const ratioWows = ratio[3] ? ratioTotal / ratio[3] : 0
-  const ratioSads = ratio[4] ? ratioTotal / ratio[4] : 0
-  const ratioAngers = ratio[5] ? ratioTotal / ratio[5] : 0
+  const ratioAvailable = commentReactsTotal >= ratioTotal
+  const divisorLike = ratioAvailable ? ratioTotal / ratio[0] : 1
+  const divisorHaha = ratioAvailable && ratio[1] ? ratioTotal / ratio[1] : 0
+  const divisorLove = ratioAvailable && ratio[2] ? ratioTotal / ratio[2] : 0
+  const divisorWow = ratioAvailable && ratio[3] ? ratioTotal / ratio[3] : 0
+  const divisorSad = ratioAvailable && ratio[4] ? ratioTotal / ratio[4] : 0
+  const divisorAnger = ratioAvailable && ratio[5] ? ratioTotal / ratio[5] : 0
   const totalLikes =
-    ratioLikes === 0 ? 0 : Math.ceil((numberTotal - 1) / ratioLikes)
+    divisorLike === 0 ? 0 : Math.ceil(commentReactsTotal / divisorLike)
   const totalHahas =
-    ratioHahas === 0 ? 0 : Math.ceil((numberTotal - 1) / ratioHahas)
+    divisorHaha === 0 ? 0 : Math.ceil(commentReactsTotal / divisorHaha)
   const totalLoves =
-    ratioLoves === 0 ? 0 : Math.ceil((numberTotal - 1) / ratioLoves)
+    divisorLove === 0 ? 0 : Math.ceil(commentReactsTotal / divisorLove)
   const totalWows =
-    ratioWows === 0 ? 0 : Math.ceil((numberTotal - 1) / ratioWows)
+    divisorWow === 0 ? 0 : Math.ceil(commentReactsTotal / divisorWow)
   const totalSads =
-    ratioSads === 0 ? 0 : Math.ceil((numberTotal - 1) / ratioSads)
+    divisorSad === 0 ? 0 : Math.ceil(commentReactsTotal / divisorSad)
   const totalAngers =
-    ratioAngers === 0 ? 0 : Math.ceil((numberTotal - 1) / ratioAngers)
-  for (let i = 0; i < numberTotal; i++) {
+    divisorAnger === 0 ? 0 : Math.ceil(commentReactsTotal / divisorAnger)
+  for (let i = 0; i < commentReactsTotal; i++) {
     if (i < totalLikes) {
       reacts.push({
         id: uuidv1(),
@@ -240,48 +277,6 @@ export const createReactions = (
   totalComments = 214,
   ratio = [3, 2, 1]
 ) => {
-  // Add 6 reactions for pre-defined users
-  // So it will return (totalReactions + 6) reactions
-  // Or (totalReactions + 6 + commentReactsTotal) reactions for comments
-  // if totalComments > 0
-  const reacts = [
-    {
-      id: uuidv1(),
-      user: definedUsers.terryGoodTiming,
-      feeling: REACTIONS.LIKE,
-      targetId: FEEDBACK.TARGET
-    },
-    {
-      id: uuidv1(),
-      user: definedUsers.koreanFish,
-      feeling: REACTIONS.LIKE,
-      targetId: FEEDBACK.TARGET
-    },
-    {
-      id: uuidv1(),
-      user: definedUsers.universityFoundField,
-      feeling: REACTIONS.HAHA,
-      targetId: FEEDBACK.TARGET
-    },
-    {
-      id: uuidv1(),
-      user: definedUsers.english,
-      feeling: REACTIONS.HAHA,
-      targetId: FEEDBACK.TARGET
-    },
-    {
-      id: uuidv1(),
-      user: definedUsers.toolMan,
-      feeling: REACTIONS.LOVE,
-      targetId: FEEDBACK.TARGET
-    },
-    {
-      id: uuidv1(),
-      user: definedUsers.dingDing,
-      feeling: REACTIONS.LOVE,
-      targetId: FEEDBACK.TARGET
-    }
-  ]
   if (totalReactions < 1) {
     throw new Error('Number of total reactions at least to be 1.')
   }
@@ -294,50 +289,55 @@ export const createReactions = (
   // Calculate reations feeling distribution by ratio
   // If totalReactions < ratioTotal, ratio will be [1] for full of Likes
   const ratioTotal = ratio.reduce((r, acc) => r + acc)
-  const ratioAvailable = totalReactions > ratioTotal
-  const ratioLikes = ratioAvailable ? ratioTotal / ratio[0] : 1
-  const ratioHahas = ratioAvailable && ratio[1] ? ratioTotal / ratio[1] : 0
-  const ratioLoves = ratioAvailable && ratio[2] ? ratioTotal / ratio[2] : 0
-  const ratioWows = ratioAvailable && ratio[3] ? ratioTotal / ratio[3] : 0
-  const ratioSads = ratioAvailable && ratio[4] ? ratioTotal / ratio[4] : 0
-  const ratioAngers = ratioAvailable && ratio[5] ? ratioTotal / ratio[5] : 0
+  const ratioAvailable = totalReactions >= ratioTotal
+  const divisorLike = ratioAvailable ? ratioTotal / ratio[0] : 1
+  const divisorHaha = ratioAvailable && ratio[1] ? ratioTotal / ratio[1] : 0
+  const divisorLove = ratioAvailable && ratio[2] ? ratioTotal / ratio[2] : 0
+  const divisorWow = ratioAvailable && ratio[3] ? ratioTotal / ratio[3] : 0
+  const divisorSad = ratioAvailable && ratio[4] ? ratioTotal / ratio[4] : 0
+  const divisorAnger = ratioAvailable && ratio[5] ? ratioTotal / ratio[5] : 0
   const totalLikes =
-    ratioLikes === 0 ? 0 : Math.ceil(totalReactions / ratioLikes)
+    divisorLike === 0 ? 0 : Math.ceil(totalReactions / divisorLike)
   const totalHahas =
-    ratioHahas === 0 ? 0 : Math.ceil(totalReactions / ratioHahas)
+    divisorHaha === 0 ? 0 : Math.ceil(totalReactions / divisorHaha)
   const totalLoves =
-    ratioLoves === 0 ? 0 : Math.ceil(totalReactions / ratioLoves)
-  const totalWows = ratioWows === 0 ? 0 : Math.ceil(totalReactions / ratioWows)
-  const totalSads = ratioSads === 0 ? 0 : Math.ceil(totalReactions / ratioSads)
+    divisorLove === 0 ? 0 : Math.ceil(totalReactions / divisorLove)
+  const totalWows = divisorWow === 0 ? 0 : Math.ceil(totalReactions / divisorWow)
+  const totalSads = divisorSad === 0 ? 0 : Math.ceil(totalReactions / divisorSad)
   const totalAngers =
-    ratioAngers === 0 ? 0 : Math.ceil(totalReactions / ratioAngers)
-  // Add reactions for fake user as many as totalReactions
+    divisorAnger === 0 ? 0 : Math.ceil(totalReactions / divisorAnger)
+  // Add reactions as many as totalReactions
+  // And the first n reactions is pre-defined reactors
+  // (n = length of pre-defined reactors)
+  // Or (totalReactions + commentReactsTotal) reactions for comments
+  // if totalComments > 0
+  const reacts = []
   for (let i = 0; i < totalReactions; i++) {
     if (i < totalLikes) {
       reacts.push({
         id: uuidv1(),
-        user: getFakeUser(i),
+        user: getReactor(i),
         feeling: REACTIONS.LIKE,
         targetId: FEEDBACK.TARGET
       })
     } else if (i < totalLikes + totalHahas) {
       reacts.push({
         id: uuidv1(),
-        user: getFakeUser(i),
+        user: getReactor(i),
         feeling: REACTIONS.HAHA,
         targetId: FEEDBACK.TARGET
       })
     } else if (i < totalLikes + totalHahas + totalLoves) {
       reacts.push({
         id: uuidv1(),
-        user: getFakeUser(i),
+        user: getReactor(i),
         feeling: REACTIONS.LOVE,
         targetId: FEEDBACK.TARGET
       })
     } else if (i < totalLikes + totalHahas + totalLoves + totalWows) {
       reacts.push({
         id: uuidv1(),
-        user: getFakeUser(i),
+        user: getReactor(i),
         feeling: REACTIONS.WOW,
         targetId: FEEDBACK.TARGET
       })
@@ -347,7 +347,7 @@ export const createReactions = (
     ) {
       reacts.push({
         id: uuidv1(),
-        user: getFakeUser(i),
+        user: getReactor(i),
         feeling: REACTIONS.SAD,
         targetId: FEEDBACK.TARGET
       })
@@ -357,7 +357,7 @@ export const createReactions = (
     ) {
       reacts.push({
         id: uuidv1(),
-        user: getFakeUser(i),
+        user: getReactor(i),
         feeling: REACTIONS.ANGRY,
         targetId: FEEDBACK.TARGET
       })
@@ -550,7 +550,7 @@ export const createComments = (commentIds = []) => {
 
 /**
  * create fake shares.
- * @param {numberTotal} numberTotal
+ * @param {commentReactsTotal} commentReactsTotal
  *  How many shares to make, must be greater than 2,
  *  2903 will pass down if omitted.
  * @returns {shares}
@@ -558,7 +558,7 @@ export const createComments = (commentIds = []) => {
  *  @prop {name}
  *    The user's profile name
  */
-export const createShares = (numberTotal = 290) => {
+export const createShares = (commentReactsTotal = 290) => {
   const shares = [
     { id: uuidv1(), user: definedUsers.terryGoodTiming },
     { id: uuidv1(), user: definedUsers.koreanFish },
@@ -569,8 +569,8 @@ export const createShares = (numberTotal = 290) => {
     { id: uuidv1(), user: definedUsers.careWheelEveryday },
     { id: uuidv1(), user: definedUsers.sparkJoy }
   ]
-  if (numberTotal < 2) throw new Error('Number of total must greater than 2.')
-  for (let i = 0; i < numberTotal; i++) {
+  if (commentReactsTotal < 2) throw new Error('Number of total must greater than 2.')
+  for (let i = 0; i < commentReactsTotal; i++) {
     shares.push({ id: uuidv1(), user: getFakeUser(i) })
   }
   return shares
