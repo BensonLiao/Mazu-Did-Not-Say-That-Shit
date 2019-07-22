@@ -208,11 +208,10 @@ const getCommentReactsTotal = (reactsTotal, ratio = 388) => {
  * 1/2 of Likes, 1/3 of Hahas and 1/6 of Loves
  * if @param {ratio} ratio was omitted.
  * @param {totalReactions} totalReactions
- *  How many reactions to make, must be greater than 2,
+ *  How many reactions to make, at least to be 1,
  *  16419 will pass down if omitted.
  * @param {totalComments} totalComments
- *  How many comments to make, must be greater than 2,
- *  214 will pass down if omitted.
+ *  How many comments to make, 214 will pass down if omitted.
  * @param {ratio} ratio
  *  How to distribute the ratio of reaction type,
  *  accept only an array of 1 to 6 numbers,
@@ -279,8 +278,8 @@ export const createReactions = (
       targetId: FEEDBACK.TARGET
     }
   ]
-  if (totalReactions < 2 || totalComments < 2) {
-    throw new Error('Number of total must greater than 2.')
+  if (totalReactions < 1) {
+    throw new Error('Number of total reactions at least to be 1.')
   }
   if (ratio.length > 6 || ratio.length < 1) {
     throw new Error('Ratio must be 1 to 6 numbers.')
@@ -289,6 +288,11 @@ export const createReactions = (
     throw new Error('Array of ratio must be type of number.')
   }
   const ratioTotal = ratio.reduce((r, acc) => r + acc)
+  if (totalReactions < ratioTotal) {
+    throw new Error(
+      'Number of total reactions must greater than total of ratio.'
+    )
+  }
   const ratioLikes = ratioTotal / ratio[0]
   const ratioHahas = ratio[1] ? ratioTotal / ratio[1] : 0
   const ratioLoves = ratio[2] ? ratioTotal / ratio[2] : 0
