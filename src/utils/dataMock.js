@@ -240,6 +240,10 @@ export const createReactions = (
   totalComments = 214,
   ratio = [3, 2, 1]
 ) => {
+  // Add 6 reactions for pre-defined users
+  // So it will return (totalReactions + 6) reactions
+  // Or (totalReactions + 6 + commentReactsTotal) reactions for comments
+  // if totalComments > 0
   const reacts = [
     {
       id: uuidv1(),
@@ -287,30 +291,27 @@ export const createReactions = (
   if (ratio.filter(r => typeof r !== 'number').length > 0) {
     throw new Error('Array of ratio must be type of number.')
   }
+  // Calculate reations feeling distribution by ratio
+  // If totalReactions < ratioTotal, ratio will be [1] for full of Likes
   const ratioTotal = ratio.reduce((r, acc) => r + acc)
-  if (totalReactions < ratioTotal) {
-    throw new Error(
-      'Number of total reactions must greater than total of ratio.'
-    )
-  }
-  const ratioLikes = ratioTotal / ratio[0]
-  const ratioHahas = ratio[1] ? ratioTotal / ratio[1] : 0
-  const ratioLoves = ratio[2] ? ratioTotal / ratio[2] : 0
-  const ratioWows = ratio[3] ? ratioTotal / ratio[3] : 0
-  const ratioSads = ratio[4] ? ratioTotal / ratio[4] : 0
-  const ratioAngers = ratio[5] ? ratioTotal / ratio[5] : 0
+  const ratioAvailable = totalReactions > ratioTotal
+  const ratioLikes = ratioAvailable ? ratioTotal / ratio[0] : 1
+  const ratioHahas = ratioAvailable && ratio[1] ? ratioTotal / ratio[1] : 0
+  const ratioLoves = ratioAvailable && ratio[2] ? ratioTotal / ratio[2] : 0
+  const ratioWows = ratioAvailable && ratio[3] ? ratioTotal / ratio[3] : 0
+  const ratioSads = ratioAvailable && ratio[4] ? ratioTotal / ratio[4] : 0
+  const ratioAngers = ratioAvailable && ratio[5] ? ratioTotal / ratio[5] : 0
   const totalLikes =
-    ratioLikes === 0 ? 0 : Math.ceil((totalReactions - 1) / ratioLikes)
+    ratioLikes === 0 ? 0 : Math.ceil(totalReactions / ratioLikes)
   const totalHahas =
-    ratioHahas === 0 ? 0 : Math.ceil((totalReactions - 1) / ratioHahas)
+    ratioHahas === 0 ? 0 : Math.ceil(totalReactions / ratioHahas)
   const totalLoves =
-    ratioLoves === 0 ? 0 : Math.ceil((totalReactions - 1) / ratioLoves)
-  const totalWows =
-    ratioWows === 0 ? 0 : Math.ceil((totalReactions - 1) / ratioWows)
-  const totalSads =
-    ratioSads === 0 ? 0 : Math.ceil((totalReactions - 1) / ratioSads)
+    ratioLoves === 0 ? 0 : Math.ceil(totalReactions / ratioLoves)
+  const totalWows = ratioWows === 0 ? 0 : Math.ceil(totalReactions / ratioWows)
+  const totalSads = ratioSads === 0 ? 0 : Math.ceil(totalReactions / ratioSads)
   const totalAngers =
-    ratioAngers === 0 ? 0 : Math.ceil((totalReactions - 1) / ratioAngers)
+    ratioAngers === 0 ? 0 : Math.ceil(totalReactions / ratioAngers)
+  // Add reactions for fake user as many as totalReactions
   for (let i = 0; i < totalReactions; i++) {
     if (i < totalLikes) {
       reacts.push({
@@ -362,75 +363,82 @@ export const createReactions = (
       })
     }
   }
+  // Add reactions for comments if totalComments > 0
   const commentIds = []
-  let commentId = uuidv1()
-  let commentsTotal = getCommentReactsTotal(totalReactions, 240)
-  addCommentReactions(reacts, commentId, commentIds, commentsTotal, [
-    0,
-    0,
-    0,
-    0,
-    0,
-    1
-  ])
-  commentId = uuidv1()
-  commentsTotal = getCommentReactsTotal(totalReactions, 124)
-  addCommentReactions(reacts, commentId, commentIds, commentsTotal, [
-    2,
-    0,
-    0,
-    0,
-    0,
-    1
-  ])
-  commentId = uuidv1()
-  commentsTotal = getCommentReactsTotal(totalReactions, 112)
-  addCommentReactions(reacts, commentId, commentIds, commentsTotal, [2, 1])
-  commentId = uuidv1()
-  commentsTotal = getCommentReactsTotal(totalReactions, 80)
-  addCommentReactions(reacts, commentId, commentIds, commentsTotal, [
-    3,
-    2,
-    0,
-    1
-  ])
-  commentId = uuidv1()
-  commentsTotal = getCommentReactsTotal(totalReactions, 112)
-  addCommentReactions(reacts, commentId, commentIds, commentsTotal, [
-    2,
-    0,
-    0,
-    1
-  ])
-  commentId = uuidv1()
-  commentsTotal = getCommentReactsTotal(totalReactions, 125)
-  addCommentReactions(reacts, commentId, commentIds, commentsTotal, [
-    2,
-    3,
-    0,
-    0,
-    0
-  ])
-  commentId = uuidv1()
-  commentsTotal = getCommentReactsTotal(totalReactions, 244)
-  addCommentReactions(reacts, commentId, commentIds, commentsTotal, [
-    2,
-    1,
-    0,
-    1,
-    2
-  ])
-  commentId = uuidv1()
-  commentsTotal = getCommentReactsTotal(totalReactions, 160)
-  addCommentReactions(reacts, commentId, commentIds, commentsTotal, [
-    2,
-    1,
-    0,
-    1
-  ])
-  commentsTotal = getCommentReactsTotal(totalReactions)
+  let commentReactsTotal = 0
+  if (totalComments > 0) {
+    let commentId = uuidv1()
+    commentReactsTotal = getCommentReactsTotal(totalReactions, 240)
+    addCommentReactions(reacts, commentId, commentIds, commentReactsTotal, [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ])
+    commentId = uuidv1()
+    commentReactsTotal = getCommentReactsTotal(totalReactions, 124)
+    addCommentReactions(reacts, commentId, commentIds, commentReactsTotal, [
+      2,
+      0,
+      0,
+      0,
+      0,
+      1
+    ])
+    commentId = uuidv1()
+    commentReactsTotal = getCommentReactsTotal(totalReactions, 112)
+    addCommentReactions(reacts, commentId, commentIds, commentReactsTotal, [
+      2,
+      1
+    ])
+    commentId = uuidv1()
+    commentReactsTotal = getCommentReactsTotal(totalReactions, 80)
+    addCommentReactions(reacts, commentId, commentIds, commentReactsTotal, [
+      3,
+      2,
+      0,
+      1
+    ])
+    commentId = uuidv1()
+    commentReactsTotal = getCommentReactsTotal(totalReactions, 112)
+    addCommentReactions(reacts, commentId, commentIds, commentReactsTotal, [
+      2,
+      0,
+      0,
+      1
+    ])
+    commentId = uuidv1()
+    commentReactsTotal = getCommentReactsTotal(totalReactions, 125)
+    addCommentReactions(reacts, commentId, commentIds, commentReactsTotal, [
+      2,
+      3,
+      0,
+      0,
+      0
+    ])
+    commentId = uuidv1()
+    commentReactsTotal = getCommentReactsTotal(totalReactions, 244)
+    addCommentReactions(reacts, commentId, commentIds, commentReactsTotal, [
+      2,
+      1,
+      0,
+      1,
+      2
+    ])
+    commentId = uuidv1()
+    commentReactsTotal = getCommentReactsTotal(totalReactions, 160)
+    addCommentReactions(reacts, commentId, commentIds, commentReactsTotal, [
+      2,
+      1,
+      0,
+      1
+    ])
+    commentReactsTotal = getCommentReactsTotal(totalReactions)
+  }
   for (let i = 0; i < totalComments; i++) {
-    addCommentReactions(reacts, uuidv1(), commentIds, commentsTotal, [
+    addCommentReactions(reacts, uuidv1(), commentIds, commentReactsTotal, [
       2,
       3,
       0,
