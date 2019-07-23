@@ -40,7 +40,7 @@ const CommentReactionSummary = ({ commentId, reactions }) => {
   const isNarrowComp = useCompNarrow(commentId)
   const compWidth = useCompWidth(commentId)
   const leftPosition = compWidth + 16
-  // 16 are this comp wrapper's right padding + parant comp wrapper's right padding
+  // 16 are this comp wrapper's + parent comp wrapper's right padding
   const reactionSummary = dataSummary.getCommentReactionSummary(reactions)
   const tooltipId = 'tip-for-comment-reaction'
   const withComponent = 'comment'

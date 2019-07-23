@@ -5,7 +5,7 @@ export default compId => {
   // Similar to componentDidMount and componentDidUpdate
   useEffect(() => {
     const targetComp = document.getElementById(compId)
-    if (targetComp.clientWidth < 140) {
+    if (targetComp && targetComp.clientWidth < 140) {
       setIsNarrowComp(true)
     }
   }, [compId]) // Only re-run the effect if compId changes
