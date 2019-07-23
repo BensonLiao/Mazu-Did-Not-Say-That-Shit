@@ -17,14 +17,19 @@ const CommentFeedbackWrapper = styled.div`
   margin-left: 50px;
 `
 
-const CommentFeedback = ({ time, targetId, reactId }) => {
+const CommentFeedback = ({ time, targetId, reactId, reacted }) => {
   const onClick = () => {}
   const formattedTime =
     typeof time === 'string' ? time : textFormat.getTimeSpan(time)
   const { you } = appConst
   return (
     <CommentFeedbackWrapper>
-      <FeedbackActionReact you={you} targetId={targetId} reactId={reactId} />
+      <FeedbackActionReact
+        you={you}
+        targetId={targetId}
+        reactId={reactId}
+        reacted={reacted}
+      />
       <DotSeparator />
       <CommentFeedbackButton displayText="回覆" onClick={onClick} />
       <DotSeparator />
@@ -34,13 +39,15 @@ const CommentFeedback = ({ time, targetId, reactId }) => {
 }
 
 CommentFeedback.defaultProps = {
-  time: '1天'
+  time: '1天',
+  reacted: false
 }
 
 CommentFeedback.propTypes = {
   time: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   targetId: PropTypes.string.isRequired,
-  reactId: PropTypes.string.isRequired
+  reactId: PropTypes.string.isRequired,
+  reacted: PropTypes.bool
 }
 
 CommentFeedback.displayName = 'CommentFeedback'

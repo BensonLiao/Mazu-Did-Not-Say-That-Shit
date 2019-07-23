@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { getNormalizedData, ReactSchema } from '../utils/dataSchema'
 import { feedbackReact, undoReact, FEEDBACK, REACTIONS } from '../actions'
 import { isReacted } from '../reducers/selector'
+import appConst from '../utils/constants'
 import FeedbackActionButton from '../components/FeedbackActionButton'
 import CommentFeedbackButton from '../components/CommentFeedbackButton'
 
@@ -40,10 +41,17 @@ FeedbackActionReact.propTypes = {
 const mapStateToProps = (state, ownProps) => {
   // console.log('state', state)
   // console.log('ownProps', ownProps)
+  // Pass reacted by props if a fake react id detected,
+  // otherwise pass by redux.
+  // A fake react id are used for testing or storybook.
+  const hasFakeReactId = ownProps.reactId === appConst.fakeReactId
+  const reactedByPropsOrRedux = hasFakeReactId
+    ? ownProps.reacted
+    : isReacted(state, ownProps.reactId)
   return {
     targetId: ownProps.targetId,
     reactId: ownProps.reactId,
-    reacted: isReacted(state, ownProps.reactId)
+    reacted: reactedByPropsOrRedux
   }
 }
 
