@@ -1,8 +1,9 @@
+import appConst from '../utils/constants'
 import rootReducer from './index'
 import { FEEDBACK, REACTIONS } from '../actions'
 
 const userInfo = {
-  id: 'fakeuserid',
+  id: appConst.fakeUserId,
   profileName: '我是假的!',
   profileLink: 'https://www.facebook.com/test/',
   profileImg: 'test.png'
@@ -11,7 +12,7 @@ const userInfo = {
 const feedbackReactAction = {
   type: FEEDBACK.REACT,
   payload: {
-    id: 'fakereactid',
+    id: appConst.fakeReactId,
     feeling: REACTIONS.LIKE,
     user: userInfo,
     targetId: FEEDBACK.TARGET
@@ -21,8 +22,8 @@ const feedbackReactAction = {
 const feedbackCommentAction = {
   type: FEEDBACK.COMMENT,
   payload: {
-    id: 'fakecommentid',
-    comment: 'fakecomment',
+    id: appConst.fakeCommentId,
+    saying: 'fakecomment',
     user: userInfo,
     targetId: FEEDBACK.TARGET
   }

@@ -1,8 +1,9 @@
+import appConst from '../utils/constants'
 import shareReducer from './share'
 import { FEEDBACK } from '../actions'
 
 const userInfo = {
-  id: 'fakeuserid',
+  id: appConst.fakeUserId,
   profileName: '我是假的!',
   profileLink: 'https://www.facebook.com/test/',
   profileImg: 'test.png'
@@ -11,7 +12,7 @@ const userInfo = {
 const feedbackShareAction = {
   type: FEEDBACK.SHARE,
   payload: {
-    id: 'fakeshareid',
+    id: appConst.fakeShareId,
     user: userInfo,
     postId: FEEDBACK.TARGET
   }

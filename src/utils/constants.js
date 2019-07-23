@@ -4,6 +4,7 @@ import { definedUsers } from './dataMock'
 export default {
   you: definedUsers.goldXFive,
   reactId: uuidv1(),
+  fakeUserId: 'fakeUserId',
   fakeReactId: 'fakeReactId',
   fakeCommentId: 'fakeCommentId',
   fakeShareId: 'fakeShareId',
