@@ -30,8 +30,11 @@ const CommentSection = ({ comments }) => {
         const {
           id,
           reactId,
+          saying,
+          attachMedia,
+          reactions,
           time,
-          user: { profileName }
+          user: { profileName, profileLink, profileImg, isVerified }
         } = comment
         const {
           you: { profileName: yourProfileName }
@@ -39,7 +42,16 @@ const CommentSection = ({ comments }) => {
         const isYourComment = yourProfileName === profileName
         return (
           <CommentAndFeedbackWrapper key={id} isYourComment={isYourComment}>
-            <Comment comment={comment} />
+            <Comment
+              commentId={id}
+              profileName={profileName}
+              profileLink={profileLink}
+              profileImg={profileImg}
+              isVerified={isVerified}
+              saying={saying}
+              attachMedia={attachMedia}
+              reactions={reactions}
+            />
             <CommentFeedback time={time} targetId={id} reactId={reactId} />
           </CommentAndFeedbackWrapper>
         )
