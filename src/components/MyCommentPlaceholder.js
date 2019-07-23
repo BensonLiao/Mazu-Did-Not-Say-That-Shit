@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import cssConst from '../styles/constants'
 import appConst from '../utils/constants'
@@ -45,6 +46,14 @@ const MyCommentPlaceholder = ({ doCommentAction, ...props }) => {
       />
     </MyCommentPlaceholderWrapper>
   )
+}
+
+MyCommentPlaceholder.displayName = 'MyCommentPlaceholder'
+MyCommentPlaceholder.propTypes = {
+  /**
+   * For redux action to add comment
+   */
+  doCommentAction: PropTypes.func.isRequired
 }
 
 export default MyCommentPlaceholder
