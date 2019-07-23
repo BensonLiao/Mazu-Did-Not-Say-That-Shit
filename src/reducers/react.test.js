@@ -1,15 +1,16 @@
+import appConst from '../utils/constants'
 import reactReducer from './react'
 import { FEEDBACK, REACTIONS } from '../actions'
 
 const userInfo = {
-  id: 'fakeuserid',
+  id: appConst.fakeUserId,
   profileName: '我是假的!',
   profileLink: 'https://www.facebook.com/test/',
   profileImg: 'test.png'
 }
 
 const userInfo2 = {
-  id: 'fakeuserid2',
+  id: `${appConst.fakeUserId}2`,
   profileName: '我是假的2!',
   profileLink: 'https://www.facebook.com/test2/',
   profileImg: 'test2.png'
@@ -18,7 +19,7 @@ const userInfo2 = {
 const feedbackReactAction = {
   type: FEEDBACK.REACT,
   payload: {
-    id: 'fakereactid',
+    id: appConst.fakeReactId,
     feeling: REACTIONS.LIKE,
     user: userInfo,
     targetId: FEEDBACK.TARGET
@@ -28,7 +29,7 @@ const feedbackReactAction = {
 const undoReactAction = {
   type: FEEDBACK.UNDO_REACT,
   payload: {
-    id: 'fakereactid'
+    id: appConst.fakeReactId
   }
 }
 
@@ -57,7 +58,7 @@ describe('test reactReducer', () => {
         {
           byId: {
             afakeid: {
-              id: 'fakereactid2',
+              id: `${appConst.fakeReactId}2`,
               feeling: REACTIONS.LIKE,
               user: userInfo2,
               targetId: FEEDBACK.TARGET
@@ -69,7 +70,7 @@ describe('test reactReducer', () => {
       ).byId
     ).toEqual({
       afakeid: {
-        id: 'fakereactid2',
+        id: `${appConst.fakeReactId}2`,
         feeling: REACTIONS.LIKE,
         user: userInfo2,
         targetId: FEEDBACK.TARGET

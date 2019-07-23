@@ -1,8 +1,9 @@
+import appConst from '../utils/constants'
 import commentReducer from './comment'
 import { FEEDBACK } from '../actions'
 
 const userInfo = {
-  id: 'fakeuserid',
+  id: appConst.fakeUserId,
   profileName: '我是假的!',
   profileLink: 'https://www.facebook.com/test/',
   profileImg: 'test.png'
@@ -11,8 +12,8 @@ const userInfo = {
 const feedbackCommentAction = {
   type: FEEDBACK.COMMENT,
   payload: {
-    id: 'fakecommentid',
-    comment: 'fakecomment',
+    id: appConst.fakeCommentId,
+    saying: 'fakecomment',
     user: userInfo,
     targetId: FEEDBACK.TARGET
   }

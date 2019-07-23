@@ -7,6 +7,7 @@ export default {
   fakeUserId: 'fakeUserId',
   fakeReactId: 'fakeReactId',
   fakeCommentId: 'fakeCommentId',
+  fakeShareId: 'fakeShareId',
   myCommentInputCompId: 'myCommentInputCompId',
   commentPlaceholderCompId: 'commentPlaceholderCompId',
   component: {
