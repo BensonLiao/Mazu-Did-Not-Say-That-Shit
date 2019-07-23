@@ -1,12 +1,13 @@
+import appConst from '../utils/constants'
 import * as actions from './index'
 
 const userInfo = {
-  id: 'fakeusertest',
+  id: appConst.fakeUserId,
   profileName: '我是假的!',
   profileLink: 'https://www.facebook.com/test/',
   profileImg: 'test.png'
 }
-const reactId = 'fakereactid'
+const reactId = appConst.fakeReactId
 const targetId = actions.FEEDBACK.TARGET
 
 describe('post reaction actions', () => {
