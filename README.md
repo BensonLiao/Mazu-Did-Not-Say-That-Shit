@@ -1,8 +1,4 @@
-# facebook-post-mock
-
-# \*Work in progress...
-
-A mocking page for a [post of Facebook](https://www.facebook.com/themazhou/posts/307433766601772)
+# Mazu did not say that shit
 
 ## How it work
 
