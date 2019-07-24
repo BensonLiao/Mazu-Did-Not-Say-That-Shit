@@ -1,4 +1,10 @@
-import '@babel/polyfill'
+// As of Babel 7.4.0, this package has been deprecated in favor of directly
+// including core-js/stable (to polyfill ECMAScript features)
+// and regenerator-runtime/runtime (needed to use transpiled generator functions):
+// import "core-js/stable";
+// import "regenerator-runtime/runtime";
+// ref: https://babeljs.io/docs/en/babel-polyfill
+import 'core-js/stable'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
@@ -9,17 +15,10 @@ import { createPostData } from './utils/dataMock'
 import { getNormalizedData, PostSchema } from './utils/dataSchema'
 import { addData } from './actions'
 
-// const reacts = 100
-// const comments = 2
-// const shares = 20
-// const preloadedState = createPostData(reacts, comments, shares)
 const preloadedState = createPostData()
-console.log('preloadedState', preloadedState)
 const store = configureStore()
 const normalizedData = getNormalizedData(preloadedState, PostSchema)
-console.log('normalizedData', normalizedData)
 store.dispatch(addData(normalizedData))
-console.log('store.getState()', store.getState())
 
 ReactDOM.render(
   <Provider store={store}>
