@@ -4,7 +4,17 @@
 // import "core-js/stable";
 // import "regenerator-runtime/runtime";
 // ref: https://babeljs.io/docs/en/babel-polyfill
-import 'core-js/stable'
+import 'core-js/stable/object/keys'
+import 'core-js/stable/array/is-array'
+import 'core-js/stable/array/sort'
+import 'core-js/stable/array/filter'
+import 'core-js/stable/array/map'
+import 'core-js/stable/array/reduce'
+import 'core-js/stable/string/replace'
+import 'core-js/stable/string/split'
+import 'core-js/stable/string/starts-with'
+import 'core-js/stable/number/to-fixed'
+import 'core-js/stable/date/now'
 import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
