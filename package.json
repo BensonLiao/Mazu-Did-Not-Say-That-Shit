@@ -37,6 +37,7 @@
     "@storybook/addon-notes": "^5.1.9",
     "@storybook/addon-viewport": "^5.1.9",
     "@storybook/addons": "^5.1.9",
+    "@storybook/storybook-deployer": "^2.8.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-import": "^2.18.0",
@@ -51,11 +52,17 @@
     "build": "react-scripts build",
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "deploy": "gh-pages -d build",
+    "deploy-sb": "storybook-to-ghpages --remote=storybook",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "eslint --debug .",
     "ls": "yarn list --pattern",
     "sb": "start-storybook -p 9001 -c .storybook"
+  },
+  "storybook-deployer": {
+    "gitUsername": "Benson Liao",
+    "gitEmail": "skylock777@gmail.com",
+    "commitMessage": "Deploy Storybook [skip ci]"
   },
   "browserslist": [
     ">0.2%",
