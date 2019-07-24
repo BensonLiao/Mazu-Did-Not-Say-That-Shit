@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import uuidv1 from 'uuid/v1'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { theme, cssConst, displayFlex, alignCenter } from '../styles'
 import Header from '../components/Header'
@@ -8,8 +7,6 @@ import PostContent from '../components/PostContent'
 import FeedbackSummary from '../components/FeedbackSummary'
 import FeedbackAction from '../components/FeedbackAction'
 import DisplayCommentSection from './DisplayCommentSection'
-import { definedUsers } from '../utils/dataMock'
-import { StateProvider } from './StateProvider'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -32,39 +29,24 @@ const PostWrapper = styled.div`
   font-family: ${cssConst.fontFamily};
 `
 
-const initialState = {
-  you: definedUsers.goldXFive,
-  reactId: uuidv1(),
-  shareMenuOpened: false
-}
-
-const appReducer = (state, action) => {
-  switch (action.type) {
-    default:
-      return state
-  }
-}
-
 class App extends React.Component {
   render() {
     const {
       postData: { user, time, content }
     } = this.props
     return (
-      <StateProvider initialState={initialState} reducer={appReducer}>
-        <ThemeProvider theme={theme}>
-          <Root>
-            <GlobalStyle />
-            <PostWrapper>
-              <Header profileInfo={user} postTime={time} />
-              <PostContent postContent={content} />
-              <FeedbackSummary />
-              <FeedbackAction />
-              <DisplayCommentSection />
-            </PostWrapper>
-          </Root>
-        </ThemeProvider>
-      </StateProvider>
+      <ThemeProvider theme={theme}>
+        <Root>
+          <GlobalStyle />
+          <PostWrapper>
+            <Header profileInfo={user} postTime={time} />
+            <PostContent postContent={content} />
+            <FeedbackSummary />
+            <FeedbackAction />
+            <DisplayCommentSection />
+          </PostWrapper>
+        </Root>
+      </ThemeProvider>
     )
   }
 }
