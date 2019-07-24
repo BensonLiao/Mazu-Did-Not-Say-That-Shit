@@ -9,4 +9,7 @@ export const RightInfo = styled.div`
   width: 20px;
   height: 20px;
   cursor: pointer;
+  &:hover {
+    background-position: -284px -245px;
+  }
 `
