@@ -11,6 +11,12 @@ Data are also mocked as a static js object to simplify the page, and will be rel
 
 Demo page are available [here](https://bensonliao.github.io/Mazu-Did-Not-Say-That-Shit).
 
+# Storybook
+
+There's also a storybook to see how components works as standalone UI:
+
+[![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@master/badge/badge-storybook.svg)](https://bensonliao.github.io/Mazu-Did-Not-Say-That-Shit-Storybook)
+
 # Run at local
 
 Clone and run
