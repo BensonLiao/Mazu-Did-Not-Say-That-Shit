@@ -5,11 +5,10 @@
 // import "regenerator-runtime/runtime";
 // ref: https://babeljs.io/docs/en/babel-polyfill
 import 'core-js/stable'
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import configureStore from './configureStore'
-import App from './containers/App'
 import registerServiceWorker from './registerServiceWorker'
 import { createPostData } from './utils/dataMock'
 import { getNormalizedData, PostSchema } from './utils/dataSchema'
@@ -20,9 +19,13 @@ const store = configureStore()
 const normalizedData = getNormalizedData(preloadedState, PostSchema)
 store.dispatch(addData(normalizedData))
 
+const App = React.lazy(() => import('./containers/App'))
+
 ReactDOM.render(
   <Provider store={store}>
-    <App postData={preloadedState.post} />
+    <Suspense fallback={<div>Loading...</div>}>
+      <App postData={preloadedState.post} />
+    </Suspense>
   </Provider>,
   document.getElementById('root')
 )
