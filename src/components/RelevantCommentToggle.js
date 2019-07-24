@@ -8,12 +8,16 @@ const RelevantIconWrapper = styled.div`
   ${displayFlex}
   font-size: ${cssConst.baseFontSize};
   margin: 8px 12px;
-  color: #444950;
+  color: ${props =>
+    (props.toggleOption ? cssConst.reactedButtonTextColor : '#444950')};
   cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 `
 
 const RelevantIcon = styled.i`
-  ${relevantIconStyle}
+  ${props => relevantIconStyle(props.toggleOption)}
 `
 
 export default class RelevantCommentToggle extends Component {
@@ -32,13 +36,14 @@ export default class RelevantCommentToggle extends Component {
 
   render() {
     const { isToggleOptionOpen, options } = this.state
-    const text = isToggleOptionOpen ? 'close' : 'open'
 
     return (
-      <RelevantIconWrapper onClick={this.toggleOptionMenu}>
+      <RelevantIconWrapper
+        toggleOption={isToggleOptionOpen}
+        onClick={this.toggleOptionMenu}
+      >
         {options[0]}
-        {text}
-        <RelevantIcon />
+        <RelevantIcon toggleOption={isToggleOptionOpen} />
       </RelevantIconWrapper>
     )
   }

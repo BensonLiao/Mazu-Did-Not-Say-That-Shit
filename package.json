@@ -10,6 +10,7 @@
     "url": "https://github.com/BensonLiao"
   },
   "private": true,
+  "homepage": "https://bensonliao.github.io/Mazu-Did-Not-Say-That-Shit",
   "dependencies": {
     "@storybook/react": "^5.1.9",
     "core-js": "^3.1.4",

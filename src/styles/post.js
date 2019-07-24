@@ -1,3 +1,5 @@
+/* eslint-disable indent */
+/* eslint-disable prettier/prettier */
 import cssesc from 'cssesc'
 import cssConst from './constants'
 import { displayFlex, alignCenter } from './page'
@@ -174,11 +176,15 @@ export const feedbackShareButtonStyle = `
   background-position: -61px -249px !important;
 `
 
-export const relevantIconStyle = `
+export const relevantIconStyle = optionOpen => `
   background-image: url(${cssesc(relevantIconImg)});
   background-repeat: no-repeat !important;
   background-size: 500px 287px !important;
-  background-position: -408px -270px !important;
+  ${
+    optionOpen ?
+      'background-position: -421px -270px !important;' :
+      'background-position: -408px -270px !important;'
+  }
   display: inline-block;
   height: 12px;
   margin-left: 2px;
