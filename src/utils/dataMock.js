@@ -69,7 +69,7 @@ export const definedUsers = {
     id: uuidv1(),
     profileName: '尛理惠的整理魔法',
     profileLink: '#',
-    profileImg: 'sparkJoy.png',
+    profileImg: 'sparkJoy.jpg',
     isVerified: true
   }
 }
@@ -506,7 +506,7 @@ export const createComments = (commentIds = []) => {
       id: commentIds[5],
       user: definedUsers.universityFoundField,
       saying: '五樓要不要藉這個機會在神明的面前澄清一下？',
-      attachMedia: 'https://i.imgur.com/wvWFAMT.png',
+      attachMedia: 'wvWFAMT.jpg',
       mediaType: 'pic',
       time: '3天',
       targetId: FEEDBACK.TARGET,

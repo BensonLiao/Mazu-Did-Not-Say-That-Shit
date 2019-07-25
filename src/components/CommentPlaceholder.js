@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import cssConst from '../styles/constants'
 import { displayFlex } from '../styles/page'
 import {
+  imgBaseUrl,
   commentPlaceholderWrapperStyle,
   verifiedBadgeIconStyle
 } from '../styles/post'
@@ -88,7 +89,7 @@ const CommentPlaceholder = ({
         {c.attachMedia !== '' && (
           <CommentMediaWrapper>
             <CommentMediaImage
-              src={c.attachMedia}
+              src={imgBaseUrl(`./${c.attachMedia}`)}
               alt={c.attachMedia}
             />
           </CommentMediaWrapper>
