@@ -3,9 +3,7 @@ import styled from 'styled-components'
 import { feedbackActionWrapperStyle } from '../styles/post'
 import { FEEDBACK } from '../actions'
 import FeedbackActionReact from '../containers/FeedbackActionReact'
-import FeedbackActionShare from '../containers/FeedbackActionShare'
 import FeedbackActionButton from './FeedbackActionButton'
-// import { useState } from '../containers/StateProvider'
 import appConst from '../utils/constants'
 
 const FeedbackActionWrapper = styled.div`
@@ -13,12 +11,12 @@ const FeedbackActionWrapper = styled.div`
 `
 
 const FeedbackAction = () => {
-  // const [state] = useState()
   const { you, reactId, myCommentInputCompId } = appConst
   const focusRef = () => {
     const inputRef = document.getElementById(myCommentInputCompId)
     inputRef.focus()
   }
+  const toggleShareMenu = () => console.log('toggleShareMenu')
   return (
     <FeedbackActionWrapper>
       <FeedbackActionReact
@@ -33,7 +31,12 @@ const FeedbackAction = () => {
         tooltipText="留言"
         onClick={focusRef}
       />
-      <FeedbackActionShare you={you} feedbackType={FEEDBACK.SHARE} />
+      <FeedbackActionButton
+        onClick={toggleShareMenu}
+        feedbackType={FEEDBACK.SHARE}
+        displayText="分享"
+        tooltipText="寄送這個給朋友或張貼在你的動態時報中．"
+      />
     </FeedbackActionWrapper>
   )
 }
