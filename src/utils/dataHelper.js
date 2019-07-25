@@ -1,11 +1,9 @@
-import { FEEDBACK } from '../actions'
-
 export default class dataHelper {
   constructor(state) {
     this.state = state
   }
 
-  getReactArray(targetId = FEEDBACK.TARGET) {
+  getReactArray() {
     const { reactReducer, userReducer } = this.state
     // console.log('reactReducer', reactReducer)
     // console.log('userReducer', userReducer)
@@ -17,8 +15,24 @@ export default class dataHelper {
       return reactObj
     })
     // console.log('getReactArray', reacts)
-    return reacts.filter(react => react.targetId === targetId)
+    return reacts
   }
+
+  // getCommentReactArray(commentId) {
+  //   const { commentReactReducer, userReducer } = this.state
+  //   // console.log('commentReactReducer', commentReactReducer)
+  //   // console.log('userReducer', userReducer)
+  //   const reacts = commentReactReducer.allIds.map(reactId => {
+  //     const reactObj = commentReactReducer.byId[reactId]
+  //     if (reactObj.targetId !== commentId) return {}
+  //     if (typeof reactObj.user === 'string') {
+  //       reactObj.user = userReducer.byId[reactObj.user]
+  //     }
+  //     return reactObj
+  //   })
+  //   // console.log('getReactArray', reacts)
+  //   return reacts
+  // }
 
   getCommentArray() {
     const { commentReducer, userReducer } = this.state
@@ -27,7 +41,6 @@ export default class dataHelper {
       if (typeof commentObj.user === 'string') {
         commentObj.user = userReducer.byId[commentObj.user]
       }
-      commentObj.reactions = this.getReactArray(commentId)
       return commentObj
     })
     // console.log('getCommentArray', comments)

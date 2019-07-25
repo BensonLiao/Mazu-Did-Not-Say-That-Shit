@@ -586,7 +586,12 @@ export const createPostData = (reacts = 12419, comments = 2, shares = 152) => {
       // UNIX-timestamp in milli-sec for local time: 2019/04/17 18:12:00
       content: '我根本沒說。'
     },
-    reacts: reactionsData.reacts,
+    reacts: reactionsData.reacts.filter(
+      react => react.targetId === FEEDBACK.TARGET
+    ),
+    commentReacts: reactionsData.reacts.filter(
+      react => react.targetId !== FEEDBACK.TARGET
+    ),
     comments: createComments(reactionsData.commentIds),
     shares: createShares(shares)
   }

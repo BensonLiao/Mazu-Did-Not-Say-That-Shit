@@ -1,49 +1,60 @@
 import appConst from '../utils/constants'
 import * as actions from './index'
 
+const userId = appConst.fakeUserId
 const userInfo = {
-  id: appConst.fakeUserId,
+  id: userId,
   profileName: '我是假的!',
   profileLink: 'https://www.facebook.com/test/',
   profileImg: 'test.png'
 }
 const reactId = appConst.fakeReactId
-const targetId = actions.FEEDBACK.TARGET
+const actionDataLike = {
+  entities: {
+    id: reactId,
+    feeling: actions.REACTIONS.LIKE,
+    user: userId,
+    targetId: actions.FEEDBACK.TARGET
+  }
+}
+
+const actionDataHaha = {
+  entities: {
+    id: reactId,
+    feeling: actions.REACTIONS.HAHA,
+    user: userId,
+    targetId: actions.FEEDBACK.TARGET
+  }
+}
+
+const actionDataLove = {
+  entities: {
+    id: reactId,
+    feeling: actions.REACTIONS.LOVE,
+    user: userId,
+    targetId: actions.FEEDBACK.TARGET
+  }
+}
 
 describe('post reaction actions', () => {
-  it('feedbackLike should create FEEDBACK_LIKE action', () => {
-    expect(actions.feedbackFeelLike(userInfo, reactId, targetId)).toEqual({
+  it('feedbackReact should create FEEDBACK.REACTIONS.LIKE action', () => {
+    expect(actions.feedbackReact(actionDataLike)).toEqual({
       type: actions.FEEDBACK.REACT,
-      payload: {
-        id: reactId,
-        feeling: actions.REACTIONS.LIKE,
-        user: userInfo,
-        targetId
-      }
+      payload: actionDataLike.entities
     })
   })
 
-  it('feedbackHaha should create FEEDBACK_HAHA action', () => {
-    expect(actions.feedbackFeelHaha(userInfo, targetId)).toEqual({
+  it('feedbackReact should create FEEDBACK.REACTIONS.HAHA action', () => {
+    expect(actions.feedbackReact(actionDataHaha)).toEqual({
       type: actions.FEEDBACK.REACT,
-      payload: {
-        id: expect.any(String),
-        feeling: actions.REACTIONS.HAHA,
-        user: userInfo,
-        targetId
-      }
+      payload: actionDataHaha.entities
     })
   })
 
-  it('feedbackLove should create FEEDBACK_LOVE action', () => {
-    expect(actions.feedbackFeelLove(userInfo, targetId)).toEqual({
+  it('feedbackReact should create FEEDBACK.REACTIONS.LOVE action', () => {
+    expect(actions.feedbackReact(actionDataLove)).toEqual({
       type: actions.FEEDBACK.REACT,
-      payload: {
-        id: expect.any(String),
-        feeling: actions.REACTIONS.LOVE,
-        user: userInfo,
-        targetId
-      }
+      payload: actionDataLove.entities
     })
   })
 

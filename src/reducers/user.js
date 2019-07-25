@@ -1,49 +1,48 @@
 import { combineReducers } from 'redux'
 import { ADD_DATA, FEEDBACK } from '../actions'
 
-// const addUser = (state, action) => {
-//   const { payload } = action
-//   console.log('payload', payload)
-//   const { user } = payload
-
-//   // Look up the correct feedback object, to simplify the rest of the code
-//   // const post = state[id]
-
-//   // Insert the new User object into the updated lookup table
-//   return {
-//     ...state,
-//     [user.id]: user
-//   }
-// }
+const addUser = (state, action) => {
+  const {
+    payload: { users }
+  } = action
+  return { ...state, ...users }
+}
 
 const usersById = (state = {}, action) => {
   switch (action.type) {
+    case ADD_DATA:
     case FEEDBACK.REACT:
     case FEEDBACK.COMMENT:
     case FEEDBACK.SHARE:
-    case ADD_DATA:
-      return { ...state, ...action.payload.users }
+      return addUser(state, action)
     default:
       return state
   }
 }
 
+const addUserIdByNormalizr = (state, action) => {
+  const {
+    payload: { users }
+  } = action
+  // Just append the new user's ID to the list of all IDs
+  return [...Object.keys(users), ...state]
+}
+
 // const addUserId = (state, action) => {
-//   const { payload } = action
 //   const {
-//     user: { id }
-//   } = payload
+//     payload: { id }
+//   } = action
 //   // Just append the new user's ID to the list of all IDs
-//   return state.concat(id)
+//   return [id, ...state]
 // }
 
 const allUser = (state = [], action) => {
   switch (action.type) {
+    case ADD_DATA:
     case FEEDBACK.REACT:
     case FEEDBACK.COMMENT:
     case FEEDBACK.SHARE:
-    case ADD_DATA:
-      return [...state, ...Object.keys(action.payload.users)]
+      return addUserIdByNormalizr(state, action)
     default:
       return state
   }

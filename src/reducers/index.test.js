@@ -1,47 +1,68 @@
 import appConst from '../utils/constants'
+import {
+  getNormalizedData,
+  ReactSchema,
+  CommentSchema,
+  ShareSchema
+} from '../utils/dataSchema'
 import rootReducer from './index'
-import { FEEDBACK, REACTIONS } from '../actions'
+import {
+  feedbackReact,
+  feedbackComment,
+  feedbackShare,
+  FEEDBACK,
+  REACTIONS
+} from '../actions'
+
+const userId = appConst.fakeUserId
 
 const userInfo = {
-  id: appConst.fakeUserId,
+  id: userId,
   profileName: '我是假的!',
   profileLink: 'https://www.facebook.com/test/',
   profileImg: 'test.png'
 }
 
-const feedbackReactAction = {
-  type: FEEDBACK.REACT,
-  payload: {
-    id: appConst.fakeReactId,
-    feeling: REACTIONS.LIKE,
-    user: userInfo,
-    targetId: FEEDBACK.TARGET
-  }
+const actionDataReact = {
+  id: appConst.fakeReactId,
+  feeling: REACTIONS.LIKE,
+  user: userInfo,
+  targetId: FEEDBACK.TARGET
 }
 
-const feedbackCommentAction = {
-  type: FEEDBACK.COMMENT,
-  payload: {
-    id: appConst.fakeCommentId,
-    saying: 'fakecomment',
-    user: userInfo,
-    targetId: FEEDBACK.TARGET
-  }
+const normalizedActionDataReact = getNormalizedData(
+  actionDataReact,
+  ReactSchema
+)
+
+const actionDataComment = {
+  id: appConst.fakeCommentId,
+  saying: 'fakecomment',
+  user: userInfo,
+  targetId: FEEDBACK.TARGET
 }
 
-const feedbackShareAction = {
-  type: FEEDBACK.SHARE,
-  payload: {
-    id: 'fakeshareid',
-    user: userInfo,
-    postId: FEEDBACK.TARGET
-  }
+const normalizedActionDataComment = getNormalizedData(
+  actionDataComment,
+  CommentSchema
+)
+
+const actionDataShare = {
+  id: appConst.fakeShareId,
+  user: userInfo,
+  postId: FEEDBACK.TARGET
 }
+
+const normalizedActionDataShare = getNormalizedData(
+  actionDataShare,
+  ShareSchema
+)
 
 describe('test rootReducer', () => {
   it('should handle initial state', () => {
     expect(rootReducer(undefined, {})).toEqual({
       reactReducer: { byId: {}, allIds: [] },
+      commentReactReducer: { byId: {}, allIds: [] },
       commentReducer: { byId: {}, allIds: [] },
       shareReducer: { byId: {}, allIds: [] },
       userReducer: { byId: {}, allIds: [] }
@@ -53,27 +74,30 @@ describe('test rootReducer', () => {
       rootReducer(
         {
           reactReducer: { byId: {}, allIds: [] },
+          commentReactReducer: { byId: {}, allIds: [] },
           commentReducer: { byId: {}, allIds: [] },
           shareReducer: { byId: {}, allIds: [] },
           userReducer: { byId: {}, allIds: [] }
         },
-        feedbackReactAction
+        feedbackReact(normalizedActionDataReact)
       ).reactReducer.allIds
-    ).toEqual([feedbackReactAction.payload.id])
+    ).toEqual([actionDataReact.id])
   })
   it('should handle rootReducer.reactReducer byId', () => {
     expect(
       rootReducer(
         {
           reactReducer: { byId: {}, allIds: [] },
+          commentReactReducer: { byId: {}, allIds: [] },
           commentReducer: { byId: {}, allIds: [] },
           shareReducer: { byId: {}, allIds: [] },
           userReducer: { byId: {}, allIds: [] }
         },
-        feedbackReactAction
+        feedbackReact(normalizedActionDataReact)
       ).reactReducer.byId
     ).toEqual({
-      [feedbackReactAction.payload.id]: feedbackReactAction.payload
+      [actionDataReact.id]:
+        normalizedActionDataReact.entities.reacts[actionDataReact.id]
     })
   })
 
@@ -82,27 +106,30 @@ describe('test rootReducer', () => {
       rootReducer(
         {
           reactReducer: { byId: {}, allIds: [] },
+          commentReactReducer: { byId: {}, allIds: [] },
           commentReducer: { byId: {}, allIds: [] },
           shareReducer: { byId: {}, allIds: [] },
           userReducer: { byId: {}, allIds: [] }
         },
-        feedbackCommentAction
+        feedbackComment(normalizedActionDataComment)
       ).commentReducer.allIds
-    ).toEqual([feedbackCommentAction.payload.id])
+    ).toEqual([actionDataComment.id])
   })
   it('should handle rootReducer.commentReducer byId', () => {
     expect(
       rootReducer(
         {
           reactReducer: { byId: {}, allIds: [] },
+          commentReactReducer: { byId: {}, allIds: [] },
           commentReducer: { byId: {}, allIds: [] },
           shareReducer: { byId: {}, allIds: [] },
           userReducer: { byId: {}, allIds: [] }
         },
-        feedbackCommentAction
+        feedbackComment(normalizedActionDataComment)
       ).commentReducer.byId
     ).toEqual({
-      [feedbackCommentAction.payload.id]: feedbackCommentAction.payload
+      [actionDataComment.id]:
+        normalizedActionDataComment.entities.comments[actionDataComment.id]
     })
   })
 
@@ -111,27 +138,30 @@ describe('test rootReducer', () => {
       rootReducer(
         {
           reactReducer: { byId: {}, allIds: [] },
+          commentReactReducer: { byId: {}, allIds: [] },
           commentReducer: { byId: {}, allIds: [] },
           shareReducer: { byId: {}, allIds: [] },
           userReducer: { byId: {}, allIds: [] }
         },
-        feedbackShareAction
+        feedbackShare(normalizedActionDataShare)
       ).shareReducer.allIds
-    ).toEqual([feedbackShareAction.payload.id])
+    ).toEqual([actionDataShare.id])
   })
   it('should handle rootReducer.shareReducer byId', () => {
     expect(
       rootReducer(
         {
           reactReducer: { byId: {}, allIds: [] },
+          commentReactReducer: { byId: {}, allIds: [] },
           commentReducer: { byId: {}, allIds: [] },
           shareReducer: { byId: {}, allIds: [] },
           userReducer: { byId: {}, allIds: [] }
         },
-        feedbackShareAction
+        feedbackShare(normalizedActionDataShare)
       ).shareReducer.byId
     ).toEqual({
-      [feedbackShareAction.payload.id]: feedbackShareAction.payload
+      [actionDataShare.id]:
+        normalizedActionDataShare.entities.shares[actionDataShare.id]
     })
   })
 
@@ -140,27 +170,30 @@ describe('test rootReducer', () => {
       rootReducer(
         {
           reactReducer: { byId: {}, allIds: [] },
+          commentReactReducer: { byId: {}, allIds: [] },
           commentReducer: { byId: {}, allIds: [] },
           shareReducer: { byId: {}, allIds: [] },
           userReducer: { byId: {}, allIds: [] }
         },
-        feedbackShareAction
+        feedbackShare(normalizedActionDataShare)
       ).userReducer.allIds
-    ).toEqual([feedbackShareAction.payload.user.id])
+    ).toEqual([actionDataShare.user.id])
   })
   it('should handle rootReducer.userReducer byId', () => {
     expect(
       rootReducer(
         {
           reactReducer: { byId: {}, allIds: [] },
+          commentReactReducer: { byId: {}, allIds: [] },
           commentReducer: { byId: {}, allIds: [] },
           shareReducer: { byId: {}, allIds: [] },
           userReducer: { byId: {}, allIds: [] }
         },
-        feedbackShareAction
+        feedbackShare(normalizedActionDataShare)
       ).userReducer.byId
     ).toEqual({
-      [feedbackShareAction.payload.user.id]: feedbackShareAction.payload.user
+      [actionDataShare.user.id]:
+        normalizedActionDataShare.entities.users[actionDataShare.user.id]
     })
   })
 })

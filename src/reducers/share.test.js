@@ -1,22 +1,15 @@
 import appConst from '../utils/constants'
+import { getNormalizedData, ShareSchema } from '../utils/dataSchema'
 import shareReducer from './share'
-import { FEEDBACK } from '../actions'
+import { feedbackShare, FEEDBACK } from '../actions'
 
-const userInfo = {
-  id: appConst.fakeUserId,
-  profileName: '我是假的!',
-  profileLink: 'https://www.facebook.com/test/',
-  profileImg: 'test.png'
+const actionData = {
+  id: appConst.fakeShareId,
+  user: appConst.fakeUserId,
+  postId: FEEDBACK.TARGET
 }
 
-const feedbackShareAction = {
-  type: FEEDBACK.SHARE,
-  payload: {
-    id: appConst.fakeShareId,
-    user: userInfo,
-    postId: FEEDBACK.TARGET
-  }
-}
+const normalizedActionData = getNormalizedData(actionData, ShareSchema)
 
 describe('test shareReducer', () => {
   it('should handle initial state', () => {
@@ -25,15 +18,21 @@ describe('test shareReducer', () => {
 
   it('should handle allIds', () => {
     expect(
-      shareReducer({ byId: {}, allIds: [] }, feedbackShareAction).allIds
-    ).toEqual([feedbackShareAction.payload.id])
+      shareReducer(
+        { byId: {}, allIds: [] },
+        feedbackShare(normalizedActionData)
+      ).allIds
+    ).toEqual([actionData.id])
   })
 
   it('should handle byId', () => {
     expect(
-      shareReducer({ byId: {}, allIds: [] }, feedbackShareAction).byId
+      shareReducer(
+        { byId: {}, allIds: [] },
+        feedbackShare(normalizedActionData)
+      ).byId
     ).toEqual({
-      [feedbackShareAction.payload.id]: feedbackShareAction.payload
+      [actionData.id]: actionData
     })
   })
 })

@@ -1,5 +1,3 @@
-// import uuidv1 from 'uuid/v1'
-
 export const ADD_DATA = 'ADD_DATA'
 
 export const addData = ({ entities }) => ({
@@ -10,6 +8,8 @@ export const addData = ({ entities }) => ({
 export const FEEDBACK = {
   REACT: 'REACT',
   UNDO_REACT: 'UNDO_REACT',
+  COMMENT_REACT: 'COMMENT_REACT',
+  UNDO_COMMENT_REACT: 'UNDO_COMMENT_REACT',
   COMMENT: 'COMMENT',
   UNDO_COMMENT: 'UNDO_COMMENT',
   SHARE: 'SHARE',
@@ -37,20 +37,24 @@ export const undoReact = id => ({
   }
 })
 
+export const feedbackReactToComment = ({ entities }) => ({
+  type: FEEDBACK.COMMENT_REACT,
+  payload: entities
+})
+
+export const undoReactToComment = id => ({
+  type: FEEDBACK.UNDO_COMMENT_REACT,
+  payload: {
+    id
+  }
+})
+
 export const feedbackComment = ({ entities }) => ({
   type: FEEDBACK.COMMENT,
   payload: entities
 })
 
-export const feedbackShare = (
-  userInfo,
-  time = Date().now(),
-  postId = FEEDBACK.TARGET
-) => ({
+export const feedbackShare = ({ entities }) => ({
   type: FEEDBACK.SHARE,
-  payload: {
-    time,
-    user: userInfo,
-    postId
-  }
+  payload: entities
 })

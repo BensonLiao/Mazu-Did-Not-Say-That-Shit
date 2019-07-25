@@ -1,40 +1,46 @@
 import appConst from '../utils/constants'
-import { getNormalizedData, ReactSchema } from '../utils/dataSchema'
-import reactReducer from './react'
-import { feedbackReact, undoReact, FEEDBACK, REACTIONS } from '../actions'
+import { getNormalizedData, CommentReactSchema } from '../utils/dataSchema'
+import commentReactReducer from './commentReact'
+import {
+  feedbackReactToComment,
+  undoReactToComment,
+  REACTIONS
+} from '../actions'
 
 const userId = appConst.fakeUserId
 
 const userId2 = `${appConst.fakeUserId}2`
 
+const commenId = appConst.fakeCommentId
+
 const actionData = {
   id: appConst.fakeReactId,
   feeling: REACTIONS.LIKE,
   user: userId,
-  targetId: FEEDBACK.TARGET
+  targetId: commenId
 }
 
-const normalizedActionData = getNormalizedData(actionData, ReactSchema)
+const normalizedActionData = getNormalizedData(actionData, CommentReactSchema)
 
-describe('test reactReducer', () => {
+describe('test commentReactReducer', () => {
   it('should handle initial state', () => {
-    expect(reactReducer(undefined, {})).toEqual({ byId: {}, allIds: [] })
+    expect(commentReactReducer(undefined, {})).toEqual({ byId: {}, allIds: [] })
   })
 
   it('should handle add to allIds', () => {
     expect(
-      reactReducer(
+      commentReactReducer(
         { byId: {}, allIds: [] },
-        feedbackReact(normalizedActionData)
+        feedbackReactToComment(normalizedActionData)
       ).allIds
     ).toEqual([actionData.id])
   })
 
   it('should handle add to byId', () => {
     expect(
-      reactReducer(
+      commentReactReducer(
         { byId: {}, allIds: [] },
-        feedbackReact(normalizedActionData)
+        feedbackReactToComment(normalizedActionData)
       ).byId
     ).toEqual({
       [actionData.id]: actionData
@@ -43,26 +49,26 @@ describe('test reactReducer', () => {
 
   it('should handle add more to byId', () => {
     expect(
-      reactReducer(
+      commentReactReducer(
         {
           byId: {
             afakeid: {
               id: `${appConst.fakeReactId}2`,
               feeling: REACTIONS.LIKE,
               user: userId2,
-              targetId: FEEDBACK.TARGET
+              targetId: commenId
             }
           },
           allIds: []
         },
-        feedbackReact(normalizedActionData)
+        feedbackReactToComment(normalizedActionData)
       ).byId
     ).toEqual({
       afakeid: {
         id: `${appConst.fakeReactId}2`,
         feeling: REACTIONS.LIKE,
         user: userId2,
-        targetId: FEEDBACK.TARGET
+        targetId: commenId
       },
       [actionData.id]: actionData
     })
@@ -70,23 +76,23 @@ describe('test reactReducer', () => {
 
   it('should handle remove from allIds', () => {
     expect(
-      reactReducer(
+      commentReactReducer(
         { byId: {}, allIds: [actionData.id] },
-        undoReact(actionData.id)
+        undoReactToComment(actionData.id)
       ).allIds
     ).toEqual([])
   })
 
   it('should handle remove from byId', () => {
     expect(
-      reactReducer(
+      commentReactReducer(
         {
           byId: {
             [actionData.id]: actionData
           },
           allIds: []
         },
-        undoReact(actionData.id)
+        undoReactToComment(actionData.id)
       ).byId
     ).toEqual({})
   })

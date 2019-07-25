@@ -5,10 +5,10 @@ import { ADD_DATA, FEEDBACK } from '../actions'
 
 const addReact = (state, action) => {
   const {
-    payload: { reacts }
+    payload: { commentReacts }
   } = action
-  return { ...state, ...reacts }
-  // return merge({}, state, reacts)
+  return { ...state, ...commentReacts }
+  // return merge({}, state, commentReacts)
   // Note. with spread operator will keep denormalized state consistent
   // but with merge() it will miss the none primitive property.
   // Maybe it's not because of merge(), will investigate this issue later.
@@ -26,11 +26,11 @@ const removeReact = (state, action) => {
 
 const reactsById = (state = {}, action) => {
   switch (action.type) {
-    case ADD_DATA:
-    case FEEDBACK.REACT:
-      return addReact(state, action)
-    case FEEDBACK.UNDO_REACT:
+    case FEEDBACK.UNDO_COMMENT_REACT:
       return removeReact(state, action)
+    case FEEDBACK.COMMENT_REACT:
+    case ADD_DATA:
+      return addReact(state, action)
     default:
       return state
   }
@@ -38,14 +38,13 @@ const reactsById = (state = {}, action) => {
 
 const addReactIdByNormalizr = (state, action) => {
   const {
-    payload: { reacts }
+    payload: { commentReacts }
   } = action
   // Just append the new react's ID to the list of all IDs
-  return [...Object.keys(reacts), ...state]
+  return [...Object.keys(commentReacts), ...state]
 }
 
 // const addReactId = (state, action) => {
-//   console.log('action', action)
 //   const {
 //     payload: { id }
 //   } = action
@@ -64,18 +63,18 @@ const removeReactId = (state, action) => {
 const allReact = (state = [], action) => {
   switch (action.type) {
     case ADD_DATA:
-    case FEEDBACK.REACT:
+    case FEEDBACK.COMMENT_REACT:
       return addReactIdByNormalizr(state, action)
-    case FEEDBACK.UNDO_REACT:
+    case FEEDBACK.UNDO_COMMENT_REACT:
       return removeReactId(state, action)
     default:
       return state
   }
 }
 
-const reactReducer = combineReducers({
+const commentReactReducer = combineReducers({
   byId: reactsById,
   allIds: allReact
 })
 
-export default reactReducer
+export default commentReactReducer

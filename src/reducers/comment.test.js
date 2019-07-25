@@ -1,23 +1,16 @@
 import appConst from '../utils/constants'
+import { getNormalizedData, CommentSchema } from '../utils/dataSchema'
 import commentReducer from './comment'
-import { FEEDBACK } from '../actions'
+import { FEEDBACK, feedbackComment } from '../actions'
 
-const userInfo = {
-  id: appConst.fakeUserId,
-  profileName: '我是假的!',
-  profileLink: 'https://www.facebook.com/test/',
-  profileImg: 'test.png'
+const actionData = {
+  id: appConst.fakeCommentId,
+  saying: 'fakecomment',
+  user: appConst.fakeUserId,
+  targetId: FEEDBACK.TARGET
 }
 
-const feedbackCommentAction = {
-  type: FEEDBACK.COMMENT,
-  payload: {
-    id: appConst.fakeCommentId,
-    saying: 'fakecomment',
-    user: userInfo,
-    targetId: FEEDBACK.TARGET
-  }
-}
+const normalizedActionData = getNormalizedData(actionData, CommentSchema)
 
 describe('test commentReducer', () => {
   it('should handle initial state', () => {
@@ -26,15 +19,21 @@ describe('test commentReducer', () => {
 
   it('should handle allIds', () => {
     expect(
-      commentReducer({ byId: {}, allIds: [] }, feedbackCommentAction).allIds
-    ).toEqual([feedbackCommentAction.payload.id])
+      commentReducer(
+        { byId: {}, allIds: [] },
+        feedbackComment(normalizedActionData)
+      ).allIds
+    ).toEqual([actionData.id])
   })
 
   it('should handle byId', () => {
     expect(
-      commentReducer({ byId: {}, allIds: [] }, feedbackCommentAction).byId
+      commentReducer(
+        { byId: {}, allIds: [] },
+        feedbackComment(normalizedActionData)
+      ).byId
     ).toEqual({
-      [feedbackCommentAction.payload.id]: feedbackCommentAction.payload
+      [actionData.id]: actionData
     })
   })
 })

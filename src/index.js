@@ -26,7 +26,9 @@ import { addData } from './actions'
 
 const preloadedState = createPostData()
 const store = configureStore()
+console.log('preloadedState', preloadedState)
 const normalizedData = getNormalizedData(preloadedState, PostSchema)
+console.log('normalizedData', normalizedData)
 store.dispatch(addData(normalizedData))
 
 const App = React.lazy(() => import('./containers/App'))

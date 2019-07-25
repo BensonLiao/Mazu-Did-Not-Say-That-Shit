@@ -35,13 +35,21 @@ const commentsById = (state = {}, action) => {
   }
 }
 
-const addCommentId = (state, action) => {
+const addCommentIdByNormalizr = (state, action) => {
   const {
     payload: { comments }
   } = action
   // Just append the new react's ID to the list of all IDs
   return [...Object.keys(comments), ...state]
 }
+
+// const addCommentId = (state, action) => {
+//   const {
+//     payload: { id }
+//   } = action
+//   // Just append the new react's ID to the list of all IDs
+//   return [id, ...state]
+// }
 
 const removeCommentId = (state, action) => {
   const {
@@ -53,11 +61,11 @@ const removeCommentId = (state, action) => {
 
 const allComment = (state = [], action) => {
   switch (action.type) {
+    case ADD_DATA:
+    case FEEDBACK.COMMENT:
+      return addCommentIdByNormalizr(state, action)
     case FEEDBACK.UNDO_COMMENT:
       return removeCommentId(state, action)
-    case FEEDBACK.COMMENT:
-    case ADD_DATA:
-      return addCommentId(state, action)
     default:
       return state
   }
