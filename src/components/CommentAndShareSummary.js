@@ -1,9 +1,7 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
 import styled from 'styled-components'
 import { displayFlex } from '../styles'
-import DataHelper from '../utils/dataHelper'
 import textFormat from '../utils/textFormat'
 import FeedbackCount from './FeedbackCount'
 
@@ -52,10 +50,4 @@ CommentAndShareSummary.propTypes = {
   shares: PropTypes.array.isRequired
 }
 
-export default connect(state => {
-  const dataHelper = new DataHelper(state)
-  return {
-    comments: dataHelper.getCommentArray(),
-    shares: dataHelper.getShareArray()
-  }
-})(CommentAndShareSummary)
+export default CommentAndShareSummary

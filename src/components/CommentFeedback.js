@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import cssConst from '../styles/constants'
 import { displayFlex, DotSeparator } from '../styles/page'
-import FeedbackActionReact from '../containers/FeedbackActionReact'
+import FeedbackActionReactToComment from '../containers/FeedbackActionReactToComment'
 import CommentFeedbackButton from './CommentFeedbackButton'
 import textFormat from '../utils/textFormat'
 import appConst from '../utils/constants'
@@ -24,7 +24,7 @@ const CommentFeedback = ({ time, targetId, reactId, reacted }) => {
   const { you } = appConst
   return (
     <CommentFeedbackWrapper>
-      <FeedbackActionReact
+      <FeedbackActionReactToComment
         you={you}
         targetId={targetId}
         reactId={reactId}

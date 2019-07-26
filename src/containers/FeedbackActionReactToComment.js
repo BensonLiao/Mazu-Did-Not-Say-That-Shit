@@ -35,7 +35,7 @@ FeedbackActionReactToComment.propTypes = {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log('state', state)
+  // console.log('state', state)
   // console.log('ownProps', ownProps)
   // Pass reacted by props if a fake react id detected,
   // otherwise pass by redux.

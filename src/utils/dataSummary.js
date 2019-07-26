@@ -3,6 +3,7 @@ import textFormat from './textFormat'
 
 export default {
   getRankingReactions(reactions) {
+    if (reactions.length === 0) return []
     const reactionsCount = Object.keys(REACTIONS).map(feeling => {
       const totalFeeling = reactions.filter(
         reactor => reactor.feeling === feeling
@@ -16,6 +17,7 @@ export default {
     return rank
   },
   getReactionSummary(reactions) {
+    if (reactions.length === 0) return ''
     const rank = this.getRankingReactions(reactions)
     const summary = {
       all: {

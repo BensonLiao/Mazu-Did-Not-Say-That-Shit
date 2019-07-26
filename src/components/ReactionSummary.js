@@ -21,7 +21,9 @@ const ReactionSummaryWrapper = styled.div`
 const ReactionSummary = ({ reactions }) => {
   const reactionSummary = dataSummary.getReactionSummary(reactions)
   const withComponent = appConst.component.DEFAULT
-  return (
+  return reactionSummary === '' ? (
+    <></>
+  ) : (
     <ReactionSummaryWrapper>
       <ReactionTopMostIcon
         reactFeeling={reactionSummary.topMost.feeling}
@@ -51,7 +53,23 @@ const ReactionSummary = ({ reactions }) => {
 }
 
 ReactionSummary.propTypes = {
-  reactions: PropTypes.array.isRequired
+  reactions: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      user: PropTypes.shape({
+        id: PropTypes.string,
+        profileName: PropTypes.string,
+        profileLink: PropTypes.string,
+        profileImg: PropTypes.string
+      }),
+      feeling: PropTypes.string,
+      targetId: PropTypes.string
+    })
+  )
+}
+
+ReactionSummary.defaultProps = {
+  reactions: []
 }
 
 export default ReactionSummary
