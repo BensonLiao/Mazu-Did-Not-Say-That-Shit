@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import cssConst from '../styles/constants'
 import CommentPlaceholder from './CommentPlaceholder'
-import CommentReactionSummary from './CommentReactionSummary'
+import DisplayCommentReactSummary from '../containers/DisplayCommentReactSummary'
 
 const CommentWithReactionSummaryWrapper = styled.div`
   display: block;
@@ -21,8 +21,7 @@ const CommentWithReactionSummary = ({
   profileLink,
   isVerified,
   saying,
-  attachMedia,
-  reactions
+  attachMedia
 }) => {
   return (
     <CommentWithReactionSummaryWrapper>
@@ -34,9 +33,10 @@ const CommentWithReactionSummary = ({
         saying={saying}
         attachMedia={attachMedia}
       />
-      {reactions.length > 0 && (
+      <DisplayCommentReactSummary commentId={commentId} />
+      {/* {reactions.length > 0 && (
         <CommentReactionSummary reactions={reactions} commentId={commentId} />
-      )}
+      )} */}
     </CommentWithReactionSummaryWrapper>
   )
 }
@@ -47,20 +47,7 @@ CommentWithReactionSummary.propTypes = {
   profileLink: PropTypes.string,
   isVerified: PropTypes.bool,
   saying: PropTypes.string,
-  attachMedia: PropTypes.string,
-  reactions: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      user: PropTypes.shape({
-        id: PropTypes.string,
-        profileName: PropTypes.string,
-        profileLink: PropTypes.string,
-        profileImg: PropTypes.string
-      }),
-      feeling: PropTypes.string,
-      targetId: PropTypes.string
-    })
-  )
+  attachMedia: PropTypes.string
 }
 
 CommentWithReactionSummary.defaultProps = {
@@ -69,8 +56,7 @@ CommentWithReactionSummary.defaultProps = {
   profileLink: 'https://www.facebook.com/jingping.tw/',
   isVerified: true,
   saying: '這個我想，要查證比較難啦',
-  attachMedia: '',
-  reactions: []
+  attachMedia: ''
 }
 
 export default CommentWithReactionSummary

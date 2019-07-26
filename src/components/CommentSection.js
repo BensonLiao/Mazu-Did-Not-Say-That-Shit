@@ -32,7 +32,6 @@ const CommentSection = ({ comments }) => {
           reactId,
           saying,
           attachMedia,
-          reactions,
           time,
           user: { profileName, profileLink, profileImg, isVerified }
         } = comment
@@ -50,7 +49,6 @@ const CommentSection = ({ comments }) => {
               isVerified={isVerified}
               saying={saying}
               attachMedia={attachMedia}
-              reactions={reactions}
             />
             <CommentFeedback time={time} targetId={id} reactId={reactId} />
           </CommentAndFeedbackWrapper>
@@ -72,21 +70,7 @@ CommentSection.propTypes = {
         profileImg: PropTypes.string,
         isVerified: PropTypes.bool
       }),
-      targetId: PropTypes.string,
-      reactions: PropTypes.arrayOf(
-        PropTypes.shape({
-          id: PropTypes.string,
-          user: PropTypes.shape({
-            id: PropTypes.string,
-            profileName: PropTypes.string,
-            profileLink: PropTypes.string,
-            profileImg: PropTypes.string,
-            isVerified: PropTypes.bool
-          }),
-          feeling: PropTypes.string,
-          targetId: PropTypes.string
-        })
-      )
+      targetId: PropTypes.string
     })
   )
 }
@@ -102,8 +86,7 @@ CommentSection.defaultProps = {
         profileImg: 'toolman.png',
         isVerified: true
       },
-      targetId: 'POST',
-      reactions: []
+      targetId: 'POST'
     }
   ]
 }

@@ -52,6 +52,7 @@ export default {
     return summary
   },
   getCommentReactionSummary(reactions) {
+    if (reactions.length === 0) return ''
     const rank = this.getRankingReactions(reactions)
     const summary = {
       forText: '',

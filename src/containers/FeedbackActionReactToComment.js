@@ -1,13 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getNormalizedData, ReactSchema } from '../utils/dataSchema'
-import { feedbackReact, undoReact, REACTIONS } from '../actions'
-import { isReacted } from '../reducers/selector'
+import { getNormalizedData, CommentReactSchema } from '../utils/dataSchema'
+import {
+  feedbackReactToComment,
+  undoReactToComment,
+  REACTIONS
+} from '../actions'
+import { isReactedToComment } from '../reducers/selector'
 import appConst from '../utils/constants'
-import FeedbackActionButton from '../components/FeedbackActionButton'
+import CommentFeedbackButton from '../components/CommentFeedbackButton'
 
-const FeedbackActionReact = ({
+const FeedbackActionReactToComment = ({
   reactId,
   reacted,
   doReactAction,
@@ -20,10 +24,10 @@ const FeedbackActionReact = ({
       doReactAction(reactId)
     }
   }
-  return <FeedbackActionButton reacted={reacted} onClick={toggleReactAction} />
+  return <CommentFeedbackButton reacted={reacted} onClick={toggleReactAction} />
 }
 
-FeedbackActionReact.propTypes = {
+FeedbackActionReactToComment.propTypes = {
   reactId: PropTypes.string.isRequired,
   reacted: PropTypes.bool.isRequired,
   doReactAction: PropTypes.func.isRequired,
@@ -31,7 +35,7 @@ FeedbackActionReact.propTypes = {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  // console.log('state', state)
+  console.log('state', state)
   // console.log('ownProps', ownProps)
   // Pass reacted by props if a fake react id detected,
   // otherwise pass by redux.
@@ -39,7 +43,7 @@ const mapStateToProps = (state, ownProps) => {
   const hasFakeReactId = ownProps.reactId === appConst.fakeReactId
   const passByPropsOrRedux = hasFakeReactId
     ? ownProps.reacted
-    : isReacted(state, ownProps.reactId)
+    : isReactedToComment(state, ownProps.reactId)
   return {
     reactId: ownProps.reactId,
     reacted: passByPropsOrRedux
@@ -54,13 +58,16 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       feeling: REACTIONS.LIKE,
       targetId: ownProps.targetId
     }
-    const normalizedActionData = getNormalizedData(actionData, ReactSchema)
-    return dispatch(feedbackReact(normalizedActionData))
+    const normalizedActionData = getNormalizedData(
+      actionData,
+      CommentReactSchema
+    )
+    return dispatch(feedbackReactToComment(normalizedActionData))
   },
-  undoReactAction: reactId => dispatch(undoReact(reactId))
+  undoReactAction: reactId => dispatch(undoReactToComment(reactId))
 })
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(FeedbackActionReact)
+)(FeedbackActionReactToComment)

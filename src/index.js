@@ -6,6 +6,7 @@
 // ref: https://babeljs.io/docs/en/babel-polyfill
 import 'core-js/stable/object/keys'
 import 'core-js/stable/array/is-array'
+import 'core-js/stable/array/for-each'
 import 'core-js/stable/array/sort'
 import 'core-js/stable/array/filter'
 import 'core-js/stable/array/map'

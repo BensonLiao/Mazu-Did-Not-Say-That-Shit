@@ -18,21 +18,23 @@ export default class dataHelper {
     return reacts
   }
 
-  // getCommentReactArray(commentId) {
-  //   const { commentReactReducer, userReducer } = this.state
-  //   // console.log('commentReactReducer', commentReactReducer)
-  //   // console.log('userReducer', userReducer)
-  //   const reacts = commentReactReducer.allIds.map(reactId => {
-  //     const reactObj = commentReactReducer.byId[reactId]
-  //     if (reactObj.targetId !== commentId) return {}
-  //     if (typeof reactObj.user === 'string') {
-  //       reactObj.user = userReducer.byId[reactObj.user]
-  //     }
-  //     return reactObj
-  //   })
-  //   // console.log('getReactArray', reacts)
-  //   return reacts
-  // }
+  getCommentReactArray(commentId) {
+    const { commentReactReducer, userReducer } = this.state
+    // console.log('commentReactReducer', commentReactReducer)
+    // console.log('userReducer', userReducer)
+    const reacts = []
+    commentReactReducer.allIds.forEach(reactId => {
+      const reactObj = commentReactReducer.byId[reactId]
+      if (reactObj.targetId === commentId) {
+        if (typeof reactObj.user === 'string') {
+          reactObj.user = userReducer.byId[reactObj.user]
+        }
+        reacts.push(reactObj)
+      }
+    })
+    // console.log('getReactArray', reacts)
+    return reacts
+  }
 
   getCommentArray() {
     const { commentReducer, userReducer } = this.state

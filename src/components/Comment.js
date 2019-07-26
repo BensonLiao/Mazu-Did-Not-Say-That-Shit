@@ -16,8 +16,7 @@ const Comment = ({
   profileImg,
   isVerified,
   saying,
-  attachMedia,
-  reactions
+  attachMedia
 }) => {
   return (
     <CommentWrapper>
@@ -29,7 +28,6 @@ const Comment = ({
         isVerified={isVerified}
         saying={saying}
         attachMedia={attachMedia}
-        reactions={reactions}
       />
     </CommentWrapper>
   )
@@ -42,20 +40,7 @@ Comment.propTypes = {
   profileImg: PropTypes.string,
   isVerified: PropTypes.bool,
   saying: PropTypes.string,
-  attachMedia: PropTypes.string,
-  reactions: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      user: PropTypes.shape({
-        id: PropTypes.string,
-        profileName: PropTypes.string,
-        profileLink: PropTypes.string,
-        profileImg: PropTypes.string
-      }),
-      feeling: PropTypes.string,
-      targetId: PropTypes.string
-    })
-  )
+  attachMedia: PropTypes.string
 }
 
 Comment.defaultProps = {
@@ -65,8 +50,7 @@ Comment.defaultProps = {
   profileLink: 'https://www.facebook.com/jingping.tw/',
   profileImg: 'toolman.png',
   isVerified: true,
-  attachMedia: '',
-  reactions: []
+  attachMedia: ''
 }
 
 export default Comment
