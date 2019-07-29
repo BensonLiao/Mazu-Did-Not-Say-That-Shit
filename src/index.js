@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 // As of Babel 7.4.0, this package has been deprecated in favor of directly
 // including core-js/stable (to polyfill ECMAScript features)
 // and regenerator-runtime/runtime (needed to use transpiled generator functions):
@@ -27,9 +28,7 @@ import { addData } from './actions'
 
 const preloadedState = createPostData()
 const store = configureStore()
-console.log('preloadedState', preloadedState)
 const normalizedData = getNormalizedData(preloadedState, PostSchema)
-console.log('normalizedData', normalizedData)
 store.dispatch(addData(normalizedData))
 
 const App = React.lazy(() => import('./containers/App'))

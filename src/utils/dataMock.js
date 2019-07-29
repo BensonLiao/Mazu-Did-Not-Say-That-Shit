@@ -245,10 +245,9 @@ const getCommentReactsTotal = (reactsTotal, ratio = 388) => {
  * 1/2 of Likes, 1/3 of Hahas and 1/6 of Loves
  * if @param {ratio} ratio was omitted.
  * @param {totalReactions} totalReactions
- *  How many reactions to make, at least to be 1,
- *  16419 will pass down if omitted.
+ *  How many reactions to make, at least to be 1.
  * @param {totalComments} totalComments
- *  How many comments to make, 214 will pass down if omitted.
+ *  How many comments to make.
  * @param {ratio} ratio
  *  How to distribute the ratio of reaction type,
  *  accept only an array of 1 to 6 numbers,
@@ -273,8 +272,8 @@ const getCommentReactsTotal = (reactsTotal, ratio = 388) => {
  *   For @function createComments .
  */
 export const createReactions = (
-  totalReactions = 12419,
-  totalComments = 214,
+  totalReactions,
+  totalComments,
   ratio = [3, 2, 1]
 ) => {
   if (totalReactions < 1) {
@@ -576,7 +575,7 @@ export const createShares = (commentReactsTotal = 290) => {
   return shares
 }
 
-export const createPostData = (reacts = 12419, comments = 2, shares = 152) => {
+export const createPostData = (reacts = 2419, comments = 2, shares = 152) => {
   const reactionsData = createReactions(reacts, comments)
   const initPostDatas = {
     post: {

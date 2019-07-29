@@ -13,8 +13,10 @@
   "homepage": "https://bensonliao.github.io/Mazu-Did-Not-Say-That-Shit",
   "dependencies": {
     "@storybook/react": "^5.1.9",
+    "@welldone-software/why-did-you-render": "^3.2.3",
     "core-js": "^3.1.4",
     "cssesc": "^3.0.0",
+    "immer": "^3.1.3",
     "lodash": "^4.17.11",
     "normalizr": "^3.4.0",
     "prop-types": "^15.7.2",
