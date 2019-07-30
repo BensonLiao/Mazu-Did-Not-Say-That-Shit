@@ -26,14 +26,20 @@ const MyCommentInput = styled.input`
   font-size: ${cssConst.baseFontSize};
 `
 
+const { myCommentInputCompId } = appConst
+const clearCommentInput = () => {
+  const inputRef = document.getElementById(myCommentInputCompId)
+  inputRef.value = ''
+}
+
 const MyCommentPlaceholder = ({ doCommentAction, ...props }) => {
-  const { myCommentInputCompId } = appConst
   const onKeyPress = event => {
     if (event.key === 'Enter') {
       if (event.shiftKey) {
         console.log('doExpandNewLine')
       } else {
         doCommentAction()
+        clearCommentInput()
       }
     }
   }
