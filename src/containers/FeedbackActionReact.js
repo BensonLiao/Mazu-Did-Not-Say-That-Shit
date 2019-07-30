@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getNormalizedData, ReactSchema } from '../utils/dataSchema'
 import { feedbackReact, undoReact, REACTIONS } from '../actions'
 import { isReacted } from '../reducers/selector'
 import appConst from '../utils/constants'
@@ -49,13 +48,14 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => ({
   doReactAction: reactId => {
     const actionData = {
-      id: reactId,
-      user: ownProps.you,
-      feeling: REACTIONS.LIKE,
-      targetId: ownProps.targetId
+      entities: {
+        id: reactId,
+        user: ownProps.you,
+        feeling: REACTIONS.LIKE,
+        targetId: ownProps.targetId
+      }
     }
-    const normalizedActionData = getNormalizedData(actionData, ReactSchema)
-    return dispatch(feedbackReact(normalizedActionData))
+    return dispatch(feedbackReact(actionData))
   },
   undoReactAction: reactId => dispatch(undoReact(reactId))
 })

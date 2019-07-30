@@ -575,7 +575,7 @@ export const createShares = (commentReactsTotal = 290) => {
   return shares
 }
 
-export const createPostData = (reacts = 2419, comments = 2, shares = 152) => {
+export const createPostData = (reacts = 12419, comments = 2, shares = 152) => {
   const reactionsData = createReactions(reacts, comments)
   const initPostDatas = {
     post: {

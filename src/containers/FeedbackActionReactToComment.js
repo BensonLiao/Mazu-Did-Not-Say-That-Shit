@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getNormalizedData, CommentReactSchema } from '../utils/dataSchema'
 import {
   feedbackReactToComment,
   undoReactToComment,
@@ -53,16 +52,14 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => ({
   doReactAction: reactId => {
     const actionData = {
-      id: reactId,
-      user: ownProps.you,
-      feeling: REACTIONS.LIKE,
-      targetId: ownProps.targetId
+      entities: {
+        id: reactId,
+        user: ownProps.you,
+        feeling: REACTIONS.LIKE,
+        targetId: ownProps.targetId
+      }
     }
-    const normalizedActionData = getNormalizedData(
-      actionData,
-      CommentReactSchema
-    )
-    return dispatch(feedbackReactToComment(normalizedActionData))
+    return dispatch(feedbackReactToComment(actionData))
   },
   undoReactAction: reactId => dispatch(undoReactToComment(reactId))
 })

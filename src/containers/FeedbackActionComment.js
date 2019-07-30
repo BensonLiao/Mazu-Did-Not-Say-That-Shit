@@ -1,6 +1,5 @@
 import uuidv1 from 'uuid/v1'
 import { connect } from 'react-redux'
-import { getNormalizedData, CommentSchema } from '../utils/dataSchema'
 import { FEEDBACK, feedbackComment } from '../actions'
 import MyCommentPlaceholder from '../components/MyCommentPlaceholder'
 
@@ -14,17 +13,18 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   doCommentAction: () => {
     const saying = document.getElementById(ownProps.myCommentInputCompId).value
     const actionData = {
-      id: uuidv1(),
-      saying,
-      time: Date.now(),
-      attachMedia: '',
-      mediaType: '',
-      user: ownProps.you,
-      targetId: FEEDBACK.TARGET,
-      reactId: uuidv1()
+      entities: {
+        id: uuidv1(),
+        saying,
+        time: Date.now(),
+        attachMedia: '',
+        mediaType: '',
+        user: ownProps.you,
+        targetId: FEEDBACK.TARGET,
+        reactId: uuidv1()
+      }
     }
-    const normalizedActionData = getNormalizedData(actionData, CommentSchema)
-    return dispatch(feedbackComment(normalizedActionData))
+    return dispatch(feedbackComment(actionData))
   }
 })
 

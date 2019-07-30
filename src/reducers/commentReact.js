@@ -1,124 +1,81 @@
-/* eslint-disable default-case */
 import { combineReducers } from 'redux'
-import produce from 'immer'
-// import pickBy from 'lodash/pickBy'
-// import merge from 'lodash/merge'
+import pickBy from 'lodash/pickBy'
+import merge from 'lodash/merge'
 import { ADD_DATA, FEEDBACK } from '../actions'
 
-// const addReact = (state, action) => {
-//   const {
-//     payload: { commentReacts }
-//   } = action
-//   return { ...state, ...commentReacts }
-//   // return merge({}, state, commentReacts)
-//   // Note. with spread operator will keep denormalized state consistent
-//   // but with merge() it will miss the none primitive property.
-//   // Maybe it's not because of merge(), will investigate this issue later.
-// }
+const addReactByNormalizr = (state, action) => {
+  const {
+    payload: { commentReacts }
+  } = action
+  // Merge the new and current React object and return new object
+  return merge({}, state, commentReacts)
+}
 
-// const removeReact = (state, action) => {
-//   const {
-//     payload: { id }
-//   } = action
-//   // Remove the new React object from the updated lookup table
-//   return pickBy(state, (value, key) => {
-//     return key !== id
-//   })
-// }
+const addReact = (state, action) => {
+  const { payload } = action
+  // Merge the new and current React object and return new object
+  return merge({}, state, payload)
+}
 
-// const reactsById = (state = {}, action) => {
-//   switch (action.type) {
-//     case FEEDBACK.UNDO_COMMENT_REACT:
-//       return removeReact(state, action)
-//     case FEEDBACK.COMMENT_REACT:
-//     case ADD_DATA:
-//       return addReact(state, action)
-//     default:
-//       return state
-//   }
-// }
+const removeReact = (state, action) => {
+  const {
+    payload: { id }
+  } = action
+  // Remove the new React object from the updated lookup table
+  return pickBy(state, (value, key) => {
+    return key !== id
+  })
+}
 
-const reactsById = produce((draft, action) => {
+const reactsById = (state = {}, action) => {
   switch (action.type) {
     case ADD_DATA:
+      return addReactByNormalizr(state, action)
     case FEEDBACK.COMMENT_REACT:
-      {
-        const {
-          payload: { commentReacts }
-        } = action
-        Object.keys(commentReacts).forEach(reactId => {
-          draft[reactId] = commentReacts[reactId]
-        })
-      }
-      break
+      return addReact(state, action)
     case FEEDBACK.UNDO_COMMENT_REACT:
-      {
-        const {
-          payload: { id }
-        } = action
-        delete draft[id]
-      }
-      break
+      return removeReact(state, action)
+    default:
+      return state
   }
-}, {})
+}
 
-// const addReactIdByNormalizr = (state, action) => {
-//   const {
-//     payload: { commentReacts }
-//   } = action
-//   // Just append the new react's ID to the list of all IDs
-//   return [...Object.keys(commentReacts), ...state]
-// }
+const addReactIdByNormalizr = (state, action) => {
+  const {
+    payload: { commentReacts }
+  } = action
+  // Extract object and append all its react's ID to the list of allIds
+  return [...Object.keys(commentReacts), ...state]
+}
 
-// const addReactId = (state, action) => {
-//   const {
-//     payload: { id }
-//   } = action
-//   // Just append the new react's ID to the list of all IDs
-//   return [id, ...state]
-// }
+const addReactId = (state, action) => {
+  const {
+    payload: { id }
+  } = action
+  // Just append the new react's ID to the list of allIds
+  return [id, ...state]
+}
 
-// const removeReactId = (state, action) => {
-//   const {
-//     payload: { id }
-//   } = action
-//   // Just remove the react's ID from the list of all IDs
-//   return state.filter(reactId => reactId !== id)
-// }
+const removeReactId = (state, action) => {
+  const {
+    payload: { id }
+  } = action
+  // Just remove the react's ID from the list of allIds
+  return state.filter(reactId => reactId !== id)
+}
 
-// const allReact = (state = [], action) => {
-//   switch (action.type) {
-//     case ADD_DATA:
-//     case FEEDBACK.COMMENT_REACT:
-//       return addReactIdByNormalizr(state, action)
-//     case FEEDBACK.UNDO_COMMENT_REACT:
-//       return removeReactId(state, action)
-//     default:
-//       return state
-//   }
-// }
-
-const allReact = produce((draft, action) => {
+const allReact = (state = [], action) => {
   switch (action.type) {
     case ADD_DATA:
+      return addReactIdByNormalizr(state, action)
     case FEEDBACK.COMMENT_REACT:
-      {
-        const {
-          payload: { commentReacts }
-        } = action
-        draft.unshift(...Object.keys(commentReacts))
-      }
-      break
+      return addReactId(state, action)
     case FEEDBACK.UNDO_COMMENT_REACT:
-      {
-        const {
-          payload: { id }
-        } = action
-        draft.shift(id)
-      }
-      break
+      return removeReactId(state, action)
+    default:
+      return state
   }
-}, [])
+}
 
 const commentReactReducer = combineReducers({
   byId: reactsById,
