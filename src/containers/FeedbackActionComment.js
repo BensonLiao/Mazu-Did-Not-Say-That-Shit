@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       entities: {
         id: uuidv1(),
         saying,
-        time: Date.now(),
+        time: '1分鐘',
         attachMedia: '',
         mediaType: '',
         user: ownProps.you,

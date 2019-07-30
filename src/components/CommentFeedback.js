@@ -5,7 +5,6 @@ import cssConst from '../styles/constants'
 import { displayFlex, DotSeparator } from '../styles/page'
 import FeedbackActionReactToComment from '../containers/FeedbackActionReactToComment'
 import CommentFeedbackButton from './CommentFeedbackButton'
-import textFormat from '../utils/textFormat'
 import appConst from '../utils/constants'
 
 const CommentFeedbackWrapper = styled.div`
@@ -19,8 +18,6 @@ const CommentFeedbackWrapper = styled.div`
 
 const CommentFeedback = ({ time, targetId, reactId, reacted }) => {
   const onClick = () => {}
-  const formattedTime =
-    typeof time === 'string' ? time : textFormat.getTimeSpan(time)
   const { you } = appConst
   return (
     <CommentFeedbackWrapper>
@@ -33,7 +30,7 @@ const CommentFeedback = ({ time, targetId, reactId, reacted }) => {
       <DotSeparator />
       <CommentFeedbackButton displayText="回覆" onClick={onClick} />
       <DotSeparator />
-      <span>{formattedTime}</span>
+      <span>{time}</span>
     </CommentFeedbackWrapper>
   )
 }
