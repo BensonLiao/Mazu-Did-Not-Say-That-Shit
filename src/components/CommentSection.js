@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import isEqual from 'lodash/isEqual'
 import styled from 'styled-components'
 import cssConst from '../styles/constants'
 import RelevantCommentToggle from './RelevantCommentToggle'
@@ -21,41 +22,53 @@ const CommentAndFeedbackWrapper = styled.div`
   }}
 `
 
-const CommentSection = ({ comments }) => {
-  return (
-    <CommentSectionWrapper>
-      <RelevantCommentToggle />
-      <MyComment />
-      {comments.map(comment => {
-        const {
-          id,
-          reactId,
-          saying,
-          attachMedia,
-          time,
-          user: { profileName, profileLink, profileImg, isVerified }
-        } = comment
-        const {
-          you: { profileName: yourProfileName }
-        } = appConst
-        const isYourComment = yourProfileName === profileName
-        return (
-          <CommentAndFeedbackWrapper key={id} isYourComment={isYourComment}>
-            <Comment
-              commentId={id}
-              profileName={profileName}
-              profileLink={profileLink}
-              profileImg={profileImg}
-              isVerified={isVerified}
-              saying={saying}
-              attachMedia={attachMedia}
-            />
-            <CommentFeedback time={time} targetId={id} reactId={reactId} />
-          </CommentAndFeedbackWrapper>
-        )
-      })}
-    </CommentSectionWrapper>
-  )
+class CommentSection extends React.Component {
+  shouldComponentUpdate(nextProps) {
+    const { comments } = this.props
+    if (!isEqual(comments, nextProps.comments)) {
+      // console.log('Component updates!')
+      return true
+    }
+    return false
+  }
+
+  render() {
+    const { comments } = this.props
+    return (
+      <CommentSectionWrapper>
+        <RelevantCommentToggle />
+        <MyComment />
+        {comments.map(comment => {
+          const {
+            id,
+            reactId,
+            saying,
+            attachMedia,
+            time,
+            user: { profileName, profileLink, profileImg, isVerified }
+          } = comment
+          const {
+            you: { profileName: yourProfileName }
+          } = appConst
+          const isYourComment = yourProfileName === profileName
+          return (
+            <CommentAndFeedbackWrapper key={id} isYourComment={isYourComment}>
+              <Comment
+                commentId={id}
+                profileName={profileName}
+                profileLink={profileLink}
+                profileImg={profileImg}
+                isVerified={isVerified}
+                saying={saying}
+                attachMedia={attachMedia}
+              />
+              <CommentFeedback time={time} targetId={id} reactId={reactId} />
+            </CommentAndFeedbackWrapper>
+          )
+        })}
+      </CommentSectionWrapper>
+    )
+  }
 }
 
 CommentSection.propTypes = {

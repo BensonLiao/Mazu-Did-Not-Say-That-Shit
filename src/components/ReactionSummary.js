@@ -1,5 +1,6 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
+import isEqual from 'lodash/isEqual'
 import styled from 'styled-components'
 import { displayFlex, alignCenter } from '../styles'
 import { styledTooltipOverrideStyle } from '../styles/post'
@@ -18,38 +19,51 @@ const ReactionSummaryWrapper = styled.div`
   min-width: 100px;
 `
 
-const ReactionSummary = ({ reactions }) => {
-  const reactionSummary = dataSummary.getReactionSummary(reactions)
-  const withComponent = appConst.component.DEFAULT
-  return reactionSummary === '' ? (
-    <></>
-  ) : (
-    <ReactionSummaryWrapper>
-      <ReactionTopMostIcon
-        reactFeeling={reactionSummary.topMost.feeling}
-        withComponent={withComponent}
-        countSummary={reactionSummary.topMostTip}
-      />
-      {reactionSummary.secondMost.total > 0 && (
-        <ReactionSecondMostIcon
-          reactFeeling={reactionSummary.secondMost.feeling}
+const withComponent = appConst.component.DEFAULT
+
+class ReactionSummary extends React.Component {
+  shouldComponentUpdate(nextProps) {
+    const { reactions } = this.props
+    if (!isEqual(reactions, nextProps.reactions)) {
+      // console.log('Component updates!')
+      return true
+    }
+    return false
+  }
+
+  render() {
+    const { reactions } = this.props
+    const reactionSummary = dataSummary.getReactionSummary(reactions)
+    return reactionSummary === '' ? (
+      <></>
+    ) : (
+      <ReactionSummaryWrapper>
+        <ReactionTopMostIcon
+          reactFeeling={reactionSummary.topMost.feeling}
           withComponent={withComponent}
-          countSummary={reactionSummary.secondMostTip}
+          countSummary={reactionSummary.topMostTip}
         />
-      )}
-      {reactionSummary.thirdMost.total > 0 && (
-        <ReactionThirdMostIcon
-          reactFeeling={reactionSummary.thirdMost.feeling}
-          withComponent={withComponent}
-          countSummary={reactionSummary.thirdMostTip}
+        {reactionSummary.secondMost.total > 0 && (
+          <ReactionSecondMostIcon
+            reactFeeling={reactionSummary.secondMost.feeling}
+            withComponent={withComponent}
+            countSummary={reactionSummary.secondMostTip}
+          />
+        )}
+        {reactionSummary.thirdMost.total > 0 && (
+          <ReactionThirdMostIcon
+            reactFeeling={reactionSummary.thirdMost.feeling}
+            withComponent={withComponent}
+            countSummary={reactionSummary.thirdMostTip}
+          />
+        )}
+        <FeedbackCount
+          forText={reactionSummary.all.forText}
+          forTip={reactionSummary.all.forTip}
         />
-      )}
-      <FeedbackCount
-        forText={reactionSummary.all.forText}
-        forTip={reactionSummary.all.forTip}
-      />
-    </ReactionSummaryWrapper>
-  )
+      </ReactionSummaryWrapper>
+    )
+  }
 }
 
 ReactionSummary.propTypes = {
