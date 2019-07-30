@@ -86,6 +86,4 @@ ReactionSummary.defaultProps = {
   reactions: []
 }
 
-ReactionSummary.whyDidYouRender = true
-
 export default ReactionSummary
