@@ -1,10 +1,10 @@
 import { connect } from 'react-redux'
-import { getCommentArray } from '../reducers/selector'
+import { getRealCommentArray } from '../reducers/selector'
 import CommentSection from '../components/CommentSection'
 
 const mapStateToProps = state => {
   return {
-    comments: getCommentArray(state)
+    comments: getRealCommentArray(state)
   }
 }
 

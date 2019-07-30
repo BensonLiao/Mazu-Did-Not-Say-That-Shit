@@ -96,18 +96,9 @@ const definedReactors = [
  *  Choose an img represent gender, `MALE` if ommited.
  */
 export const getReactor = (nameId, gender = 'MALE') => {
-  const maleUserImg = 'anonymous-male.png'
-  const femaleUserImg = 'anonymous-female.png'
-  const userImg = gender === 'MALE' ? maleUserImg : femaleUserImg
   const user = nameId < definedReactors.length ?
     definedReactors[nameId] :
-    {
-      id: uuidv1(),
-      profileName: `假帳號${nameId}`,
-      profileLink: '#',
-      profileImg: userImg,
-      isVerified: false
-    }
+    getFakeUser(nameId, gender)
   return user
 }
 
@@ -534,7 +525,7 @@ export const createComments = (commentIds = []) => {
       reactId: uuidv1()
     }
   ]
-  for (let i = 8; i < commentIds.length; i++) {
+  for (let i = comments.length; i < commentIds.length; i++) {
     comments.push({
       id: commentIds[i],
       user: getFakeUser(i),
@@ -575,7 +566,7 @@ export const createShares = (commentReactsTotal = 290) => {
   return shares
 }
 
-export const createPostData = (reacts = 12419, comments = 2, shares = 152) => {
+export const createPostData = (reacts = 12419, comments = 212, shares = 152) => {
   const reactionsData = createReactions(reacts, comments)
   const initPostDatas = {
     post: {

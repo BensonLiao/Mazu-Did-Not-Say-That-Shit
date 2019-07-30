@@ -23,6 +23,11 @@ export const getCommentArray = state => {
     commentId => state.commentReducer.byId[commentId]
   )
 }
+export const getRealCommentArray = state => {
+  return state.commentReducer.allIds
+    .map(commentId => state.commentReducer.byId[commentId])
+    .filter(comment => !comment.user.profileName.includes('假帳號'))
+}
 export const getShareArray = state => {
   return state.shareReducer.allIds.map(
     shareId => state.shareReducer.byId[shareId]
