@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux'
-import pickBy from 'lodash/pickBy'
 import merge from 'lodash/merge'
 import { ADD_DATA, FEEDBACK } from '../actions'
 
@@ -13,8 +12,11 @@ const addCommentByNormalizr = (state, action) => {
 
 const addComment = (state, action) => {
   const { payload } = action
+  const comments = {
+    [payload.id]: payload
+  }
   // Merge the new and current Comment object and return new object
-  return merge({}, state, payload)
+  return merge({}, state, comments)
 }
 
 const removeComment = (state, action) => {
@@ -22,9 +24,8 @@ const removeComment = (state, action) => {
     payload: { id }
   } = action
   // Remove the new Comment object from the updated lookup table
-  return pickBy(state, (value, key) => {
-    return key !== id
-  })
+  delete state[id]
+  return state
 }
 
 const commentsById = (state = {}, action) => {

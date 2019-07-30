@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux'
-import pickBy from 'lodash/pickBy'
 import merge from 'lodash/merge'
 import { ADD_DATA, FEEDBACK } from '../actions'
 
@@ -13,8 +12,11 @@ const addReactByNormalizr = (state, action) => {
 
 const addReact = (state, action) => {
   const { payload } = action
+  const reacts = {
+    [payload.id]: payload
+  }
   // Merge the new and current React object and return new object
-  return merge({}, state, payload)
+  return merge({}, state, reacts)
 }
 
 const removeReact = (state, action) => {
@@ -22,9 +24,8 @@ const removeReact = (state, action) => {
     payload: { id }
   } = action
   // Remove the new React object from the updated lookup table
-  return pickBy(state, (value, key) => {
-    return key !== id
-  })
+  delete state[id]
+  return state
 }
 
 const reactsById = (state = {}, action) => {
