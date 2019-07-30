@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4b9e3bb2ac3a8b3b66327ab28b52ad8c",
+    "revision": "f6cb319180e529920d047c46bf754f0c",
     "url": "/Mazu-Did-Not-Say-That-Shit/index.html"
   },
   {
-    "revision": "052556f63f8c9b9704bd",
-    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/2.da29b452.chunk.js"
+    "revision": "d3f99d15fd0c1cc7356b",
+    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/2.b3ff8a1f.chunk.js"
   },
   {
-    "revision": "41313e4fdf0111e90d92",
-    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/3.270e0e2a.chunk.js"
+    "revision": "bea78f309e05808c5cf2",
+    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/3.101e1906.chunk.js"
   },
   {
-    "revision": "6416ae8c3183031538c6",
-    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/4.928c283b.chunk.js"
+    "revision": "ec7dddbe5e065821be4f",
+    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/4.acc2698c.chunk.js"
   },
   {
-    "revision": "5136cf02a480bfd2ad40",
-    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/main.b6e21717.chunk.js"
+    "revision": "28bc310aacabf2b2fef4",
+    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/main.19b3e36c.chunk.js"
   },
   {
-    "revision": "21127d28bfbf5d7f1c3e",
-    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/runtime~main.66f7dfcf.js"
+    "revision": "c418ac6dd6cc2b12f74f",
+    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/runtime~main.4f7aac1d.js"
   },
   {
     "revision": "c49fa063a986eea477d31d2e16d6f919",
@@ -72,8 +72,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Mazu-Did-Not-Say-That-Shit/static/media/responseShare.9c75973b.png"
   },
   {
-    "revision": "4a89ef658328f90adaad1e8d884743c2",
-    "url": "/Mazu-Did-Not-Say-That-Shit/static/media/sparkJoy.4a89ef65.png"
+    "revision": "13565405a3a34f860f312bfe584712cd",
+    "url": "/Mazu-Did-Not-Say-That-Shit/static/media/sparkJoy.13565405.jpg"
   },
   {
     "revision": "7dd2ef4852049cf6351b690333bb8126",
@@ -82,5 +82,9 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "1549640740094a0695f0504aca8fbd71",
     "url": "/Mazu-Did-Not-Say-That-Shit/static/media/wheel.15496407.png"
+  },
+  {
+    "revision": "ed46c93232c3175427a222a0fbb15aca",
+    "url": "/Mazu-Did-Not-Say-That-Shit/static/media/wvWFAMT.ed46c932.jpg"
   }
 ]);
