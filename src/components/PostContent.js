@@ -6,7 +6,11 @@ const propTypes = {
   /**
    * Sets content on body of `PostContentWrapper`
    */
-  postContent: PropTypes.string
+  postContent: PropTypes.string,
+  /**
+   * Sets content on attr title of `PostContentWrapper`
+   */
+  postTitle: PropTypes.string
 }
 
 const PostContentWrapper = styled.div`
@@ -18,10 +22,15 @@ const PostContentWrapper = styled.div`
   padding: 12px 12px 0;
 `
 
-const defaultProps = { postContent: 'Fake Post Content' }
+const defaultProps = {
+  postContent: 'Fake Post Content',
+  postTitle: 'Fake Post Title'
+}
 
-const PostContent = ({ postContent }) => {
-  return <PostContentWrapper>{postContent}</PostContentWrapper>
+const PostContent = ({ postContent, postTitle }) => {
+  return (
+    <PostContentWrapper title={postTitle}>{postContent}</PostContentWrapper>
+  )
 }
 
 PostContent.displayName = 'PostContent'

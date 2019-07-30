@@ -32,7 +32,7 @@ const PostWrapper = styled.div`
 class App extends React.Component {
   render() {
     const {
-      postData: { user, time, content }
+      postData: { user, time, content, title }
     } = this.props
     return (
       <ThemeProvider theme={theme}>
@@ -40,7 +40,7 @@ class App extends React.Component {
           <GlobalStyle />
           <PostWrapper>
             <Header profileInfo={user} postTime={time} />
-            <PostContent postContent={content} />
+            <PostContent postContent={content} postTitle={title} />
             <FeedbackSummary />
             <FeedbackAction />
             <DisplayCommentSection />
