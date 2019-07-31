@@ -38,7 +38,7 @@ const Comment = ({
         saying={saying}
         attachMedia={attachMedia}
       />
-      <CommentMenuToggle isHover={isHover} />
+      <CommentMenuToggle commentId={commentId} isHover={isHover} />
     </CommentWrapper>
   )
 }

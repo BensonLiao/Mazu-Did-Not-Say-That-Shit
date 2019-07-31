@@ -1,11 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import useCompWidth from '../hooks/useCompWidth'
 import menu from '../assets/img/menu-new.png'
 import { menuItemHideComment } from '../styles/menu'
 
 const CommentMenuWrapper = styled.div`
-  right: 0px;
   position: absolute;
+  left: ${props => props.commmentWidth - 46}px;
   z-index: 5;
 `
 
@@ -61,9 +63,10 @@ const MenuItem = styled.li`
     (props.isHideComment && !props.isDeleteComment ? menuItemHideComment : '')}
 `
 
-const CommentMenu = () => {
+const CommentMenu = ({ commentId }) => {
+  const compWidth = useCompWidth(commentId)
   return (
-    <CommentMenuWrapper>
+    <CommentMenuWrapper commmentWidth={compWidth}>
       <MenuWrapper>
         <MenuPanel>
           <Menu>
@@ -75,6 +78,14 @@ const CommentMenu = () => {
       <CommentMenuWrapperTriangle />
     </CommentMenuWrapper>
   )
+}
+
+CommentMenu.propTypes = {
+  commentId: PropTypes.string
+}
+
+CommentMenu.defaultProps = {
+  commentId: 'fakecommentid'
 }
 
 export default CommentMenu

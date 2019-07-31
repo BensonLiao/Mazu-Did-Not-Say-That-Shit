@@ -30,13 +30,13 @@ const MenuToggle = styled.div`
   }
 `
 
-const CommentMenuToggle = ({ isHover }) => {
+const CommentMenuToggle = ({ commentId, isHover }) => {
   const { ref, isCompVisible } = useCompVisible(false)
   const toggleOrHover = isHover || isCompVisible
   return toggleOrHover ? (
     <MenuToggleWrapper>
       <MenuToggle ref={ref} />
-      {isCompVisible && <CommentMenu />}
+      {isCompVisible && <CommentMenu commentId={commentId} />}
     </MenuToggleWrapper>
   ) : (
     <></>
@@ -44,10 +44,12 @@ const CommentMenuToggle = ({ isHover }) => {
 }
 
 CommentMenuToggle.propTypes = {
+  commentId: PropTypes.string,
   isHover: PropTypes.bool
 }
 
 CommentMenuToggle.defaultProps = {
+  commentId: 'fakecommentid',
   isHover: true
 }
 
