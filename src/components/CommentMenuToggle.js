@@ -35,7 +35,8 @@ const CommentMenuToggle = ({ isHover }) => {
   const toggleOrHover = isHover || isCompVisible
   return toggleOrHover ? (
     <MenuToggleWrapper>
-      <MenuToggle ref={ref}>{isCompVisible && <CommentMenu />}</MenuToggle>
+      <MenuToggle ref={ref} />
+      {isCompVisible && <CommentMenu />}
     </MenuToggleWrapper>
   ) : (
     <></>
