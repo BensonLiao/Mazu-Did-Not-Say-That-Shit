@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import menuToggle from '../assets/img/fb-emojis-new.png'
 import useCompVisible from '../hooks/useCompVisible'
+import CommentMenu from './CommentMenu'
 
 const MenuToggleWrapper = styled.div`
   display: inline-block;
@@ -29,17 +30,24 @@ const MenuToggle = styled.div`
   }
 `
 
-const CommentMenuToggle = ({ menuComp }) => {
+const CommentMenuToggle = ({ isHover }) => {
   const { ref, isCompVisible } = useCompVisible(false)
-  return (
+  const toggleOrHover = isHover || isCompVisible
+  return toggleOrHover ? (
     <MenuToggleWrapper>
-      <MenuToggle ref={ref}>{isCompVisible && menuComp}</MenuToggle>
+      <MenuToggle ref={ref}>{isCompVisible && <CommentMenu />}</MenuToggle>
     </MenuToggleWrapper>
+  ) : (
+    <></>
   )
 }
 
 CommentMenuToggle.propTypes = {
-  menuComp: PropTypes.element.isRequired
+  isHover: PropTypes.bool
+}
+
+CommentMenuToggle.defaultProps = {
+  isHover: true
 }
 
 export default CommentMenuToggle

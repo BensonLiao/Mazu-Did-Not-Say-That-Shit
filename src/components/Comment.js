@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { displayFlex } from '../styles/page'
+import useMouseHover from '../hooks/useMouseHover'
 import CommentAvatar from './CommentAvatar'
 import CommentWithReactionSummary from './CommentWithReactionSummary'
 import CommentMenuToggle from './CommentMenuToggle'
-import useMouseHover from '../hooks/useMouseHover'
 
 const CommentWrapper = styled.div`
   ${displayFlex}
@@ -38,7 +38,7 @@ const Comment = ({
         saying={saying}
         attachMedia={attachMedia}
       />
-      {isHover && <CommentMenuToggle menuComp={<div>menu</div>} />}
+      <CommentMenuToggle isHover={isHover} />
     </CommentWrapper>
   )
 }
