@@ -22,7 +22,10 @@ const RightMenu = styled.div`
   height: 12px;
   cursor: pointer;
   &:hover {
-    background-position: -83px -1120px;
+    background-position: -83px -1094px;
+  }
+  &:active {
+    background-position: -83px -1107px;
   }
 `
 
