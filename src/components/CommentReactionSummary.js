@@ -21,7 +21,7 @@ const CommentReactionSummaryWrapper = styled.div`
   position: absolute;
   bottom: ${props => (props.isNarrowComp ? '5px' : '-12px')};
   ${props => (props.isNarrowComp ? `left: ${props.leftPosition}px` : 'right: 2px')};
-  z-index: 998;
+  z-index: 4;
   border-radius: 10px;
   box-shadow: 0 1px 3px 0 rgba(0,0,0,.2);
   font-size: 12px;

@@ -6,6 +6,7 @@ import { menuItemHideComment } from '../styles/menu'
 const CommentMenuWrapper = styled.div`
   right: 0px;
   position: absolute;
+  z-index: 5;
 `
 
 const CommentMenuWrapperTriangle = styled.i`
