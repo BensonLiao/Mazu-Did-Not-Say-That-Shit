@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import rightMenu from '../assets/img/fb-emojis-new.png'
 import useCompVisible from '../hooks/useCompVisible'
 
-const CommentMenuWrapper = styled.div`
+const MenuToggleWrapper = styled.div`
   display: inline-block;
   vertical-align: middle;
   width: 22px;
@@ -12,7 +12,7 @@ const CommentMenuWrapper = styled.div`
   padding: 8px 12px;
 `
 
-const CommentMenu = styled.div`
+const MenuToggle = styled.div`
   vertical-align: middle;
   background-image: url(${rightMenu});
   background-repeat: no-repeat;
@@ -32,9 +32,9 @@ const CommentMenu = styled.div`
 const CommentMenuToggle = ({ menuComp }) => {
   const { ref, isCompVisible } = useCompVisible(false)
   return (
-    <CommentMenuWrapper>
-      <CommentMenu ref={ref}>{isCompVisible && menuComp}</CommentMenu>
-    </CommentMenuWrapper>
+    <MenuToggleWrapper>
+      <MenuToggle ref={ref}>{isCompVisible && menuComp}</MenuToggle>
+    </MenuToggleWrapper>
   )
 }
 
