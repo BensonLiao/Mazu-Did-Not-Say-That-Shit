@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import menu from '../assets/img/menu.png'
+import menu from '../assets/img/menu-new.png'
 import { menuItemHideComment } from '../styles/menu'
 
 const CommentMenuWrapper = styled.div`
