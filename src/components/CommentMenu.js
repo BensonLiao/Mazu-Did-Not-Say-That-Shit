@@ -9,7 +9,7 @@ import menu from '../assets/img/menu-new.png'
 
 const CommentMenuWrapper = styled.div`
   position: absolute;
-  left: ${props => props.commmentWidth - 46}px;
+  left: ${props => props.commmentWidth - 31}px;
   z-index: 5;
 `
 
