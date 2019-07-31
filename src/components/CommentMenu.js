@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { displayFlex, alignYAxisCenter } from '../styles/page'
+import cssConst from '../styles/constants'
+import { menuItemHideComment } from '../styles/menu'
 import useCompWidth from '../hooks/useCompWidth'
 import menu from '../assets/img/menu-new.png'
-import { menuItemHideComment } from '../styles/menu'
 
 const CommentMenuWrapper = styled.div`
   position: absolute;
@@ -43,13 +45,7 @@ const MenuPanel = styled.div`
 const Menu = styled.ul`
   padding: 5px 0;
   margin: 0;
-  display: block;
   list-style-type: disc;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  padding-inline-start: 40px;
 `
 
 const MenuItem = styled.li`
@@ -58,9 +54,32 @@ const MenuItem = styled.li`
   white-space: nowrap;
   display: list-item;
   text-align: -webkit-match-parent;
-  cursor: pointer;
+`
+
+const MenuItemButtonWrapper = styled.a`
+  ${displayFlex}
+  ${alignYAxisCenter}
   ${props =>
     (props.isHideComment && !props.isDeleteComment ? menuItemHideComment : '')}
+  border: solid ${cssConst.toggleMenuItemBorderColor};
+  border-width: 1px 0;
+  color: ${cssConst.toggleMenuItemTextColor};
+  &:hover {
+    background-color: ${cssConst.toggleMenuItemHoverBackground};
+    border-color: ${cssConst.toggleMenuItemBorderHoverColor};
+    color: ${cssConst.toggleMenuItemTextHoverColor};
+  }
+  outline: none;
+  text-decoration: none;
+  padding: 0 12px;
+  max-width: 300px;
+`
+
+const MenuItemButton = styled.span`
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+  font-weight: normal;
+  line-height: 22px;
 `
 
 const CommentMenu = ({ commentId }) => {
@@ -70,8 +89,16 @@ const CommentMenu = ({ commentId }) => {
       <MenuWrapper>
         <MenuPanel>
           <Menu>
-            <MenuItem isHideComment>隱藏留言</MenuItem>
-            <MenuItem>尋求支援或檢舉留言</MenuItem>
+            <MenuItem>
+              <MenuItemButtonWrapper isHideComment href="#">
+                <MenuItemButton>隱藏留言</MenuItemButton>
+              </MenuItemButtonWrapper>
+            </MenuItem>
+            <MenuItem>
+              <MenuItemButtonWrapper href="#">
+                <MenuItemButton>尋求支援或檢舉留言</MenuItemButton>
+              </MenuItemButtonWrapper>
+            </MenuItem>
           </Menu>
         </MenuPanel>
       </MenuWrapper>

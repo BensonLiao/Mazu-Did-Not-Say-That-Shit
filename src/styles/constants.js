@@ -32,5 +32,10 @@ export default {
   commentFeedbackButtonTextColor: '#385898',
   commentYoursBorderColor: '#3578e5',
   commentReactionIconSize: '16px',
-  commentAttachIconSize: '16px'
+  commentAttachIconSize: '16px',
+  toggleMenuItemHoverBackground: '#4267b2',
+  toggleMenuItemTextColor: '#1d2129',
+  toggleMenuItemTextHoverColor: '#fff',
+  toggleMenuItemBorderColor: '#fff',
+  toggleMenuItemBorderHoverColor: '#29487d'
 }
