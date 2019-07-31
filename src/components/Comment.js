@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { displayFlex } from '../styles/page'
 import CommentAvatar from './CommentAvatar'
 import CommentWithReactionSummary from './CommentWithReactionSummary'
-import CommentRightMenu from './CommentRightMenu'
+import CommentMenuToggle from './CommentMenuToggle'
 import useMouseHover from '../hooks/useMouseHover'
 
 const CommentWrapper = styled.div`
@@ -38,7 +38,7 @@ const Comment = ({
         saying={saying}
         attachMedia={attachMedia}
       />
-      {isHover && <CommentRightMenu menuComp={<div>menu</div>} />}
+      {isHover && <CommentMenuToggle menuComp={<div>menu</div>} />}
     </CommentWrapper>
   )
 }
