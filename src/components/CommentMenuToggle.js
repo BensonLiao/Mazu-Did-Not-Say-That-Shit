@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import rightMenu from '../assets/img/fb-emojis-new.png'
+import menuToggle from '../assets/img/fb-emojis-new.png'
 import useCompVisible from '../hooks/useCompVisible'
 
 const MenuToggleWrapper = styled.div`
@@ -14,7 +14,7 @@ const MenuToggleWrapper = styled.div`
 
 const MenuToggle = styled.div`
   vertical-align: middle;
-  background-image: url(${rightMenu});
+  background-image: url(${menuToggle});
   background-repeat: no-repeat;
   background-size: 97px 1200px;
   background-position: -83px -1120px;
