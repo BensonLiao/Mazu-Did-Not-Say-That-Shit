@@ -38,14 +38,18 @@ const CommentMenuToggle = ({ commentId, isHover }) => {
   const { ref, isCompVisible } = useCompVisible(false)
   const toggleOrHover = isHover || isCompVisible
   return toggleOrHover ? (
-    <MenuToggleWrapper data-for={tooltipId} data-tip="隱藏或檢舉這篇留言">
-      <MenuToggle ref={ref} />
-      {isCompVisible && <CommentMenu commentId={commentId} />}
+    <MenuToggleWrapper>
+      <MenuToggle
+        ref={ref}
+        data-for={tooltipId}
+        data-tip="隱藏或檢舉這篇留言"
+      />
       <StyledTooltip
         id={tooltipId}
         effect="solid"
         bg={cssConst.tooltipBackgroundBlack}
       />
+      {isCompVisible && <CommentMenu commentId={commentId} />}
     </MenuToggleWrapper>
   ) : (
     <></>
