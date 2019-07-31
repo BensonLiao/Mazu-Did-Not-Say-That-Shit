@@ -2,8 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import menuToggle from '../assets/img/fb-emojis-new.png'
+import cssConst from '../styles/constants'
 import useCompVisible from '../hooks/useCompVisible'
 import CommentMenu from './CommentMenu'
+import StyledTooltip from './StyledTooltip'
 
 const MenuToggleWrapper = styled.div`
   display: inline-block;
@@ -30,13 +32,20 @@ const MenuToggle = styled.div`
   }
 `
 
+const tooltipId = 'tip-for-comment-menu-toggle'
+
 const CommentMenuToggle = ({ commentId, isHover }) => {
   const { ref, isCompVisible } = useCompVisible(false)
   const toggleOrHover = isHover || isCompVisible
   return toggleOrHover ? (
-    <MenuToggleWrapper>
+    <MenuToggleWrapper data-for={tooltipId} data-tip="隱藏或檢舉這篇留言">
       <MenuToggle ref={ref} />
       {isCompVisible && <CommentMenu commentId={commentId} />}
+      <StyledTooltip
+        id={tooltipId}
+        effect="solid"
+        bg={cssConst.tooltipBackgroundBlack}
+      />
     </MenuToggleWrapper>
   ) : (
     <></>
