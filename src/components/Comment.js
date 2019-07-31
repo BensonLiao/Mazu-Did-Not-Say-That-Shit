@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import { displayFlex } from '../styles/page'
 import CommentAvatar from './CommentAvatar'
 import CommentWithReactionSummary from './CommentWithReactionSummary'
+import CommentRightMenu from './CommentRightMenu'
+import useMouseHover from '../hooks/useMouseHover'
 
 const CommentWrapper = styled.div`
   ${displayFlex}
@@ -18,8 +20,15 @@ const Comment = ({
   saying,
   attachMedia
 }) => {
+  const [isHover, setIsHover] = useMouseHover()
+  const onEnter = () => {
+    setIsHover(true)
+  }
+  const onLeave = () => {
+    setIsHover(false)
+  }
   return (
-    <CommentWrapper>
+    <CommentWrapper onMouseEnter={onEnter} onMouseLeave={onLeave}>
       <CommentAvatar profileName={profileName} profileImg={profileImg} />
       <CommentWithReactionSummary
         commentId={commentId}
@@ -29,6 +38,7 @@ const Comment = ({
         saying={saying}
         attachMedia={attachMedia}
       />
+      {isHover && <CommentRightMenu menuComp={<div>menu</div>} />}
     </CommentWrapper>
   )
 }
