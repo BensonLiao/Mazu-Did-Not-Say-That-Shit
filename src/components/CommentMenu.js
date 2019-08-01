@@ -5,6 +5,7 @@ import { menuItemHideComment } from '../styles/menu'
 import useCompWidth from '../hooks/useCompWidth'
 import menu from '../assets/img/menu-new.png'
 import MenuButton from './MenuButton'
+import ToggleCommentVisible from '../containers/ToggleCommentVisible'
 
 const CommentMenuWrapper = styled.div`
   position: absolute;
@@ -63,7 +64,11 @@ const CommentMenu = ({ commentId }) => {
         <MenuPanel>
           <Menu>
             <MenuItem>
-              <MenuButton btnIcon={menuItemHideComment} btnText="隱藏留言" />
+              <ToggleCommentVisible
+                commentId={commentId}
+                btnIcon={menuItemHideComment}
+                btnText="隱藏留言"
+              />
             </MenuItem>
             <MenuItem>
               <MenuButton btnText="尋求支援或檢舉留言" />

@@ -57,7 +57,9 @@ export const feedbackComment = ({ entities }) => ({
 
 export const toggleCommentVisibility = id => ({
   type: FEEDBACK.COMMENT_VISIBILITY_TOGGLE,
-  payload: id
+  payload: {
+    id
+  }
 })
 
 export const feedbackShare = ({ entities }) => ({

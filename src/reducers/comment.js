@@ -28,12 +28,24 @@ const removeComment = (state, action) => {
   return state
 }
 
+const toggleCommentVisibility = (state, action) => {
+  const {
+    payload: { id }
+  } = action
+  // Update the selected Comment object props: isHidden
+  const isCommentHidden = state[id].isHidden
+  state[id].isHidden = !isCommentHidden
+  return state
+}
+
 const commentsById = (state = {}, action) => {
   switch (action.type) {
     case ADD_DATA:
       return addCommentByNormalizr(state, action)
     case FEEDBACK.COMMENT:
       return addComment(state, action)
+    case FEEDBACK.COMMENT_VISIBILITY_TOGGLE:
+      return toggleCommentVisibility(state, action)
     case FEEDBACK.UNDO_COMMENT:
       return removeComment(state, action)
     default:

@@ -31,8 +31,8 @@ const MenuItemButton = styled.span`
 
 const MenuButton = ({ btnIcon, btnText, btnLink, onClick }) => {
   return (
-    <MenuItemButtonWrapper btnIcon={btnIcon} href={btnLink}>
-      <MenuItemButton onClick={onClick}>{btnText}</MenuItemButton>
+    <MenuItemButtonWrapper btnIcon={btnIcon} href={btnLink} onClick={onClick}>
+      <MenuItemButton>{btnText}</MenuItemButton>
     </MenuItemButtonWrapper>
   )
 }
@@ -48,7 +48,9 @@ MenuButton.defaultProps = {
   btnIcon: '',
   btnText: '選單按鈕',
   btnLink: '#',
-  onClick: () => {}
+  onClick: () => {
+    console.log('clicked!')
+  }
 }
 
 export default MenuButton
