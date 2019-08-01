@@ -1,11 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { displayFlex, alignYAxisCenter } from '../styles/page'
-import cssConst from '../styles/constants'
 import { menuItemHideComment } from '../styles/menu'
 import useCompWidth from '../hooks/useCompWidth'
 import menu from '../assets/img/menu-new.png'
+import MenuButton from './MenuButton'
 
 const CommentMenuWrapper = styled.div`
   position: absolute;
@@ -56,32 +55,6 @@ const MenuItem = styled.li`
   text-align: -webkit-match-parent;
 `
 
-const MenuItemButtonWrapper = styled.a`
-  ${displayFlex}
-  ${alignYAxisCenter}
-  ${props =>
-    (props.isHideComment && !props.isDeleteComment ? menuItemHideComment : '')}
-  border: solid ${cssConst.toggleMenuItemBorderColor};
-  border-width: 1px 0;
-  color: ${cssConst.toggleMenuItemTextColor};
-  &:hover {
-    background-color: ${cssConst.toggleMenuItemHoverBackground};
-    border-color: ${cssConst.toggleMenuItemBorderHoverColor};
-    color: ${cssConst.toggleMenuItemTextHoverColor};
-  }
-  outline: none;
-  text-decoration: none;
-  padding: 0 12px;
-  max-width: 300px;
-`
-
-const MenuItemButton = styled.span`
-  font-size: 13px;
-  -webkit-font-smoothing: antialiased;
-  font-weight: normal;
-  line-height: 22px;
-`
-
 const CommentMenu = ({ commentId }) => {
   const compWidth = useCompWidth(commentId)
   return (
@@ -90,14 +63,10 @@ const CommentMenu = ({ commentId }) => {
         <MenuPanel>
           <Menu>
             <MenuItem>
-              <MenuItemButtonWrapper isHideComment href="#">
-                <MenuItemButton>隱藏留言</MenuItemButton>
-              </MenuItemButtonWrapper>
+              <MenuButton btnIcon={menuItemHideComment} btnText="隱藏留言" />
             </MenuItem>
             <MenuItem>
-              <MenuItemButtonWrapper href="#">
-                <MenuItemButton>尋求支援或檢舉留言</MenuItemButton>
-              </MenuItemButtonWrapper>
+              <MenuButton btnText="尋求支援或檢舉留言" />
             </MenuItem>
           </Menu>
         </MenuPanel>

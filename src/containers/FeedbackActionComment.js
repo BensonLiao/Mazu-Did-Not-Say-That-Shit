@@ -21,7 +21,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         mediaType: '',
         user: ownProps.you,
         targetId: FEEDBACK.TARGET,
-        reactId: uuidv1()
+        reactId: uuidv1(),
+        isHidden: false
       }
     }
     return dispatch(feedbackComment(actionData))

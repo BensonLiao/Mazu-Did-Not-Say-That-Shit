@@ -253,10 +253,7 @@ const createCommentReactions = (
  *   An array of @prop {commentId}, type is string.
  *   For @function createComments .
  */
-export const createReactions = (
-  totalReactions,
-  ratio = [3, 2, 1]
-) => {
+export const createReactions = (totalReactions, ratio = [3, 2, 1]) => {
   if (totalReactions < 1) {
     throw new Error('Number of total reactions at least to be 1.')
   }
@@ -282,8 +279,10 @@ export const createReactions = (
     divisorHaha === 0 ? 0 : Math.ceil(totalReactions / divisorHaha)
   const totalLoves =
     divisorLove === 0 ? 0 : Math.ceil(totalReactions / divisorLove)
-  const totalWows = divisorWow === 0 ? 0 : Math.ceil(totalReactions / divisorWow)
-  const totalSads = divisorSad === 0 ? 0 : Math.ceil(totalReactions / divisorSad)
+  const totalWows =
+    divisorWow === 0 ? 0 : Math.ceil(totalReactions / divisorWow)
+  const totalSads =
+    divisorSad === 0 ? 0 : Math.ceil(totalReactions / divisorSad)
   const totalAngers =
     divisorAnger === 0 ? 0 : Math.ceil(totalReactions / divisorAnger)
   // Add reactions as many as totalReactions
@@ -365,7 +364,8 @@ export const createComments = commentsTotal => {
       saying: '謝謝樓主托夢，三樓的民主不能當飯吃！',
       time: '3天',
       targetId: FEEDBACK.TARGET,
-      reactId: uuidv1()
+      reactId: uuidv1(),
+      isHidden: false
     },
     {
       id: uuidv1(),
@@ -373,7 +373,8 @@ export const createComments = commentsTotal => {
       saying: '樓上為什麼不考慮吃個包子呢？',
       time: '3天',
       targetId: FEEDBACK.TARGET,
-      reactId: uuidv1()
+      reactId: uuidv1(),
+      isHidden: false
     },
     {
       id: uuidv1(),
@@ -381,7 +382,8 @@ export const createComments = commentsTotal => {
       saying: '我也這麼覺得',
       time: '4天',
       targetId: FEEDBACK.TARGET,
-      reactId: uuidv1()
+      reactId: uuidv1(),
+      isHidden: false
     },
     {
       id: uuidv1(),
@@ -389,7 +391,8 @@ export const createComments = commentsTotal => {
       saying: '這個我想，要查證比較難啦',
       time: '5天',
       targetId: FEEDBACK.TARGET,
-      reactId: uuidv1()
+      reactId: uuidv1(),
+      isHidden: false
     },
     {
       id: uuidv1(),
@@ -397,7 +400,8 @@ export const createComments = commentsTotal => {
       saying: '可以托夢讓我重選台北市長嗎？',
       time: '4天',
       targetId: FEEDBACK.TARGET,
-      reactId: uuidv1()
+      reactId: uuidv1(),
+      isHidden: false
     },
     {
       id: uuidv1(),
@@ -407,7 +411,8 @@ export const createComments = commentsTotal => {
       mediaType: 'pic',
       time: '3天',
       targetId: FEEDBACK.TARGET,
-      reactId: uuidv1()
+      reactId: uuidv1(),
+      isHidden: false
     },
     {
       id: uuidv1(),
@@ -415,7 +420,8 @@ export const createComments = commentsTotal => {
       saying: '五樓，我快等不及了',
       time: '5天',
       targetId: FEEDBACK.TARGET,
-      reactId: uuidv1()
+      reactId: uuidv1(),
+      isHidden: false
     },
     {
       id: uuidv1(),
@@ -429,58 +435,18 @@ export const createComments = commentsTotal => {
       #簡單三步驟打家學會了嗎`,
       time: '5天',
       targetId: FEEDBACK.TARGET,
-      reactId: uuidv1()
+      reactId: uuidv1(),
+      isHidden: false
     }
   ]
-  createCommentReactions(comments[0].id, commentReacts, 240, [
-    0,
-    0,
-    0,
-    0,
-    0,
-    1
-  ])
-  createCommentReactions(comments[1].id, commentReacts, 124, [
-    2,
-    0,
-    0,
-    0,
-    0,
-    1
-  ])
-  createCommentReactions(comments[2].id, commentReacts, 112, [
-    2,
-    1
-  ])
-  createCommentReactions(comments[3].id, commentReacts, 88, [
-    3,
-    2,
-    0,
-    1
-  ])
-  createCommentReactions(comments[4].id, commentReacts, 116, [
-    2,
-    0,
-    0,
-    1
-  ])
-  createCommentReactions(comments[5].id, commentReacts, 125, [
-    2,
-    3
-  ])
-  createCommentReactions(comments[6].id, commentReacts, 244, [
-    2,
-    1,
-    0,
-    1,
-    2
-  ])
-  createCommentReactions(comments[7].id, commentReacts, 160, [
-    2,
-    1,
-    0,
-    1
-  ])
+  createCommentReactions(comments[0].id, commentReacts, 240, [0, 0, 0, 0, 0, 1])
+  createCommentReactions(comments[1].id, commentReacts, 124, [2, 0, 0, 0, 0, 1])
+  createCommentReactions(comments[2].id, commentReacts, 112, [2, 1])
+  createCommentReactions(comments[3].id, commentReacts, 88, [3, 2, 0, 1])
+  createCommentReactions(comments[4].id, commentReacts, 116, [2, 0, 0, 1])
+  createCommentReactions(comments[5].id, commentReacts, 125, [2, 3])
+  createCommentReactions(comments[6].id, commentReacts, 244, [2, 1, 0, 1, 2])
+  createCommentReactions(comments[7].id, commentReacts, 160, [2, 1, 0, 1])
   for (let i = 0; i < commentsTotal; i++) {
     if (comments[i] === undefined) {
       comments.push({
@@ -489,7 +455,8 @@ export const createComments = commentsTotal => {
         saying: '假留言',
         time: `${i}天`,
         targetId: FEEDBACK.TARGET,
-        reactId: uuidv1()
+        reactId: uuidv1(),
+        isHidden: false
       })
     }
   }
