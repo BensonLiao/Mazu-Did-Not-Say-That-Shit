@@ -12,6 +12,7 @@ export const FEEDBACK = {
   UNDO_COMMENT_REACT: 'UNDO_COMMENT_REACT',
   COMMENT: 'COMMENT',
   UNDO_COMMENT: 'UNDO_COMMENT',
+  COMMENT_VISIBILITY_TOGGLE: 'COMMECOMMENT_VISIBILITY_TOGGLENT_HIDE',
   SHARE: 'SHARE',
   TARGET: 'POST'
 }
@@ -52,6 +53,11 @@ export const undoReactToComment = id => ({
 export const feedbackComment = ({ entities }) => ({
   type: FEEDBACK.COMMENT,
   payload: entities
+})
+
+export const toggleCommentVisibility = id => ({
+  type: FEEDBACK.COMMENT_VISIBILITY_TOGGLE,
+  payload: id
 })
 
 export const feedbackShare = ({ entities }) => ({
