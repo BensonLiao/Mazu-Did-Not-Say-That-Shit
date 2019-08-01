@@ -29,10 +29,10 @@ const MenuItemButton = styled.span`
   line-height: 22px;
 `
 
-const MenuButton = ({ btnIcon, btnText, btnLink }) => {
+const MenuButton = ({ btnIcon, btnText, btnLink, onClick }) => {
   return (
     <MenuItemButtonWrapper btnIcon={btnIcon} href={btnLink}>
-      <MenuItemButton>{btnText}</MenuItemButton>
+      <MenuItemButton onClick={onClick}>{btnText}</MenuItemButton>
     </MenuItemButtonWrapper>
   )
 }
@@ -40,13 +40,15 @@ const MenuButton = ({ btnIcon, btnText, btnLink }) => {
 MenuButton.propTypes = {
   btnIcon: PropTypes.string,
   btnText: PropTypes.string,
-  btnLink: PropTypes.string
+  btnLink: PropTypes.string,
+  onClick: PropTypes.func
 }
 
 MenuButton.defaultProps = {
   btnIcon: '',
   btnText: '選單按鈕',
-  btnLink: '#'
+  btnLink: '#',
+  onClick: () => {}
 }
 
 export default MenuButton

@@ -3,6 +3,9 @@ export const isReacted = (state, id) => state.reactReducer.allIds.includes(id)
 export const isReactedToComment = (state, id) => {
   return state.commentReactReducer.allIds.includes(id)
 }
+export const isCommentHiddden = (state, id) => {
+  return state.commentReducer.byId[id].isHidden
+}
 export const getReactArray = state => {
   return state.reactReducer.allIds.map(
     reactId => state.reactReducer.byId[reactId]
