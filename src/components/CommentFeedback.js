@@ -6,6 +6,7 @@ import { displayFlex, DotSeparator } from '../styles/page'
 import FeedbackActionReactToComment from '../containers/FeedbackActionReactToComment'
 import CommentFeedbackButton from './CommentFeedbackButton'
 import appConst from '../utils/constants'
+import { useState } from '../containers/StateProvider'
 
 const CommentFeedbackWrapper = styled.div`
   ${displayFlex}
@@ -17,16 +18,21 @@ const CommentFeedbackWrapper = styled.div`
 `
 
 const CommentFeedback = ({ time, targetId, reactId, reacted }) => {
+  const { isHidden, toggleHidden } = useState()
   const onClick = () => {}
   const { you } = appConst
   return (
     <CommentFeedbackWrapper>
-      <FeedbackActionReactToComment
-        you={you}
-        targetId={targetId}
-        reactId={reactId}
-        reacted={reacted}
-      />
+      {isHidden ? (
+        <CommentFeedbackButton displayText="取消隱藏" onClick={toggleHidden} />
+      ) : (
+        <FeedbackActionReactToComment
+          you={you}
+          targetId={targetId}
+          reactId={reactId}
+          reacted={reacted}
+        />
+      )}
       <DotSeparator />
       <CommentFeedbackButton displayText="回覆" onClick={onClick} />
       <DotSeparator />
