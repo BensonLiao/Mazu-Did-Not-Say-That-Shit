@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import merge from 'lodash/merge'
+import mapValues from 'lodash/mapValues'
 import { ADD_DATA, FEEDBACK } from '../actions'
 
 const addCommentByNormalizr = (state, action) => {
@@ -33,8 +34,11 @@ const toggleCommentVisibility = (state, action) => {
     payload: { id }
   } = action
   // Update the selected Comment object props: isHidden
-  const isCommentHidden = state[id].isHidden
-  state[id].isHidden = !isCommentHidden
+  // const isCommentHidden = state[id].isHidden
+  // state[id].isHidden = !isCommentHidden
+  state = mapValues(state, oldItem => (
+    oldItem.id === id ? { ...oldItem, isHidden: !oldItem.isHidden } : oldItem
+  ))
   return state
 }
 

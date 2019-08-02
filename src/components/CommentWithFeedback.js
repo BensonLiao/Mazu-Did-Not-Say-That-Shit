@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Comment from './Comment'
+import useMouseHover from '../hooks/useMouseHover'
 import CommentFeedback from './CommentFeedback'
 import appConst from '../utils/constants'
 import { yourCommentBorderStyle } from '../styles/post'
@@ -15,6 +16,13 @@ const CommentAndFeedbackWrapper = styled.div`
 `
 
 const CommentWithFeedback = ({ comment }) => {
+  const [isHover, setIsHover] = useMouseHover()
+  const onEnter = () => {
+    setIsHover(true)
+  }
+  const onLeave = () => {
+    setIsHover(false)
+  }
   const {
     id,
     reactId,
@@ -31,7 +39,12 @@ const CommentWithFeedback = ({ comment }) => {
   return isFakeUser ? (
     <></>
   ) : (
-    <CommentAndFeedbackWrapper key={id} isYourComment={isYourComment}>
+    <CommentAndFeedbackWrapper
+      key={id}
+      isYourComment={isYourComment}
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+    >
       <Comment
         commentId={id}
         profileName={profileName}
@@ -40,6 +53,7 @@ const CommentWithFeedback = ({ comment }) => {
         isVerified={isVerified}
         saying={saying}
         attachMedia={attachMedia}
+        isHover={isHover}
       />
       <CommentFeedback time={time} targetId={id} reactId={reactId} />
     </CommentAndFeedbackWrapper>

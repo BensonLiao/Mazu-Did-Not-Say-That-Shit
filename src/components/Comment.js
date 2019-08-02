@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { displayFlex } from '../styles/page'
-import useMouseHover from '../hooks/useMouseHover'
 import CommentAvatar from './CommentAvatar'
 import CommentWithReactionSummary from './CommentWithReactionSummary'
 import CommentMenuToggle from './CommentMenuToggle'
@@ -18,17 +17,11 @@ const Comment = ({
   profileImg,
   isVerified,
   saying,
-  attachMedia
+  attachMedia,
+  isHover
 }) => {
-  const [isHover, setIsHover] = useMouseHover()
-  const onEnter = () => {
-    setIsHover(true)
-  }
-  const onLeave = () => {
-    setIsHover(false)
-  }
   return (
-    <CommentWrapper onMouseEnter={onEnter} onMouseLeave={onLeave}>
+    <CommentWrapper>
       <CommentAvatar profileName={profileName} profileImg={profileImg} />
       <CommentWithReactionSummary
         commentId={commentId}
@@ -50,7 +43,8 @@ Comment.propTypes = {
   profileImg: PropTypes.string,
   isVerified: PropTypes.bool,
   saying: PropTypes.string,
-  attachMedia: PropTypes.string
+  attachMedia: PropTypes.string,
+  isHover: PropTypes.bool
 }
 
 Comment.defaultProps = {
@@ -60,7 +54,8 @@ Comment.defaultProps = {
   profileLink: 'https://www.facebook.com/jingping.tw/',
   profileImg: 'toolman.png',
   isVerified: true,
-  attachMedia: ''
+  attachMedia: '',
+  isHover: false
 }
 
 export default Comment
