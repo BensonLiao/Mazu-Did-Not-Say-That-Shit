@@ -21,6 +21,10 @@ export const getCommentReactArray = (state, commentId) => {
   })
   return reacts
 }
+export const getCommentIds = state => state.commentReducer.allIds
+export const getComment = (state, id) => {
+  return state.commentReducer.byId[id]
+}
 export const getCommentArray = state => {
   return state.commentReducer.allIds.map(
     commentId => state.commentReducer.byId[commentId]

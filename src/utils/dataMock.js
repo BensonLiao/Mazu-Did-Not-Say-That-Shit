@@ -170,28 +170,28 @@ const createCommentReactions = (
         id: uuidv1(),
         user: getFakeUser(i),
         feeling: REACTIONS.LIKE,
-        targetId: FEEDBACK.TARGET
+        targetId: commentId
       })
     } else if (i < totalLikes + totalHahas) {
       commentReacts.push({
         id: uuidv1(),
         user: getFakeUser(i),
         feeling: REACTIONS.HAHA,
-        targetId: FEEDBACK.TARGET
+        targetId: commentId
       })
     } else if (i < totalLikes + totalHahas + totalLoves) {
       commentReacts.push({
         id: uuidv1(),
         user: getFakeUser(i),
         feeling: REACTIONS.LOVE,
-        targetId: FEEDBACK.TARGET
+        targetId: commentId
       })
     } else if (i < totalLikes + totalHahas + totalLoves + totalWows) {
       commentReacts.push({
         id: uuidv1(),
         user: getFakeUser(i),
         feeling: REACTIONS.WOW,
-        targetId: FEEDBACK.TARGET
+        targetId: commentId
       })
     } else if (
       i <
@@ -201,7 +201,7 @@ const createCommentReactions = (
         id: uuidv1(),
         user: getFakeUser(i),
         feeling: REACTIONS.SAD,
-        targetId: FEEDBACK.TARGET
+        targetId: commentId
       })
     } else if (
       i <
@@ -211,11 +211,10 @@ const createCommentReactions = (
         id: uuidv1(),
         user: getFakeUser(i),
         feeling: REACTIONS.ANGRY,
-        targetId: FEEDBACK.TARGET
+        targetId: commentId
       })
     }
   }
-  // commentIds.push(targetId)
 }
 
 // const getCommentReactsTotal = (reactsTotal, ratio = 388) => {
