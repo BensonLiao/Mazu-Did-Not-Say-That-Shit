@@ -34,7 +34,7 @@ const MenuToggle = styled.div`
 
 const tooltipId = 'tip-for-comment-menu-toggle'
 
-const CommentMenuToggle = ({ commentId, isHover, isHidden }) => {
+const CommentMenuToggle = ({ commentId, isHover, isYourComment }) => {
   const { ref, isCompVisible } = useCompVisible(false)
   const toggleOrHover = isHover || isCompVisible
   return toggleOrHover ? (
@@ -50,7 +50,7 @@ const CommentMenuToggle = ({ commentId, isHover, isHidden }) => {
         bg={cssConst.tooltipBackgroundBlack}
       />
       {isCompVisible && (
-        <CommentMenu commentId={commentId} isHidden={isHidden} />
+        <CommentMenu commentId={commentId} isYourComment={isYourComment} />
       )}
     </MenuToggleWrapper>
   ) : (
@@ -61,13 +61,13 @@ const CommentMenuToggle = ({ commentId, isHover, isHidden }) => {
 CommentMenuToggle.propTypes = {
   commentId: PropTypes.string,
   isHover: PropTypes.bool,
-  isHidden: PropTypes.bool
+  isYourComment: PropTypes.bool
 }
 
 CommentMenuToggle.defaultProps = {
   commentId: 'fakecommentid',
   isHover: true,
-  isHidden: false
+  isYourComment: false
 }
 
 export default CommentMenuToggle

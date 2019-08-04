@@ -6,8 +6,7 @@ import { displayFlex, DotSeparator } from '../styles/page'
 import FeedbackActionReactToComment from '../containers/FeedbackActionReactToComment'
 import CommentFeedbackButton from './CommentFeedbackButton'
 import appConst from '../utils/constants'
-// import { useState } from '../containers/StateProvider'
-import ShowComment from '../containers/ShowComment'
+import { useState } from '../containers/StateProvider'
 
 const CommentFeedbackWrapper = styled.div`
   ${displayFlex}
@@ -19,15 +18,14 @@ const CommentFeedbackWrapper = styled.div`
   margin-left: 50px;
 `
 
-const CommentFeedback = ({ time, targetId, reactId, reacted, isHidden }) => {
-  // const { isHidden, toggleHidden } = useState()
+const CommentFeedback = ({ time, targetId, reactId, reacted }) => {
+  const { isHidden, toggleHidden } = useState()
   const onClick = () => {}
   const { you } = appConst
   return (
     <CommentFeedbackWrapper isHidden={isHidden}>
       {isHidden ? (
-        // <CommentFeedbackButton displayText="取消隱藏" onClick={toggleHidden} />
-        <ShowComment displayText="取消隱藏" commentId={targetId} />
+        <CommentFeedbackButton displayText="取消隱藏" onClick={toggleHidden} />
       ) : (
         <FeedbackActionReactToComment
           you={you}
@@ -46,16 +44,14 @@ const CommentFeedback = ({ time, targetId, reactId, reacted, isHidden }) => {
 
 CommentFeedback.defaultProps = {
   time: '1天',
-  reacted: false,
-  isHidden: false
+  reacted: false
 }
 
 CommentFeedback.propTypes = {
   time: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   targetId: PropTypes.string.isRequired,
   reactId: PropTypes.string.isRequired,
-  reacted: PropTypes.bool,
-  isHidden: PropTypes.bool
+  reacted: PropTypes.bool
 }
 
 CommentFeedback.displayName = 'CommentFeedback'

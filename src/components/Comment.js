@@ -5,6 +5,7 @@ import { displayFlex } from '../styles/page'
 import CommentAvatar from './CommentAvatar'
 import CommentWithReactionSummary from './CommentWithReactionSummary'
 import CommentMenuToggle from './CommentMenuToggle'
+import { useState } from '../containers/StateProvider'
 
 const CommentWithMenuWrapper = styled.div`
   ${displayFlex}
@@ -20,12 +21,13 @@ const Comment = ({
   profileName,
   profileLink,
   profileImg,
-  isHidden,
   isVerified,
   saying,
   attachMedia,
-  isHover
+  isHover,
+  isYourComment
 }) => {
+  const { isHidden } = useState()
   return (
     <CommentWithMenuWrapper>
       <CommentWrapper isHidden={isHidden}>
@@ -42,7 +44,7 @@ const Comment = ({
       <CommentMenuToggle
         commentId={commentId}
         isHover={isHover}
-        isHidden={isHidden}
+        isYourComment={isYourComment}
       />
     </CommentWithMenuWrapper>
   )
@@ -54,10 +56,10 @@ Comment.propTypes = {
   profileLink: PropTypes.string,
   profileImg: PropTypes.string,
   isVerified: PropTypes.bool,
-  isHidden: PropTypes.bool,
   saying: PropTypes.string,
   attachMedia: PropTypes.string,
-  isHover: PropTypes.bool
+  isHover: PropTypes.bool,
+  isYourComment: PropTypes.bool
 }
 
 Comment.defaultProps = {
@@ -67,9 +69,9 @@ Comment.defaultProps = {
   profileLink: 'https://www.facebook.com/jingping.tw/',
   profileImg: 'toolman.png',
   isVerified: true,
-  isHidden: false,
   attachMedia: '',
-  isHover: false
+  isHover: false,
+  isYourComment: false
 }
 
 export default Comment
