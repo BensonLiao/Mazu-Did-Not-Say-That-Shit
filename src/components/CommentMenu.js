@@ -5,8 +5,8 @@ import { menuItemHideComment } from '../styles/menu'
 import useCompWidth from '../hooks/useCompWidth'
 import menu from '../assets/img/menu-new.png'
 import MenuButton from './MenuButton'
-import { useState } from '../containers/StateProvider'
-// import ToggleCommentVisible from '../containers/ToggleCommentVisible'
+// import { useState } from '../containers/StateProvider'
+import HideComment from '../containers/HideComment'
 
 const CommentMenuWrapper = styled.div`
   position: absolute;
@@ -57,30 +57,29 @@ const MenuItem = styled.li`
   text-align: -webkit-match-parent;
 `
 
-const CommentMenu = ({ commentId }) => {
+const CommentMenu = ({ commentId, isHidden, onClick }) => {
   const compWidth = useCompWidth(commentId)
-  const { isHidden, toggleHidden } = useState()
-  return (
+  // const { isHidden, toggleHidden } = useState()
+  return compWidth === 0 ? null : (
     <CommentMenuWrapper commmentWidth={compWidth}>
       <MenuWrapper>
         <MenuPanel>
           <Menu>
             {!isHidden && (
               <MenuItem>
-                <MenuButton
+                {/* <MenuButton
                   btnIcon={menuItemHideComment}
                   btnText="隱藏留言"
                   onClick={toggleHidden}
+                /> */}
+                <HideComment
+                  commentId={commentId}
+                  btnIcon={menuItemHideComment}
+                  btnText="隱藏留言"
+                  onClick={onClick}
                 />
               </MenuItem>
             )}
-            {/* <MenuItem>
-              <ToggleCommentVisible
-                commentId={commentId}
-                btnIcon={menuItemHideComment}
-                btnText="隱藏留言"
-              />
-            </MenuItem> */}
             <MenuItem>
               <MenuButton btnText="尋求支援或檢舉留言" />
             </MenuItem>
@@ -93,11 +92,15 @@ const CommentMenu = ({ commentId }) => {
 }
 
 CommentMenu.propTypes = {
-  commentId: PropTypes.string
+  commentId: PropTypes.string,
+  isHidden: PropTypes.bool,
+  onClick: PropTypes.func
 }
 
 CommentMenu.defaultProps = {
-  commentId: 'fakecommentid'
+  commentId: 'fakecommentid',
+  isHidden: false,
+  onClick: () => {}
 }
 
 export default CommentMenu

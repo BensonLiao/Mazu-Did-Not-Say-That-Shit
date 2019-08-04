@@ -15,6 +15,7 @@
     "@storybook/react": "^5.1.9",
     "core-js": "^3.1.4",
     "cssesc": "^3.0.0",
+    "immer": "^3.2.0",
     "lodash": "^4.17.11",
     "normalizr": "^3.4.0",
     "prop-types": "^15.7.2",

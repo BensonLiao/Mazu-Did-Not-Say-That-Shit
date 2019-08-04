@@ -1,61 +1,110 @@
 import { combineReducers } from 'redux'
-import merge from 'lodash/merge'
-import mapValues from 'lodash/mapValues'
+import produce from 'immer'
+// import merge from 'lodash/merge'
+// import mapValues from 'lodash/mapValues'
 import { ADD_DATA, FEEDBACK } from '../actions'
 
-const addCommentByNormalizr = (state, action) => {
+// const addCommentByNormalizr = (state, action) => {
+//   const {
+//     payload: { comments }
+//   } = action
+//   // Merge the new and current Comment object and return new object
+//   return merge({}, state, comments)
+// }
+
+// const addComment = (state, action) => {
+//   const { payload } = action
+//   const comments = {
+//     [payload.id]: payload
+//   }
+//   // Merge the new and current Comment object and return new object
+//   return merge({}, state, comments)
+// }
+
+// const removeComment = (state, action) => {
+//   const {
+//     payload: { id }
+//   } = action
+//   // Remove the new Comment object from the updated lookup table
+//   delete state[id]
+//   return state
+// }
+
+// const toggleCommentVisibility = (state, action) => {
+//   const {
+//     payload: { id }
+//   } = action
+//   // Update the selected Comment object props: isHidden
+//   // const isCommentHidden = state[id].isHidden
+//   // state[id].isHidden = !isCommentHidden
+//   state = mapValues(state, oldItem => (
+//     oldItem.id === id ? { ...oldItem, isHidden: !oldItem.isHidden } : oldItem
+//   ))
+//   return state
+// }
+
+// const commentsById = (state = {}, action) => {
+//   switch (action.type) {
+//     case ADD_DATA:
+//       return addCommentByNormalizr(state, action)
+//     case FEEDBACK.COMMENT:
+//       return addComment(state, action)
+//     case FEEDBACK.COMMENT_VISIBILITY_TOGGLE:
+//       return toggleCommentVisibility(state, action)
+//     case FEEDBACK.UNDO_COMMENT:
+//       return removeComment(state, action)
+//     default:
+//       return state
+//   }
+// }
+
+const addCommentByNormalizr = (draft, action) => {
   const {
     payload: { comments }
   } = action
-  // Merge the new and current Comment object and return new object
-  return merge({}, state, comments)
+  Object.keys(comments).forEach(id => {
+    draft[id] = comments[id]
+  })
 }
 
-const addComment = (state, action) => {
+const addComment = (draft, action) => {
   const { payload } = action
-  const comments = {
-    [payload.id]: payload
-  }
-  // Merge the new and current Comment object and return new object
-  return merge({}, state, comments)
+  draft[payload.id] = payload
 }
 
-const removeComment = (state, action) => {
+const removeComment = (draft, action) => {
   const {
     payload: { id }
   } = action
-  // Remove the new Comment object from the updated lookup table
-  delete state[id]
-  return state
+  delete draft[id]
 }
 
-const toggleCommentVisibility = (state, action) => {
+const toggleCommentVisibility = (draft, action) => {
   const {
     payload: { id }
   } = action
-  // Update the selected Comment object props: isHidden
-  // const isCommentHidden = state[id].isHidden
-  // state[id].isHidden = !isCommentHidden
-  state = mapValues(state, oldItem => (
-    oldItem.id === id ? { ...oldItem, isHidden: !oldItem.isHidden } : oldItem
-  ))
-  return state
+  const currentVisibility = draft[id].isHidden
+  draft[id].isHidden = !currentVisibility
 }
 
-const commentsById = (state = {}, action) => {
+const commentsById = produce((draft, action) => {
   switch (action.type) {
     case ADD_DATA:
-      return addCommentByNormalizr(state, action)
+      addCommentByNormalizr(draft, action)
+      break
     case FEEDBACK.COMMENT:
-      return addComment(state, action)
-    case FEEDBACK.COMMENT_VISIBILITY_TOGGLE:
-      return toggleCommentVisibility(state, action)
+      addComment(draft, action)
+      break
     case FEEDBACK.UNDO_COMMENT:
-      return removeComment(state, action)
+      removeComment(draft, action)
+      break
+    case FEEDBACK.COMMENT_VISIBILITY_TOGGLE:
+      toggleCommentVisibility(draft, action)
+      break
     default:
-      return state
+      break
   }
-}
+}, {})
 
 const addCommentIdByNormalizr = (state, action) => {
   const {

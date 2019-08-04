@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Comment from './Comment'
@@ -6,14 +6,12 @@ import useMouseHover from '../hooks/useMouseHover'
 import CommentFeedback from './CommentFeedback'
 import appConst from '../utils/constants'
 import { yourCommentBorderStyle } from '../styles/post'
-import { StateProvider } from '../containers/StateProvider'
+// import { StateProvider } from '../containers/StateProvider'
 
 const CommentAndFeedbackWrapper = styled.div`
   position: relative;
   padding: 4px 12px 8px 12px;
-  ${props => {
-    return props.isYourComment ? yourCommentBorderStyle : ''
-  }}
+  ${({ isYourComment }) => isYourComment && yourCommentBorderStyle}
   ${props => {
     return props.isCommentHidden ? 'opacity: 0.5;' : ''
   }}
@@ -27,12 +25,13 @@ const CommentWithFeedback = ({ comment }) => {
   const onLeave = () => {
     setIsHover(false)
   }
-  const [isHidden, setIsHidden] = useState(false)
-  const toggleHidden = () => setIsHidden(!isHidden)
+  // const [isHidden, setIsHidden] = useState(false)
+  // const toggleHidden = () => setIsHidden(!isHidden)
   const {
     id,
     reactId,
     user: { profileName, profileLink, profileImg, isVerified },
+    isHidden,
     saying,
     attachMedia,
     time
@@ -42,18 +41,14 @@ const CommentWithFeedback = ({ comment }) => {
   } = appConst
   const isYourComment = yourProfileName === profileName
   const isFakeUser = profileName.startsWith('假帳號')
-  const isCommentHidden = isHidden
+  // if (!isFakeUser) {
+  //   console.log('comment', comment)
+  // }
   if (!isFakeUser) {
-    console.log('comment', comment)
-  }
-  return isFakeUser ? (
-    <></>
-  ) : (
-    <StateProvider initialState={{ isHidden, toggleHidden }}>
+    return (
       <CommentAndFeedbackWrapper
         key={id}
         isYourComment={isYourComment}
-        isCommentHidden={isCommentHidden}
         onMouseEnter={onEnter}
         onMouseLeave={onLeave}
       >
@@ -66,32 +61,39 @@ const CommentWithFeedback = ({ comment }) => {
           saying={saying}
           attachMedia={attachMedia}
           isHover={isHover}
+          isHidden={isHidden}
         />
-        <CommentFeedback time={time} targetId={id} reactId={reactId} />
+        <CommentFeedback
+          time={time}
+          targetId={id}
+          reactId={reactId}
+          isHidden={isHidden}
+        />
       </CommentAndFeedbackWrapper>
-    </StateProvider>
-    // <CommentAndFeedbackWrapper
-    //   key={id}
-    //   isYourComment={isYourComment}
-    //   isCommentHidden={isCommentHidden}
-    // >
-    //   <Comment
-    //     commentId={id}
-    //     profileName={profileName}
-    //     profileLink={profileLink}
-    //     profileImg={profileImg}
-    //     isVerified={isVerified}
-    //     saying={saying}
-    //     attachMedia={attachMedia}
-    //   />
-    //   <CommentFeedback
-    //     time={time}
-    //     targetId={id}
-    //     reactId={reactId}
-    //     isHidden={isHidden}
-    //   />
-    // </CommentAndFeedbackWrapper>
-  )
+      // <StateProvider initialState={{ isHidden, toggleHidden }}>
+      //   <CommentAndFeedbackWrapper
+      //     key={id}
+      //     isYourComment={isYourComment}
+      //     isCommentHidden={isCommentHidden}
+      //     onMouseEnter={onEnter}
+      //     onMouseLeave={onLeave}
+      //   >
+      //     <Comment
+      //       commentId={id}
+      //       profileName={profileName}
+      //       profileLink={profileLink}
+      //       profileImg={profileImg}
+      //       isVerified={isVerified}
+      //       saying={saying}
+      //       attachMedia={attachMedia}
+      //       isHover={isHover}
+      //     />
+      //     <CommentFeedback time={time} targetId={id} reactId={reactId} />
+      //   </CommentAndFeedbackWrapper>
+      // </StateProvider>
+    )
+  }
+  return null
 }
 
 CommentWithFeedback.propTypes = {

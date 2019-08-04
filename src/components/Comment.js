@@ -6,8 +6,13 @@ import CommentAvatar from './CommentAvatar'
 import CommentWithReactionSummary from './CommentWithReactionSummary'
 import CommentMenuToggle from './CommentMenuToggle'
 
-const CommentWrapper = styled.div`
+const CommentWithMenuWrapper = styled.div`
   ${displayFlex}
+`
+
+const CommentWrapper = styled.span`
+  ${displayFlex}
+  ${({ isHidden }) => isHidden && 'opacity: 0.5;'}
 `
 
 const Comment = ({
@@ -15,24 +20,31 @@ const Comment = ({
   profileName,
   profileLink,
   profileImg,
+  isHidden,
   isVerified,
   saying,
   attachMedia,
   isHover
 }) => {
   return (
-    <CommentWrapper>
-      <CommentAvatar profileName={profileName} profileImg={profileImg} />
-      <CommentWithReactionSummary
+    <CommentWithMenuWrapper>
+      <CommentWrapper isHidden={isHidden}>
+        <CommentAvatar profileName={profileName} profileImg={profileImg} />
+        <CommentWithReactionSummary
+          commentId={commentId}
+          profileName={profileName}
+          profileLink={profileLink}
+          isVerified={isVerified}
+          saying={saying}
+          attachMedia={attachMedia}
+        />
+      </CommentWrapper>
+      <CommentMenuToggle
         commentId={commentId}
-        profileName={profileName}
-        profileLink={profileLink}
-        isVerified={isVerified}
-        saying={saying}
-        attachMedia={attachMedia}
+        isHover={isHover}
+        isHidden={isHidden}
       />
-      <CommentMenuToggle commentId={commentId} isHover={isHover} />
-    </CommentWrapper>
+    </CommentWithMenuWrapper>
   )
 }
 
@@ -42,6 +54,7 @@ Comment.propTypes = {
   profileLink: PropTypes.string,
   profileImg: PropTypes.string,
   isVerified: PropTypes.bool,
+  isHidden: PropTypes.bool,
   saying: PropTypes.string,
   attachMedia: PropTypes.string,
   isHover: PropTypes.bool
@@ -54,6 +67,7 @@ Comment.defaultProps = {
   profileLink: 'https://www.facebook.com/jingping.tw/',
   profileImg: 'toolman.png',
   isVerified: true,
+  isHidden: false,
   attachMedia: '',
   isHover: false
 }
