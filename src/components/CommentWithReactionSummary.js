@@ -34,9 +34,6 @@ const CommentWithReactionSummary = ({
         attachMedia={attachMedia}
       />
       <DisplayCommentReactSummary commentId={commentId} />
-      {/* {reactions.length > 0 && (
-        <CommentReactionSummary reactions={reactions} commentId={commentId} />
-      )} */}
     </CommentWithReactionSummaryWrapper>
   )
 }

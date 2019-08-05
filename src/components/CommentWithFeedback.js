@@ -38,35 +38,32 @@ const CommentWithFeedback = ({ comment }) => {
   // if (!isFakeUser) {
   //   console.log('comment', comment)
   // }
-  if (!isFakeUser) {
-    return (
-      <CommentAndFeedbackWrapper
-        key={id}
-        isYourComment={isYourComment}
-        onMouseEnter={onEnter}
-        onMouseLeave={onLeave}
-      >
-        <Comment
-          commentId={id}
-          profileName={profileName}
-          profileLink={profileLink}
-          profileImg={profileImg}
-          isVerified={isVerified}
-          saying={saying}
-          attachMedia={attachMedia}
-          isHover={isHover}
-          isHidden={isHidden}
-        />
-        <CommentFeedback
-          time={time}
-          targetId={id}
-          reactId={reactId}
-          isHidden={isHidden}
-        />
-      </CommentAndFeedbackWrapper>
-    )
-  }
-  return null
+  return isFakeUser ? null : (
+    <CommentAndFeedbackWrapper
+      key={id}
+      isYourComment={isYourComment}
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+    >
+      <Comment
+        commentId={id}
+        profileName={profileName}
+        profileLink={profileLink}
+        profileImg={profileImg}
+        isVerified={isVerified}
+        saying={saying}
+        attachMedia={attachMedia}
+        isHover={isHover}
+        isHidden={isHidden}
+      />
+      <CommentFeedback
+        time={time}
+        targetId={id}
+        reactId={reactId}
+        isHidden={isHidden}
+      />
+    </CommentAndFeedbackWrapper>
+  )
 }
 
 CommentWithFeedback.propTypes = {

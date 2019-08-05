@@ -34,9 +34,7 @@ class ReactionSummary extends React.Component {
   render() {
     const { reactions } = this.props
     const reactionSummary = dataSummary.getReactionSummary(reactions)
-    return reactionSummary === '' ? (
-      <></>
-    ) : (
+    return reactionSummary === '' ? null : (
       <ReactionSummaryWrapper>
         <ReactionTopMostIcon
           reactFeeling={reactionSummary.topMost.feeling}

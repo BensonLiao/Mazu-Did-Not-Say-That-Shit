@@ -53,9 +53,7 @@ const CommentMenuToggle = ({ commentId, isHover, isHidden }) => {
         <CommentMenu commentId={commentId} isHidden={isHidden} />
       )}
     </MenuToggleWrapper>
-  ) : (
-    <></>
-  )
+  ) : null
 }
 
 CommentMenuToggle.propTypes = {

@@ -44,9 +44,7 @@ const CommentReactionSummary = ({ commentId, reactions }) => {
   const reactionSummary = dataSummary.getCommentReactionSummary(reactions)
   const tooltipId = 'tip-for-comment-reaction'
   const withComponent = 'comment'
-  return reactionSummary === '' ? (
-    <></>
-  ) : (
+  return reactionSummary === '' ? null : (
     <CommentReactionSummaryWrapper
       data-for={tooltipId}
       data-tip={reactionSummary.forTip}
