@@ -34,23 +34,24 @@ const MenuToggle = styled.div`
 
 const tooltipId = 'tip-for-comment-menu-toggle'
 
-const CommentMenuToggle = ({ commentId, isHover, isHidden }) => {
+const CommentMenuToggle = ({ commentId, isHover, isHidden, isYour }) => {
   const { ref, isCompVisible } = useCompVisible(false)
   const toggleOrHover = isHover || isCompVisible
+  const tipText = isYour ? '編輯或刪除' : '隱藏或檢舉這篇留言'
   return toggleOrHover ? (
     <MenuToggleWrapper>
-      <MenuToggle
-        ref={ref}
-        data-for={tooltipId}
-        data-tip="隱藏或檢舉這篇留言"
-      />
+      <MenuToggle ref={ref} data-for={tooltipId} data-tip={tipText} />
       <StyledTooltip
         id={tooltipId}
         effect="solid"
         bg={cssConst.tooltipBackgroundBlack}
       />
       {isCompVisible && (
-        <CommentMenu commentId={commentId} isHidden={isHidden} />
+        <CommentMenu
+          commentId={commentId}
+          isHidden={isHidden}
+          isYour={isYour}
+        />
       )}
     </MenuToggleWrapper>
   ) : null
@@ -59,13 +60,15 @@ const CommentMenuToggle = ({ commentId, isHover, isHidden }) => {
 CommentMenuToggle.propTypes = {
   commentId: PropTypes.string,
   isHover: PropTypes.bool,
-  isHidden: PropTypes.bool
+  isHidden: PropTypes.bool,
+  isYour: PropTypes.bool
 }
 
 CommentMenuToggle.defaultProps = {
   commentId: 'fakecommentid',
   isHover: true,
-  isHidden: false
+  isHidden: false,
+  isYour: false
 }
 
 export default CommentMenuToggle

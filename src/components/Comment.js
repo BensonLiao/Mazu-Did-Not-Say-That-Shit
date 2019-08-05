@@ -24,7 +24,8 @@ const Comment = ({
   isVerified,
   saying,
   attachMedia,
-  isHover
+  isHover,
+  isYour
 }) => {
   return (
     <CommentWithMenuWrapper>
@@ -43,6 +44,7 @@ const Comment = ({
         commentId={commentId}
         isHover={isHover}
         isHidden={isHidden}
+        isYour={isYour}
       />
     </CommentWithMenuWrapper>
   )
@@ -57,7 +59,8 @@ Comment.propTypes = {
   isHidden: PropTypes.bool,
   saying: PropTypes.string,
   attachMedia: PropTypes.string,
-  isHover: PropTypes.bool
+  isHover: PropTypes.bool,
+  isYour: PropTypes.bool
 }
 
 Comment.defaultProps = {
@@ -69,7 +72,8 @@ Comment.defaultProps = {
   isVerified: true,
   isHidden: false,
   attachMedia: '',
-  isHover: false
+  isHover: false,
+  isYour: false
 }
 
 export default Comment

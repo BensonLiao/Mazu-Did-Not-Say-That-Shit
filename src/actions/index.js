@@ -55,6 +55,13 @@ export const feedbackComment = ({ entities }) => ({
   payload: entities
 })
 
+export const undoComment = id => ({
+  type: FEEDBACK.UNDO_COMMENT,
+  payload: {
+    id
+  }
+})
+
 export const toggleCommentVisibility = id => ({
   type: FEEDBACK.COMMENT_VISIBILITY_TOGGLE,
   payload: {

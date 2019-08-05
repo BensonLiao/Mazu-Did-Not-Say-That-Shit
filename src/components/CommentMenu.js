@@ -3,13 +3,15 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { menuItemHideComment } from '../styles/menu'
 import useCompWidth from '../hooks/useCompWidth'
+import useCompNarrow from '../hooks/useCompNarrow'
 import menu from '../assets/img/menu-new.png'
 import MenuButton from './MenuButton'
 import HideComment from '../containers/HideComment'
+import DeleteComment from '../containers/DeleteComment'
 
 const CommentMenuWrapper = styled.div`
   position: absolute;
-  left: ${props => props.commmentWidth - 31}px;
+  left: ${props => props.offSet}px;
   z-index: 5;
 `
 
@@ -56,14 +58,26 @@ const MenuItem = styled.li`
   text-align: -webkit-match-parent;
 `
 
-const CommentMenu = ({ commentId, isHidden, onClick }) => {
+const CommentMenu = ({ commentId, isHidden, isYour, onClick }) => {
+  const isCompNarrow = useCompNarrow(commentId)
   const compWidth = useCompWidth(commentId)
+  const offSet = isCompNarrow ? compWidth + 38 : compWidth - 31
   return compWidth === 0 ? null : (
-    <CommentMenuWrapper commmentWidth={compWidth}>
+    <CommentMenuWrapper offSet={offSet}>
       <MenuWrapper>
         <MenuPanel>
           <Menu>
-            {!isHidden && (
+            {isYour && (
+              <MenuItem>
+                <MenuButton btnText="編輯......" />
+                <DeleteComment
+                  commentId={commentId}
+                  btnText="刪除......"
+                  onClick={onClick}
+                />
+              </MenuItem>
+            )}
+            {!isYour && !isHidden && (
               <MenuItem>
                 <HideComment
                   commentId={commentId}
@@ -73,9 +87,11 @@ const CommentMenu = ({ commentId, isHidden, onClick }) => {
                 />
               </MenuItem>
             )}
-            <MenuItem>
-              <MenuButton btnText="尋求支援或檢舉留言" />
-            </MenuItem>
+            {!isYour && (
+              <MenuItem>
+                <MenuButton btnText="尋求支援或檢舉留言" />
+              </MenuItem>
+            )}
           </Menu>
         </MenuPanel>
       </MenuWrapper>
@@ -87,12 +103,14 @@ const CommentMenu = ({ commentId, isHidden, onClick }) => {
 CommentMenu.propTypes = {
   commentId: PropTypes.string,
   isHidden: PropTypes.bool,
+  isYour: PropTypes.bool,
   onClick: PropTypes.func
 }
 
 CommentMenu.defaultProps = {
   commentId: 'fakecommentid',
   isHidden: false,
+  isYour: false,
   onClick: () => {}
 }
 

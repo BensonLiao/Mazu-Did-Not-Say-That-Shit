@@ -10,7 +10,7 @@ import { yourCommentBorderStyle } from '../styles/post'
 const CommentAndFeedbackWrapper = styled.div`
   position: relative;
   padding: 4px 12px 8px 12px;
-  ${({ isYourComment }) => isYourComment && yourCommentBorderStyle}
+  ${({ isYour }) => isYour && yourCommentBorderStyle}
 `
 
 const CommentWithFeedback = ({ comment }) => {
@@ -33,7 +33,7 @@ const CommentWithFeedback = ({ comment }) => {
   const {
     you: { profileName: yourProfileName }
   } = appConst
-  const isYourComment = yourProfileName === profileName
+  const isYour = yourProfileName === profileName
   const isFakeUser = profileName.startsWith('假帳號')
   // if (!isFakeUser) {
   //   console.log('comment', comment)
@@ -41,7 +41,7 @@ const CommentWithFeedback = ({ comment }) => {
   return isFakeUser ? null : (
     <CommentAndFeedbackWrapper
       key={id}
-      isYourComment={isYourComment}
+      isYour={isYour}
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
     >
@@ -55,6 +55,7 @@ const CommentWithFeedback = ({ comment }) => {
         attachMedia={attachMedia}
         isHover={isHover}
         isHidden={isHidden}
+        isYour={isYour}
       />
       <CommentFeedback
         time={time}

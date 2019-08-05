@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
-import { toggleCommentVisibility } from '../actions'
+import { undoComment } from '../actions'
 import MenuButton from '../components/MenuButton'
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onClick: () => dispatch(toggleCommentVisibility(ownProps.commentId))
+  onClick: () => dispatch(undoComment(ownProps.commentId))
 })
 
 export default connect(
