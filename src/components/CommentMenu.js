@@ -1,7 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { menuItemHideComment } from '../styles/menu'
+import {
+  menuItemHideComment,
+  menuItemDeleteComment,
+  menuItemEditComment
+} from '../styles/menu'
 import useCompWidth from '../hooks/useCompWidth'
 import useCompNarrow from '../hooks/useCompNarrow'
 import menu from '../assets/img/menu-new.png'
@@ -69,9 +73,13 @@ const CommentMenu = ({ commentId, isHidden, isYour, onClick }) => {
           <Menu>
             {isYour && (
               <MenuItem>
-                <MenuButton btnText="編輯......" />
+                <MenuButton
+                  btnIcon={menuItemEditComment}
+                  btnText="編輯......"
+                />
                 <DeleteComment
                   commentId={commentId}
+                  btnIcon={menuItemDeleteComment}
                   btnText="刪除......"
                   onClick={onClick}
                 />
