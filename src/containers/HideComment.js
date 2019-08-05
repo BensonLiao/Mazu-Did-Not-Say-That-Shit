@@ -3,7 +3,10 @@ import { toggleCommentVisibility } from '../actions'
 import MenuButton from '../components/MenuButton'
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onClick: () => dispatch(toggleCommentVisibility(ownProps.commentId))
+  onClick: event => {
+    console.log('event.eventPhase', event.eventPhase)
+    dispatch(toggleCommentVisibility(ownProps.commentId))
+  }
 })
 
 export default connect(

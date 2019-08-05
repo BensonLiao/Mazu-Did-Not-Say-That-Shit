@@ -6,15 +6,11 @@ import useMouseHover from '../hooks/useMouseHover'
 import CommentFeedback from './CommentFeedback'
 import appConst from '../utils/constants'
 import { yourCommentBorderStyle } from '../styles/post'
-// import { StateProvider } from '../containers/StateProvider'
 
 const CommentAndFeedbackWrapper = styled.div`
   position: relative;
   padding: 4px 12px 8px 12px;
   ${({ isYourComment }) => isYourComment && yourCommentBorderStyle}
-  ${props => {
-    return props.isCommentHidden ? 'opacity: 0.5;' : ''
-  }}
 `
 
 const CommentWithFeedback = ({ comment }) => {
@@ -25,8 +21,6 @@ const CommentWithFeedback = ({ comment }) => {
   const onLeave = () => {
     setIsHover(false)
   }
-  // const [isHidden, setIsHidden] = useState(false)
-  // const toggleHidden = () => setIsHidden(!isHidden)
   const {
     id,
     reactId,
@@ -70,27 +64,6 @@ const CommentWithFeedback = ({ comment }) => {
           isHidden={isHidden}
         />
       </CommentAndFeedbackWrapper>
-      // <StateProvider initialState={{ isHidden, toggleHidden }}>
-      //   <CommentAndFeedbackWrapper
-      //     key={id}
-      //     isYourComment={isYourComment}
-      //     isCommentHidden={isCommentHidden}
-      //     onMouseEnter={onEnter}
-      //     onMouseLeave={onLeave}
-      //   >
-      //     <Comment
-      //       commentId={id}
-      //       profileName={profileName}
-      //       profileLink={profileLink}
-      //       profileImg={profileImg}
-      //       isVerified={isVerified}
-      //       saying={saying}
-      //       attachMedia={attachMedia}
-      //       isHover={isHover}
-      //     />
-      //     <CommentFeedback time={time} targetId={id} reactId={reactId} />
-      //   </CommentAndFeedbackWrapper>
-      // </StateProvider>
     )
   }
   return null

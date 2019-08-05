@@ -29,26 +29,22 @@ const PostWrapper = styled.div`
   font-family: ${cssConst.fontFamily};
 `
 
-class App extends React.Component {
-  render() {
-    const {
-      postData: { user, time, content, title }
-    } = this.props
-    return (
-      <ThemeProvider theme={theme}>
-        <Root>
-          <GlobalStyle />
-          <PostWrapper>
-            <Header profileInfo={user} postTime={time} />
-            <PostContent postContent={content} postTitle={title} />
-            <FeedbackSummary />
-            <FeedbackAction />
-            <DisplayCommentSection />
-          </PostWrapper>
-        </Root>
-      </ThemeProvider>
-    )
-  }
+const App = ({ postData }) => {
+  const { user, time, content, title } = postData
+  return (
+    <ThemeProvider theme={theme}>
+      <Root>
+        <GlobalStyle />
+        <PostWrapper>
+          <Header profileInfo={user} postTime={time} />
+          <PostContent postContent={content} postTitle={title} />
+          <FeedbackSummary />
+          <FeedbackAction />
+          <DisplayCommentSection />
+        </PostWrapper>
+      </Root>
+    </ThemeProvider>
+  )
 }
 
 App.propTypes = {

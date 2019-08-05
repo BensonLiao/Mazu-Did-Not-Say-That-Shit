@@ -5,7 +5,6 @@ import { menuItemHideComment } from '../styles/menu'
 import useCompWidth from '../hooks/useCompWidth'
 import menu from '../assets/img/menu-new.png'
 import MenuButton from './MenuButton'
-// import { useState } from '../containers/StateProvider'
 import HideComment from '../containers/HideComment'
 
 const CommentMenuWrapper = styled.div`
@@ -59,7 +58,6 @@ const MenuItem = styled.li`
 
 const CommentMenu = ({ commentId, isHidden, onClick }) => {
   const compWidth = useCompWidth(commentId)
-  // const { isHidden, toggleHidden } = useState()
   return compWidth === 0 ? null : (
     <CommentMenuWrapper commmentWidth={compWidth}>
       <MenuWrapper>
@@ -67,11 +65,6 @@ const CommentMenu = ({ commentId, isHidden, onClick }) => {
           <Menu>
             {!isHidden && (
               <MenuItem>
-                {/* <MenuButton
-                  btnIcon={menuItemHideComment}
-                  btnText="隱藏留言"
-                  onClick={toggleHidden}
-                /> */}
                 <HideComment
                   commentId={commentId}
                   btnIcon={menuItemHideComment}
