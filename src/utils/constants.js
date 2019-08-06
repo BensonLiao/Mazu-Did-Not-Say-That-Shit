@@ -15,6 +15,6 @@ export default {
     // SIMPLECOMPONENT: 'simpleComponent'
     // For components that receiving props: withComponent
     DEFAULT: 'default',
-    COMMENT: 'comment'
+    COMMENT: 'Comment'
   }
 }

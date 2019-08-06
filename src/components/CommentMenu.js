@@ -12,6 +12,7 @@ import menu from '../assets/img/menu-new.png'
 import MenuButton from './MenuButton'
 import HideComment from '../containers/HideComment'
 import DeleteComment from '../containers/DeleteComment'
+import { useContextState } from '../containers/StateProvider'
 
 const CommentMenuWrapper = styled.div`
   position: absolute;
@@ -63,6 +64,7 @@ const MenuItem = styled.li`
 `
 
 const CommentMenu = ({ commentId, isHidden, isYour, onClick }) => {
+  const { toggleEditMode } = useContextState()
   const isCompNarrow = useCompNarrow(commentId)
   const compWidth = useCompWidth(commentId)
   const offSet = isCompNarrow ? compWidth + 38 : compWidth - 31
@@ -76,6 +78,7 @@ const CommentMenu = ({ commentId, isHidden, isYour, onClick }) => {
                 <MenuButton
                   btnIcon={menuItemEditComment}
                   btnText="編輯......"
+                  onClick={toggleEditMode}
                 />
                 <DeleteComment
                   commentId={commentId}

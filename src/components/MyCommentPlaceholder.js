@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import cssConst from '../styles/constants'
-import appConst from '../utils/constants'
 import {
   commentPlaceholderWrapperStyle,
   baseCommentInputStyle
@@ -26,30 +25,25 @@ const MyCommentInput = styled.input`
   font-size: ${cssConst.baseFontSize};
 `
 
-const { myCommentInputCompId } = appConst
-const clearCommentInput = () => {
-  const inputRef = document.getElementById(myCommentInputCompId)
+const clearCommentInput = inputId => {
+  const inputRef = document.getElementById(inputId)
   inputRef.value = ''
 }
 
-const MyCommentPlaceholder = ({ doCommentAction, ...props }) => {
+const MyCommentPlaceholder = ({ doCommentAction, inputId, ...props }) => {
   const onKeyPress = event => {
     if (event.key === 'Enter') {
       if (event.shiftKey) {
         console.log('doExpandNewLine')
       } else {
         doCommentAction()
-        clearCommentInput()
+        clearCommentInput(inputId)
       }
     }
   }
   return (
     <MyCommentPlaceholderWrapper>
-      <MyCommentInput
-        onKeyPress={onKeyPress}
-        id={myCommentInputCompId}
-        {...props}
-      />
+      <MyCommentInput onKeyPress={onKeyPress} id={inputId} {...props} />
     </MyCommentPlaceholderWrapper>
   )
 }
@@ -59,7 +53,11 @@ MyCommentPlaceholder.propTypes = {
   /**
    * For redux action to add comment
    */
-  doCommentAction: PropTypes.func.isRequired
+  doCommentAction: PropTypes.func.isRequired,
+  /**
+   * For doCommentAction to retrieve input value from input id
+   */
+  inputId: PropTypes.string.isRequired
 }
 
 export default MyCommentPlaceholder

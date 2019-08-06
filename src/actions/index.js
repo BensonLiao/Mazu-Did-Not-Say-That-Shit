@@ -12,6 +12,7 @@ export const FEEDBACK = {
   UNDO_COMMENT_REACT: 'UNDO_COMMENT_REACT',
   COMMENT: 'COMMENT',
   UNDO_COMMENT: 'UNDO_COMMENT',
+  UPDATE_COMMENT: 'UPDATE_COMMENT',
   COMMENT_VISIBILITY_TOGGLE: 'COMMECOMMENT_VISIBILITY_TOGGLENT_HIDE',
   SHARE: 'SHARE',
   TARGET: 'POST'
@@ -59,6 +60,14 @@ export const undoComment = id => ({
   type: FEEDBACK.UNDO_COMMENT,
   payload: {
     id
+  }
+})
+
+export const updateComment = (id, saying) => ({
+  type: FEEDBACK.UNDO_COMMENT,
+  payload: {
+    id,
+    saying
   }
 })
 

@@ -5,7 +5,8 @@ import MyCommentPlaceholder from '../components/MyCommentPlaceholder'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    reactId: ownProps.reactId
+    reactId: ownProps.reactId,
+    inputId: ownProps.myCommentInputCompId
   }
 }
 

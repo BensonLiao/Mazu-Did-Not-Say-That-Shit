@@ -21,4 +21,4 @@ StateProvider.propTypes = {
   initialState: PropTypes.shape({}).isRequired
 }
 
-export const useState = () => useContext(StateContext)
+export const useContextState = () => useContext(StateContext)

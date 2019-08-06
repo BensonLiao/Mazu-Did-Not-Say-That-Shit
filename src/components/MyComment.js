@@ -1,15 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import cssConst from '../styles/constants'
 import appConst from '../utils/constants'
-import {
-  displayFlex,
-  alignCenter,
-  justifyContentSpaceBetween
-} from '../styles/page'
+import { displayFlex, alignCenter } from '../styles/page'
 import CommentAvatar from './CommentAvatar'
-import FeedbackActionComment from '../containers/FeedbackActionComment'
-import MyCommentAttachButton from './MyCommentAttachButton'
+import MyCommentInput from './MyCommentInput'
 
 const MyCommentWrapper = styled.div`
   ${displayFlex}
@@ -17,36 +12,29 @@ const MyCommentWrapper = styled.div`
   padding: 4px 12px 8px 12px;
 `
 
-const MyCommentInputWrapper = styled.div`
-  background-color: ${cssConst.commentTextBackground};
-  border: 1px solid #ccd0d5;
-  border-radius: 16px;
-  ${displayFlex}
-  ${alignCenter}
-  ${justifyContentSpaceBetween}
-  cursor: text;
-  flex: 1 1 auto;
-  line-height: 16px;
-  overflow: hidden;
-  padding: 7px 12px;
-`
+const { myCommentInputCompId, component } = appConst
 
-const MyComment = () => {
-  const { you, myCommentInputCompId } = appConst
+const MyComment = ({ inEditMode, commentId }) => {
   return (
     <MyCommentWrapper>
-      <CommentAvatar withComponent="MyComment" />
-      <MyCommentInputWrapper>
-        <FeedbackActionComment
-          type="text"
-          placeholder="留言......"
-          you={you}
-          myCommentInputCompId={myCommentInputCompId}
-        />
-        <MyCommentAttachButton />
-      </MyCommentInputWrapper>
+      <CommentAvatar withComponent={component.DEFAULT} />
+      {inEditMode ? (
+        <MyCommentInput commentId={commentId} />
+      ) : (
+        <MyCommentInput myCommentInputCompId={myCommentInputCompId} />
+      )}
     </MyCommentWrapper>
   )
+}
+
+MyComment.propTypes = {
+  inEditMode: PropTypes.bool,
+  commentId: PropTypes.string
+}
+
+MyComment.defaultProps = {
+  inEditMode: false,
+  commentId: ''
 }
 
 export default MyComment

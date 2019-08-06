@@ -7,6 +7,7 @@ import FeedbackActionReactToComment from '../containers/FeedbackActionReactToCom
 import CommentFeedbackButton from './CommentFeedbackButton'
 import appConst from '../utils/constants'
 import ShowComment from '../containers/ShowComment'
+import { useContextState } from '../containers/StateProvider'
 
 const CommentFeedbackWrapper = styled.div`
   ${displayFlex}
@@ -18,41 +19,64 @@ const CommentFeedbackWrapper = styled.div`
   margin-left: 50px;
 `
 
-const CommentFeedback = ({ time, targetId, reactId, reacted, isHidden }) => {
-  const onClick = () => {}
-  const { you } = appConst
+const onClick = () => {}
+const { you } = appConst
+
+const getActionButton = (isHidden, targetId, reactId, reacted) => {
+  return isHidden ? (
+    <ShowComment displayText="取消隱藏" commentId={targetId} />
+  ) : (
+    <FeedbackActionReactToComment
+      you={you}
+      targetId={targetId}
+      reactId={reactId}
+      reacted={reacted}
+    />
+  )
+}
+
+const CommentFeedback = ({
+  time,
+  targetId,
+  reactId,
+  reacted,
+  isHidden,
+  inEditMode
+}) => {
+  const { toggleEditMode } = useContextState()
   return (
     <CommentFeedbackWrapper isHidden={isHidden}>
-      {isHidden ? (
-        <ShowComment displayText="取消隱藏" commentId={targetId} />
+      {inEditMode ? (
+        <CommentFeedbackButton onClick={toggleEditMode} displayText="取消" />
       ) : (
-        <FeedbackActionReactToComment
-          you={you}
-          targetId={targetId}
-          reactId={reactId}
-          reacted={reacted}
-        />
+        <>
+          {getActionButton(isHidden, targetId, reactId, reacted)}
+          <DotSeparator />
+          <CommentFeedbackButton displayText="回覆" onClick={onClick} />
+          <DotSeparator />
+          <span>{time}</span>
+        </>
       )}
-      <DotSeparator />
-      <CommentFeedbackButton displayText="回覆" onClick={onClick} />
-      <DotSeparator />
-      <span>{time}</span>
     </CommentFeedbackWrapper>
   )
 }
 
 CommentFeedback.defaultProps = {
   time: '1天',
+  targetId: '',
+  reactId: '',
   reacted: false,
-  isHidden: false
+  isHidden: false,
+  inEditMode: false
 }
 
 CommentFeedback.propTypes = {
   time: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  targetId: PropTypes.string.isRequired,
-  reactId: PropTypes.string.isRequired,
+  targetId: PropTypes.string,
+  reactId: PropTypes.string,
   reacted: PropTypes.bool,
-  isHidden: PropTypes.bool
+  isHidden: PropTypes.bool,
+  inEditMode: PropTypes.bool
 }
 
 CommentFeedback.displayName = 'CommentFeedback'

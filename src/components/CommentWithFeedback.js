@@ -2,10 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Comment from './Comment'
+import MyComment from './MyComment'
 import useMouseHover from '../hooks/useMouseHover'
 import CommentFeedback from './CommentFeedback'
 import appConst from '../utils/constants'
 import { yourCommentBorderStyle } from '../styles/post'
+import { useContextState } from '../containers/StateProvider'
 
 const CommentAndFeedbackWrapper = styled.div`
   position: relative;
@@ -14,6 +16,7 @@ const CommentAndFeedbackWrapper = styled.div`
 `
 
 const CommentWithFeedback = ({ comment }) => {
+  const { inEditMode } = useContextState()
   const [isHover, setIsHover] = useMouseHover()
   const onEnter = () => {
     setIsHover(true)
@@ -35,10 +38,15 @@ const CommentWithFeedback = ({ comment }) => {
   } = appConst
   const isYour = yourProfileName === profileName
   const isFakeUser = profileName.startsWith('假帳號')
-  // if (!isFakeUser) {
-  //   console.log('comment', comment)
-  // }
-  return isFakeUser ? null : (
+  if (isFakeUser) {
+    return null
+  }
+  return inEditMode ? (
+    <>
+      <MyComment inEditMode={inEditMode} commentId={id} />
+      <CommentFeedback inEditMode={inEditMode} />
+    </>
+  ) : (
     <CommentAndFeedbackWrapper
       key={id}
       isYour={isYour}
