@@ -30,7 +30,12 @@ const clearCommentInput = inputId => {
   inputRef.value = ''
 }
 
-const MyCommentPlaceholder = ({ doCommentAction, inputId, ...props }) => {
+const MyCommentPlaceholder = ({
+  doCommentAction,
+  inputId,
+  saying,
+  ...props
+}) => {
   const onKeyPress = event => {
     if (event.key === 'Enter') {
       if (event.shiftKey) {
@@ -43,7 +48,12 @@ const MyCommentPlaceholder = ({ doCommentAction, inputId, ...props }) => {
   }
   return (
     <MyCommentPlaceholderWrapper>
-      <MyCommentInput onKeyPress={onKeyPress} id={inputId} {...props} />
+      <MyCommentInput
+        onKeyPress={onKeyPress}
+        id={inputId}
+        defaultValue={saying}
+        {...props}
+      />
     </MyCommentPlaceholderWrapper>
   )
 }
@@ -57,7 +67,14 @@ MyCommentPlaceholder.propTypes = {
   /**
    * For doCommentAction to retrieve input value from input id
    */
-  inputId: PropTypes.string.isRequired
+  inputId: PropTypes.string.isRequired,
+  /**
+   * For initial input value
+   */
+  saying: PropTypes.string
+}
+MyCommentPlaceholder.defaultProps = {
+  saying: ''
 }
 
 export default MyCommentPlaceholder

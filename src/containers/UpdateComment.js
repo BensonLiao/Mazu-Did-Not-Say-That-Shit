@@ -4,7 +4,8 @@ import MyCommentPlaceholder from '../components/MyCommentPlaceholder'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    inputId: ownProps.commentId
+    inputId: ownProps.commentId,
+    saying: ownProps.saying
   }
 }
 

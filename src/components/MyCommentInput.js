@@ -28,7 +28,7 @@ const MyCommentInputWrapper = styled.div`
 
 const { you } = appConst
 
-const MyCommentInput = ({ commentId, myCommentInputCompId }) => {
+const MyCommentInput = ({ commentId, saying, myCommentInputCompId }) => {
   return (
     <MyCommentInputWrapper>
       {commentId === '' && myCommentInputCompId !== '' && (
@@ -40,7 +40,7 @@ const MyCommentInput = ({ commentId, myCommentInputCompId }) => {
         />
       )}
       {commentId !== '' && myCommentInputCompId === '' && (
-        <UpdateComment type="text" commentId={commentId} />
+        <UpdateComment type="text" commentId={commentId} saying={saying} />
       )}
       <MyCommentAttachButton />
     </MyCommentInputWrapper>
@@ -49,11 +49,13 @@ const MyCommentInput = ({ commentId, myCommentInputCompId }) => {
 
 MyCommentInput.propTypes = {
   commentId: PropTypes.string,
+  saying: PropTypes.string,
   myCommentInputCompId: PropTypes.string
 }
 
 MyCommentInput.defaultProps = {
   commentId: '',
+  saying: '',
   myCommentInputCompId: ''
 }
 

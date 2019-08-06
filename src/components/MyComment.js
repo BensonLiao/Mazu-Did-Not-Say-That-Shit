@@ -14,12 +14,12 @@ const MyCommentWrapper = styled.div`
 
 const { myCommentInputCompId, component } = appConst
 
-const MyComment = ({ inEditMode, commentId }) => {
+const MyComment = ({ inEditMode, commentId, saying }) => {
   return (
     <MyCommentWrapper>
       <CommentAvatar withComponent={component.DEFAULT} />
       {inEditMode ? (
-        <MyCommentInput commentId={commentId} />
+        <MyCommentInput commentId={commentId} saying={saying} />
       ) : (
         <MyCommentInput myCommentInputCompId={myCommentInputCompId} />
       )}
@@ -29,12 +29,14 @@ const MyComment = ({ inEditMode, commentId }) => {
 
 MyComment.propTypes = {
   inEditMode: PropTypes.bool,
-  commentId: PropTypes.string
+  commentId: PropTypes.string,
+  saying: PropTypes.string
 }
 
 MyComment.defaultProps = {
   inEditMode: false,
-  commentId: ''
+  commentId: '',
+  saying: ''
 }
 
 export default MyComment

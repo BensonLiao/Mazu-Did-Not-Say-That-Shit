@@ -43,7 +43,7 @@ const CommentWithFeedback = ({ comment }) => {
   }
   return inEditMode ? (
     <>
-      <MyComment inEditMode={inEditMode} commentId={id} />
+      <MyComment inEditMode={inEditMode} commentId={id} saying={saying} />
       <CommentFeedback inEditMode={inEditMode} />
     </>
   ) : (
