@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import Comment from './Comment'
-import MyComment from './MyComment'
 import useMouseHover from '../hooks/useMouseHover'
-import CommentFeedback from './CommentFeedback'
 import appConst from '../utils/constants'
 import { yourCommentBorderStyle } from '../styles/post'
 import { useContextState } from '../containers/StateProvider'
+import Comment from './Comment'
+import MyComment from './MyComment'
+import CommentFeedback from './CommentFeedback'
 
 const CommentAndFeedbackWrapper = styled.div`
   position: relative;
@@ -16,7 +16,7 @@ const CommentAndFeedbackWrapper = styled.div`
 `
 
 const CommentWithFeedback = ({ comment }) => {
-  const { inEditMode } = useContextState()
+  const { inEditMode, toggleEditMode } = useContextState()
   const [isHover, setIsHover] = useMouseHover()
   const onEnter = () => {
     setIsHover(true)
@@ -43,7 +43,12 @@ const CommentWithFeedback = ({ comment }) => {
   }
   return inEditMode ? (
     <>
-      <MyComment inEditMode={inEditMode} commentId={id} saying={saying} />
+      <MyComment
+        inEditMode={inEditMode}
+        toggleEditMode={toggleEditMode}
+        commentId={id}
+        saying={saying}
+      />
       <CommentFeedback inEditMode={inEditMode} />
     </>
   ) : (

@@ -63,8 +63,8 @@ export const undoComment = id => ({
   }
 })
 
-export const updateComment = (id, saying) => ({
-  type: FEEDBACK.UNDO_COMMENT,
+export const updateComment = ({ id, saying }) => ({
+  type: FEEDBACK.UPDATE_COMMENT,
   payload: {
     id,
     saying

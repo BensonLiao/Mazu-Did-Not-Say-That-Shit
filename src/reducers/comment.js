@@ -79,6 +79,13 @@ const removeComment = (draft, action) => {
   delete draft[id]
 }
 
+const updateComment = (draft, action) => {
+  const {
+    payload: { id, saying }
+  } = action
+  draft[id].saying = saying
+}
+
 const toggleCommentVisibility = (draft, action) => {
   const {
     payload: { id }
@@ -97,6 +104,9 @@ const commentsById = produce((draft, action) => {
       break
     case FEEDBACK.UNDO_COMMENT:
       removeComment(draft, action)
+      break
+    case FEEDBACK.UPDATE_COMMENT:
+      updateComment(draft, action)
       break
     case FEEDBACK.COMMENT_VISIBILITY_TOGGLE:
       toggleCommentVisibility(draft, action)

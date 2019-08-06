@@ -4,9 +4,7 @@ import PropTypes from 'prop-types'
 export const StateContext = createContext()
 
 export const StateProvider = ({ initialState, children }) => (
-  <StateContext.Provider value={{ ...initialState }}>
-    {children}
-  </StateContext.Provider>
+  <StateContext.Provider value={initialState}>{children}</StateContext.Provider>
 )
 
 StateProvider.propTypes = {

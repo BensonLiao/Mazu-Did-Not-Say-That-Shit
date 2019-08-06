@@ -6,6 +6,7 @@ import {
   commentPlaceholderWrapperStyle,
   baseCommentInputStyle
 } from '../styles/post'
+import { useContextState } from '../containers/StateProvider'
 
 const MyCommentPlaceholderWrapper = styled.div`
   color: ${cssConst.commentPlaceholderColor};
@@ -36,13 +37,19 @@ const MyCommentPlaceholder = ({
   saying,
   ...props
 }) => {
+  const stateContext = useContextState() || null
   const onKeyPress = event => {
     if (event.key === 'Enter') {
       if (event.shiftKey) {
         console.log('doExpandNewLine')
       } else {
         doCommentAction()
-        clearCommentInput(inputId)
+        if (saying === '') {
+          clearCommentInput(inputId)
+        } else {
+          const { toggleEditMode } = stateContext
+          toggleEditMode()
+        }
       }
     }
   }
