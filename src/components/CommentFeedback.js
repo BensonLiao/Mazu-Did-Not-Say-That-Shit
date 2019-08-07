@@ -47,7 +47,11 @@ const CommentFeedback = ({
   return (
     <CommentFeedbackWrapper isHidden={isHidden}>
       {inEditMode ? (
-        <CommentFeedbackButton onClick={toggleEditMode} displayText="取消" />
+        <>
+          <span>按Esc鍵可</span>
+          <CommentFeedbackButton onClick={toggleEditMode} displayText="取消" />
+          <span>。</span>
+        </>
       ) : (
         <>
           {getActionButton(isHidden, targetId, reactId, reacted)}

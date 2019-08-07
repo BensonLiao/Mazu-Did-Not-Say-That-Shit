@@ -38,7 +38,7 @@ const MyCommentPlaceholder = ({
   ...props
 }) => {
   const stateContext = useContextState() || null
-  const onKeyPress = event => {
+  const onKeyDown = event => {
     if (event.key === 'Enter') {
       if (event.shiftKey) {
         console.log('doExpandNewLine')
@@ -51,12 +51,17 @@ const MyCommentPlaceholder = ({
           clearCommentInput(inputId)
         }
       }
+    } else if (event.key === 'Escape') {
+      if (stateContext) {
+        const { toggleEditMode } = stateContext
+        toggleEditMode()
+      }
     }
   }
   return (
     <MyCommentPlaceholderWrapper>
       <MyCommentInput
-        onKeyPress={onKeyPress}
+        onKeyDown={onKeyDown}
         id={inputId}
         defaultValue={saying}
         {...props}
