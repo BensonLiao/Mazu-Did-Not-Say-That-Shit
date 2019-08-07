@@ -16,11 +16,11 @@ const FeedbackCountWrapper = styled.span`
   ${styledTooltipOverrideStyle}
 `
 
-const FeedbackCount = props => {
-  const tooltipId = `tip-for-post-${props.type.toLowerCase()}-count`
+const FeedbackCount = ({ forTip, forText, type }) => {
+  const tooltipId = `tip-for-post-${type.toLowerCase()}-count`
   return (
-    <FeedbackCountWrapper data-for={tooltipId} data-tip={props.forTip}>
-      {props.forText}
+    <FeedbackCountWrapper data-for={tooltipId} data-tip={forTip}>
+      {forText}
       <StyledTooltip
         id={tooltipId}
         effect="solid"
