@@ -1,45 +1,42 @@
 import { combineReducers } from 'redux'
-import merge from 'lodash/merge'
+import produce from 'immer'
 import { ADD_DATA, FEEDBACK } from '../actions'
 
-const addReactByNormalizr = (state, action) => {
+const addReactByNormalizr = (draft, action) => {
   const {
     payload: { commentReacts }
   } = action
-  // Merge the new and current React object and return new object
-  return merge({}, state, commentReacts)
+  Object.keys(commentReacts).forEach(id => {
+    draft[id] = commentReacts[id]
+  })
 }
 
-const addReact = (state, action) => {
+const addReact = (draft, action) => {
   const { payload } = action
-  const commentReacts = {
-    [payload.id]: payload
-  }
-  // Merge the new and current React object and return new object
-  return merge({}, state, commentReacts)
+  draft[payload.id] = payload
 }
 
-const removeReact = (state, action) => {
+const removeReact = (draft, action) => {
   const {
     payload: { id }
   } = action
-  // Remove the new React object from the updated lookup table
-  delete state[id]
-  return state
+  delete draft[id]
 }
 
-const reactsById = (state = {}, action) => {
+const reactsById = produce((draft, action) => {
   switch (action.type) {
     case ADD_DATA:
-      return addReactByNormalizr(state, action)
+      addReactByNormalizr(draft, action)
+      break
     case FEEDBACK.COMMENT_REACT:
-      return addReact(state, action)
+      addReact(draft, action)
+      break
     case FEEDBACK.UNDO_COMMENT_REACT:
-      return removeReact(state, action)
+      removeReact(draft, action)
+      break
     default:
-      return state
   }
-}
+}, {})
 
 const addReactIdByNormalizr = (state, action) => {
   const {
