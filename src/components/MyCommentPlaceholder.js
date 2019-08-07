@@ -44,11 +44,10 @@ const MyCommentPlaceholder = ({
         console.log('doExpandNewLine')
       } else {
         doCommentAction()
+        clearCommentInput(inputId)
         if (stateContext) {
           const { toggleEditMode } = stateContext
           toggleEditMode()
-        } else if (stateContext) {
-          clearCommentInput(inputId)
         }
       }
     } else if (event.key === 'Escape') {
