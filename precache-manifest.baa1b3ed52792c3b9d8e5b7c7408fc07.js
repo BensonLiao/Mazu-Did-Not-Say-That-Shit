@@ -1,31 +1,35 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b00cb7abbad6d75551e7ce15127b748c",
+    "revision": "5181cb1d36540537ca7b0625f67cecf6",
     "url": "/Mazu-Did-Not-Say-That-Shit/index.html"
   },
   {
-    "revision": "d3f99d15fd0c1cc7356b",
-    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/2.b3ff8a1f.chunk.js"
+    "revision": "9d586cbe4620e6cf8289",
+    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/2.286fdebd.chunk.js"
   },
   {
-    "revision": "bea78f309e05808c5cf2",
-    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/3.101e1906.chunk.js"
+    "revision": "cc04da9abe8d1008ef93",
+    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/3.648c1960.chunk.js"
   },
   {
-    "revision": "980659acc29f95a68162",
-    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/4.974e310b.chunk.js"
+    "revision": "c9579159365b8722385a",
+    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/4.07f29e37.chunk.js"
   },
   {
-    "revision": "28bc310aacabf2b2fef4",
-    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/main.19b3e36c.chunk.js"
+    "revision": "08fb5f1368665f2312a3",
+    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/main.f0d6586c.chunk.js"
   },
   {
-    "revision": "73e972fdb26e1417bf7c",
-    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/runtime~main.75eaf826.js"
+    "revision": "95d8df84be28a7ab56a3",
+    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/runtime~main.f6de989e.js"
   },
   {
     "revision": "c49fa063a986eea477d31d2e16d6f919",
     "url": "/Mazu-Did-Not-Say-That-Shit/static/media/blue-check.c49fa063.png"
+  },
+  {
+    "revision": "3e14c772d9e4d949ad99a94b8a7c786c",
+    "url": "/Mazu-Did-Not-Say-That-Shit/static/media/comment-menu-2.3e14c772.png"
   },
   {
     "revision": "6aed4496d796625c221b8b3d83ef0e13",
@@ -34,10 +38,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "3c65424dc193b0865a30f1710807b863",
     "url": "/Mazu-Did-Not-Say-That-Shit/static/media/fb-emojis-new.3c65424d.png"
-  },
-  {
-    "revision": "0d754b03b65ee56a0adfebf298ce4c8a",
-    "url": "/Mazu-Did-Not-Say-That-Shit/static/media/fb-emojis.0d754b03.png"
   },
   {
     "revision": "36b90f96a12de5fd63a1822794afedad",
@@ -56,8 +56,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Mazu-Did-Not-Say-That-Shit/static/media/mazu.1b5fa982.png"
   },
   {
-    "revision": "0f1c98c809ad1171a5ac59adbf110804",
-    "url": "/Mazu-Did-Not-Say-That-Shit/static/media/menu.0f1c98c8.png"
+    "revision": "0d7c9f5ac84f863f193e7a7beca4549d",
+    "url": "/Mazu-Did-Not-Say-That-Shit/static/media/menu-new.0d7c9f5a.png"
   },
   {
     "revision": "e2a06f400841330b4be59c386b792416",

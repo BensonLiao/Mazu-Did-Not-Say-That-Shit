@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.0/workbox-sw.js");
 
 importScripts(
-  "/Mazu-Did-Not-Say-That-Shit/precache-manifest.2959e30ca0ac122fa600052569b15dd5.js"
+  "/Mazu-Did-Not-Say-That-Shit/precache-manifest.baa1b3ed52792c3b9d8e5b7c7408fc07.js"
 );
 
 self.addEventListener('message', (event) => {
