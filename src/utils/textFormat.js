@@ -65,6 +65,9 @@ export default {
    *   Type of feedback, `comment` or `share`.
    */
   getFeedbacksCount(feedbacks, type) {
+    if (feedbacks.length < 1) {
+      return ''
+    }
     const total = feedbacks.length
     const formattedTotal = this.getTotalCount(total)
     const formattedSummary =
@@ -111,6 +114,9 @@ export default {
    *     The reactor's profile name.
    */
   getCommentReactionsCount(reactions) {
+    if (reactions.length < 1) {
+      return ''
+    }
     const formattedTotal = this.getTotalCount(reactions.length)
     return formattedTotal
   },

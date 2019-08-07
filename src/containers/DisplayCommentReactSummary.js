@@ -1,10 +1,15 @@
 import { connect } from 'react-redux'
-import { getCommentReactArray } from '../reducers/selector'
+import {
+  getCommentReactionIds,
+  getCommentReactions
+} from '../reducers/selector'
 import CommentReactionSummary from '../components/CommentReactionSummary'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    reactions: getCommentReactArray(state, ownProps.commentId)
+    commentId: ownProps.commentId,
+    reactionIds: getCommentReactionIds(state),
+    reactions: getCommentReactions(state)
   }
 }
 

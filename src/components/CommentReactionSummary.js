@@ -36,12 +36,15 @@ const CommentReactionCount = styled.span`
   font-family: Microsoft JhengHei;
 `
 
-const CommentReactionSummary = ({ commentId, reactions }) => {
+const CommentReactionSummary = ({ commentId, reactionIds, reactions }) => {
   const isNarrowComp = useCompNarrow(commentId)
   const compWidth = useCompWidth(commentId)
   const leftPosition = compWidth + 16
   // 16 are this comp wrapper's + parent comp wrapper's right padding
-  const reactionSummary = dataSummary.getCommentReactionSummary(reactions)
+  const reactionArray = reactionIds
+    .map(id => reactions[id])
+    .filter(react => react.targetId === commentId)
+  const reactionSummary = dataSummary.getCommentReactionSummary(reactionArray)
   const tooltipId = 'tip-for-comment-reaction'
   const withComponent = 'comment'
   return reactionSummary === '' ? null : (
@@ -80,24 +83,24 @@ const CommentReactionSummary = ({ commentId, reactions }) => {
 
 CommentReactionSummary.propTypes = {
   commentId: PropTypes.string,
-  reactions: PropTypes.arrayOf(
-    PropTypes.shape({
+  reactionIds: PropTypes.arrayOf(PropTypes.string),
+  reactions: PropTypes.shape({
+    id: PropTypes.string,
+    user: PropTypes.shape({
       id: PropTypes.string,
-      user: PropTypes.shape({
-        id: PropTypes.string,
-        profileName: PropTypes.string,
-        profileLink: PropTypes.string,
-        profileImg: PropTypes.string
-      }),
-      feeling: PropTypes.string,
-      targetId: PropTypes.string
-    })
-  )
+      profileName: PropTypes.string,
+      profileLink: PropTypes.string,
+      profileImg: PropTypes.string
+    }),
+    feeling: PropTypes.string,
+    targetId: PropTypes.string
+  })
 }
 
 CommentReactionSummary.defaultProps = {
   commentId: 'commentId',
-  reactions: []
+  reactionIds: [],
+  reactions: {}
 }
 
 export default CommentReactionSummary

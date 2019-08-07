@@ -1,6 +1,5 @@
 import React from 'react'
 import { PropTypes } from 'prop-types'
-import isEqual from 'lodash/isEqual'
 import styled from 'styled-components'
 import { displayFlex } from '../styles'
 import textFormat from '../utils/textFormat'
@@ -25,45 +24,60 @@ const SharesWrapper = styled.div`
   margin-left: 8px;
 `
 
-class CommentAndShareSummary extends React.Component {
-  shouldComponentUpdate(nextProps) {
-    const { comments, shares } = this.props
-    if (
-      !isEqual(comments, nextProps.comments) ||
-      !isEqual(shares, nextProps.shares)
-    ) {
-      // console.log('Component updates!')
-      return true
-    }
-    return false
-  }
-
-  render() {
-    const { comments, shares } = this.props
-    const commentsSummary = summaryFeedbacks(comments, 'comment')
-    const sharesSummary = summaryFeedbacks(shares, 'share')
-    return (
-      <CommentAndShareSummaryWrapper>
+const CommentAndShareSummary = ({ commentIds, comments, shareIds, shares }) => {
+  const commentArray = commentIds.map(id => comments[id])
+  const shareArray = shareIds.map(id => shares[id])
+  const commentsSummary = summaryFeedbacks(commentArray, 'comment')
+  const sharesSummary = summaryFeedbacks(shareArray, 'share')
+  return (
+    <CommentAndShareSummaryWrapper>
+      <FeedbackCount
+        forText={commentsSummary.forText}
+        forTip={commentsSummary.forTip}
+        type="comment"
+      />
+      <SharesWrapper>
         <FeedbackCount
-          forText={commentsSummary.forText}
-          forTip={commentsSummary.forTip}
-          type="comment"
+          forText={sharesSummary.forText}
+          forTip={sharesSummary.forTip}
+          type="share"
         />
-        <SharesWrapper>
-          <FeedbackCount
-            forText={sharesSummary.forText}
-            forTip={sharesSummary.forTip}
-            type="share"
-          />
-        </SharesWrapper>
-      </CommentAndShareSummaryWrapper>
-    )
-  }
+      </SharesWrapper>
+    </CommentAndShareSummaryWrapper>
+  )
 }
 
 CommentAndShareSummary.propTypes = {
-  comments: PropTypes.array.isRequired,
-  shares: PropTypes.array.isRequired
+  commentIds: PropTypes.arrayOf(PropTypes.string),
+  comments: PropTypes.shape({
+    id: PropTypes.string,
+    user: PropTypes.shape({
+      profileName: PropTypes.string,
+      profileLink: PropTypes.string,
+      profileImg: PropTypes.string,
+      isVerified: PropTypes.bool
+    }),
+    isHidden: PropTypes.bool,
+    saying: PropTypes.string,
+    attachMedia: PropTypes.string
+  }),
+  shareIds: PropTypes.arrayOf(PropTypes.string),
+  shares: PropTypes.PropTypes.shape({
+    id: PropTypes.string,
+    user: PropTypes.shape({
+      profileName: PropTypes.string,
+      profileLink: PropTypes.string,
+      profileImg: PropTypes.string,
+      isVerified: PropTypes.bool
+    })
+  })
+}
+
+CommentAndShareSummary.defaultProps = {
+  commentIds: [],
+  comments: {},
+  shareIds: [],
+  shares: {}
 }
 
 export default CommentAndShareSummary
