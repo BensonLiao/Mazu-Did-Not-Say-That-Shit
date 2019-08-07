@@ -44,11 +44,11 @@ const MyCommentPlaceholder = ({
         console.log('doExpandNewLine')
       } else {
         doCommentAction()
-        if (saying === '') {
-          clearCommentInput(inputId)
-        } else {
+        if (stateContext) {
           const { toggleEditMode } = stateContext
           toggleEditMode()
+        } else if (stateContext) {
+          clearCommentInput(inputId)
         }
       }
     }
@@ -68,7 +68,7 @@ const MyCommentPlaceholder = ({
 MyCommentPlaceholder.displayName = 'MyCommentPlaceholder'
 MyCommentPlaceholder.propTypes = {
   /**
-   * For redux action to add comment
+   * For redux action to add or update comment
    */
   doCommentAction: PropTypes.func.isRequired,
   /**
