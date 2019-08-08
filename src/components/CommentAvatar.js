@@ -6,6 +6,7 @@ import appConst from '../utils/constants'
 
 const Container = styled.div`
   float: left;
+  ${({ isHidden }) => isHidden && 'opacity: 0.5;'}
 `
 
 const CommentAvatarWrapper = styled.div`
@@ -26,12 +27,13 @@ const CommentAvatar = ({
   profileName,
   profileLink,
   profileImg,
-  withComponent
+  withComponent,
+  isHidden
 }) => {
   const imgUrl = imgBaseUrl(`./${profileImg}`)
   const renderTag = withComponent === appConst.component.COMMENT ? 'a' : 'span'
   return (
-    <Container>
+    <Container isHidden={isHidden}>
       <CommentAvatarWrapper href={profileLink} as={renderTag}>
         <CommentAvatarImg src={imgUrl} alt={profileName} />
       </CommentAvatarWrapper>
@@ -43,14 +45,16 @@ CommentAvatar.propTypes = {
   profileName: PropTypes.string,
   profileLink: PropTypes.string,
   profileImg: PropTypes.string,
-  withComponent: PropTypes.string
+  withComponent: PropTypes.string,
+  isHidden: PropTypes.bool
 }
 
 CommentAvatar.defaultProps = {
   profileName: '金乘五',
   profileLink: 'https://www.facebook.com/takeshikaneshirofanspage/',
   profileImg: 'goldxfive.png',
-  withComponent: appConst.component.COMMENT
+  withComponent: appConst.component.COMMENT,
+  isHidden: false
 }
 
 export default CommentAvatar

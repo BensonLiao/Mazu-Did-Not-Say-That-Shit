@@ -59,7 +59,11 @@ const CommentWithFeedback = ({ comment }) => {
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
     >
-      <CommentAvatar profileName={profileName} profileImg={profileImg} />
+      <CommentAvatar
+        profileName={profileName}
+        profileImg={profileImg}
+        isHidden={isHidden}
+      />
       <Comment
         commentId={id}
         profileName={profileName}

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { displayFlex, alignYAxisCenter } from '../styles/page'
 import cssConst from '../styles/constants'
 
-const MenuItemButtonWrapper = styled.a`
+const MenuItemButtonWrapper = styled.div`
   ${displayFlex}
   ${alignYAxisCenter}
   ${props => props.btnIcon}
@@ -20,6 +20,7 @@ const MenuItemButtonWrapper = styled.a`
   text-decoration: none;
   padding: 0 12px;
   max-width: 300px;
+  cursor: pointer;
 `
 
 const MenuItemButton = styled.span`
@@ -29,9 +30,9 @@ const MenuItemButton = styled.span`
   line-height: 22px;
 `
 
-const MenuButton = ({ btnIcon, btnText, btnLink, onClick }) => {
+const MenuButton = ({ btnIcon, btnText, onClick }) => {
   return (
-    <MenuItemButtonWrapper btnIcon={btnIcon} href={btnLink} onClick={onClick}>
+    <MenuItemButtonWrapper btnIcon={btnIcon} onClick={onClick}>
       <MenuItemButton>{btnText}</MenuItemButton>
     </MenuItemButtonWrapper>
   )
@@ -40,14 +41,12 @@ const MenuButton = ({ btnIcon, btnText, btnLink, onClick }) => {
 MenuButton.propTypes = {
   btnIcon: PropTypes.string,
   btnText: PropTypes.string,
-  btnLink: PropTypes.string,
   onClick: PropTypes.func
 }
 
 MenuButton.defaultProps = {
   btnIcon: '',
   btnText: '選單按鈕',
-  btnLink: '#',
   onClick: () => {
     console.log('clicked!')
   }
