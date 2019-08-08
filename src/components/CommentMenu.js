@@ -6,8 +6,6 @@ import {
   menuItemDeleteComment,
   menuItemEditComment
 } from '../styles/menu'
-import useCompWidth from '../hooks/useCompWidth'
-import useCompNarrow from '../hooks/useCompNarrow'
 import menu from '../assets/img/menu-new.png'
 import MenuButton from './MenuButton'
 import HideComment from '../containers/HideComment'
@@ -16,11 +14,12 @@ import { useContextState } from '../containers/StateProvider'
 
 const CommentMenuWrapper = styled.div`
   position: absolute;
-  left: ${props => props.offSet}px;
+  right: -14px;
   z-index: 5;
 `
 
 const CommentMenuWrapperTriangle = styled.i`
+  position: absolute;
   background-image: url(${menu});
   background-repeat: no-repeat;
   background-size: 500px 296px;
@@ -31,7 +30,6 @@ const CommentMenuWrapperTriangle = styled.i`
   left: 100%;
   margin-left: -28px;
   overflow: hidden;
-  position: absolute;
 `
 
 const MenuWrapper = styled.div`
@@ -65,11 +63,8 @@ const MenuItem = styled.li`
 
 const CommentMenu = ({ commentId, isHidden, isYour, onClick }) => {
   const { toggleEditMode } = useContextState()
-  const isCompNarrow = useCompNarrow(commentId)
-  const compWidth = useCompWidth(commentId)
-  const offSet = isCompNarrow ? compWidth + 38 : compWidth - 31
-  return compWidth === 0 ? null : (
-    <CommentMenuWrapper offSet={offSet}>
+  return (
+    <CommentMenuWrapper>
       <MenuWrapper>
         <MenuPanel>
           <Menu>
