@@ -1,6 +1,7 @@
 /* eslint-disable indent */
 /* eslint-disable prettier/prettier */
 import cssesc from 'cssesc'
+import appConst from '../utils/constants'
 import cssConst from './constants'
 import { displayFlex, alignCenter } from './page'
 import { REACTIONS } from '../actions'
@@ -10,6 +11,10 @@ import reactionButtonImg from '../assets/img/thumbUp.png'
 import commentAndShareButtonImg from '../assets/img/responseShare.png'
 import relevantIconImg from '../assets/img/relevant.png'
 import blueCheckIconImg from '../assets/img/blue-check.png'
+
+const {
+  component: { COMMENT }
+} = appConst
 
 export const imgBaseUrl = require.context('../assets/img/', true)
 
@@ -96,7 +101,7 @@ export const getIconSize = withComponent => {
         height: ${cssConst.reactionIconSize};
         width: ${cssConst.reactionIconSize};
       `
-    case 'comment':
+    case COMMENT:
       return `
         height: ${cssConst.commentReactionIconSize};
         width: ${cssConst.commentReactionIconSize};
@@ -250,4 +255,20 @@ export const yourCommentStyle = `
 export const yourCommentBorderStyle = `
   border-left: 2px solid ${cssConst.commentYoursBorderColor};
   padding: 2px 12px 8px 12px !important;
+`
+
+export const wideCommentReactionSummaryStyle = `
+  position: absolute;
+  bottom: -11px;
+  right: 2px;
+  z-index: 0;
+`
+
+export const commentReactionSummaryStyle = `
+  position: relative;
+  align-self: flex-end;
+  bottom: 0;
+  margin-bottom: 4px;
+  margin-left: -8px;
+  right: 0;
 `

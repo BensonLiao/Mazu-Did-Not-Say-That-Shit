@@ -3,12 +3,14 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import menuToggle from '../assets/img/fb-emojis-new.png'
 import cssConst from '../styles/constants'
+import { displayInlineBlock } from '../styles/page'
 import useCompVisible from '../hooks/useCompVisible'
 import CommentMenu from './CommentMenu'
 import StyledTooltip from './StyledTooltip'
 
 const MenuToggleWrapper = styled.div`
-  display: inline-block;
+  ${displayInlineBlock}
+  position: absolute;
   vertical-align: middle;
   width: 22px;
   line-height: 16px;

@@ -4,7 +4,12 @@ import styled from 'styled-components'
 import { imgBaseUrl } from '../styles/post'
 import appConst from '../utils/constants'
 
+const Container = styled.div`
+  float: left;
+`
+
 const CommentAvatarWrapper = styled.div`
+  position: relative;
   display: block;
 `
 
@@ -26,9 +31,11 @@ const CommentAvatar = ({
   const imgUrl = imgBaseUrl(`./${profileImg}`)
   const renderTag = withComponent === appConst.component.COMMENT ? 'a' : 'span'
   return (
-    <CommentAvatarWrapper href={profileLink} as={renderTag}>
-      <CommentAvatarImg src={imgUrl} alt={profileName} />
-    </CommentAvatarWrapper>
+    <Container>
+      <CommentAvatarWrapper href={profileLink} as={renderTag}>
+        <CommentAvatarImg src={imgUrl} alt={profileName} />
+      </CommentAvatarWrapper>
+    </Container>
   )
 }
 

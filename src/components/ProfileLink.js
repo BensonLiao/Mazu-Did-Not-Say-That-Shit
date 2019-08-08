@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { displayInlineBlock } from '../styles/page'
 
 const propTypes = {
   /**
@@ -15,7 +16,7 @@ const propTypes = {
 }
 
 const ProfileLinkWrapper = styled.div`
-  display: block;
+  ${displayInlineBlock}
   cursor: pointer;
   font-weight: 600;
 `

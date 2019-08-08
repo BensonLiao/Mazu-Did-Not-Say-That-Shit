@@ -6,6 +6,8 @@ export default compId => {
   useEffect(() => {
     const targetComp = document.getElementById(compId)
     if (targetComp) {
+      // console.log('targetComp', targetComp)
+      // console.log('targetComp.clientWidth', targetComp.clientWidth)
       setCompWidth(targetComp.clientWidth)
     }
   }, [compId]) // Only re-run the effect if compId changes

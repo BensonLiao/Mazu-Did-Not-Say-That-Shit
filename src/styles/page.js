@@ -1,6 +1,14 @@
 import styled from 'styled-components'
 import cssConst from './constants'
 
+export const displayBlock = `
+  display: block;
+`
+
+export const displayInlineBlock = `
+  display: inline-block;
+`
+
 export const displayFlex = `
   display: flex;
 `
@@ -27,6 +35,11 @@ export const alignXAxisEnd = `
 `
 
 export const alignYAxisEnd = `
+  align-items: flex-end;
+`
+
+export const alignBottomEnd = `
+  justify-content: flex-end;
   align-items: flex-end;
 `
 

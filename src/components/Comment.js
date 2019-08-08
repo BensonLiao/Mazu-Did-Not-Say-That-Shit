@@ -1,25 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { displayFlex } from '../styles/page'
-import CommentAvatar from './CommentAvatar'
+import { displayInlineBlock } from '../styles/page'
 import CommentWithReactionSummary from './CommentWithReactionSummary'
-import CommentMenuToggle from './CommentMenuToggle'
 
-const CommentWithMenuWrapper = styled.div`
-  ${displayFlex}
-`
-
-const CommentWrapper = styled.span`
-  ${displayFlex}
-  ${({ isHidden }) => isHidden && 'opacity: 0.5;'}
+const Container = styled.div`
+  ${displayInlineBlock}
+  vertical-align: middle;
+  max-width: calc(100% - 22px);
+  word-wrap: break-word;
 `
 
 const Comment = ({
   commentId,
   profileName,
   profileLink,
-  profileImg,
   isHidden,
   isVerified,
   saying,
@@ -28,25 +23,19 @@ const Comment = ({
   isYour
 }) => {
   return (
-    <CommentWithMenuWrapper>
-      <CommentWrapper isHidden={isHidden}>
-        <CommentAvatar profileName={profileName} profileImg={profileImg} />
-        <CommentWithReactionSummary
-          commentId={commentId}
-          profileName={profileName}
-          profileLink={profileLink}
-          isVerified={isVerified}
-          saying={saying}
-          attachMedia={attachMedia}
-        />
-      </CommentWrapper>
-      <CommentMenuToggle
+    <Container id={commentId}>
+      <CommentWithReactionSummary
         commentId={commentId}
-        isHover={isHover}
+        profileName={profileName}
+        profileLink={profileLink}
+        isVerified={isVerified}
+        saying={saying}
+        attachMedia={attachMedia}
         isHidden={isHidden}
+        isHover={isHover}
         isYour={isYour}
       />
-    </CommentWithMenuWrapper>
+    </Container>
   )
 }
 
@@ -54,7 +43,6 @@ Comment.propTypes = {
   commentId: PropTypes.string,
   profileName: PropTypes.string,
   profileLink: PropTypes.string,
-  profileImg: PropTypes.string,
   isVerified: PropTypes.bool,
   isHidden: PropTypes.bool,
   saying: PropTypes.string,
@@ -68,7 +56,6 @@ Comment.defaultProps = {
   saying: '這個我想，要查證比較難啦',
   profileName: '台灣工具伯 汪進坪',
   profileLink: 'https://www.facebook.com/jingping.tw/',
-  profileImg: 'toolman.png',
   isVerified: true,
   isHidden: false,
   attachMedia: '',

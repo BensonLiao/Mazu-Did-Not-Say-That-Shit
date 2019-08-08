@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { REACTIONS } from '../actions'
 import StyledTooltip from './StyledTooltip'
+import appConst from '../utils/constants'
 import cssConst from '../styles/constants'
+import { displayInlineBlock } from '../styles/page'
 import {
   styledTooltipOverrideStyle,
   getIconSize,
@@ -12,12 +14,18 @@ import {
   reactionIconStyle
 } from '../styles/post'
 
+const {
+  component: { COMMENT }
+} = appConst
+
 const ReactionThirdMostIconWrapper = styled.div`
   ${styledTooltipOverrideStyle}
   ${props => getIconSize(props.withComponent)}
-  margin-left: -2px;
-  margin-right: 2px;
+  ${props => props.withComponent === COMMENT && displayInlineBlock}
+  ${props => props.withComponent === COMMENT && 'border-right: 2px solid #fff;'}
+  margin-left: -4px;
   z-index: 1;
+  vertical-align: top;
 `
 
 const ThirdMostIcon = styled.i`

@@ -5,6 +5,7 @@ import useMouseHover from '../hooks/useMouseHover'
 import appConst from '../utils/constants'
 import { yourCommentBorderStyle } from '../styles/post'
 import { useContextState } from '../containers/StateProvider'
+import CommentAvatar from './CommentAvatar'
 import Comment from './Comment'
 import MyComment from './MyComment'
 import CommentFeedback from './CommentFeedback'
@@ -58,6 +59,7 @@ const CommentWithFeedback = ({ comment }) => {
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
     >
+      <CommentAvatar profileName={profileName} profileImg={profileImg} />
       <Comment
         commentId={id}
         profileName={profileName}
@@ -66,8 +68,8 @@ const CommentWithFeedback = ({ comment }) => {
         isVerified={isVerified}
         saying={saying}
         attachMedia={attachMedia}
-        isHover={isHover}
         isHidden={isHidden}
+        isHover={isHover}
         isYour={isYour}
       />
       <CommentFeedback
