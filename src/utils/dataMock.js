@@ -25,7 +25,7 @@ export const definedUsers = {
   },
   dingDing: {
     id: uuidv1(),
-    profileName: '叮手中',
+    profileName: '叮守鐘',
     profileLink: 'https://www.youtube.com/watch?v=_97bLScvHWs',
     profileImg: 'dingding.png',
     isVerified: false
@@ -373,7 +373,7 @@ export const createComments = commentsTotal => {
       id: uuidv1(),
       user: definedUsers.english,
       saying: '我也這麼覺得',
-      time: '4天',
+      time: '3天',
       targetId: FEEDBACK.TARGET,
       reactId: uuidv1(),
       isHidden: false
@@ -411,7 +411,7 @@ export const createComments = commentsTotal => {
       saying: '五樓要不要藉這個機會在神明的面前澄清一下？',
       attachMedia: 'wvWFAMT.jpg',
       mediaType: 'pic',
-      time: '3天',
+      time: '4天',
       targetId: FEEDBACK.TARGET,
       reactId: uuidv1(),
       isHidden: false
