@@ -25,7 +25,7 @@ export const definedUsers = {
   },
   dingDing: {
     id: uuidv1(),
-    profileName: '叮守鐘',
+    profileName: '叮手中',
     profileLink: 'https://www.youtube.com/watch?v=_97bLScvHWs',
     profileImg: 'dingding.png',
     isVerified: false
@@ -46,7 +46,7 @@ export const definedUsers = {
   },
   koreanFish: {
     id: uuidv1(),
-    profileName: '憨摑娛',
+    profileName: '韓國魚',
     profileLink: 'https://www.facebook.com/twherohan/',
     profileImg: 'korean-fish.png',
     isVerified: true
@@ -217,12 +217,6 @@ const createCommentReactions = (
   }
 }
 
-// const getCommentReactsTotal = (reactsTotal, ratio = 388) => {
-//   const minCommentReacts = 6
-//   const commentReacts = Math.ceil(reactsTotal / ratio)
-//   return commentReacts > minCommentReacts ? commentReacts : minCommentReacts
-// }
-
 /**
  * create fake reactions with default ratio of
  * 1/2 of Likes, 1/3 of Hahas and 1/6 of Loves
@@ -359,6 +353,33 @@ export const createComments = commentsTotal => {
   const comments = [
     {
       id: uuidv1(),
+      user: definedUsers.dingDing,
+      saying: '可以托夢讓我重選台北市長嗎？',
+      time: '4天',
+      targetId: FEEDBACK.TARGET,
+      reactId: uuidv1(),
+      isHidden: false
+    },
+    {
+      id: uuidv1(),
+      user: definedUsers.toolMan,
+      saying: '這個我想，要查證比較難啦',
+      time: '5天',
+      targetId: FEEDBACK.TARGET,
+      reactId: uuidv1(),
+      isHidden: false
+    },
+    {
+      id: uuidv1(),
+      user: definedUsers.english,
+      saying: '我也這麼覺得',
+      time: '4天',
+      targetId: FEEDBACK.TARGET,
+      reactId: uuidv1(),
+      isHidden: false
+    },
+    {
+      id: uuidv1(),
       user: definedUsers.terryGoodTiming,
       saying: '謝謝樓主托夢，三樓的民主不能當飯吃！',
       time: '3天',
@@ -377,27 +398,9 @@ export const createComments = commentsTotal => {
     },
     {
       id: uuidv1(),
-      user: definedUsers.english,
-      saying: '我也這麼覺得',
-      time: '4天',
-      targetId: FEEDBACK.TARGET,
-      reactId: uuidv1(),
-      isHidden: false
-    },
-    {
-      id: uuidv1(),
-      user: definedUsers.toolMan,
-      saying: '這個我想，要查證比較難啦',
+      user: definedUsers.careWheelEveryday,
+      saying: '五樓，我快等不及了',
       time: '5天',
-      targetId: FEEDBACK.TARGET,
-      reactId: uuidv1(),
-      isHidden: false
-    },
-    {
-      id: uuidv1(),
-      user: definedUsers.dingDing,
-      saying: '可以托夢讓我重選台北市長嗎？',
-      time: '4天',
       targetId: FEEDBACK.TARGET,
       reactId: uuidv1(),
       isHidden: false
@@ -409,15 +412,6 @@ export const createComments = commentsTotal => {
       attachMedia: 'wvWFAMT.jpg',
       mediaType: 'pic',
       time: '3天',
-      targetId: FEEDBACK.TARGET,
-      reactId: uuidv1(),
-      isHidden: false
-    },
-    {
-      id: uuidv1(),
-      user: definedUsers.careWheelEveryday,
-      saying: '五樓，我快等不及了',
-      time: '5天',
       targetId: FEEDBACK.TARGET,
       reactId: uuidv1(),
       isHidden: false
@@ -438,14 +432,14 @@ export const createComments = commentsTotal => {
       isHidden: false
     }
   ]
-  createCommentReactions(comments[0].id, commentReacts, 240, [0, 0, 0, 0, 0, 1])
-  createCommentReactions(comments[1].id, commentReacts, 124, [2, 0, 0, 0, 0, 1])
-  createCommentReactions(comments[2].id, commentReacts, 112, [2, 1])
-  createCommentReactions(comments[3].id, commentReacts, 88, [3, 2, 0, 1])
-  createCommentReactions(comments[4].id, commentReacts, 116, [2, 0, 0, 1])
-  createCommentReactions(comments[5].id, commentReacts, 125, [2, 3])
-  createCommentReactions(comments[6].id, commentReacts, 244, [2, 1, 0, 1, 2])
-  createCommentReactions(comments[7].id, commentReacts, 160, [2, 1, 0, 1])
+  createCommentReactions(comments[0].id, commentReacts, 452, [2, 0, 0, 1])
+  createCommentReactions(comments[1].id, commentReacts, 582, [3, 2, 0, 1])
+  createCommentReactions(comments[2].id, commentReacts, 3120, [2, 1])
+  createCommentReactions(comments[3].id, commentReacts, 187, [0, 0, 0, 0, 0, 1])
+  createCommentReactions(comments[4].id, commentReacts, 987, [2, 0, 0, 0, 0, 1])
+  createCommentReactions(comments[5].id, commentReacts, 501, [2, 3])
+  createCommentReactions(comments[6].id, commentReacts, 872, [2, 1, 0, 1, 2])
+  createCommentReactions(comments[7].id, commentReacts, 789, [2, 1, 0, 1])
   for (let i = 0; i < commentsTotal; i++) {
     if (comments[i] === undefined) {
       comments.push({
@@ -498,9 +492,9 @@ export const createShares = sharesTotal => {
 }
 
 export const createPostData = (
-  reactsTotal = 12419,
-  commentsTotal = 262,
-  sharesTotal = 2123
+  reactsTotal = 17419,
+  commentsTotal = 1552,
+  sharesTotal = 2871
 ) => {
   const reacts = createReactions(reactsTotal)
   const { comments, commentReacts } = createComments(commentsTotal)
