@@ -23,7 +23,8 @@ const ReactionSecondMostIconWrapper = styled.div`
   ${props => getIconSize(props.withComponent)}
   ${props => props.withComponent === COMMENT && displayInlineBlock}
   ${props => props.withComponent === COMMENT && 'border-right: 2px solid #fff;'}
-  margin-left: -4px;
+  position: relative;
+  margin-left: -2px;
   z-index: 2;
   vertical-align: top;
 `
