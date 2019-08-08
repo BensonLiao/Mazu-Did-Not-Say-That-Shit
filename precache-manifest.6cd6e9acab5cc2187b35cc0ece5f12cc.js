@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0cc0ca2fc49df8f7d8a84cf2196396fa",
+    "revision": "4f49542868d240ef04cce656d2a30ac5",
     "url": "/Mazu-Did-Not-Say-That-Shit/index.html"
   },
   {
@@ -12,16 +12,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Mazu-Did-Not-Say-That-Shit/static/js/3.648c1960.chunk.js"
   },
   {
-    "revision": "644b22bda22df9187731",
-    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/4.d01d92d8.chunk.js"
+    "revision": "9412c86039dc058f2c54",
+    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/4.b5e5b6dc.chunk.js"
   },
   {
     "revision": "08fb5f1368665f2312a3",
     "url": "/Mazu-Did-Not-Say-That-Shit/static/js/main.f0d6586c.chunk.js"
   },
   {
-    "revision": "6a0f430742554661733d",
-    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/runtime~main.d956fac0.js"
+    "revision": "a708bee3f6b5039f10b6",
+    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/runtime~main.d19cabd8.js"
   },
   {
     "revision": "c49fa063a986eea477d31d2e16d6f919",
