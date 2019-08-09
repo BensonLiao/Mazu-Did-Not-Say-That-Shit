@@ -11,7 +11,7 @@ Data are also mocked as a static js object to simplify the page, and will be rel
 
 1. 對貼文按讚
 
-![reactToPost](media/reactToPost.gif)
+<img src="media/reactToPost.gif" alt="reactToPost" width="515" height="430">
 
 2. 對留言按讚
 
