@@ -15,27 +15,27 @@ Data are also mocked as a static js object to simplify the page, and will be rel
 
 2. 對留言按讚
 
-![reactToComment](media/reactToComment.gif)
+<img src="media/reactToComment.gif" alt="reactToComment" width="515" height="430">
 
 3. 留言
 
-![commentToPost](media/commentToPost.gif)
+<img src="media/commentToPost.gif" alt="commentToPost" width="515" height="430">
 
 4. 隱藏或取消隱藏留言
 
-![toggleCommentVisible](media/toggleCommentVisible.gif)
+<img src="media/toggleCommentVisible.gif" alt="toggleCommentVisible" width="515" height="430">
 
 5. 編輯留言
 
-![editComment](media/editComment.gif)
+<img src="media/editComment.gif" alt="editComment" width="515" height="430">
 
 6. 刪除留言
 
-![deleteComment](media/deleteComment.gif)
+<img src="media/deleteComment.gif" alt="deleteComment" width="515" height="430">
 
 Or
 
-![deleteCommentOnEdit](media/deleteCommentOnEdit.gif)
+<img src="media/deleteCommentOnEdit.gif" alt="deleteCommentOnEdit" width="515" height="430">
 
 # Demo
 
