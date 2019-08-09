@@ -31,15 +31,25 @@ const clearCommentInput = inputId => {
   inputRef.value = ''
 }
 
+// Indicate if user are using IME(Input Method) for non-latin language.
+let onIME = false
+
 const MyCommentPlaceholder = ({
   doCommentAction,
   inputId,
   saying,
   ...props
 }) => {
+  // Make stateContext to null if this comp rendered outside of StateProvider
   const stateContext = useContextState() || null
-  const onKeyDown = event => {
-    if (event.key === 'Enter') {
+  const handleKeyDown = event => {
+    if (event.type === 'compositionstart') onIME = true
+    if (event.type === 'compositionend') onIME = false
+    if (event.key === 'Enter' && onIME) {
+      // When in chinese IME, press Enter won't trigger compositionend,
+      // so we have to handle it manually.
+      onIME = false
+    } else if (event.key === 'Enter' && !onIME) {
       if (event.shiftKey) {
         console.log('doExpandNewLine')
       } else {
@@ -60,7 +70,9 @@ const MyCommentPlaceholder = ({
   return (
     <MyCommentPlaceholderWrapper>
       <MyCommentInput
-        onKeyDown={onKeyDown}
+        onKeyDown={handleKeyDown}
+        onCompositionStart={handleKeyDown}
+        onCompositionEnd={handleKeyDown}
         id={inputId}
         defaultValue={saying}
         {...props}
