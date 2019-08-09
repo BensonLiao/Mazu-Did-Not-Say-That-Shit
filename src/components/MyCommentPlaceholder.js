@@ -26,9 +26,14 @@ const MyCommentInput = styled.input`
   font-size: ${cssConst.baseFontSize};
 `
 
-const clearCommentInput = inputId => {
+const prepareCommentAction = (inputId, doCommentAction, doDeleteComment) => {
   const inputRef = document.getElementById(inputId)
-  inputRef.value = ''
+  if (inputRef.value === '') {
+    doDeleteComment()
+  } else {
+    doCommentAction()
+    inputRef.value = ''
+  }
 }
 
 // Indicate if user are using IME(Input Method) for non-latin language.
@@ -36,6 +41,7 @@ let onIME = false
 
 const MyCommentPlaceholder = ({
   doCommentAction,
+  doDeleteComment,
   inputId,
   saying,
   ...props
@@ -53,8 +59,7 @@ const MyCommentPlaceholder = ({
       if (event.shiftKey) {
         console.log('doExpandNewLine')
       } else {
-        doCommentAction()
-        clearCommentInput(inputId)
+        prepareCommentAction(inputId, doCommentAction, doDeleteComment)
         if (stateContext) {
           const { toggleEditMode } = stateContext
           toggleEditMode()
@@ -88,6 +93,10 @@ MyCommentPlaceholder.propTypes = {
    */
   doCommentAction: PropTypes.func.isRequired,
   /**
+   * For redux action to delete comment
+   */
+  doDeleteComment: PropTypes.func,
+  /**
    * For doCommentAction to retrieve input value from input id
    */
   inputId: PropTypes.string.isRequired,
@@ -97,7 +106,8 @@ MyCommentPlaceholder.propTypes = {
   saying: PropTypes.string
 }
 MyCommentPlaceholder.defaultProps = {
-  saying: ''
+  saying: '',
+  doDeleteComment: () => {}
 }
 
 export default MyCommentPlaceholder

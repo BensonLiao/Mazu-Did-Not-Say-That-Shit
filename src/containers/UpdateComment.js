@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { updateComment } from '../actions'
+import { updateComment, undoComment } from '../actions'
 import MyCommentPlaceholder from '../components/MyCommentPlaceholder'
 
 const mapStateToProps = (state, ownProps) => {
@@ -17,7 +17,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
       saying
     }
     return dispatch(updateComment(actionData))
-  }
+  },
+  doDeleteComment: () => dispatch(undoComment(ownProps.commentId))
 })
 
 export default connect(
