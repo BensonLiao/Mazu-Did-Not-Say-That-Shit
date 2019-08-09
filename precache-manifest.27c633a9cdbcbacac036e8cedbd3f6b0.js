@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "9d35b9b8642f7b8617beab7e74d953f9",
+    "revision": "b50f00a054f8b7600b3c282db1ddc098",
     "url": "/Mazu-Did-Not-Say-That-Shit/index.html"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Mazu-Did-Not-Say-That-Shit/static/js/4.a7113f89.chunk.js"
   },
   {
-    "revision": "70f14658bb2aa41b2ae3",
-    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/main.80a0e85e.chunk.js"
+    "revision": "061126522071acb48312",
+    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/main.5ff50f57.chunk.js"
   },
   {
     "revision": "ce3e73895230982401c6",
