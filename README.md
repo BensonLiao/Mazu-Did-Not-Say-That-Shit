@@ -49,16 +49,16 @@ There's also a storybook to see how components works as standalone UI:
 
 # Run at local
 
-Clone and run
+Clone and install dependencies
 
 ```
-npm install
+yarn install
 ```
 
-Run
+Run project
 
 ```
-npm start
+yarn start
 ```
 
 then you can access [http://localhost:3000](http://localhost:3000)
