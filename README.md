@@ -1,6 +1,8 @@
 # Mazu did not say that shit
 
-## How it work
+# You can interact with it almost like a real Facebook post.
+
+## How does it work:
 
 Mocking page for a [Facebook post](https://www.facebook.com/themazhou/posts/307433766601772), which is inspire by [ididnotsaythatshit](https://weichiachang.github.io/ididnotsaythatshit/).
 This project build from [create-react-app](https://facebook.github.io/create-react-app/), [redux](https://redux.js.org/) , [styled-components](https://www.styled-components.com/) to mock the style and provide some additional user interaction (eg. 按讚、留言、編輯、刪除或隱藏留言) of a Facebook post.
