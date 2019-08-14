@@ -22,11 +22,18 @@ const Root = styled.div`
 
 const PostWrapper = styled.div`
   width: 500px;
+  @media screen and (max-width: 42em) {
+    width: 100vw;
+  }
   height: auto;
   border: 1px solid #dddfe2;
   border-radius: 4px;
   background: ${cssConst.postBackgroundWhite};
   font-family: ${cssConst.fontFamily};
+  font-size: ${cssConst.baseFontSize};
+  @media screen and (max-width: 42em) {
+    font-size: ${cssConst.mobileFontSize};
+  }
 `
 
 const App = ({ postData }) => {
