@@ -499,14 +499,6 @@ export const createPostData = (
   const reacts = createReactions(reactsTotal)
   const { comments, commentReacts } = createComments(commentsTotal)
   const initPostDatas = {
-    post: {
-      id: 'POST',
-      user: definedUsers.theMazu,
-      time: 1555495920000,
-      // UNIX-timestamp in milli-sec for local time: 2019/04/17 18:12:00
-      content: '我根本沒說。',
-      title: 'I did not say that shit.'
-    },
     reacts,
     commentReacts,
     comments,

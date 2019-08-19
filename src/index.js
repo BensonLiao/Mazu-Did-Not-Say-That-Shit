@@ -21,23 +21,36 @@ import 'core-js/stable/date/now'
 import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import configureStore from './configureStore'
 import registerServiceWorker from './registerServiceWorker'
-import { createPostData } from './utils/dataMock'
-import { getNormalizedData, PostSchema } from './utils/dataSchema'
-import { addData } from './actions'
+import configureStore from './configureStore'
+import { definedUsers } from './utils/dataMock'
+import Worker from './worker'
 
-const preloadedState = createPostData()
 const store = configureStore()
-const normalizedData = getNormalizedData(preloadedState, PostSchema)
-store.dispatch(addData(normalizedData))
+
+const post = {
+  id: 'POST',
+  user: definedUsers.theMazu,
+  time: 1555495920000,
+  // UNIX-timestamp in milli-sec for local time: 2019/04/17 18:12:00
+  content: '我根本沒說。',
+  title: 'I did not say that shit.'
+}
+
+const worker = new Worker()
+worker.postMessage('init')
+console.log('Message posted to worker')
+worker.onmessage = event => {
+  console.log('Message received from worker')
+  store.dispatch(event.data)
+}
 
 const App = React.lazy(() => import('./containers/App'))
 
 ReactDOM.render(
   <Provider store={store}>
     <Suspense fallback={<div>Loading...</div>}>
-      <App postData={preloadedState.post} />
+      <App postData={post} />
     </Suspense>
   </Provider>,
   document.getElementById('root')

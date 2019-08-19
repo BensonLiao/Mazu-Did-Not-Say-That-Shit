@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import PropTypes from 'prop-types'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { theme, cssConst, displayFlex, alignCenter } from '../styles'
 import Header from '../components/Header'
 import PostContent from '../components/PostContent'
-import FeedbackSummary from '../components/FeedbackSummary'
 import FeedbackAction from '../components/FeedbackAction'
-import DisplayCommentSection from './DisplayCommentSection'
+
+const FeedbackSummary = lazy(() => import('../components/FeedbackSummary'))
+const DisplayCommentSection = lazy(() => import('./DisplayCommentSection'))
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -45,9 +46,13 @@ const App = ({ postData }) => {
         <PostWrapper>
           <Header profileInfo={user} postTime={time} />
           <PostContent postContent={content} postTitle={title} />
-          <FeedbackSummary />
+          <Suspense fallback={<div>Loading...</div>}>
+            <FeedbackSummary />
+          </Suspense>
           <FeedbackAction />
-          <DisplayCommentSection />
+          <Suspense fallback={<div>Loading...</div>}>
+            <DisplayCommentSection />
+          </Suspense>
         </PostWrapper>
       </Root>
     </ThemeProvider>
@@ -62,7 +67,8 @@ App.propTypes = {
       profileName: PropTypes.string.isRequired
     }).isRequired,
     time: PropTypes.number.isRequired,
-    content: PropTypes.string.isRequired
+    content: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired
   }).isRequired
 }
 
