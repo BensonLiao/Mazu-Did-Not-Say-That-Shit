@@ -43,8 +43,6 @@ const FeedbackActionButton = ({
   reacted,
   onClick
 }) => {
-  // const [state] = useState()
-  // const { shareMenuOpened } = state
   const tooltipId = 'tip-for-post-feedback-action'
   return (
     <FeedbackActionButtonWrapper

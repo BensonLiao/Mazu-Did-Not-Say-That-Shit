@@ -9,6 +9,7 @@ import FeedbackCount from './FeedbackCount'
 import ReactionTopMostIcon from './ReactionTopMostIcon'
 import ReactionSecondMostIcon from './ReactionSecondMostIcon'
 import ReactionThirdMostIcon from './ReactionThirdMostIcon'
+import useDataInit from '../hooks/useDataInit'
 
 const ReactionSummaryWrapper = styled.div`
   ${displayFlex}
@@ -21,6 +22,9 @@ const ReactionSummaryWrapper = styled.div`
 const withComponent = appConst.component.DEFAULT
 
 const ReactionSummary = ({ reactionIds, reactions }) => {
+  // Detect reactionIds has initial data loaded,
+  // and set a context state to tell other component
+  useDataInit(reactionIds)
   const reactionArray = reactionIds.map(id => reactions[id])
   const reactionSummary = dataSummary.getReactionSummary(reactionArray)
   return reactionSummary === '' ? null : (
