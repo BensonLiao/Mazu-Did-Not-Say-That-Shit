@@ -4,7 +4,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Mazu-Did-Not-Say-That-Shit/76109db641415fd2f8fd.worker.js"
   },
   {
-    "revision": "c539d7b24be11a79f8c779515bc5568b",
+    "revision": "60e2e46f2b2b7c8fcf426b8ceeba8330",
     "url": "/Mazu-Did-Not-Say-That-Shit/index.html"
   },
   {
@@ -12,28 +12,28 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Mazu-Did-Not-Say-That-Shit/static/js/2.bb96a6b4.chunk.js"
   },
   {
-    "revision": "9fc24b5eceb26b8c61b2",
-    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/3.48a4fd9b.chunk.js"
+    "revision": "f864687cd9692175ead2",
+    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/3.7b3fce17.chunk.js"
   },
   {
-    "revision": "97a8a4c1e5df508d5c43",
-    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/4.e94a3d11.chunk.js"
+    "revision": "b24f418ef8aaaca262ea",
+    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/4.aa7ff145.chunk.js"
   },
   {
-    "revision": "8c9a27e64b676ff96769",
-    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/5.3c0f33b6.chunk.js"
+    "revision": "e848c516d1f0ea2847d2",
+    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/5.7102fbec.chunk.js"
   },
   {
-    "revision": "4df1d8506ad71399f3d1",
-    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/6.b46cf4e8.chunk.js"
+    "revision": "12168af0917462d057a7",
+    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/6.5831294c.chunk.js"
   },
   {
-    "revision": "fa7caa33758358bf2220",
-    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/main.71d9be3e.chunk.js"
+    "revision": "15e35320058f7a2d0656",
+    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/main.c7c6c963.chunk.js"
   },
   {
-    "revision": "bdc1ce2e7c32cdfba19e",
-    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/runtime~main.aeeb13c5.js"
+    "revision": "3ec3ad8f34409d12c320",
+    "url": "/Mazu-Did-Not-Say-That-Shit/static/js/runtime~main.b277676c.js"
   },
   {
     "revision": "c49fa063a986eea477d31d2e16d6f919",
