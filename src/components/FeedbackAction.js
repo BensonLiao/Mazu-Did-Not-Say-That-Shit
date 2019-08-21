@@ -22,28 +22,32 @@ const FeedbackAction = () => {
   }
   const toggleShareMenu = () => console.log('toggleShareMenu')
   return (
-    isDataInit && (
-      <FeedbackActionWrapper>
-        <FeedbackActionReact
-          you={you}
-          targetId={FEEDBACK.TARGET}
-          reactId={reactId}
-          feedbackType={FEEDBACK.REACT}
-        />
-        <FeedbackActionButton
-          feedbackType={FEEDBACK.COMMENT}
-          displayText="留言"
-          tooltipText="留言"
-          onClick={focusRef}
-        />
-        <FeedbackActionButton
-          onClick={toggleShareMenu}
-          feedbackType={FEEDBACK.SHARE}
-          displayText="分享"
-          tooltipText="寄送這個給朋友或張貼在你的動態時報中．"
-        />
-      </FeedbackActionWrapper>
-    )
+    <FeedbackActionWrapper>
+      {isDataInit ? (
+        <>
+          <FeedbackActionReact
+            you={you}
+            targetId={FEEDBACK.TARGET}
+            reactId={reactId}
+            feedbackType={FEEDBACK.REACT}
+          />
+          <FeedbackActionButton
+            feedbackType={FEEDBACK.COMMENT}
+            displayText="留言"
+            tooltipText="留言"
+            onClick={focusRef}
+          />
+          <FeedbackActionButton
+            onClick={toggleShareMenu}
+            feedbackType={FEEDBACK.SHARE}
+            displayText="分享"
+            tooltipText="寄送這個給朋友或張貼在你的動態時報中．"
+          />
+        </>
+      ) : (
+        <div>Fetching data...</div>
+      )}
+    </FeedbackActionWrapper>
   )
 }
 

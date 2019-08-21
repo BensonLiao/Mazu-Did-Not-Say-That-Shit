@@ -45,7 +45,7 @@ worker.onmessage = event => {
   store.dispatch(event.data)
 }
 
-const App = React.lazy(() => import('./containers/App'))
+const App = React.lazy(() => import('./components/App'))
 
 ReactDOM.render(
   <Provider store={store}>
