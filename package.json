@@ -3,7 +3,7 @@
   "description": "Mazu did not say that shit",
   "version": "1.0.0",
   "engines": {
-    "node": "12.1.0"
+    "node": "12.9.0"
   },
   "author": {
     "name": "Benson Liao",
@@ -13,20 +13,26 @@
   "homepage": "https://bensonliao.github.io/Mazu-Did-Not-Say-That-Shit",
   "dependencies": {
     "@storybook/react": "^5.1.9",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.2",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
     "core-js": "^3.1.4",
     "cssesc": "^3.0.0",
     "immer": "^3.2.0",
     "normalizr": "^3.4.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
+    "react-app-rewire-typescript": "^2.0.2",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
     "react-scripts": "^3.0.1",
     "react-tooltip": "^3.10.0",
-    "redux": "^4.0.1",
+    "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
     "source-map-explorer": "^2.0.1",
     "styled-components": "^4.3.2",
+    "typescript": "^3.5.3",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
@@ -38,6 +44,7 @@
     "@storybook/addon-viewport": "^5.1.9",
     "@storybook/addons": "^5.1.9",
     "@storybook/storybook-deployer": "^2.8.1",
+    "@types/react-redux": "^7.1.2",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-import": "^2.18.0",

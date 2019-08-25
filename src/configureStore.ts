@@ -1,7 +1,9 @@
 import { createStore } from 'redux'
 import rootReducer from './reducers'
 
-const configureStore = preloadedState => {
+export type AppState = ReturnType<typeof rootReducer>
+
+const configureStore = (preloadedState?: any) => {
   return createStore(
     rootReducer,
     preloadedState
