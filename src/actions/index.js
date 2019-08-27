@@ -1,11 +1,23 @@
-export const ADD_DATA = 'ADD_DATA'
+const REQUEST_LODA_DATA = 'REQUEST_LODA_DATA'
+const LOAD_DATA = 'LOAD_DATA'
 
-export const addData = ({ entities }) => ({
-  type: ADD_DATA,
+const requestLoadData = () => ({
+  type: REQUEST_LODA_DATA,
+  payload: {
+    reacts: [],
+    commentReacts: [],
+    comments: [],
+    shares: [],
+    isFetching: true
+  }
+})
+
+const loadData = ({ entities }) => ({
+  type: LOAD_DATA,
   payload: entities
 })
 
-export const FEEDBACK = {
+const FEEDBACK = {
   REACT: 'REACT',
   UNDO_REACT: 'UNDO_REACT',
   COMMENT_REACT: 'COMMENT_REACT',
@@ -18,7 +30,7 @@ export const FEEDBACK = {
   TARGET: 'POST'
 }
 
-export const REACTIONS = {
+const REACTIONS = {
   LIKE: 'LIKE',
   HAHA: 'HAHA',
   LOVE: 'LOVE',
@@ -27,43 +39,43 @@ export const REACTIONS = {
   ANGRY: 'ANGRY'
 }
 
-export const feedbackReact = ({ entities }) => ({
+const feedbackReact = ({ entities }) => ({
   type: FEEDBACK.REACT,
   payload: entities
 })
 
-export const undoReact = id => ({
+const undoReact = id => ({
   type: FEEDBACK.UNDO_REACT,
   payload: {
     id
   }
 })
 
-export const feedbackReactToComment = ({ entities }) => ({
+const feedbackReactToComment = ({ entities }) => ({
   type: FEEDBACK.COMMENT_REACT,
   payload: entities
 })
 
-export const undoReactToComment = id => ({
+const undoReactToComment = id => ({
   type: FEEDBACK.UNDO_COMMENT_REACT,
   payload: {
     id
   }
 })
 
-export const feedbackComment = ({ entities }) => ({
+const feedbackComment = ({ entities }) => ({
   type: FEEDBACK.COMMENT,
   payload: entities
 })
 
-export const undoComment = id => ({
+const undoComment = id => ({
   type: FEEDBACK.UNDO_COMMENT,
   payload: {
     id
   }
 })
 
-export const updateComment = ({ id, saying }) => ({
+const updateComment = ({ id, saying }) => ({
   type: FEEDBACK.UPDATE_COMMENT,
   payload: {
     id,
@@ -71,14 +83,32 @@ export const updateComment = ({ id, saying }) => ({
   }
 })
 
-export const toggleCommentVisibility = id => ({
+const toggleCommentVisibility = id => ({
   type: FEEDBACK.COMMENT_VISIBILITY_TOGGLE,
   payload: {
     id
   }
 })
 
-export const feedbackShare = ({ entities }) => ({
+const feedbackShare = ({ entities }) => ({
   type: FEEDBACK.SHARE,
   payload: entities
 })
+
+module.exports = {
+  REQUEST_LODA_DATA,
+  LOAD_DATA,
+  requestLoadData,
+  loadData,
+  FEEDBACK,
+  REACTIONS,
+  feedbackReact,
+  undoReact,
+  feedbackReactToComment,
+  undoReactToComment,
+  feedbackComment,
+  undoComment,
+  updateComment,
+  toggleCommentVisibility,
+  feedbackShare
+}

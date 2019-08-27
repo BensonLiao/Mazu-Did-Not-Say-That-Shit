@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import produce from 'immer'
-import { ADD_DATA, FEEDBACK } from '../actions'
+import { LOAD_DATA, FEEDBACK } from '../actions'
 
 const addShareByNormalizr = (draft, action) => {
   const {
@@ -13,7 +13,7 @@ const addShareByNormalizr = (draft, action) => {
 
 const sharesById = produce((draft, action) => {
   switch (action.type) {
-    case ADD_DATA:
+    case LOAD_DATA:
     case FEEDBACK.SHARE:
       addShareByNormalizr(draft, action)
       break
@@ -31,7 +31,7 @@ const addShareIdByNormalizr = (state, action) => {
 
 const allShare = (state = [], action) => {
   switch (action.type) {
-    case ADD_DATA:
+    case LOAD_DATA:
     case FEEDBACK.SHARE:
       return addShareIdByNormalizr(state, action)
     default:

@@ -6,7 +6,9 @@ export const getCommentReactions = state => state.commentReactReducer.byId
 export const isReactedToComment = (state, id) => {
   return state.commentReactReducer.allIds.includes(id)
 }
-export const getCommentIds = state => state.commentReducer.allIds
+export const getCommentIsFetching = state =>
+  state.commentReducer.allIds.isFetching
+export const getCommentIds = state => state.commentReducer.allIds.items
 export const getComments = state => state.commentReducer.byId
 export const getComment = (state, id) => state.commentReducer.byId[id]
 export const getShareIds = state => state.shareReducer.allIds

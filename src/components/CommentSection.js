@@ -10,12 +10,13 @@ const CommentSectionWrapper = styled.div`
   border-top: ${cssConst.postSectionBorder};
 `
 
-const CommentSection = ({ commentIds }) => {
+const CommentSection = ({ isFetching, commentIds }) => {
   return (
     <CommentSectionWrapper>
       <RelevantCommentToggle />
       <MyComment />
-      {commentIds.map(commentId => (
+      {isFetching && <div>fetching data...</div>}
+      {!isFetching && commentIds.map(commentId => (
         <DisplayComment key={commentId} commentId={commentId} />
       ))}
     </CommentSectionWrapper>
@@ -23,10 +24,12 @@ const CommentSection = ({ commentIds }) => {
 }
 
 CommentSection.propTypes = {
+  isFetching: PropTypes.bool,
   commentIds: PropTypes.arrayOf(PropTypes.string)
 }
 
 CommentSection.defaultProps = {
+  isFetching: false,
   commentIds: []
 }
 

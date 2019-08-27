@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import produce from 'immer'
-import { ADD_DATA, FEEDBACK } from '../actions'
+import { LOAD_DATA, FEEDBACK } from '../actions'
 
 const addReactByNormalizr = (draft, action) => {
   const {
@@ -25,7 +25,7 @@ const removeReact = (draft, action) => {
 
 const reactsById = produce((draft, action) => {
   switch (action.type) {
-    case ADD_DATA:
+    case LOAD_DATA:
       addReactByNormalizr(draft, action)
       break
     case FEEDBACK.COMMENT_REACT:
@@ -64,7 +64,7 @@ const removeReactId = (state, action) => {
 
 const allReact = (state = [], action) => {
   switch (action.type) {
-    case ADD_DATA:
+    case LOAD_DATA:
       return addReactIdByNormalizr(state, action)
     case FEEDBACK.COMMENT_REACT:
       return addReactId(state, action)

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import produce from 'immer'
-import { ADD_DATA, FEEDBACK } from '../actions'
+import { REQUEST_LODA_DATA, LOAD_DATA, FEEDBACK } from '../actions'
 
 const addCommentByNormalizr = (draft, action) => {
   const {
@@ -40,7 +40,7 @@ const toggleCommentVisibility = (draft, action) => {
 
 const commentsById = produce((draft, action) => {
   switch (action.type) {
-    case ADD_DATA:
+    case LOAD_DATA:
       addCommentByNormalizr(draft, action)
       break
     case FEEDBACK.COMMENT:
@@ -59,42 +59,58 @@ const commentsById = produce((draft, action) => {
   }
 }, {})
 
-const addCommentIdByNormalizr = (state, action) => {
+const addCommentIdByNormalizr = (draft, action) => {
   const {
-    payload: { comments }
+    type,
+    payload: { comments, isFetching }
   } = action
-  // Extract object and append all its comments's ID to the list of allIds
-  return [...Object.keys(comments), ...state]
-}
-
-const addCommentId = (state, action) => {
-  const {
-    payload: { id }
-  } = action
-  // Just append the new comments's ID to the list of allIds
-  return [id, ...state]
-}
-
-const removeCommentId = (state, action) => {
-  const {
-    payload: { id }
-  } = action
-  // Just remove the comment's ID from the list of allIds
-  return state.filter(reactId => reactId !== id)
-}
-
-const allComment = (state = [], action) => {
-  switch (action.type) {
-    case ADD_DATA:
-      return addCommentIdByNormalizr(state, action)
-    case FEEDBACK.COMMENT:
-      return addCommentId(state, action)
-    case FEEDBACK.UNDO_COMMENT:
-      return removeCommentId(state, action)
+  // Extract object and append all its comments's ID to the list of allIds.items
+  switch (type) {
+    case REQUEST_LODA_DATA:
+      draft.items = comments
+      draft.isFetching = isFetching
+      break
+    case LOAD_DATA:
+      Object.keys(comments).forEach(id => {
+        draft.items.push(id)
+      })
+      draft.isFetching = false
+      break
     default:
-      return state
   }
 }
+
+const addCommentId = (draft, action) => {
+  const {
+    payload: { id }
+  } = action
+  // Just append the new comments's ID to the list of allIds.items
+  draft.items.unshift(id)
+}
+
+const removeCommentId = (draft, action) => {
+  const {
+    payload: { id }
+  } = action
+  // Just remove the comment's ID from the list of allIds.items
+  draft.items.splice(draft.items.findIndex(reactId => reactId === id), 1)
+}
+
+const allComment = produce((draft, action) => {
+  switch (action.type) {
+    case REQUEST_LODA_DATA:
+    case LOAD_DATA:
+      addCommentIdByNormalizr(draft, action)
+      break
+    case FEEDBACK.COMMENT:
+      addCommentId(draft, action)
+      break
+    case FEEDBACK.UNDO_COMMENT:
+      removeCommentId(draft, action)
+      break
+    default:
+  }
+}, { items: [], isFetching: false })
 
 const commentReducer = combineReducers({
   byId: commentsById,
