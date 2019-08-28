@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { feedbackReact, undoReact, REACTIONS } from '../actions'
-import { isReacted } from '../reducers/selector'
+import { getReactionIsFetching, isReacted } from '../reducers/selector'
 import appConst from '../utils/constants'
 import FeedbackActionButton from '../components/FeedbackActionButton'
 
@@ -41,6 +41,7 @@ const mapStateToProps = (state, ownProps) => {
     : isReacted(state, ownProps.reactId)
   return {
     reactId: ownProps.reactId,
+    isFetching: getReactionIsFetching(state),
     reacted: passByPropsOrRedux
   }
 }

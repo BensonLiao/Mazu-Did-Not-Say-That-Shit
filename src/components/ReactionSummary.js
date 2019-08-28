@@ -9,7 +9,6 @@ import FeedbackCount from './FeedbackCount'
 import ReactionTopMostIcon from './ReactionTopMostIcon'
 import ReactionSecondMostIcon from './ReactionSecondMostIcon'
 import ReactionThirdMostIcon from './ReactionThirdMostIcon'
-import useDataInit from '../hooks/useDataInit'
 
 const ReactionSummaryWrapper = styled.div`
   ${displayFlex}
@@ -21,13 +20,11 @@ const ReactionSummaryWrapper = styled.div`
 
 const withComponent = appConst.component.DEFAULT
 
-const ReactionSummary = ({ reactionIds, reactions }) => {
-  // Detect reactionIds has initial data loaded,
-  // and set a context state to tell other component
-  useDataInit(reactionIds)
+const ReactionSummary = ({ isFetching, reactionIds, reactions }) => {
+  if (isFetching) return <div>fetching data...</div>
   const reactionArray = reactionIds.map(id => reactions[id])
   const reactionSummary = dataSummary.getReactionSummary(reactionArray)
-  return reactionSummary === '' ? null : (
+  return reactionSummary.topMost.total > 0 && (
     <ReactionSummaryWrapper>
       <ReactionTopMostIcon
         reactFeeling={reactionSummary.topMost.feeling}
@@ -57,6 +54,7 @@ const ReactionSummary = ({ reactionIds, reactions }) => {
 }
 
 ReactionSummary.propTypes = {
+  isFetching: PropTypes.bool,
   reactionIds: PropTypes.arrayOf(PropTypes.string),
   reactions: PropTypes.shape({
     id: PropTypes.string,
@@ -72,6 +70,7 @@ ReactionSummary.propTypes = {
 }
 
 ReactionSummary.defaultProps = {
+  isFetching: false,
   reactionIds: [],
   reactions: {}
 }

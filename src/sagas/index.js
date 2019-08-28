@@ -3,7 +3,7 @@ import axios from 'axios'
 import { getNormalizedData, PostSchema } from '../utils/dataSchema'
 import { requestLoadData, loadData } from '../actions'
 
-export function fetchPostsApi(endPoint: string) {
+export function fetchPostsApi(endPoint) {
   return axios
     .get(`api/${endPoint}.json`)
     .then(response => response.data)

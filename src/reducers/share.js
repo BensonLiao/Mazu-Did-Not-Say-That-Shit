@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import produce from 'immer'
-import { LOAD_DATA, FEEDBACK } from '../actions'
+import { REQUEST_LODA_DATA, LOAD_DATA, FEEDBACK } from '../actions'
 
 const addShareByNormalizr = (draft, action) => {
   const {
@@ -21,23 +21,37 @@ const sharesById = produce((draft, action) => {
   }
 }, {})
 
-const addShareIdByNormalizr = (state, action) => {
+const addShareIdByNormalizr = (draft, action) => {
   const {
+    type,
     payload: { shares }
   } = action
-  // Just append the new share's ID to the list of all IDs
-  return [...Object.keys(shares), ...state]
-}
-
-const allShare = (state = [], action) => {
-  switch (action.type) {
+  switch (type) {
+    case REQUEST_LODA_DATA:
+      draft.items = shares
+      draft.isFetching = true
+      break
     case LOAD_DATA:
     case FEEDBACK.SHARE:
-      return addShareIdByNormalizr(state, action)
+      Object.keys(shares).forEach(id => {
+        draft.items.push(id)
+      })
+      draft.isFetching = false
+      break
     default:
-      return state
   }
 }
+
+const allShare = produce((draft, action) => {
+  switch (action.type) {
+    case REQUEST_LODA_DATA:
+    case LOAD_DATA:
+    case FEEDBACK.SHARE:
+      addShareIdByNormalizr(draft, action)
+      break
+    default:
+  }
+}, { items: [], isFetching: false })
 
 const shareReducer = combineReducers({
   byId: sharesById,

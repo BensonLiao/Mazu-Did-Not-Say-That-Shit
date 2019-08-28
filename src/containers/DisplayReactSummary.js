@@ -1,9 +1,14 @@
 import { connect } from 'react-redux'
-import { getReactionIds, getReactions } from '../reducers/selector'
+import {
+  getReactionIsFetching,
+  getReactionIds,
+  getReactions
+} from '../reducers/selector'
 import ReactionSummary from '../components/ReactionSummary'
 
 const mapStateToProps = state => {
   return {
+    isFetching: getReactionIsFetching(state),
     reactionIds: getReactionIds(state),
     reactions: getReactions(state)
   }

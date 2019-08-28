@@ -62,13 +62,13 @@ const commentsById = produce((draft, action) => {
 const addCommentIdByNormalizr = (draft, action) => {
   const {
     type,
-    payload: { comments, isFetching }
+    payload: { comments }
   } = action
   // Extract object and append all its comments's ID to the list of allIds.items
   switch (type) {
     case REQUEST_LODA_DATA:
       draft.items = comments
-      draft.isFetching = isFetching
+      draft.isFetching = true
       break
     case LOAD_DATA:
       Object.keys(comments).forEach(id => {
@@ -84,7 +84,7 @@ const addCommentId = (draft, action) => {
   const {
     payload: { id }
   } = action
-  // Just append the new comments's ID to the list of allIds.items
+  // Prepend the new comments's ID to the list of allIds.items
   draft.items.unshift(id)
 }
 
@@ -92,7 +92,7 @@ const removeCommentId = (draft, action) => {
   const {
     payload: { id }
   } = action
-  // Just remove the comment's ID from the list of allIds.items
+  // Remove the comment's ID from the list of allIds.items
   draft.items.splice(draft.items.findIndex(reactId => reactId === id), 1)
 }
 

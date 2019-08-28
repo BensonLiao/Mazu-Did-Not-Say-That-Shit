@@ -2,9 +2,7 @@ import { createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import rootReducer from './reducers'
 
-export type AppState = ReturnType<typeof rootReducer>
-
-const configureStore = (preloadedState?: any) => {
+const configureStore = preloadedState => {
   const sagaMiddleware = createSagaMiddleware()
   return {
     ...createStore(

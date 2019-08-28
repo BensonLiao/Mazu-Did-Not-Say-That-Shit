@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import produce from 'immer'
-import { LOAD_DATA, FEEDBACK } from '../actions'
+import { REQUEST_LODA_DATA, LOAD_DATA, FEEDBACK } from '../actions'
 
 const addReactByNormalizr = (draft, action) => {
   const {
@@ -38,42 +38,58 @@ const reactsById = produce((draft, action) => {
   }
 }, {})
 
-const addReactIdByNormalizr = (state, action) => {
+const addReactIdByNormalizr = (draft, action) => {
   const {
+    type,
     payload: { commentReacts }
   } = action
   // Extract object and append all its react's ID to the list of allIds
-  return [...Object.keys(commentReacts), ...state]
-}
-
-const addReactId = (state, action) => {
-  const {
-    payload: { id }
-  } = action
-  // Just append the new react's ID to the list of allIds
-  return [id, ...state]
-}
-
-const removeReactId = (state, action) => {
-  const {
-    payload: { id }
-  } = action
-  // Just remove the react's ID from the list of allIds
-  return state.filter(reactId => reactId !== id)
-}
-
-const allReact = (state = [], action) => {
-  switch (action.type) {
+  switch (type) {
+    case REQUEST_LODA_DATA:
+      draft.items = commentReacts
+      draft.isFetching = true
+      break
     case LOAD_DATA:
-      return addReactIdByNormalizr(state, action)
-    case FEEDBACK.COMMENT_REACT:
-      return addReactId(state, action)
-    case FEEDBACK.UNDO_COMMENT_REACT:
-      return removeReactId(state, action)
+      Object.keys(commentReacts).forEach(id => {
+        draft.items.push(id)
+      })
+      draft.isFetching = false
+      break
     default:
-      return state
   }
 }
+
+const addReactId = (draft, action) => {
+  const {
+    payload: { id }
+  } = action
+  // Prepend the new react's ID to the list of allIds
+  draft.items.unshift(id)
+}
+
+const removeReactId = (draft, action) => {
+  const {
+    payload: { id }
+  } = action
+  // Remove the react's ID from the list of allIds
+  draft.items.splice(draft.items.findIndex(reactId => reactId === id), 1)
+}
+
+const allReact = produce((draft, action) => {
+  switch (action.type) {
+    case REQUEST_LODA_DATA:
+    case LOAD_DATA:
+      addReactIdByNormalizr(draft, action)
+      break
+    case FEEDBACK.COMMENT_REACT:
+      addReactId(draft, action)
+      break
+    case FEEDBACK.UNDO_COMMENT_REACT:
+      removeReactId(draft, action)
+      break
+    default:
+  }
+}, { items: [], isFetching: false })
 
 const commentReactReducer = combineReducers({
   byId: reactsById,

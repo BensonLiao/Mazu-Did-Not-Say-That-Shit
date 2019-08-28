@@ -40,10 +40,12 @@ const FeedbackActionButton = ({
   feedbackType,
   displayText,
   tooltipText,
+  isFetching,
   reacted,
   onClick
 }) => {
   const tooltipId = 'tip-for-post-feedback-action'
+  if (isFetching) return <div>fetching data...</div>
   return (
     <FeedbackActionButtonWrapper
       data-for={tooltipId}
@@ -58,19 +60,21 @@ const FeedbackActionButton = ({
   )
 }
 
-FeedbackActionButton.defaultProps = {
-  feedbackType: FEEDBACK.REACT,
-  displayText: '讚',
-  tooltipText: '心情',
-  reacted: false
-}
-
 FeedbackActionButton.propTypes = {
   feedbackType: PropTypes.string,
   displayText: PropTypes.string,
   tooltipText: PropTypes.string,
+  isFetching: PropTypes.bool,
   reacted: PropTypes.bool,
   onClick: PropTypes.func.isRequired
+}
+
+FeedbackActionButton.defaultProps = {
+  feedbackType: FEEDBACK.REACT,
+  displayText: '讚',
+  tooltipText: '心情',
+  isFetching: false,
+  reacted: false
 }
 
 FeedbackActionButton.displayName = 'FeedbackActionButton'

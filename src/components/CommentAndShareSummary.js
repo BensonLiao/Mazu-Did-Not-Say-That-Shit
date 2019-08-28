@@ -24,30 +24,42 @@ const SharesWrapper = styled.div`
   margin-left: 8px;
 `
 
-const CommentAndShareSummary = ({ commentIds, comments, shareIds, shares }) => {
+const CommentAndShareSummary = ({
+  isFetching,
+  commentIds,
+  comments,
+  shareIds,
+  shares
+}) => {
   const commentArray = commentIds.map(id => comments[id])
   const shareArray = shareIds.map(id => shares[id])
   const commentsSummary = summaryFeedbacks(commentArray, 'comment')
   const sharesSummary = summaryFeedbacks(shareArray, 'share')
   return (
     <CommentAndShareSummaryWrapper>
-      <FeedbackCount
-        forText={commentsSummary.forText}
-        forTip={commentsSummary.forTip}
-        type="comment"
-      />
-      <SharesWrapper>
-        <FeedbackCount
-          forText={sharesSummary.forText}
-          forTip={sharesSummary.forTip}
-          type="share"
-        />
-      </SharesWrapper>
+      {isFetching && <div>fetching data...</div>}
+      {!isFetching && (
+        <>
+          <FeedbackCount
+            forText={commentsSummary.forText}
+            forTip={commentsSummary.forTip}
+            type="comment"
+          />
+          <SharesWrapper>
+            <FeedbackCount
+              forText={sharesSummary.forText}
+              forTip={sharesSummary.forTip}
+              type="share"
+            />
+          </SharesWrapper>
+        </>
+      )}
     </CommentAndShareSummaryWrapper>
   )
 }
 
 CommentAndShareSummary.propTypes = {
+  isFetching: PropTypes.bool,
   commentIds: PropTypes.arrayOf(PropTypes.string),
   comments: PropTypes.shape({
     id: PropTypes.string,
@@ -74,6 +86,7 @@ CommentAndShareSummary.propTypes = {
 }
 
 CommentAndShareSummary.defaultProps = {
+  isFetching: false,
   commentIds: [],
   comments: {},
   shareIds: [],

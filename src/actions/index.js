@@ -7,8 +7,7 @@ const requestLoadData = () => ({
     reacts: [],
     commentReacts: [],
     comments: [],
-    shares: [],
-    isFetching: true
+    shares: []
   }
 })
 

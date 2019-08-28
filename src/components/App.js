@@ -1,11 +1,10 @@
-import React, { lazy, Suspense, useState } from 'react'
+import React, { lazy, Suspense } from 'react'
 import PropTypes from 'prop-types'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { theme, cssConst, displayFlex, alignCenter } from '../styles'
 import Header from './Header'
 import PostContent from './PostContent'
 import FeedbackAction from './FeedbackAction'
-import { StateProvider } from '../containers/StateProvider'
 
 const FeedbackSummary = lazy(() => import('./FeedbackSummary'))
 const DisplayCommentSection = lazy(() => import('../containers/DisplayCommentSection'))
@@ -39,8 +38,6 @@ const PostWrapper = styled.div`
 `
 
 const App = ({ postData }) => {
-  const [isDataInit, setIsDataInit] = useState(false)
-  const setDataInit = isInit => setIsDataInit(isInit)
   const { user, time, content, title } = postData
   return (
     <ThemeProvider theme={theme}>
@@ -49,10 +46,8 @@ const App = ({ postData }) => {
         <PostWrapper>
           <Header profileInfo={user} postTime={time} />
           <PostContent postContent={content} postTitle={title} />
-          <StateProvider initialState={{ isDataInit, setDataInit }}>
-            <FeedbackSummary />
-            <FeedbackAction />
-          </StateProvider>
+          <FeedbackSummary />
+          <FeedbackAction />
           <Suspense fallback={<div>Loading...</div>}>
             <DisplayCommentSection />
           </Suspense>
