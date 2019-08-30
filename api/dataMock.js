@@ -1,5 +1,6 @@
 const uuidv1 = require('uuid/v1')
 const { REACTIONS, FEEDBACK } = require('../src/actions')
+const { getNormalizedData, PostSchema } = require('../src/utils/dataSchema')
 
 const definedUsers = {
   goldXFive: {
@@ -499,15 +500,19 @@ module.exports = {
   ) => {
     const reacts = createReactions(reactsTotal)
     const { comments, commentReacts } = createComments(commentsTotal)
-    const responseData = {
-      status: 'success',
-      data: {
+    const shares = createShares(sharesTotal)
+    const normalizedData = getNormalizedData(
+      {
         reacts,
         commentReacts,
         comments,
-        shares: createShares(sharesTotal)
-      }
+        shares
+      },
+      PostSchema
+    )
+    return {
+      status: 'success',
+      data: normalizedData
     }
-    return responseData
   }
 }

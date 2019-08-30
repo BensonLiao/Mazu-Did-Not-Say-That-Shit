@@ -3,9 +3,10 @@
 // As of Babel 7.4.0, this package has been deprecated in favor of directly
 // including core-js/stable (to polyfill ECMAScript features)
 // and regenerator-runtime/runtime (needed to use transpiled generator functions):
-// import "core-js/stable";
-// import "regenerator-runtime/runtime";
+// import 'core-js/stable'
+// import 'regenerator-runtime/runtime'
 // ref: https://babeljs.io/docs/en/babel-polyfill
+import 'regenerator-runtime/runtime'
 import 'core-js/stable/object/keys'
 import 'core-js/stable/array/is-array'
 import 'core-js/stable/array/for-each'

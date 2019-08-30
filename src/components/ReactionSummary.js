@@ -24,7 +24,7 @@ const ReactionSummary = ({ isFetching, reactionIds, reactions }) => {
   if (isFetching) return <div>fetching data...</div>
   const reactionArray = reactionIds.map(id => reactions[id])
   const reactionSummary = dataSummary.getReactionSummary(reactionArray)
-  return reactionSummary.topMost.total > 0 && (
+  return reactionIds.length > 0 && (
     <ReactionSummaryWrapper>
       <ReactionTopMostIcon
         reactFeeling={reactionSummary.topMost.feeling}

@@ -1,13 +1,14 @@
-import React, { lazy, Suspense } from 'react'
+import React, { lazy } from 'react'
 import PropTypes from 'prop-types'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { theme, cssConst, displayFlex, alignCenter } from '../styles'
 import Header from './Header'
 import PostContent from './PostContent'
 import FeedbackAction from './FeedbackAction'
+import DisplayCommentSection from '../containers/DisplayCommentSection'
 
 const FeedbackSummary = lazy(() => import('./FeedbackSummary'))
-const DisplayCommentSection = lazy(() => import('../containers/DisplayCommentSection'))
+// const DisplayCommentSection = lazy(() => import('../containers/DisplayCommentSection'))
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -48,9 +49,7 @@ const App = ({ postData }) => {
           <PostContent postContent={content} postTitle={title} />
           <FeedbackSummary />
           <FeedbackAction />
-          <Suspense fallback={<div>Loading...</div>}>
-            <DisplayCommentSection />
-          </Suspense>
+          <DisplayCommentSection />
         </PostWrapper>
       </Root>
     </ThemeProvider>

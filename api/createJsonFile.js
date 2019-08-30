@@ -5,7 +5,7 @@ const dataMock = require('./dataMock')
 const initialPostData = dataMock.createResponseData()
 const data = JSON.stringify(initialPostData)
 
-fs.writeFile(path.resolve(__dirname, 'db.json'), data, err => {
+fs.writeFile(path.resolve(__dirname, '../public/api/db.json'), data, err => {
   if (err) {
     return console.log(err)
   }
