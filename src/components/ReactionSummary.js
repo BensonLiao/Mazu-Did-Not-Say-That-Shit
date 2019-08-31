@@ -11,6 +11,7 @@ import ReactionSecondMostIcon from './ReactionSecondMostIcon'
 import ReactionThirdMostIcon from './ReactionThirdMostIcon'
 
 const ReactionSummaryWrapper = styled.div`
+  ${({ isFetching }) => isFetching && 'display: none;'}
   ${displayFlex}
   ${alignCenter}
   ${styledTooltipOverrideStyle}
@@ -21,11 +22,10 @@ const ReactionSummaryWrapper = styled.div`
 const withComponent = appConst.component.DEFAULT
 
 const ReactionSummary = ({ isFetching, reactionIds, reactions }) => {
-  if (isFetching) return <div>fetching data...</div>
   const reactionArray = reactionIds.map(id => reactions[id])
   const reactionSummary = dataSummary.getReactionSummary(reactionArray)
   return reactionIds.length > 0 && (
-    <ReactionSummaryWrapper>
+    <ReactionSummaryWrapper isFetching={isFetching}>
       <ReactionTopMostIcon
         reactFeeling={reactionSummary.topMost.feeling}
         withComponent={withComponent}

@@ -15,9 +15,8 @@ import {
 
 const FeedbackActionButtonWrapper = styled.div`
   ${feedbackActionButtonWrapperStyle}
-  ${props => {
-    return props.reacted ? feedbackReactedStyle : ''
-  }}
+  ${({ reacted }) => reacted && feedbackReactedStyle}
+  ${({ isFetching }) => isFetching && 'display: none;'}
 `
 
 const FeedbackActionButtonIcon = styled.i`
@@ -36,6 +35,8 @@ const FeedbackActionButtonIcon = styled.i`
   }}
 `
 
+const tooltipId = 'tip-for-post-feedback-action'
+
 const FeedbackActionButton = ({
   feedbackType,
   displayText,
@@ -44,12 +45,11 @@ const FeedbackActionButton = ({
   reacted,
   onClick
 }) => {
-  const tooltipId = 'tip-for-post-feedback-action'
-  if (isFetching) return <div>fetching data...</div>
   return (
     <FeedbackActionButtonWrapper
       data-for={tooltipId}
       data-tip={tooltipText}
+      isFetching={isFetching}
       onClick={onClick}
       reacted={reacted}
     >

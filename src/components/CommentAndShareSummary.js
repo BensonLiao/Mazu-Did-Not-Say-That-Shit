@@ -16,6 +16,7 @@ const summaryFeedbacks = (feedbacks, type) => {
 }
 
 const CommentAndShareSummaryWrapper = styled.div`
+  ${({ isFetching }) => isFetching && 'display: none;'}
   ${displayFlex}
   font-size: 14px;
 `
@@ -36,24 +37,19 @@ const CommentAndShareSummary = ({
   const commentsSummary = summaryFeedbacks(commentArray, 'comment')
   const sharesSummary = summaryFeedbacks(shareArray, 'share')
   return (
-    <CommentAndShareSummaryWrapper>
-      {isFetching && <div>fetching data...</div>}
-      {!isFetching && (
-        <>
-          <FeedbackCount
-            forText={commentsSummary.forText}
-            forTip={commentsSummary.forTip}
-            type="comment"
-          />
-          <SharesWrapper>
-            <FeedbackCount
-              forText={sharesSummary.forText}
-              forTip={sharesSummary.forTip}
-              type="share"
-            />
-          </SharesWrapper>
-        </>
-      )}
+    <CommentAndShareSummaryWrapper isFetching={isFetching}>
+      <FeedbackCount
+        forText={commentsSummary.forText}
+        forTip={commentsSummary.forTip}
+        type="comment"
+      />
+      <SharesWrapper>
+        <FeedbackCount
+          forText={sharesSummary.forText}
+          forTip={sharesSummary.forTip}
+          type="share"
+        />
+      </SharesWrapper>
     </CommentAndShareSummaryWrapper>
   )
 }
