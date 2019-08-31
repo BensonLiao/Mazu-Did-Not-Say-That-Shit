@@ -1,12 +1,14 @@
 import uuidv1 from 'uuid/v1'
 import { connect } from 'react-redux'
+import { getCommentIsFetching } from '../reducers/selector'
 import { FEEDBACK, feedbackComment } from '../actions'
 import MyCommentPlaceholder from '../components/MyCommentPlaceholder'
 
 const mapStateToProps = (state, ownProps) => {
   return {
     reactId: ownProps.reactId,
-    inputId: ownProps.myCommentInputCompId
+    inputId: ownProps.myCommentInputCompId,
+    isFetching: getCommentIsFetching(state)
   }
 }
 

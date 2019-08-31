@@ -43,6 +43,7 @@ const MyCommentPlaceholder = ({
   doCommentAction,
   doDeleteComment,
   inputId,
+  isFetching,
   saying,
   ...props
 }) => {
@@ -59,6 +60,7 @@ const MyCommentPlaceholder = ({
       if (event.shiftKey) {
         console.log('doExpandNewLine')
       } else {
+        if (isFetching) return
         prepareCommentAction(inputId, doCommentAction, doDeleteComment)
         if (stateContext) {
           const { toggleEditMode } = stateContext
@@ -101,11 +103,16 @@ MyCommentPlaceholder.propTypes = {
    */
   inputId: PropTypes.string.isRequired,
   /**
+   * Do nothing on user press Enter if initial data is fetching
+   */
+  isFetching: PropTypes.bool,
+  /**
    * For initial input value
    */
   saying: PropTypes.string
 }
 MyCommentPlaceholder.defaultProps = {
+  isFetching: false,
   saying: '',
   doDeleteComment: () => {}
 }

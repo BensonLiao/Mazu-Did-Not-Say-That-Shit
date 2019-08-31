@@ -5,7 +5,7 @@ import { keyframesFullView, shimmerAnimation } from '../styles/page'
 const Section = styled.div`
   padding: 12px;
   max-width: 500px;
-  height: 300px;
+  height: 260px;
 `
 
 const CommentShimmerWrapper = styled.div`
@@ -43,6 +43,34 @@ const Comment = styled.div`
 const CommentShimmer = () => {
   return (
     <Section>
+      <CommentShimmerWrapper>
+        <CommentAvatar />
+        <CommentArea>
+          <Comment w80 />
+          <Comment />
+        </CommentArea>
+      </CommentShimmerWrapper>
+      <CommentShimmerWrapper>
+        <CommentAvatar />
+        <CommentArea>
+          <Comment w80 />
+          <Comment />
+        </CommentArea>
+      </CommentShimmerWrapper>
+      <CommentShimmerWrapper>
+        <CommentAvatar />
+        <CommentArea>
+          <Comment w80 />
+          <Comment />
+        </CommentArea>
+      </CommentShimmerWrapper>
+      <CommentShimmerWrapper>
+        <CommentAvatar />
+        <CommentArea>
+          <Comment w80 />
+          <Comment />
+        </CommentArea>
+      </CommentShimmerWrapper>
       <CommentShimmerWrapper>
         <CommentAvatar />
         <CommentArea>
