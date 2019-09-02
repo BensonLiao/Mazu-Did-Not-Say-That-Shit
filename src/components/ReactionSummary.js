@@ -15,7 +15,6 @@ const ReactionSummaryWrapper = styled.div`
   ${displayFlex}
   ${alignCenter}
   ${styledTooltipOverrideStyle}
-  font-size: 14px;
   min-width: 100px;
 `
 

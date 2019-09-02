@@ -2,18 +2,18 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 import styled from 'styled-components'
 import StyledTooltip from './StyledTooltip'
-import cssConst from '../styles/constants'
+import { cssConst, displayBlock } from '../styles'
 import { styledTooltipOverrideStyle } from '../styles/post'
 
 const FeedbackCountWrapper = styled.span`
-  display: block;
+  ${styledTooltipOverrideStyle}
+  ${displayBlock}
   line-height: 16px;
   max-height: 16px;
   cursor: pointer;
   &:hover {
     text-decoration: underline;
   }
-  ${styledTooltipOverrideStyle}
 `
 
 const FeedbackCount = ({ forTip, forText, type }) => {

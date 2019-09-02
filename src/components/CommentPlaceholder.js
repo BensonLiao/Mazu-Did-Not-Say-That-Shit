@@ -18,7 +18,6 @@ const Container = styled.div`
 `
 
 const CommentPlaceholderWrapper = styled.div`
-  font-size: ${cssConst.baseFontSize};
   ${commentPlaceholderWrapperStyle}
   flex: 1 1 auto;
   min-width: 0;
@@ -30,7 +29,6 @@ const CommentPlaceholderWrapper = styled.div`
 
 const CommentContent = styled.span`
   ${displayInlineBlock}
-  font-size: ${cssConst.baseFontSize};
   margin-left: 4px;
   color: ${props =>
     (props.isHashTag ? cssConst.commentFeedbackButtonTextColor : 'inherit')};

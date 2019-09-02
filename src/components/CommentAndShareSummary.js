@@ -18,7 +18,6 @@ const summaryFeedbacks = (feedbacks, type) => {
 const CommentAndShareSummaryWrapper = styled.div`
   ${({ isFetching }) => isFetching && 'display: none;'}
   ${displayFlex}
-  font-size: 14px;
 `
 
 const SharesWrapper = styled.div`

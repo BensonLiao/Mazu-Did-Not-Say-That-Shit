@@ -32,6 +32,7 @@ export const privacyIconStyle = `
 export const styledTooltipOverrideStyle = `
   div.__react_component_tooltip {
     padding: 4px 6px !important;
+    font-size: ${cssConst.baseFontSize};
   }
 `
 

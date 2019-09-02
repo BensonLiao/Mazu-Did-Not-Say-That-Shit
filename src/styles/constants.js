@@ -21,7 +21,7 @@ export default {
   alignItems: 'center',
   fontFamily: 'Microsoft JhengHei',
   baseFontSize: '0.9rem',
-  mobileFontSize: '0.7rem',
+  mobileFontSize: '0.9rem',
   reactionIconSize: '18px',
   feedbackActionButtonIconSize: '18px',
   reactedButtonColor: 'rgb(32, 120, 244)',
