@@ -10,7 +10,8 @@
     "url": "https://github.com/BensonLiao"
   },
   "private": true,
-  "homepage": "https://bensonliao.github.io/Mazu-Did-Not-Say-That-Shit",
+  "//homepage-note": "You can set '.' for serving the same build from different paths if you are not using the HTML5 pushState history API nor using client-side routing",
+  "homepage": ".",
   "dependencies": {
     "@storybook/react": "^5.1.9",
     "@types/jest": "^24.0.18",
@@ -60,6 +61,7 @@
     "build": "react-scripts build",
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "deploy": "gh-pages -d build",
+    "deploy-dev": "gh-pages -d build -o dev",
     "deploy-sb": "storybook-to-ghpages --remote=storybook",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
