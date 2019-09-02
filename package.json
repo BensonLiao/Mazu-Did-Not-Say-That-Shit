@@ -10,7 +10,7 @@
     "url": "https://github.com/BensonLiao"
   },
   "private": true,
-  "//homepage-note": "You can set '.' for serving the same build from different paths if you are not using the HTML5 pushState history API nor using client-side routing",
+  "//homepage-note": "You can set '.' for serving the same build from different paths if you are not using the HTML5 pushState history API nor using client-side routing. Otherwise set it to 'https://yourusername.github.io/repository-name'.",
   "homepage": ".",
   "dependencies": {
     "@storybook/react": "^5.1.9",
