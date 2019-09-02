@@ -1,4 +1,6 @@
 import { createStore, applyMiddleware } from 'redux'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 import createSagaMiddleware from 'redux-saga'
 import rootReducer from './reducers'
 
@@ -8,8 +10,7 @@ const configureStore = preloadedState => {
     ...createStore(
       rootReducer,
       preloadedState,
-      applyMiddleware(sagaMiddleware)
-      // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+      composeWithDevTools(applyMiddleware(sagaMiddleware))
     ),
     runSaga: sagaMiddleware.run
   }
