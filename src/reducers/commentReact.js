@@ -75,21 +75,24 @@ const removeReactId = (draft, action) => {
   draft.items.splice(draft.items.findIndex(reactId => reactId === id), 1)
 }
 
-const allReact = produce((draft, action) => {
-  switch (action.type) {
-    case REQUEST_LODA_DATA:
-    case LOAD_DATA:
-      addReactIdByNormalizr(draft, action)
-      break
-    case FEEDBACK.COMMENT_REACT:
-      addReactId(draft, action)
-      break
-    case FEEDBACK.UNDO_COMMENT_REACT:
-      removeReactId(draft, action)
-      break
-    default:
-  }
-}, { items: [], isFetching: false })
+const allReact = produce(
+  (draft, action) => {
+    switch (action.type) {
+      case REQUEST_LODA_DATA:
+      case LOAD_DATA:
+        addReactIdByNormalizr(draft, action)
+        break
+      case FEEDBACK.COMMENT_REACT:
+        addReactId(draft, action)
+        break
+      case FEEDBACK.UNDO_COMMENT_REACT:
+        removeReactId(draft, action)
+        break
+      default:
+    }
+  },
+  { items: [], isFetching: false }
+)
 
 const commentReactReducer = combineReducers({
   byId: reactsById,

@@ -14,7 +14,8 @@ const CommentShimmerWrapper = styled.div`
   height: 40px;
   width: 0px;
   margin-bottom: 10px;
-  animation: ${keyframesFullView} 0.5s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation: ${keyframesFullView} 0.5s forwards
+    cubic-bezier(0.25, 0.46, 0.45, 0.94);
 `
 
 const CommentAvatar = styled.div`

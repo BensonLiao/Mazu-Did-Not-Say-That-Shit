@@ -31,7 +31,7 @@ const CommentContent = styled.span`
   ${displayInlineBlock}
   margin-left: 4px;
   color: ${props =>
-    (props.isHashTag ? cssConst.commentFeedbackButtonTextColor : 'inherit')};
+    props.isHashTag ? cssConst.commentFeedbackButtonTextColor : 'inherit'};
   cursor: ${props => (props.isHashTag ? 'pointer' : 'text')};
 `
 

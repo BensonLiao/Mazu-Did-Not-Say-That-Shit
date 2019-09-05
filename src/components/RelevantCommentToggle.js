@@ -9,7 +9,7 @@ const RelevantIconWrapper = styled.div`
   font-size: ${cssConst.baseFontSize};
   margin: 8px 12px;
   color: ${props =>
-    (props.toggleOption ? cssConst.reactedButtonTextColor : '#444950')};
+    props.toggleOption ? cssConst.reactedButtonTextColor : '#444950'};
   cursor: pointer;
   &:hover {
     text-decoration: underline;

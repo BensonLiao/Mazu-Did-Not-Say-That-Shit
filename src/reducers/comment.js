@@ -96,21 +96,24 @@ const removeCommentId = (draft, action) => {
   draft.items.splice(draft.items.findIndex(reactId => reactId === id), 1)
 }
 
-const allComment = produce((draft, action) => {
-  switch (action.type) {
-    case REQUEST_LODA_DATA:
-    case LOAD_DATA:
-      addCommentIdByNormalizr(draft, action)
-      break
-    case FEEDBACK.COMMENT:
-      addCommentId(draft, action)
-      break
-    case FEEDBACK.UNDO_COMMENT:
-      removeCommentId(draft, action)
-      break
-    default:
-  }
-}, { items: [], isFetching: false })
+const allComment = produce(
+  (draft, action) => {
+    switch (action.type) {
+      case REQUEST_LODA_DATA:
+      case LOAD_DATA:
+        addCommentIdByNormalizr(draft, action)
+        break
+      case FEEDBACK.COMMENT:
+        addCommentId(draft, action)
+        break
+      case FEEDBACK.UNDO_COMMENT:
+        removeCommentId(draft, action)
+        break
+      default:
+    }
+  },
+  { items: [], isFetching: false }
+)
 
 const commentReducer = combineReducers({
   byId: commentsById,

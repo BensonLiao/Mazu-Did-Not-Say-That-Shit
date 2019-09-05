@@ -23,32 +23,34 @@ const withComponent = appConst.component.DEFAULT
 const ReactionSummary = ({ isFetching, reactionIds, reactions }) => {
   const reactionArray = reactionIds.map(id => reactions[id])
   const reactionSummary = dataSummary.getReactionSummary(reactionArray)
-  return reactionIds.length > 0 && (
-    <ReactionSummaryWrapper isFetching={isFetching}>
-      <ReactionTopMostIcon
-        reactFeeling={reactionSummary.topMost.feeling}
-        withComponent={withComponent}
-        countSummary={reactionSummary.topMostTip}
-      />
-      {reactionSummary.secondMost.total > 0 && (
-        <ReactionSecondMostIcon
-          reactFeeling={reactionSummary.secondMost.feeling}
+  return (
+    reactionIds.length > 0 && (
+      <ReactionSummaryWrapper isFetching={isFetching}>
+        <ReactionTopMostIcon
+          reactFeeling={reactionSummary.topMost.feeling}
           withComponent={withComponent}
-          countSummary={reactionSummary.secondMostTip}
+          countSummary={reactionSummary.topMostTip}
         />
-      )}
-      {reactionSummary.thirdMost.total > 0 && (
-        <ReactionThirdMostIcon
-          reactFeeling={reactionSummary.thirdMost.feeling}
-          withComponent={withComponent}
-          countSummary={reactionSummary.thirdMostTip}
+        {reactionSummary.secondMost.total > 0 && (
+          <ReactionSecondMostIcon
+            reactFeeling={reactionSummary.secondMost.feeling}
+            withComponent={withComponent}
+            countSummary={reactionSummary.secondMostTip}
+          />
+        )}
+        {reactionSummary.thirdMost.total > 0 && (
+          <ReactionThirdMostIcon
+            reactFeeling={reactionSummary.thirdMost.feeling}
+            withComponent={withComponent}
+            countSummary={reactionSummary.thirdMostTip}
+          />
+        )}
+        <FeedbackCount
+          forText={reactionSummary.all.forText}
+          forTip={reactionSummary.all.forTip}
         />
-      )}
-      <FeedbackCount
-        forText={reactionSummary.all.forText}
-        forTip={reactionSummary.all.forTip}
-      />
-    </ReactionSummaryWrapper>
+      </ReactionSummaryWrapper>
+    )
   )
 }
 

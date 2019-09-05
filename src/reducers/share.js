@@ -42,16 +42,19 @@ const addShareIdByNormalizr = (draft, action) => {
   }
 }
 
-const allShare = produce((draft, action) => {
-  switch (action.type) {
-    case REQUEST_LODA_DATA:
-    case LOAD_DATA:
-    case FEEDBACK.SHARE:
-      addShareIdByNormalizr(draft, action)
-      break
-    default:
-  }
-}, { items: [], isFetching: false })
+const allShare = produce(
+  (draft, action) => {
+    switch (action.type) {
+      case REQUEST_LODA_DATA:
+      case LOAD_DATA:
+      case FEEDBACK.SHARE:
+        addShareIdByNormalizr(draft, action)
+        break
+      default:
+    }
+  },
+  { items: [], isFetching: false }
+)
 
 const shareReducer = combineReducers({
   byId: sharesById,

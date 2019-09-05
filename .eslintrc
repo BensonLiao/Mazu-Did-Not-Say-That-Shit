@@ -1,11 +1,13 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 9,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
-    }
+    },
+    "project": "tsconfig.json",
+    "tsconfigRootDir": "./"
   },
   "env": {
     "es6": true,
@@ -14,8 +16,13 @@
   },
   "extends": [
     "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:react/recommended",
-    "plugin:import/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
     "prettier",
     "airbnb"
   ],
@@ -25,8 +32,9 @@
       "version": "detect"
     }
   },
-  "plugins": ["react", "import", "prettier"],
+  "plugins": ["@typescript-eslint", "react", "import", "prettier"],
   "rules": {
+    "import/no-unresolved": "warn",
     "no-undef": "warn",
     "no-console": "off",
     "operator-linebreak": ["warn", "after"],

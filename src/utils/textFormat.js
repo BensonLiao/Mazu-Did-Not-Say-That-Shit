@@ -48,8 +48,10 @@ export default {
         formattedSummary += name
       }
     }
-    const totalOthers = reactions.length - availableTopShow > 0 ?
-      reactions.length - availableTopShow : 0
+    const totalOthers =
+      reactions.length - availableTopShow > 0 ?
+        reactions.length - availableTopShow :
+        0
     if (totalOthers > 0) {
       const formattedTotalOthers = this.getTotalCount(totalOthers)
       formattedSummary += `和其他${formattedTotalOthers}人`
@@ -153,9 +155,10 @@ export default {
       formattedSummary += `${profileName}<br>`
     }
     formattedSummary += totalOthers
-    formattedSummary = rank[1].total > 0
-      ? ''
-      : `<div style='${reactionIconTipWrapperStyle}'>${formattedSummary}</div>`
+    formattedSummary =
+      rank[1].total > 0
+        '' :
+        `<div style='${reactionIconTipWrapperStyle}'>${formattedSummary}</div>`
     return `<div>${tipIconText}</div>${formattedSummary}`
   }
 }
