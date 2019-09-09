@@ -1,8 +1,21 @@
 import CommentReactionTipIcon from '../components/CommentReactionTipIcon'
 import { reactionIconTipWrapperStyle } from '../styles/post'
+import { ReactData, CommentData, ShareData } from '../actions/types'
+
+export enum FEEDBACK_TYPE {
+  COMMENT = 'COMMENT',
+  SHARE = 'SHARE'
+}
+
+interface FeelingsTotal {
+  feeling: string
+  total: number
+}
+
+export interface ReactsRank extends Array<FeelingsTotal> {}
 
 export default {
-  getTimeStamp(timeStamp) {
+  getTimeStamp(timeStamp: string | number | Date) {
     const date = new Date(timeStamp)
     const options = {
       year: 'numeric',
@@ -16,11 +29,11 @@ export default {
       forTip: `${date.toLocaleString('zh-TW', options)}`
     }
   },
-  getTotalCount(total) {
+  getTotalCount(total: number) {
     const formattedTotal =
-      total > 10000 ?
-        (total / 10000).toFixed(1).concat('萬') :
-        total.toString().replace(/\d(?=(\d{3})+)/g, '$&,')
+      total > 10000
+        ? (total / 10000).toFixed(1).concat('萬')
+        : total.toString().replace(/\d(?=(\d{3})+)/g, '$&,')
     return formattedTotal
   },
   /**
@@ -34,7 +47,7 @@ export default {
    *     Show the reactor's name of the top n of @param {reactions}.
    *     (Default of n: 2)
    */
-  getReactionsCount(reactions, numTopShow = 2) {
+  getReactionsCount(reactions: Array<ReactData>, numTopShow = 2) {
     let formattedSummary = ''
     const availableTopShow =
       numTopShow > reactions.length ? reactions.length : numTopShow
@@ -49,9 +62,9 @@ export default {
       }
     }
     const totalOthers =
-      reactions.length - availableTopShow > 0 ?
-        reactions.length - availableTopShow :
-        0
+      reactions.length - availableTopShow > 0
+        ? reactions.length - availableTopShow
+        : 0
     if (totalOthers > 0) {
       const formattedTotalOthers = this.getTotalCount(totalOthers)
       formattedSummary += `和其他${formattedTotalOthers}人`
@@ -64,16 +77,21 @@ export default {
    * @param {feedbacks}
    *   An array of objects represent how many people feedback the post.
    * @param {type}
-   *   Type of feedback, `comment` or `share`.
+   *   Type of feedback, see @param {FEEDBACK_TYPE}.
    */
-  getFeedbacksCount(feedbacks, type) {
+  getFeedbacksCount(
+    feedbacks: Array<CommentData> | Array<ShareData>,
+    type: FEEDBACK_TYPE
+  ) {
     if (feedbacks.length < 1) {
       return ''
     }
     const total = feedbacks.length
     const formattedTotal = this.getTotalCount(total)
     const formattedSummary =
-      type === 'comment' ? `${formattedTotal}則留言` : `${formattedTotal}次分享`
+      type === FEEDBACK_TYPE.COMMENT
+        ? `${formattedTotal}則留言`
+        : `${formattedTotal}次分享`
     return formattedSummary
   },
   /**
@@ -87,7 +105,10 @@ export default {
    *     Show the feedbacker's name of the top n of @param {feedbacks}.
    *     (Default of n: 1)
    */
-  getFeedbacksCountTip(feedbacks, numTopShow = 1) {
+  getFeedbacksCountTip(
+    feedbacks: Array<CommentData> | Array<ShareData>,
+    numTopShow = 1
+  ) {
     if (feedbacks.length < 1) {
       return ''
     }
@@ -115,7 +136,7 @@ export default {
    *   @prop {name}
    *     The reactor's profile name.
    */
-  getCommentReactionsCount(reactions) {
+  getCommentReactionsCount(reactions: Array<ReactData>) {
     if (reactions.length < 1) {
       return ''
     }
@@ -136,7 +157,7 @@ export default {
    * @param {rank}
    *   Ab object contains ranking of reaction types
    */
-  getCommentReactionsCountTip(reactions, rank) {
+  getCommentReactionsCountTip(reactions: Array<ReactData>, rank: ReactsRank) {
     if (reactions.length < 1) {
       return ''
     }
@@ -155,10 +176,12 @@ export default {
       formattedSummary += `${profileName}<br>`
     }
     formattedSummary += totalOthers
-    formattedSummary =
-      rank[1].total > 0
-        '' :
-        `<div style='${reactionIconTipWrapperStyle}'>${formattedSummary}</div>`
+    if (rank[1] === undefined || rank[1].total === 0) {
+      formattedSummary = `<div style='${reactionIconTipWrapperStyle}'>${formattedSummary}</div>`
+    }
+    // formattedSummary = rank[1].total > 0 ?
+    //   '' :
+    //   `<div style='${reactionIconTipWrapperStyle}'>${formattedSummary}</div>`
     return `<div>${tipIconText}</div>${formattedSummary}`
   }
 }

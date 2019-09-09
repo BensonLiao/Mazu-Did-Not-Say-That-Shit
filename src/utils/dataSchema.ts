@@ -1,5 +1,4 @@
-// const { normalize, schema } = require('normalizr')
-import { normalize, schema } from 'normalizr'
+import { normalize, schema, Schema } from 'normalizr'
 
 const ReactSchema = new schema.Entity('reacts')
 
@@ -19,14 +18,5 @@ export const PostSchema = new schema.Entity('post', {
   shares: [ShareSchema]
 })
 
-export const getNormalizedData = (data, dataSchema) =>
+export const getNormalizedData = (data: string, dataSchema: Schema) =>
   normalize(data, dataSchema)
-
-// module.exports = {
-//   ReactSchema,
-//   CommentReactSchema,
-//   CommentSchema,
-//   ShareSchema,
-//   PostSchema,
-//   getNormalizedData
-// }

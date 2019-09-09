@@ -1,3 +1,26 @@
+// Enumerating the action type of the post's feedback
+export enum FEEDBACK {
+  REACT = 'REACT',
+  UNDO_REACT = 'UNDO_REACT',
+  COMMENT_REACT = 'COMMENT_REACT',
+  UNDO_COMMENT_REACT = 'UNDO_COMMENT_REACT',
+  COMMENT = 'COMMENT',
+  UNDO_COMMENT = 'UNDO_COMMENT',
+  UPDATE_COMMENT = 'UPDATE_COMMENT',
+  COMMENT_VISIBILITY_TOGGLE = 'COMMECOMMENT_VISIBILITY_TOGGLENT_HIDE',
+  SHARE = 'SHARE',
+  TARGET = 'POST'
+}
+
+export enum REACTIONS {
+  LIKE = 'LIKE',
+  HAHA = 'HAHA',
+  LOVE = 'LOVE',
+  WOW = 'WOW',
+  SAD = 'SAD',
+  ANGRY = 'ANGRY'
+}
+
 // Describing the shape of the post's feedback slice of state
 export interface InitPostData {
   reacts: Array<string>
@@ -6,14 +29,70 @@ export interface InitPostData {
   shares: Array<string>
 }
 
-declare function create(o: object | null): void
+interface UserData {
+  id: string
+  profileName: string
+  profileLink: string
+  profileImg: string
+  isVerified: boolean
+}
+
+export interface ReactData {
+  id: string
+  user: UserData
+  feeling: REACTIONS
+  targetId: string | 'POST'
+}
+
+export interface CommentReactData {
+  id: string
+  user: UserData
+  feeling: REACTIONS
+  targetId: string
+}
+
+export interface CommentData {
+  id: string
+  user: UserData
+  saying: string
+  targetId: string | 'POST'
+}
+
+export interface ShareData {
+  id: string
+  user: UserData
+}
+
+export interface PostDataReact {
+  entities: ReactData
+}
+
+export interface PostDataCommentReact {
+  entities: CommentReactData
+}
+
+export interface PostDataComment {
+  entities: CommentData
+}
+
+export interface PostDataShare {
+  entities: ShareData
+}
 
 export interface PostData {
   entities: {
-    reacts: Object
-    commentReacts: Array<string>
-    comments: Array<string>
-    shares: Array<string>
+    reacts: {
+      [key: string]: ReactData
+    }
+    commentReacts: {
+      [key: string]: CommentReactData
+    }
+    comments: {
+      [key: string]: CommentData
+    }
+    shares: {
+      [key: string]: ShareData
+    }
   }
 }
 
@@ -32,8 +111,3 @@ interface LoadData {
 }
 
 export type LoadDataActionTypes = RequestLoadData | LoadData
-
-// module.exports = {
-//   REQUEST_LODA_DATA,
-//   LOAD_DATA
-// }

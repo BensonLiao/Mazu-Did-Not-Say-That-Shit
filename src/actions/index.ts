@@ -1,4 +1,13 @@
-import { REQUEST_LODA_DATA, LOAD_DATA, PostData } from './types'
+import {
+  REQUEST_LODA_DATA,
+  LOAD_DATA,
+  FEEDBACK,
+  PostData,
+  PostDataReact,
+  PostDataCommentReact,
+  PostDataComment,
+  PostDataShare
+} from './types'
 
 export const requestLoadData = () => ({
   type: REQUEST_LODA_DATA,
@@ -15,29 +24,7 @@ export const loadData = ({ entities }: PostData) => ({
   payload: entities
 })
 
-export const FEEDBACK = {
-  REACT: 'REACT',
-  UNDO_REACT: 'UNDO_REACT',
-  COMMENT_REACT: 'COMMENT_REACT',
-  UNDO_COMMENT_REACT: 'UNDO_COMMENT_REACT',
-  COMMENT: 'COMMENT',
-  UNDO_COMMENT: 'UNDO_COMMENT',
-  UPDATE_COMMENT: 'UPDATE_COMMENT',
-  COMMENT_VISIBILITY_TOGGLE: 'COMMECOMMENT_VISIBILITY_TOGGLENT_HIDE',
-  SHARE: 'SHARE',
-  TARGET: 'POST'
-}
-
-export const REACTIONS = {
-  LIKE: 'LIKE',
-  HAHA: 'HAHA',
-  LOVE: 'LOVE',
-  WOW: 'WOW',
-  SAD: 'SAD',
-  ANGRY: 'ANGRY'
-}
-
-export const feedbackReact = ({ entities }: PostData) => ({
+export const feedbackReact = ({ entities }: PostDataReact) => ({
   type: FEEDBACK.REACT,
   payload: entities
 })
@@ -49,7 +36,7 @@ export const undoReact = (id: string) => ({
   }
 })
 
-export const feedbackReactToComment = ({ entities }: PostData) => ({
+export const feedbackReactToComment = ({ entities }: PostDataCommentReact) => ({
   type: FEEDBACK.COMMENT_REACT,
   payload: entities
 })
@@ -61,7 +48,7 @@ export const undoReactToComment = (id: string) => ({
   }
 })
 
-export const feedbackComment = ({ entities }: PostData) => ({
+export const feedbackComment = ({ entities }: PostDataComment) => ({
   type: FEEDBACK.COMMENT,
   payload: entities
 })
@@ -93,7 +80,7 @@ export const toggleCommentVisibility = (id: string) => ({
   }
 })
 
-export const feedbackShare = ({ entities }: PostData) => ({
+export const feedbackShare = ({ entities }: PostDataShare) => ({
   type: FEEDBACK.SHARE,
   payload: entities
 })

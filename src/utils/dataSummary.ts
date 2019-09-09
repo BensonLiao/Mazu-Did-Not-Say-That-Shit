@@ -1,8 +1,8 @@
-import { REACTIONS } from '../actions'
+import { REACTIONS, ReactData } from '../actions/types'
 import textFormat from './textFormat'
 
 export default {
-  getRankingReactions(reactions) {
+  getRankingReactions(reactions: Array<ReactData>) {
     if (reactions.length === 0) return []
     const reactionsCount = Object.keys(REACTIONS).map(feeling => {
       const totalFeeling = reactions.filter(
@@ -16,7 +16,7 @@ export default {
     const rank = [...sortedReactions]
     return rank
   },
-  getReactionSummary(reactions) {
+  getReactionSummary(reactions: Array<ReactData>) {
     if (reactions.length === 0) return ''
     const rank = this.getRankingReactions(reactions)
     const summary = {
@@ -53,7 +53,7 @@ export default {
     )
     return summary
   },
-  getCommentReactionSummary(reactions) {
+  getCommentReactionSummary(reactions: Array<ReactData>) {
     if (reactions.length === 0) return ''
     const rank = this.getRankingReactions(reactions)
     const summary = {

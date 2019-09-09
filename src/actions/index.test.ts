@@ -6,14 +6,15 @@ const userInfo = {
   id: userId,
   profileName: '我是假的!',
   profileLink: 'https://www.facebook.com/test/',
-  profileImg: 'test.png'
+  profileImg: 'test.png',
+  isVerified: false
 }
 const reactId = appConst.fakeReactId
 const actionDataLike = {
   entities: {
     id: reactId,
     feeling: actions.REACTIONS.LIKE,
-    user: userId,
+    user: userInfo,
     targetId: actions.FEEDBACK.TARGET
   }
 }
@@ -22,7 +23,7 @@ const actionDataHaha = {
   entities: {
     id: reactId,
     feeling: actions.REACTIONS.HAHA,
-    user: userId,
+    user: userInfo,
     targetId: actions.FEEDBACK.TARGET
   }
 }
@@ -31,7 +32,7 @@ const actionDataLove = {
   entities: {
     id: reactId,
     feeling: actions.REACTIONS.LOVE,
-    user: userId,
+    user: userInfo,
     targetId: actions.FEEDBACK.TARGET
   }
 }
