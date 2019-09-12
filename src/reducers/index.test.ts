@@ -40,28 +40,28 @@ const actionDataShare = {
 
 const initialState = rootReducer(undefined, {} as any)
 const state = {
-  reactReducer: {
+  reacts: {
     byId: {},
     allIds: {
       items: [] as Array<string>,
       isFetching: false
     }
   },
-  commentReactReducer: {
+  commentReacts: {
     byId: {},
     allIds: {
       items: [] as Array<string>,
       isFetching: false
     }
   },
-  commentReducer: {
+  comments: {
     byId: {},
     allIds: {
       items: [] as Array<string>,
       isFetching: false
     }
   },
-  shareReducer: {
+  shares: {
     byId: {},
     allIds: {
       items: [] as Array<string>,
@@ -77,7 +77,7 @@ describe('test rootReducer', () => {
 
   it('should handle add react to post', () => {
     expect(rootReducer(state, feedbackReact(actionDataReact))).toEqual({
-      reactReducer: {
+      reacts: {
         byId: {
           [actionDataReact.entities.id]: actionDataReact.entities
         },
@@ -86,21 +86,21 @@ describe('test rootReducer', () => {
           isFetching: false
         }
       },
-      commentReactReducer: {
+      commentReacts: {
         byId: {},
         allIds: {
           items: [] as Array<string>,
           isFetching: false
         }
       },
-      commentReducer: {
+      comments: {
         byId: {},
         allIds: {
           items: [] as Array<string>,
           isFetching: false
         }
       },
-      shareReducer: {
+      shares: {
         byId: {},
         allIds: {
           items: [] as Array<string>,
@@ -112,21 +112,21 @@ describe('test rootReducer', () => {
 
   it('should handle add comment to post', () => {
     expect(rootReducer(state, feedbackComment(actionDataComment))).toEqual({
-      reactReducer: {
+      reacts: {
         byId: {},
         allIds: {
           items: [] as Array<string>,
           isFetching: false
         }
       },
-      commentReactReducer: {
+      commentReacts: {
         byId: {},
         allIds: {
           items: [] as Array<string>,
           isFetching: false
         }
       },
-      commentReducer: {
+      comments: {
         byId: {
           [actionDataComment.entities.id]: actionDataComment.entities
         },
@@ -135,7 +135,7 @@ describe('test rootReducer', () => {
           isFetching: false
         }
       },
-      shareReducer: {
+      shares: {
         byId: {},
         allIds: {
           items: [] as Array<string>,
@@ -147,28 +147,28 @@ describe('test rootReducer', () => {
 
   it('should handle add share to post', () => {
     expect(rootReducer(state, feedbackShare(actionDataShare))).toEqual({
-      reactReducer: {
+      reacts: {
         byId: {},
         allIds: {
           items: [] as Array<string>,
           isFetching: false
         }
       },
-      commentReactReducer: {
+      commentReacts: {
         byId: {},
         allIds: {
           items: [] as Array<string>,
           isFetching: false
         }
       },
-      commentReducer: {
+      comments: {
         byId: {},
         allIds: {
           items: [] as Array<string>,
           isFetching: false
         }
       },
-      shareReducer: {
+      shares: {
         byId: {
           [actionDataShare.entities.id]: actionDataShare.entities
         },

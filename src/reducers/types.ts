@@ -7,7 +7,7 @@ import {
   ShareData
 } from '../actions/types'
 
-export interface PostData {
+export interface PostDataPayLoad {
   reacts: {
     [key: string]: ReactData
   }
@@ -24,12 +24,12 @@ export interface PostData {
 
 export interface RequestLoadData {
   type: typeof REQUEST_LODA_DATA
-  payload: PostData
+  payload: PostDataPayLoad
 }
 
 export interface LoadData {
   type: typeof LOAD_DATA
-  payload: PostData
+  payload: PostDataPayLoad
 }
 
 export type LoadDataActionTypes = RequestLoadData | LoadData
@@ -53,4 +53,23 @@ export interface FetchDataShare {
 export interface FetchDataAllIds {
   items: Array<string>
   isFetching: boolean
+}
+
+export interface PostDataState {
+  reacts: {
+    byId: FetchDataReact
+    allIds: FetchDataAllIds
+  }
+  commentReacts: {
+    byId: FetchDataCommentReact
+    allIds: FetchDataAllIds
+  }
+  comments: {
+    byId: FetchDataComment
+    allIds: FetchDataAllIds
+  }
+  shares: {
+    byId: FetchDataShare
+    allIds: FetchDataAllIds
+  }
 }

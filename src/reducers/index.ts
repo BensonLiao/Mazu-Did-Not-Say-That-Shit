@@ -5,10 +5,10 @@ import commentReducer from './comment'
 import shareReducer from './share'
 
 const rootReducer = combineReducers({
-  reactReducer,
-  commentReactReducer,
-  commentReducer,
-  shareReducer
+  reacts: reactReducer,
+  commentReacts: commentReactReducer,
+  comments: commentReducer,
+  shares: shareReducer
 })
 
 export default rootReducer
