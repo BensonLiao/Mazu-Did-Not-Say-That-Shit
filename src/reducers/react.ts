@@ -1,8 +1,19 @@
 import { combineReducers } from 'redux'
-import produce from 'immer'
-import { REQUEST_LODA_DATA, LOAD_DATA, FEEDBACK } from '../actions'
+import produce, { Draft } from 'immer'
+import {
+  REQUEST_LODA_DATA,
+  LOAD_DATA,
+  FEEDBACK,
+  ReactActionTypes,
+  React
+} from '../actions/types'
+import { LoadDataActionTypes } from './types'
+import { FetchDataReact, FetchDataAllIds } from './types'
 
-const addReactByNormalizr = (draft, action) => {
+const addReactByNormalizr = (
+  draft: Draft<FetchDataReact>,
+  action: LoadDataActionTypes
+) => {
   const {
     payload: { reacts }
   } = action
@@ -11,12 +22,15 @@ const addReactByNormalizr = (draft, action) => {
   })
 }
 
-const addReact = (draft, action) => {
-  const { payload } = action
+const addReact = (draft: Draft<FetchDataReact>, action: ReactActionTypes) => {
+  const { payload } = action as React
   draft[payload.id] = payload
 }
 
-const removeReact = (draft, action) => {
+const removeReact = (
+  draft: Draft<FetchDataReact>,
+  action: ReactActionTypes
+) => {
   const {
     payload: { id }
   } = action
@@ -38,28 +52,33 @@ const reactsById = produce((draft, action) => {
   }
 }, {})
 
-const addReactIdByNormalizr = (draft, action) => {
+const addReactIdByNormalizr = (
+  draft: Draft<FetchDataAllIds>,
+  action: LoadDataActionTypes
+) => {
   const {
     type,
     payload: { reacts }
   } = action
   // Extract object and append all its react's ID to the list of allIds
+  Object.keys(reacts).forEach(id => {
+    draft.items.push(id)
+  })
   switch (type) {
     case REQUEST_LODA_DATA:
-      draft.items = reacts
       draft.isFetching = true
       break
     case LOAD_DATA:
-      Object.keys(reacts).forEach(id => {
-        draft.items.push(id)
-      })
       draft.isFetching = false
       break
     default:
   }
 }
 
-const addReactId = (draft, action) => {
+const addReactId = (
+  draft: Draft<FetchDataAllIds>,
+  action: ReactActionTypes
+) => {
   const {
     payload: { id }
   } = action
@@ -67,7 +86,10 @@ const addReactId = (draft, action) => {
   draft.items.unshift(id)
 }
 
-const removeReactId = (draft, action) => {
+const removeReactId = (
+  draft: Draft<FetchDataAllIds>,
+  action: ReactActionTypes
+) => {
   const {
     payload: { id }
   } = action

@@ -6,16 +6,19 @@ import {
   PostDataReact,
   PostDataCommentReact,
   PostDataComment,
-  PostDataShare
+  PostDataShare,
+  UpdateCommentPayload
 } from './types'
 
 export const requestLoadData = () => ({
   type: REQUEST_LODA_DATA,
   payload: {
-    reacts: [],
-    commentReacts: [],
-    comments: [],
-    shares: []
+    entities: {
+      reacts: {},
+      commentReacts: {},
+      comments: {},
+      shares: {}
+    }
   }
 })
 
@@ -60,12 +63,7 @@ export const undoComment = (id: string) => ({
   }
 })
 
-interface UpdateCommentAction {
-  id: string
-  saying: string
-}
-
-export const updateComment = ({ id, saying }: UpdateCommentAction) => ({
+export const updateComment = ({ id, saying }: UpdateCommentPayload) => ({
   type: FEEDBACK.UPDATE_COMMENT,
   payload: {
     id,

@@ -1,5 +1,5 @@
 import uuidv1 from 'uuid/v1'
-import { REACTIONS, FEEDBACK } from '../actions'
+import { REACTIONS, FEEDBACK } from '../actions/types'
 import { getNormalizedData, PostSchema } from './dataSchema'
 
 export const definedUsers = {

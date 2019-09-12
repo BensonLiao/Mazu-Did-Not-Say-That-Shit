@@ -22,13 +22,6 @@ export enum REACTIONS {
 }
 
 // Describing the shape of the post's feedback slice of state
-export interface InitPostData {
-  reacts: Array<string>
-  commentReacts: Array<string>
-  comments: Array<string>
-  shares: Array<string>
-}
-
 interface UserData {
   id: string
   profileName: string
@@ -56,6 +49,7 @@ export interface CommentData {
   user: UserData
   saying: string
   targetId: string | 'POST'
+  isHidden: boolean
 }
 
 export interface ShareData {
@@ -100,14 +94,98 @@ export interface PostData {
 export const REQUEST_LODA_DATA = 'REQUEST_LODA_DATA'
 export const LOAD_DATA = 'LOAD_DATA'
 
-interface RequestLoadData {
+export interface RequestLoadData {
   type: typeof REQUEST_LODA_DATA
-  payload: InitPostData
+  payload: PostData
 }
 
-interface LoadData {
+export interface LoadData {
   type: typeof LOAD_DATA
-  payload: InitPostData
+  payload: PostData
 }
 
 export type LoadDataActionTypes = RequestLoadData | LoadData
+
+export interface GetByIdPayload {
+  id: string
+}
+
+export interface React {
+  type: typeof FEEDBACK.REACT
+  payload: ReactData
+}
+
+export interface ReactId {
+  type: typeof FEEDBACK.REACT
+  payload: GetByIdPayload
+}
+
+export interface UndoReact {
+  type: typeof FEEDBACK.UNDO_REACT
+  payload: GetByIdPayload
+}
+
+export type ReactActionTypes = React | ReactId | UndoReact
+
+export interface CommentReact {
+  type: typeof FEEDBACK.COMMENT_REACT
+  payload: CommentReactData
+}
+
+export interface CommentReactId {
+  type: typeof FEEDBACK.COMMENT_REACT
+  payload: GetByIdPayload
+}
+
+export interface UndoCommentReact {
+  type: typeof FEEDBACK.UNDO_COMMENT_REACT
+  payload: GetByIdPayload
+}
+
+export type CommentReactActionTypes =
+  | CommentReact
+  | CommentReactId
+  | UndoCommentReact
+
+export interface UpdateCommentPayload {
+  id: string
+  saying: string
+}
+
+export interface Comment {
+  type: typeof FEEDBACK.COMMENT
+  payload: CommentData
+}
+
+export interface CommentId {
+  type: typeof FEEDBACK.COMMENT
+  payload: GetByIdPayload
+}
+
+export interface UndoComment {
+  type: typeof FEEDBACK.UNDO_COMMENT
+  payload: GetByIdPayload
+}
+
+export interface UpdateComment {
+  type: typeof FEEDBACK.UPDATE_COMMENT
+  payload: UpdateCommentPayload
+}
+
+export type CommentActionTypes =
+  | Comment
+  | CommentId
+  | UndoComment
+  | UpdateComment
+
+export interface Share {
+  type: typeof FEEDBACK.SHARE
+  payload: ShareData
+}
+
+export interface ShareId {
+  type: typeof FEEDBACK.SHARE
+  payload: GetByIdPayload
+}
+
+export type ShareActionTypes = Share | ShareId

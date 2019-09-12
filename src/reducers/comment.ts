@@ -1,8 +1,20 @@
 import { combineReducers } from 'redux'
-import produce from 'immer'
-import { REQUEST_LODA_DATA, LOAD_DATA, FEEDBACK } from '../actions'
+import produce, { Draft } from 'immer'
+import {
+  REQUEST_LODA_DATA,
+  LOAD_DATA,
+  FEEDBACK,
+  CommentActionTypes,
+  Comment,
+  UpdateComment
+} from '../actions/types'
+import { LoadDataActionTypes } from './types'
+import { FetchDataComment, FetchDataAllIds } from './types'
 
-const addCommentByNormalizr = (draft, action) => {
+const addCommentByNormalizr = (
+  draft: Draft<FetchDataComment>,
+  action: LoadDataActionTypes
+) => {
   const {
     payload: { comments }
   } = action
@@ -11,26 +23,38 @@ const addCommentByNormalizr = (draft, action) => {
   })
 }
 
-const addComment = (draft, action) => {
-  const { payload } = action
+const addComment = (
+  draft: Draft<FetchDataComment>,
+  action: CommentActionTypes
+) => {
+  const { payload } = action as Comment
   draft[payload.id] = payload
 }
 
-const removeComment = (draft, action) => {
+const removeComment = (
+  draft: Draft<FetchDataComment>,
+  action: CommentActionTypes
+) => {
   const {
     payload: { id }
   } = action
   delete draft[id]
 }
 
-const updateComment = (draft, action) => {
+const updateComment = (
+  draft: Draft<FetchDataComment>,
+  action: CommentActionTypes
+) => {
   const {
     payload: { id, saying }
-  } = action
+  } = action as UpdateComment
   draft[id].saying = saying
 }
 
-const toggleCommentVisibility = (draft, action) => {
+const toggleCommentVisibility = (
+  draft: Draft<FetchDataComment>,
+  action: CommentActionTypes
+) => {
   const {
     payload: { id }
   } = action
@@ -59,41 +83,49 @@ const commentsById = produce((draft, action) => {
   }
 }, {})
 
-const addCommentIdByNormalizr = (draft, action) => {
+const addCommentIdByNormalizr = (
+  draft: Draft<FetchDataAllIds>,
+  action: LoadDataActionTypes
+) => {
   const {
     type,
     payload: { comments }
   } = action
   // Extract object and append all its comments's ID to the list of allIds.items
+  Object.keys(comments).forEach(id => {
+    draft.items.push(id)
+  })
   switch (type) {
     case REQUEST_LODA_DATA:
-      draft.items = comments
       draft.isFetching = true
       break
     case LOAD_DATA:
-      Object.keys(comments).forEach(id => {
-        draft.items.push(id)
-      })
       draft.isFetching = false
       break
     default:
   }
 }
 
-const addCommentId = (draft, action) => {
+const addCommentId = (
+  draft: Draft<FetchDataAllIds>,
+  action: CommentActionTypes
+) => {
   const {
     payload: { id }
-  } = action
+  } = action as Comment
   // Prepend the new comments's ID to the list of allIds.items
   draft.items.unshift(id)
 }
 
-const removeCommentId = (draft, action) => {
+const removeCommentId = (
+  draft: Draft<FetchDataAllIds>,
+  action: CommentActionTypes
+) => {
   const {
     payload: { id }
   } = action
   // Remove the comment's ID from the list of allIds.items
-  draft.items.splice(draft.items.findIndex(reactId => reactId === id), 1)
+  draft.items.splice(draft.items.findIndex(itemId => itemId === id), 1)
 }
 
 const allComment = produce(

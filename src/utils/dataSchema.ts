@@ -1,14 +1,14 @@
 import { normalize, schema, Schema } from 'normalizr'
 
-const ReactSchema = new schema.Entity('reacts')
+export const ReactSchema = new schema.Entity('reacts')
 
-const CommentReactSchema = new schema.Entity('commentReacts')
+export const CommentReactSchema = new schema.Entity('commentReacts')
 
 // Define your comments schema
-const CommentSchema = new schema.Entity('comments')
+export const CommentSchema = new schema.Entity('comments')
 
 // Define your shares schema
-const ShareSchema = new schema.Entity('shares')
+export const ShareSchema = new schema.Entity('shares')
 
 // Define your post schema
 export const PostSchema = new schema.Entity('post', {
@@ -18,5 +18,5 @@ export const PostSchema = new schema.Entity('post', {
   shares: [ShareSchema]
 })
 
-export const getNormalizedData = (data: string, dataSchema: Schema) =>
+export const getNormalizedData = (data: any, dataSchema: Schema) =>
   normalize(data, dataSchema)
