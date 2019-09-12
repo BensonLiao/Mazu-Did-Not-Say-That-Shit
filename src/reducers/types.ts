@@ -34,42 +34,42 @@ export interface LoadData {
 
 export type LoadDataActionTypes = RequestLoadData | LoadData
 
-export interface FetchDataReact {
+export interface ReactDataState {
   [index: string]: ReactData
 }
 
-export interface FetchDataCommentReact {
+export interface CommentReactDataState {
   [index: string]: CommentReactData
 }
 
-export interface FetchDataComment {
+export interface CommentDataState {
   [index: string]: CommentData
 }
 
-export interface FetchDataShare {
+export interface ShareDataState {
   [index: string]: ShareData
 }
 
-export interface FetchDataAllIds {
+export interface AllIdsDataState {
   items: Array<string>
   isFetching: boolean
 }
 
 export interface PostDataState {
   reacts: {
-    byId: FetchDataReact
-    allIds: FetchDataAllIds
+    byId: ReactDataState
+    allIds: AllIdsDataState
   }
   commentReacts: {
-    byId: FetchDataCommentReact
-    allIds: FetchDataAllIds
+    byId: CommentReactDataState
+    allIds: AllIdsDataState
   }
   comments: {
-    byId: FetchDataComment
-    allIds: FetchDataAllIds
+    byId: CommentDataState
+    allIds: AllIdsDataState
   }
   shares: {
-    byId: FetchDataShare
-    allIds: FetchDataAllIds
+    byId: ShareDataState
+    allIds: AllIdsDataState
   }
 }

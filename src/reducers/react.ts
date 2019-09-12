@@ -8,10 +8,10 @@ import {
   React
 } from '../actions/types'
 import { LoadDataActionTypes } from './types'
-import { FetchDataReact, FetchDataAllIds } from './types'
+import { ReactDataState, AllIdsDataState } from './types'
 
 const addReactByNormalizr = (
-  draft: Draft<FetchDataReact>,
+  draft: Draft<ReactDataState>,
   action: LoadDataActionTypes
 ) => {
   const {
@@ -22,13 +22,13 @@ const addReactByNormalizr = (
   })
 }
 
-const addReact = (draft: Draft<FetchDataReact>, action: ReactActionTypes) => {
+const addReact = (draft: Draft<ReactDataState>, action: ReactActionTypes) => {
   const { payload } = action as React
   draft[payload.id] = payload
 }
 
 const removeReact = (
-  draft: Draft<FetchDataReact>,
+  draft: Draft<ReactDataState>,
   action: ReactActionTypes
 ) => {
   const {
@@ -53,7 +53,7 @@ const reactsById = produce((draft, action) => {
 }, {})
 
 const addReactIdByNormalizr = (
-  draft: Draft<FetchDataAllIds>,
+  draft: Draft<AllIdsDataState>,
   action: LoadDataActionTypes
 ) => {
   const {
@@ -76,7 +76,7 @@ const addReactIdByNormalizr = (
 }
 
 const addReactId = (
-  draft: Draft<FetchDataAllIds>,
+  draft: Draft<AllIdsDataState>,
   action: ReactActionTypes
 ) => {
   const {
@@ -87,7 +87,7 @@ const addReactId = (
 }
 
 const removeReactId = (
-  draft: Draft<FetchDataAllIds>,
+  draft: Draft<AllIdsDataState>,
   action: ReactActionTypes
 ) => {
   const {

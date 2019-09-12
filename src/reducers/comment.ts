@@ -9,10 +9,10 @@ import {
   UpdateComment
 } from '../actions/types'
 import { LoadDataActionTypes } from './types'
-import { FetchDataComment, FetchDataAllIds } from './types'
+import { CommentDataState, AllIdsDataState } from './types'
 
 const addCommentByNormalizr = (
-  draft: Draft<FetchDataComment>,
+  draft: Draft<CommentDataState>,
   action: LoadDataActionTypes
 ) => {
   const {
@@ -24,7 +24,7 @@ const addCommentByNormalizr = (
 }
 
 const addComment = (
-  draft: Draft<FetchDataComment>,
+  draft: Draft<CommentDataState>,
   action: CommentActionTypes
 ) => {
   const { payload } = action as Comment
@@ -32,7 +32,7 @@ const addComment = (
 }
 
 const removeComment = (
-  draft: Draft<FetchDataComment>,
+  draft: Draft<CommentDataState>,
   action: CommentActionTypes
 ) => {
   const {
@@ -42,7 +42,7 @@ const removeComment = (
 }
 
 const updateComment = (
-  draft: Draft<FetchDataComment>,
+  draft: Draft<CommentDataState>,
   action: CommentActionTypes
 ) => {
   const {
@@ -52,7 +52,7 @@ const updateComment = (
 }
 
 const toggleCommentVisibility = (
-  draft: Draft<FetchDataComment>,
+  draft: Draft<CommentDataState>,
   action: CommentActionTypes
 ) => {
   const {
@@ -84,7 +84,7 @@ const commentsById = produce((draft, action) => {
 }, {})
 
 const addCommentIdByNormalizr = (
-  draft: Draft<FetchDataAllIds>,
+  draft: Draft<AllIdsDataState>,
   action: LoadDataActionTypes
 ) => {
   const {
@@ -107,7 +107,7 @@ const addCommentIdByNormalizr = (
 }
 
 const addCommentId = (
-  draft: Draft<FetchDataAllIds>,
+  draft: Draft<AllIdsDataState>,
   action: CommentActionTypes
 ) => {
   const {
@@ -118,7 +118,7 @@ const addCommentId = (
 }
 
 const removeCommentId = (
-  draft: Draft<FetchDataAllIds>,
+  draft: Draft<AllIdsDataState>,
   action: CommentActionTypes
 ) => {
   const {

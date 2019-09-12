@@ -8,10 +8,10 @@ import {
   Share
 } from '../actions/types'
 import { LoadDataActionTypes } from './types'
-import { FetchDataShare, FetchDataAllIds } from './types'
+import { ShareDataState, AllIdsDataState } from './types'
 
 const addShareByNormalizr = (
-  draft: Draft<FetchDataShare>,
+  draft: Draft<ShareDataState>,
   action: LoadDataActionTypes
 ) => {
   const {
@@ -22,7 +22,7 @@ const addShareByNormalizr = (
   })
 }
 
-const addShare = (draft: Draft<FetchDataShare>, action: ShareActionTypes) => {
+const addShare = (draft: Draft<ShareDataState>, action: ShareActionTypes) => {
   const { payload } = action as Share
   draft[payload.id] = payload
 }
@@ -39,7 +39,7 @@ const sharesById = produce((draft, action) => {
 }, {})
 
 const addShareIdByNormalizr = (
-  draft: Draft<FetchDataAllIds>,
+  draft: Draft<AllIdsDataState>,
   action: LoadDataActionTypes
 ) => {
   const {
@@ -61,7 +61,7 @@ const addShareIdByNormalizr = (
 }
 
 const addShareId = (
-  draft: Draft<FetchDataAllIds>,
+  draft: Draft<AllIdsDataState>,
   action: ShareActionTypes
 ) => {
   const {

@@ -8,10 +8,10 @@ import {
   CommentReact
 } from '../actions/types'
 import { LoadDataActionTypes } from './types'
-import { FetchDataCommentReact, FetchDataAllIds } from './types'
+import { CommentReactDataState, AllIdsDataState } from './types'
 
 const addReactByNormalizr = (
-  draft: Draft<FetchDataCommentReact>,
+  draft: Draft<CommentReactDataState>,
   action: LoadDataActionTypes
 ) => {
   const {
@@ -23,7 +23,7 @@ const addReactByNormalizr = (
 }
 
 const addReact = (
-  draft: Draft<FetchDataCommentReact>,
+  draft: Draft<CommentReactDataState>,
   action: CommentReactActionTypes
 ) => {
   const { payload } = action as CommentReact
@@ -31,7 +31,7 @@ const addReact = (
 }
 
 const removeReact = (
-  draft: Draft<FetchDataCommentReact>,
+  draft: Draft<CommentReactDataState>,
   action: CommentReactActionTypes
 ) => {
   const {
@@ -56,7 +56,7 @@ const reactsById = produce((draft, action) => {
 }, {})
 
 const addReactIdByNormalizr = (
-  draft: Draft<FetchDataAllIds>,
+  draft: Draft<AllIdsDataState>,
   action: LoadDataActionTypes
 ) => {
   const {
@@ -79,7 +79,7 @@ const addReactIdByNormalizr = (
 }
 
 const addReactId = (
-  draft: Draft<FetchDataAllIds>,
+  draft: Draft<AllIdsDataState>,
   action: CommentReactActionTypes
 ) => {
   const {
@@ -90,7 +90,7 @@ const addReactId = (
 }
 
 const removeReactId = (
-  draft: Draft<FetchDataAllIds>,
+  draft: Draft<AllIdsDataState>,
   action: CommentReactActionTypes
 ) => {
   const {
