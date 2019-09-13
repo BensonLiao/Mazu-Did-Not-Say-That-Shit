@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { PostDataState } from '../reducers/types'
 import { getComment } from '../reducers/selector'
 import { StateProvider } from './StateProvider'
 import CommentWithFeedback from '../components/CommentWithFeedback'
 
-const WithContext = ({ comment }) => {
+const WithContext = ({ comment }: any) => {
   const [inEditMode, setEditMode] = useState(false)
   const toggleEditMode = () => setEditMode(!inEditMode)
   return (
@@ -32,7 +33,7 @@ WithContext.propTypes = {
   }).isRequired
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state: PostDataState, ownProps: any) => {
   return {
     comment: getComment(state, ownProps.commentId)
   }

@@ -1,12 +1,13 @@
+import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import { toggleCommentVisibility } from '../actions'
-import CommentFeedbackButton from '../components/CommentFeedbackButton'
+import MenuButton from '../components/MenuButton'
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch: Dispatch, ownProps: any) => ({
   onClick: () => dispatch(toggleCommentVisibility(ownProps.commentId))
 })
 
 export default connect(
   null,
   mapDispatchToProps
-)(CommentFeedbackButton)
+)(MenuButton)

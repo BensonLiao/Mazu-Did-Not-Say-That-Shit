@@ -1,8 +1,36 @@
 import { REACTIONS, ReactData } from '../actions/types'
 import textFormat from './textFormat'
 
+export interface FeelingsTotal {
+  feeling: string
+  total: number
+}
+
+export interface ReactsRank extends Array<FeelingsTotal> {}
+
+export interface ReactionSummary {
+  all: {
+    forText: string
+    forTip: string
+  }
+  topMost: FeelingsTotal
+  secondMost: FeelingsTotal
+  thirdMost: FeelingsTotal
+  topMostTip: string
+  secondMostTip: string
+  thirdMostTip: string
+}
+
+export interface CommentReactionSummary {
+  forText: string
+  forTip: string
+  topMost: FeelingsTotal
+  secondMost: FeelingsTotal
+  thirdMost: FeelingsTotal
+}
+
 export default {
-  getRankingReactions(reactions: Array<ReactData>) {
+  getRankingReactions(reactions: Array<ReactData>): ReactsRank {
     if (reactions.length === 0) return []
     const reactionsCount = Object.keys(REACTIONS).map(feeling => {
       const totalFeeling = reactions.filter(
@@ -16,8 +44,7 @@ export default {
     const rank = [...sortedReactions]
     return rank
   },
-  getReactionSummary(reactions: Array<ReactData>) {
-    if (reactions.length === 0) return ''
+  getReactionSummary(reactions: Array<ReactData>): ReactionSummary {
     const rank = this.getRankingReactions(reactions)
     const summary = {
       all: {
@@ -53,7 +80,9 @@ export default {
     )
     return summary
   },
-  getCommentReactionSummary(reactions: Array<ReactData>) {
+  getCommentReactionSummary(
+    reactions: Array<ReactData>
+  ): CommentReactionSummary | string {
     if (reactions.length === 0) return ''
     const rank = this.getRankingReactions(reactions)
     const summary = {

@@ -1,16 +1,21 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { displayFlex, alignCenter } from '../styles'
 import { styledTooltipOverrideStyle } from '../styles/post'
 import appConst from '../utils/constants'
 import dataSummary from '../utils/dataSummary'
+import { ReactDataState } from '../reducers/types'
 import FeedbackCount from './FeedbackCount'
 import ReactionTopMostIcon from './ReactionTopMostIcon'
 import ReactionSecondMostIcon from './ReactionSecondMostIcon'
 import ReactionThirdMostIcon from './ReactionThirdMostIcon'
 
-const ReactionSummaryWrapper = styled.div`
+interface StyledComponentProps {
+  isFetching: boolean
+}
+
+const ReactionSummaryWrapper = styled.div<StyledComponentProps>`
   ${({ isFetching }) => isFetching && 'display: none;'}
   ${displayFlex}
   ${alignCenter}
@@ -20,7 +25,11 @@ const ReactionSummaryWrapper = styled.div`
 
 const withComponent = appConst.component.DEFAULT
 
-const ReactionSummary = ({ isFetching, reactionIds, reactions }) => {
+const ReactionSummary: React.FC<ReactionSummaryProps> = ({
+  isFetching,
+  reactionIds,
+  reactions
+}) => {
   const reactionArray = reactionIds.map(id => reactions[id])
   const reactionSummary = dataSummary.getReactionSummary(reactionArray)
   return (
@@ -54,26 +63,32 @@ const ReactionSummary = ({ isFetching, reactionIds, reactions }) => {
   )
 }
 
-ReactionSummary.propTypes = {
-  isFetching: PropTypes.bool,
-  reactionIds: PropTypes.arrayOf(PropTypes.string),
-  reactions: PropTypes.shape({
-    id: PropTypes.string,
-    user: PropTypes.shape({
-      id: PropTypes.string,
-      profileName: PropTypes.string,
-      profileLink: PropTypes.string,
-      profileImg: PropTypes.string
-    }),
-    feeling: PropTypes.string,
-    targetId: PropTypes.string
-  })
-}
+// ReactionSummary.propTypes = {
+//   isFetching: PropTypes.bool,
+//   reactionIds: PropTypes.arrayOf(PropTypes.string),
+//   reactions: PropTypes.shape({
+//     id: PropTypes.string,
+//     user: PropTypes.shape({
+//       id: PropTypes.string,
+//       profileName: PropTypes.string,
+//       profileLink: PropTypes.string,
+//       profileImg: PropTypes.string
+//     }),
+//     feeling: PropTypes.string,
+//     targetId: PropTypes.string
+//   })
+// }
 
-ReactionSummary.defaultProps = {
-  isFetching: false,
-  reactionIds: [],
-  reactions: {}
+// ReactionSummary.defaultProps = {
+//   isFetching: false,
+//   reactionIds: [],
+//   reactions: {}
+// }
+
+interface ReactionSummaryProps {
+  isFetching: boolean
+  reactionIds: Array<string>
+  reactions: ReactDataState
 }
 
 export default ReactionSummary

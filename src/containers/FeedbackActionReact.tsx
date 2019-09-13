@@ -1,17 +1,17 @@
 import React from 'react'
+import { Dispatch } from 'redux'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import {
-  feedbackReactToComment,
-  undoReactToComment,
-  REACTIONS
-} from '../actions'
-import { isReactedToComment } from '../reducers/selector'
+import { PostDataState } from '../reducers/types'
+import { REACTIONS } from '../actions/types'
+import { feedbackReact, undoReact } from '../actions'
+import { getReactionIsFetching, isReacted } from '../reducers/selector'
 import appConst from '../utils/constants'
-import CommentFeedbackButton from '../components/CommentFeedbackButton'
+import FeedbackActionButton from '../components/FeedbackActionButton'
 
-const FeedbackActionReactToComment = ({
+const FeedbackActionReact = ({
   reactId,
+  isFetching,
   reacted,
   doReactAction,
   undoReactAction
@@ -23,33 +23,39 @@ const FeedbackActionReactToComment = ({
       doReactAction(reactId)
     }
   }
-  return <CommentFeedbackButton reacted={reacted} onClick={toggleReactAction} />
+  return (
+    <FeedbackActionButton
+      isFetching={isFetching}
+      reacted={reacted}
+      onClick={toggleReactAction}
+    />
+  )
 }
 
-FeedbackActionReactToComment.propTypes = {
+FeedbackActionReact.propTypes = {
   reactId: PropTypes.string.isRequired,
   reacted: PropTypes.bool.isRequired,
+  isFetching: PropTypes.bool.isRequired,
   doReactAction: PropTypes.func.isRequired,
   undoReactAction: PropTypes.func.isRequired
 }
 
-const mapStateToProps = (state, ownProps) => {
-  // console.log('state', state)
-  // console.log('ownProps', ownProps)
+const mapStateToProps = (state: PostDataState, ownProps: any) => {
   // Pass reacted by props if a fake react id detected,
   // otherwise pass by redux.
   // A fake react id are used for testing or storybook.
   const hasFakeReactId = ownProps.reactId === appConst.fakeReactId
   const passByPropsOrRedux = hasFakeReactId
     ? ownProps.reacted
-    : isReactedToComment(state, ownProps.reactId)
+    : isReacted(state, ownProps.reactId)
   return {
     reactId: ownProps.reactId,
+    isFetching: getReactionIsFetching(state),
     reacted: passByPropsOrRedux
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch: Dispatch, ownProps: any) => ({
   doReactAction: reactId => {
     const actionData = {
       entities: {
@@ -59,12 +65,12 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         targetId: ownProps.targetId
       }
     }
-    return dispatch(feedbackReactToComment(actionData))
+    return dispatch(feedbackReact(actionData))
   },
-  undoReactAction: reactId => dispatch(undoReactToComment(reactId))
+  undoReactAction: reactId => dispatch(undoReact(reactId))
 })
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(FeedbackActionReactToComment)
+)(FeedbackActionReact)

@@ -1,10 +1,13 @@
 import uuidv1 from 'uuid/v1'
+import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
+import { PostDataState } from '../reducers/types'
 import { getCommentIsFetching } from '../reducers/selector'
-import { FEEDBACK, feedbackComment } from '../actions'
+import { FEEDBACK } from '../actions/types'
+import { feedbackComment } from '../actions'
 import MyCommentPlaceholder from '../components/MyCommentPlaceholder'
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state: PostDataState, ownProps: any) => {
   return {
     reactId: ownProps.reactId,
     inputId: ownProps.myCommentInputCompId,
@@ -12,9 +15,11 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch: Dispatch, ownProps: any) => ({
   doCommentAction: () => {
-    const saying = document.getElementById(ownProps.myCommentInputCompId).value
+    const saying = (document.getElementById(
+      ownProps.myCommentInputCompId
+    ) as HTMLInputElement).value
     const actionData = {
       entities: {
         id: uuidv1(),

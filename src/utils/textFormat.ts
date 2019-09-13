@@ -1,18 +1,12 @@
 import CommentReactionTipIcon from '../components/CommentReactionTipIcon'
 import { reactionIconTipWrapperStyle } from '../styles/post'
 import { ReactData, CommentData, ShareData } from '../actions/types'
+import { ReactsRank } from './dataSummary'
 
 export enum FEEDBACK_TYPE {
   COMMENT = 'COMMENT',
   SHARE = 'SHARE'
 }
-
-interface FeelingsTotal {
-  feeling: string
-  total: number
-}
-
-export interface ReactsRank extends Array<FeelingsTotal> {}
 
 export default {
   getTimeStamp(timeStamp: string | number | Date) {

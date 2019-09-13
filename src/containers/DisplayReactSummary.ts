@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { PostDataState } from '../reducers/types'
 import {
   getReactionIsFetching,
   getReactionIds,
@@ -6,7 +7,7 @@ import {
 } from '../reducers/selector'
 import ReactionSummary from '../components/ReactionSummary'
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: PostDataState) => {
   return {
     isFetching: getReactionIsFetching(state),
     reactionIds: getReactionIds(state),

@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { PostDataState } from '../reducers/types'
 import {
   getCommentIsFetching,
   getShareIsFetching,
@@ -9,7 +10,7 @@ import {
 } from '../reducers/selector'
 import CommentAndShareSummary from '../components/CommentAndShareSummary'
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: PostDataState) => {
   return {
     isFetching: getCommentIsFetching(state) || getShareIsFetching(state),
     commentIds: getCommentIds(state),
