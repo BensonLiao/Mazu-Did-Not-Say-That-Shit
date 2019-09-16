@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import cssConst from '../styles/constants'
 import RelevantCommentToggle from './RelevantCommentToggle'
@@ -11,7 +10,12 @@ const CommentSectionWrapper = styled.div`
   border-top: ${cssConst.postSectionBorder};
 `
 
-const CommentSection = ({ isFetching, commentIds }) => {
+interface CommentSectionProps {
+  isFetching: boolean
+  commentIds: Array<string>
+}
+
+const CommentSection = ({ isFetching, commentIds }: CommentSectionProps) => {
   return (
     <CommentSectionWrapper>
       <RelevantCommentToggle />
@@ -23,16 +27,6 @@ const CommentSection = ({ isFetching, commentIds }) => {
         ))}
     </CommentSectionWrapper>
   )
-}
-
-CommentSection.propTypes = {
-  isFetching: PropTypes.bool,
-  commentIds: PropTypes.arrayOf(PropTypes.string)
-}
-
-CommentSection.defaultProps = {
-  isFetching: false,
-  commentIds: []
 }
 
 export default CommentSection

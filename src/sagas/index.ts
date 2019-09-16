@@ -1,6 +1,7 @@
 import { put, call, fork, all, takeLatest, delay } from 'redux-saga/effects'
 import axios from 'axios'
-import { REQUEST_LODA_DATA, requestLoadData, loadData } from '../actions'
+import { REQUEST_LODA_DATA } from '../actions/types'
+import { requestLoadData, loadData } from '../actions'
 
 // request delay for shimmer animation run properly
 // when async promise request finishes too quick

@@ -28,7 +28,7 @@ import configureStore from './configureStore'
 import { definedUsers } from './utils/dataMock'
 import rootSaga from './sagas'
 
-const store = configureStore()
+const store = configureStore({})
 store.runSaga(rootSaga)
 
 const post = {

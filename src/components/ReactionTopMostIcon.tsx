@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { REACTIONS } from '../actions'
+import { REACTIONS } from '../actions/types'
 import StyledTooltip from './StyledTooltip'
-import appConst from '../utils/constants'
+import { WITH_COMPONENT } from '../utils/constants'
 import cssConst from '../styles/constants'
 import { displayInlineBlock } from '../styles/page'
 import {
@@ -14,22 +14,28 @@ import {
   reactionIconStyle
 } from '../styles/post'
 
-const {
-  component: { COMMENT }
-} = appConst
+export interface StyledContainerProps {
+  withComponent: WITH_COMPONENT
+}
 
-const ReactionTopMostIconWrapper = styled.div`
+const ReactionTopMostIconWrapper = styled.div<StyledContainerProps>`
   ${styledTooltipOverrideStyle}
-  ${props => getIconSize(props.withComponent)}
-  ${props => props.withComponent === COMMENT && displayInlineBlock}
-  ${props => props.withComponent === COMMENT && 'border-right: 2px solid #fff;'}
+  ${({ withComponent }) => getIconSize(withComponent)}
+  ${({ withComponent }) =>
+    withComponent === WITH_COMPONENT.COMMENT && displayInlineBlock}
+  ${({ withComponent }) =>
+    withComponent === WITH_COMPONENT.COMMENT && 'border-right: 2px solid #fff;'}
   position: relative;
   margin-left: -2px;
   z-index: 3;
   vertical-align: top;
 `
 
-const TopMostIcon = styled.i`
+export interface StyledIconProps extends StyledContainerProps {
+  reactFeeling: REACTIONS
+}
+
+const TopMostIcon = styled.i<StyledIconProps>`
   ${reactionIconBaseStyle}
   ${reactionIconSummaryStyle}
   ${props => reactionIconStyle(props.reactFeeling, props.withComponent)}

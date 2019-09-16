@@ -4,10 +4,14 @@ import styled from 'styled-components'
 import { displayFlex, alignYAxisCenter } from '../styles/page'
 import cssConst from '../styles/constants'
 
-const MenuItemButtonWrapper = styled.div`
+interface StyledContainerProps {
+  btnIcon: string
+}
+
+const MenuItemButtonWrapper = styled.div<StyledContainerProps>`
   ${displayFlex}
   ${alignYAxisCenter}
-  ${props => props.btnIcon}
+  ${({ btnIcon }) => btnIcon}
   border: solid ${cssConst.toggleMenuItemBorderColor};
   border-width: 1px 0;
   color: ${cssConst.toggleMenuItemTextColor};

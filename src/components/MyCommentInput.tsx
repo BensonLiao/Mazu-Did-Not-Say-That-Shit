@@ -33,14 +33,13 @@ const MyCommentInput = ({ commentId, saying, myCommentInputCompId }) => {
     <MyCommentInputWrapper>
       {commentId === '' && myCommentInputCompId !== '' && (
         <FeedbackActionComment
-          type="text"
           placeholder="留言......"
           you={you}
           myCommentInputCompId={myCommentInputCompId}
         />
       )}
       {commentId !== '' && myCommentInputCompId === '' && (
-        <UpdateComment type="text" commentId={commentId} saying={saying} />
+        <UpdateComment commentId={commentId} saying={saying} />
       )}
       <MyCommentAttachButton />
     </MyCommentInputWrapper>

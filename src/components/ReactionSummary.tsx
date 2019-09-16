@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { displayFlex, alignCenter } from '../styles'
 import { styledTooltipOverrideStyle } from '../styles/post'
-import appConst from '../utils/constants'
+import { WITH_COMPONENT } from '../utils/constants'
 import dataSummary from '../utils/dataSummary'
 import { ReactDataState } from '../reducers/types'
 import FeedbackCount from './FeedbackCount'
@@ -23,7 +23,13 @@ const ReactionSummaryWrapper = styled.div<StyledComponentProps>`
   min-width: 100px;
 `
 
-const withComponent = appConst.component.DEFAULT
+const withComponent = WITH_COMPONENT.DEFAULT
+
+interface ReactionSummaryProps {
+  isFetching: boolean
+  reactionIds: Array<string>
+  reactions: ReactDataState
+}
 
 const ReactionSummary: React.FC<ReactionSummaryProps> = ({
   isFetching,
@@ -84,11 +90,5 @@ const ReactionSummary: React.FC<ReactionSummaryProps> = ({
 //   reactionIds: [],
 //   reactions: {}
 // }
-
-interface ReactionSummaryProps {
-  isFetching: boolean
-  reactionIds: Array<string>
-  reactions: ReactDataState
-}
 
 export default ReactionSummary

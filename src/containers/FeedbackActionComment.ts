@@ -3,19 +3,31 @@ import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import { PostDataState } from '../reducers/types'
 import { getCommentIsFetching } from '../reducers/selector'
-import { FEEDBACK } from '../actions/types'
+import { FEEDBACK, UserData } from '../actions/types'
 import { feedbackComment } from '../actions'
 import MyCommentPlaceholder from '../components/MyCommentPlaceholder'
 
-const mapStateToProps = (state: PostDataState, ownProps: any) => {
+export interface FeedbackActionComment {
+  // reactId: string
+  myCommentInputCompId: string
+  you: UserData
+}
+
+const mapStateToProps = (
+  state: PostDataState,
+  ownProps: FeedbackActionComment
+) => {
   return {
-    reactId: ownProps.reactId,
+    // reactId: ownProps.reactId,
     inputId: ownProps.myCommentInputCompId,
     isFetching: getCommentIsFetching(state)
   }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch, ownProps: any) => ({
+const mapDispatchToProps = (
+  dispatch: Dispatch,
+  ownProps: FeedbackActionComment
+) => ({
   doCommentAction: () => {
     const saying = (document.getElementById(
       ownProps.myCommentInputCompId

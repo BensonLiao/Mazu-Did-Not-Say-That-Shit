@@ -3,7 +3,11 @@ import { connect } from 'react-redux'
 import { undoComment } from '../actions'
 import MenuButton from '../components/MenuButton'
 
-const mapDispatchToProps = (dispatch: Dispatch, ownProps: any) => ({
+interface DeleteComment {
+  commentId: string
+}
+
+const mapDispatchToProps = (dispatch: Dispatch, ownProps: DeleteComment) => ({
   onClick: () => dispatch(undoComment(ownProps.commentId))
 })
 

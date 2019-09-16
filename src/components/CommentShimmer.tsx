@@ -31,7 +31,11 @@ const CommentArea = styled.div`
   width: 100%;
 `
 
-const Comment = styled.div`
+interface StyledContainerProps {
+  w80?: boolean
+}
+
+const Comment = styled.div<StyledContainerProps>`
   height: 10px;
   background: #777;
   margin-top: 6px;

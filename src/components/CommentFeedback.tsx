@@ -9,7 +9,11 @@ import appConst from '../utils/constants'
 import ShowComment from '../containers/ShowComment'
 import { useContextState } from '../containers/StateProvider'
 
-const CommentFeedbackWrapper = styled.div`
+interface StyledWrapperProps {
+  isHidden: boolean
+}
+
+const CommentFeedbackWrapper = styled.div<StyledWrapperProps>`
   ${displayFlex}
   color: ${cssConst.commentFeedbackTextColor};
   ${({ isHidden }) => isHidden && 'opacity: 0.5;'}
@@ -22,7 +26,12 @@ const CommentFeedbackWrapper = styled.div`
 const onClick = () => {}
 const { you } = appConst
 
-const getActionButton = (isHidden, targetId, reactId, reacted) => {
+const getActionButton = (
+  isHidden: boolean,
+  targetId: string,
+  reactId: string,
+  reacted: boolean
+) => {
   return isHidden ? (
     <ShowComment displayText="取消隱藏" commentId={targetId} />
   ) : (
@@ -43,7 +52,7 @@ const CommentFeedback = ({
   isHidden,
   inEditMode
 }) => {
-  const { toggleEditMode } = useContextState()
+  const { toggleEditMode } = useContextState() as any
   return (
     <CommentFeedbackWrapper isHidden={isHidden}>
       {inEditMode ? (

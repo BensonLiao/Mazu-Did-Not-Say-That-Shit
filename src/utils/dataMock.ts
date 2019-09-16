@@ -116,7 +116,7 @@ const getReactor = (nameId: number, gender = 'MALE') => {
  * @param {gender} gender
  *  Choose an img represent gender, `MALE` if ommited.
  */
-const getFakeUser = (nameId: number, gender = 'MALE') => {
+export const getFakeUser = (nameId: number | string, gender = 'MALE') => {
   const maleUserImg = 'anonymous-male.png'
   const femaleUserImg = 'anonymous-female.png'
   const userImg = gender === 'MALE' ? maleUserImg : femaleUserImg

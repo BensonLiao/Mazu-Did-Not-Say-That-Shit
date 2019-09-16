@@ -27,7 +27,11 @@ const CommentPlaceholderWrapper = styled.div`
   word-wrap: break-word;
 `
 
-const CommentContent = styled.span`
+interface StyledWrapperProps {
+  isHashTag: boolean
+}
+
+const CommentContent = styled.span<StyledWrapperProps>`
   ${displayInlineBlock}
   margin-left: 4px;
   color: ${props =>
@@ -51,11 +55,18 @@ const VerifiedBadge = styled.i`
   ${verifiedBadgeIconStyle}
 `
 
+export interface CommentContent {
+  id: string
+  content: string
+  isHashTag: boolean
+  attachMedia: string
+}
+
 const getCommentContent = (
-  separatedContent,
-  profileName,
-  profileLink,
-  isVerified
+  separatedContent: Array<CommentContent>,
+  profileName: string,
+  profileLink: string,
+  isVerified: boolean
 ) => {
   return separatedContent.map((c, idx) => {
     return (

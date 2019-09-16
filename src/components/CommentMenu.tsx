@@ -62,7 +62,7 @@ const MenuItem = styled.li`
 `
 
 const CommentMenu = ({ commentId, isHidden, isYour, onClick }) => {
-  const { toggleEditMode } = useContextState()
+  const { toggleEditMode } = useContextState() as any
   return (
     <CommentMenuWrapper>
       <MenuWrapper>

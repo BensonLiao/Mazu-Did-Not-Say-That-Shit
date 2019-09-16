@@ -3,7 +3,7 @@ import { Dispatch } from 'redux'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { PostDataState } from '../reducers/types'
-import { REACTIONS } from '../actions/types'
+import { REACTIONS, UserData } from '../actions/types'
 import { feedbackReact, undoReact } from '../actions'
 import { getReactionIsFetching, isReacted } from '../reducers/selector'
 import appConst from '../utils/constants'
@@ -40,7 +40,17 @@ FeedbackActionReact.propTypes = {
   undoReactAction: PropTypes.func.isRequired
 }
 
-const mapStateToProps = (state: PostDataState, ownProps: any) => {
+export interface FeedbackActionReact {
+  targetId: string
+  reactId: string
+  reacted: boolean
+  you: UserData
+}
+
+const mapStateToProps = (
+  state: PostDataState,
+  ownProps: FeedbackActionReact
+) => {
   // Pass reacted by props if a fake react id detected,
   // otherwise pass by redux.
   // A fake react id are used for testing or storybook.
@@ -55,8 +65,11 @@ const mapStateToProps = (state: PostDataState, ownProps: any) => {
   }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch, ownProps: any) => ({
-  doReactAction: reactId => {
+const mapDispatchToProps = (
+  dispatch: Dispatch,
+  ownProps: FeedbackActionReact
+) => ({
+  doReactAction: (reactId: string) => {
     const actionData = {
       entities: {
         id: reactId,
@@ -67,7 +80,7 @@ const mapDispatchToProps = (dispatch: Dispatch, ownProps: any) => ({
     }
     return dispatch(feedbackReact(actionData))
   },
-  undoReactAction: reactId => dispatch(undoReact(reactId))
+  undoReactAction: (reactId: string) => dispatch(undoReact(reactId))
 })
 
 export default connect(

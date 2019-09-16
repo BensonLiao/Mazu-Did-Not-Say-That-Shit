@@ -1,17 +1,21 @@
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
-import { PostDataState } from '../reducers/types'
 import { updateComment, undoComment } from '../actions'
 import MyCommentPlaceholder from '../components/MyCommentPlaceholder'
 
-const mapStateToProps = (state: PostDataState, ownProps: any) => {
+export interface UpdateComment {
+  commentId: string
+  saying: string
+}
+
+const mapStateToProps = (ownProps: UpdateComment) => {
   return {
     inputId: ownProps.commentId,
     saying: ownProps.saying
   }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch, ownProps: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch, ownProps: UpdateComment) => ({
   doCommentAction: () => {
     const saying = (document.getElementById(
       ownProps.commentId

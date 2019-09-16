@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import appConst from '../utils/constants'
+import { WITH_COMPONENT } from '../utils/constants'
 import cssConst from '../styles/constants'
 import { displayInlineBlock, displayBlock } from '../styles/page'
 import {
@@ -16,7 +16,11 @@ import ReactionSecondMostIcon from './ReactionSecondMostIcon'
 import ReactionThirdMostIcon from './ReactionThirdMostIcon'
 import useCompNarrow from '../hooks/useCompNarrow'
 
-const Container = styled.div`
+interface StyledContainerProps {
+  isNarrowComp: boolean
+}
+
+const Container = styled.div<StyledContainerProps>`
   ${displayInlineBlock}
   ${styledTooltipOverrideStyle}
   background: ${cssConst.postBackgroundWhite};
@@ -53,8 +57,8 @@ const CommentReactionSummary = ({ commentId, reactionIds, reactions }) => {
     .filter(react => react.targetId === commentId)
   const reactionSummary = dataSummary.getCommentReactionSummary(reactionArray)
   const tooltipId = 'tip-for-comment-reaction'
-  const withComponent = appConst.component.COMMENT
-  return reactionSummary === '' ? null : (
+  const withComponent = WITH_COMPONENT.COMMENT
+  return reactionIds.length > 0 ? null : (
     <Container
       data-for={tooltipId}
       data-tip={reactionSummary.forTip}

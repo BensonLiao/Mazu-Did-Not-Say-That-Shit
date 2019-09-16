@@ -26,8 +26,12 @@ const MyCommentInput = styled.input`
   font-size: ${cssConst.baseFontSize};
 `
 
-const prepareCommentAction = (inputId, doCommentAction, doDeleteComment) => {
-  const inputRef = document.getElementById(inputId)
+const prepareCommentAction = (
+  inputId: string,
+  doCommentAction: Function,
+  doDeleteComment: Function
+) => {
+  const inputRef = document.getElementById(inputId) as HTMLInputElement
   if (inputRef.value === '') {
     doDeleteComment()
   } else {
@@ -48,7 +52,7 @@ const MyCommentPlaceholder = ({
   ...props
 }) => {
   // Make stateContext to null if this comp rendered outside of StateProvider
-  const stateContext = useContextState() || null
+  const stateContext = (useContextState() as any) || null
   const handleKeyDown = event => {
     if (event.type === 'compositionstart') onIME = true
     if (event.type === 'compositionend') onIME = false
@@ -77,6 +81,7 @@ const MyCommentPlaceholder = ({
   return (
     <MyCommentPlaceholderWrapper>
       <MyCommentInput
+        type="text"
         onKeyDown={handleKeyDown}
         onCompositionStart={handleKeyDown}
         onCompositionEnd={handleKeyDown}

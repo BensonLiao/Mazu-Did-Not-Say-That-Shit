@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { feedbackActionWrapperStyle } from '../styles/post'
-import { FEEDBACK } from '../actions'
+import { FEEDBACK } from '../actions/types'
 import FeedbackActionReact from '../containers/FeedbackActionReact'
 import FeedbackActionButton from './FeedbackActionButton'
 import appConst from '../utils/constants'

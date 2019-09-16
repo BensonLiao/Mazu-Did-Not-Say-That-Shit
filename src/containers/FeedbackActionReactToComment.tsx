@@ -4,6 +4,7 @@ import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import { PostDataState } from '../reducers/types'
 import { REACTIONS } from '../actions/types'
+import { FeedbackActionReact } from './FeedbackActionReact'
 import { feedbackReactToComment, undoReactToComment } from '../actions'
 import { isReactedToComment } from '../reducers/selector'
 import appConst from '../utils/constants'
@@ -32,7 +33,10 @@ FeedbackActionReactToComment.propTypes = {
   undoReactAction: PropTypes.func.isRequired
 }
 
-const mapStateToProps = (state: PostDataState, ownProps: any) => {
+const mapStateToProps = (
+  state: PostDataState,
+  ownProps: FeedbackActionReact
+) => {
   // console.log('state', state)
   // console.log('ownProps', ownProps)
   // Pass reacted by props if a fake react id detected,
@@ -48,7 +52,10 @@ const mapStateToProps = (state: PostDataState, ownProps: any) => {
   }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch, ownProps: any) => ({
+const mapDispatchToProps = (
+  dispatch: Dispatch,
+  ownProps: FeedbackActionReact
+) => ({
   doReactAction: (reactId: string) => {
     const actionData = {
       entities: {

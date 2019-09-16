@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { FEEDBACK } from '../actions'
+import { FEEDBACK } from '../actions/types'
 import StyledTooltip from './StyledTooltip'
 import {
   feedbackActionButtonWrapperStyle,
@@ -13,13 +13,23 @@ import {
   feedbackShareButtonStyle
 } from '../styles/post'
 
-const FeedbackActionButtonWrapper = styled.div`
+interface StyledContainerProps {
+  reacted: boolean
+  isFetching: boolean
+}
+
+const FeedbackActionButtonWrapper = styled.div<StyledContainerProps>`
   ${feedbackActionButtonWrapperStyle}
   ${({ reacted }) => reacted && feedbackReactedStyle}
   ${({ isFetching }) => isFetching && 'display: none;'}
 `
 
-const FeedbackActionButtonIcon = styled.i`
+interface StyledIconProps {
+  reacted: boolean
+  feedbackType: FEEDBACK
+}
+
+const FeedbackActionButtonIcon = styled.i<StyledIconProps>`
   ${feedbackActionButtonBaseStyle}
   ${props => {
     switch (props.feedbackType) {

@@ -34,7 +34,7 @@
   },
   "plugins": ["@typescript-eslint", "react", "import", "prettier"],
   "rules": {
-    "import/no-unresolved": "warn",
+    "import/no-unresolved": "error",
     "no-undef": "warn",
     "no-console": "off",
     "operator-linebreak": ["warn", "after"],

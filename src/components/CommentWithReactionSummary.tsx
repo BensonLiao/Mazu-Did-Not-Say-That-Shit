@@ -16,8 +16,14 @@ const Container = styled.div`
   vertical-align: middle;
 `
 
-const CommentWithReactionSummaryWrapper = styled.div`
-  ${props => (props.contentSeparated ? displayInlineBlock : displayInlineFlex)}
+interface StyledContainerProps {
+  contentSeparated: boolean
+  isHidden: boolean
+}
+
+const CommentWithReactionSummaryWrapper = styled.div<StyledContainerProps>`
+  ${({ contentSeparated }) =>
+    contentSeparated ? displayInlineBlock : displayInlineFlex}
   ${({ isHidden }) => isHidden && 'opacity: 0.5;'}
   line-height: 16px;
   position: relative;
@@ -62,7 +68,7 @@ const CommentWithReactionSummary = ({
         contentSeparated={contentSeparated}
       >
         <CommentPlaceholder
-          commentId={commentId}
+          // commentId={commentId}
           profileName={profileName}
           profileLink={profileLink}
           isVerified={isVerified}

@@ -22,7 +22,7 @@ export enum REACTIONS {
 }
 
 // Describing the shape of the post's feedback slice of state
-interface UserData {
+export interface UserData {
   id: string
   profileName: string
   profileLink: string
@@ -50,6 +50,7 @@ export interface CommentData {
   saying: string
   targetId: string | 'POST'
   isHidden: boolean
+  attachMedia: string
 }
 
 export interface ShareData {

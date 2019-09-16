@@ -82,8 +82,7 @@ export default {
   },
   getCommentReactionSummary(
     reactions: Array<ReactData>
-  ): CommentReactionSummary | string {
-    if (reactions.length === 0) return ''
+  ): CommentReactionSummary {
     const rank = this.getRankingReactions(reactions)
     const summary = {
       forText: '',

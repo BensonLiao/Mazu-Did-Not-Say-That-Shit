@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import appConst from '../utils/constants'
+import appConst, { WITH_COMPONENT } from '../utils/constants'
 import { displayFlex, alignCenter } from '../styles/page'
 import CommentAvatar from './CommentAvatar'
 import MyCommentInput from './MyCommentInput'
@@ -12,12 +12,12 @@ const MyCommentWrapper = styled.div`
   padding: 4px 12px 8px 12px;
 `
 
-const { myCommentInputCompId, component } = appConst
+const { myCommentInputCompId } = appConst
 
 const MyComment = ({ inEditMode, commentId, saying }) => {
   return (
     <MyCommentWrapper>
-      <CommentAvatar withComponent={component.DEFAULT} />
+      <CommentAvatar withComponent={WITH_COMPONENT.DEFAULT} />
       {inEditMode ? (
         <MyCommentInput commentId={commentId} saying={saying} />
       ) : (

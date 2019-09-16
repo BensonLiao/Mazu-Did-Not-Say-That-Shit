@@ -33,7 +33,11 @@ WithContext.propTypes = {
   }).isRequired
 }
 
-const mapStateToProps = (state: PostDataState, ownProps: any) => {
+interface DisplayComment {
+  commentId: string
+}
+
+const mapStateToProps = (state: PostDataState, ownProps: DisplayComment) => {
   return {
     comment: getComment(state, ownProps.commentId)
   }

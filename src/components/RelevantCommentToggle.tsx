@@ -4,30 +4,46 @@ import cssConst from '../styles/constants'
 import { displayFlex } from '../styles/page'
 import { relevantIconStyle } from '../styles/post'
 
-const RelevantIconWrapper = styled.div`
+interface StyledContainerProps {
+  toggleOption: boolean
+}
+
+const RelevantIconWrapper = styled.div<StyledContainerProps>`
   ${displayFlex}
   font-size: ${cssConst.baseFontSize};
   margin: 8px 12px;
-  color: ${props =>
-    props.toggleOption ? cssConst.reactedButtonTextColor : '#444950'};
+  color: ${({ toggleOption }) =>
+    toggleOption ? cssConst.reactedButtonTextColor : '#444950'};
   cursor: pointer;
   &:hover {
     text-decoration: underline;
   }
 `
 
-const RelevantIcon = styled.i`
-  ${props => relevantIconStyle(props.toggleOption)}
+const RelevantIcon = styled.i<StyledContainerProps>`
+  ${({ toggleOption }) => relevantIconStyle(toggleOption)}
 `
 
-export default class RelevantCommentToggle extends Component {
-  constructor() {
-    super()
-    this.state = {
-      isToggleOptionOpen: false,
-      options: ['最相關', '從新到舊', '所有留言']
-    }
+type State = {
+  isToggleOptionOpen: boolean
+  options: Array<string>
+}
+
+export default class RelevantCommentToggle extends Component<State> {
+  static defaultProps = {
+    isToggleOptionOpen: false,
+    options: ['最相關', '從新到舊', '所有留言']
   }
+
+  readonly state: State = { ...this.props }
+
+  // constructor() {
+  //   super()
+  //   this.state = {
+  //     isToggleOptionOpen: false,
+  //     options: ['最相關', '從新到舊', '所有留言']
+  //   }
+  // }
 
   toggleOptionMenu = () => {
     const { isToggleOptionOpen } = this.state
