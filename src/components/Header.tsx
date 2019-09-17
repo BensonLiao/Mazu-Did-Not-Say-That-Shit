@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { RightInfo } from './RightInfo'
 import LeftInfo from './LeftInfo'
 import { getFakeUser } from '../utils/dataMock'
-import { displayFlex, justifyContentSpaceBetween } from '../styles'
+import { displayFlex, justifyContentSpaceBetween } from '../styles/page'
 
 const propTypes = {
   profileInfo: PropTypes.shape({

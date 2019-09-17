@@ -5,7 +5,7 @@ import ProfileLink from './ProfileLink'
 import PostInfo from './PostInfo'
 import Thumbnail from './Thumbnail'
 import { getFakeUser } from '../utils/dataMock'
-import { displayFlex, alignCenter } from '../styles'
+import { displayFlex, alignCenter } from '../styles/page'
 
 const propTypes = {
   profileInfo: PropTypes.shape({

@@ -3,7 +3,11 @@ import { connect } from 'react-redux'
 import { toggleCommentVisibility } from '../actions'
 import CommentFeedbackButton from '../components/CommentFeedbackButton'
 
-const mapDispatchToProps = (dispatch: Dispatch, ownProps: any) => ({
+interface ShowComment {
+  commentId: string
+}
+
+const mapDispatchToProps = (dispatch: Dispatch, ownProps: ShowComment) => ({
   onClick: () => dispatch(toggleCommentVisibility(ownProps.commentId))
 })
 

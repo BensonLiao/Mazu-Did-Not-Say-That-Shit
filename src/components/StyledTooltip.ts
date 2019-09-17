@@ -8,7 +8,8 @@ import cssConst from '../styles/constants'
 // })
 // but it need fix, See https://github.com/wwayne/react-tooltip/issues/489
 const StyledTooltip = styled(ReactTooltip).attrs({
-  suppressClassNameWarning: true
+  suppressClassNameWarning: true,
+  bg: cssConst.tooltipBackgroundGray
 })`
   background-color: ${({ bg }) => bg} !important;
   &.place-top {
@@ -64,7 +65,5 @@ const StyledTooltip = styled(ReactTooltip).attrs({
     text-align: left !important;
   }
 `
-
-StyledTooltip.defaultProps = { bg: cssConst.tooltipBackgroundGray }
 
 export default StyledTooltip

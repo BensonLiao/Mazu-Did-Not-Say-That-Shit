@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import StyledTooltip from './StyledTooltip'
-import { cssConst, displayBlock } from '../styles'
+import cssConst from '../styles/constants'
+import { displayBlock } from '../styles/page'
 import { styledTooltipOverrideStyle } from '../styles/post'
 
 const FeedbackCountWrapper = styled.span`

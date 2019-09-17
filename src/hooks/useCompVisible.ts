@@ -1,16 +1,16 @@
 import { useState, useEffect, useRef } from 'react'
 
-export default initialIsVisible => {
+export default (initialIsVisible: boolean) => {
   const [isCompVisible, setIsCompVisible] = useState(initialIsVisible)
   const ref = useRef(null)
 
-  const handleHideComp = event => {
+  const handleHideComp = (event: KeyboardEvent) => {
     if (event.key === 'Escape') {
       setIsCompVisible(false)
     }
   }
 
-  const handleClick = event => {
+  const handleClick = (event: Event) => {
     if (ref.current) {
       const insideTarget = ref.current.contains(event.target)
       setIsCompVisible(insideTarget)

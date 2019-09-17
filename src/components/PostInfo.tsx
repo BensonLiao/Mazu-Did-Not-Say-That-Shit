@@ -1,10 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { DotSeparator } from '../styles/page'
+import { displayFlex, alignCenter, DotSeparator } from '../styles/page'
 import PostTime from './PostTime'
 import PrivacyIcon from './PrivacyIcon'
-import { displayFlex, alignCenter } from '../styles'
 
 const propTypes = {
   /**

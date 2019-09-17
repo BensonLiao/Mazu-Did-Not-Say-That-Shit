@@ -10,15 +10,19 @@ import Comment from './Comment'
 import MyComment from './MyComment'
 import CommentFeedback from './CommentFeedback'
 
-const CommentAndFeedbackWrapper = styled.div`
+interface StyledContainerProps {
+  isYour: boolean
+}
+
+const CommentAndFeedbackWrapper = styled.div<StyledContainerProps>`
   position: relative;
   padding: 4px 12px 8px 12px;
   ${({ isYour }) => isYour && yourCommentBorderStyle}
 `
 
 const CommentWithFeedback = ({ comment }) => {
-  const { inEditMode, toggleEditMode } = useContextState()
-  const [isHover, setIsHover] = useMouseHover()
+  const { inEditMode, toggleEditMode } = useContextState() as any
+  const [isHover, setIsHover] = useMouseHover() as any
   const onEnter = () => {
     setIsHover(true)
   }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-export default compId => {
+export default (compId: string) => {
   const [isNarrowComp, setIsNarrowComp] = useState(false)
   // Similar to componentDidMount and componentDidUpdate
   useEffect(() => {

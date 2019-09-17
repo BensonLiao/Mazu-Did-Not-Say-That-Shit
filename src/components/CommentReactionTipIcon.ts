@@ -4,9 +4,11 @@ import {
   reactionIconTipWrapperStyle,
   reactionIconStyle
 } from '../styles/post'
+import { WITH_COMPONENT } from '../utils/constants'
+
+const withComponent = WITH_COMPONENT.COMMENT
 
 const CommentReactionTipIcon = ({ feeling, total }) => {
-  const withComponent = 'comment'
   return `<span style='${reactionIconTipWrapperStyle}'>
     <i 
       style='
