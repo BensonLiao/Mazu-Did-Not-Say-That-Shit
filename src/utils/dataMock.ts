@@ -96,7 +96,7 @@ const definedReactors = [
  * @param {gender} gender
  *  Choose an img represent gender, `MALE` if ommited.
  */
-const getReactor = (nameId: number, gender = 'MALE') => {
+const getReactor = (nameId: number, gender: string = 'MALE') => {
   const user =
     nameId < definedReactors.length
       ? definedReactors[nameId]
@@ -116,7 +116,10 @@ const getReactor = (nameId: number, gender = 'MALE') => {
  * @param {gender} gender
  *  Choose an img represent gender, `MALE` if ommited.
  */
-export const getFakeUser = (nameId: number | string, gender = 'MALE') => {
+export const getFakeUser = (
+  nameId: number | string,
+  gender: string = 'MALE'
+) => {
   const maleUserImg = 'anonymous-male.png'
   const femaleUserImg = 'anonymous-female.png'
   const userImg = gender === 'MALE' ? maleUserImg : femaleUserImg
@@ -261,7 +264,10 @@ const createCommentReactions = (
  *   An array of @prop {commentId}, type is string.
  *   For @function createComments .
  */
-const createReactions = (totalReactions: number, ratio = [3, 2, 1]) => {
+const createReactions = (
+  totalReactions: number,
+  ratio: Array<number> = [3, 2, 1]
+) => {
   if (totalReactions < 1) {
     throw new Error('Number of total reactions at least to be 1.')
   }
@@ -364,7 +370,7 @@ const createReactions = (totalReactions: number, ratio = [3, 2, 1]) => {
  *    The user's profile name
  */
 const createComments = (commentsTotal: number) => {
-  const commentReacts: never[] = []
+  const commentReacts = []
   const comments = [
     {
       id: uuidv1(),

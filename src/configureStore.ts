@@ -4,7 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 import createSagaMiddleware from 'redux-saga'
 import rootReducer from './reducers'
 
-const configureStore = preloadedState => {
+const configureStore = (preloadedState: any) => {
   const sagaMiddleware = createSagaMiddleware()
   return {
     ...createStore(

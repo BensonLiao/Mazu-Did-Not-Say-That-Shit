@@ -3,7 +3,7 @@ import { Dispatch } from 'redux'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { PostDataState } from '../reducers/types'
-import { REACTIONS, UserData } from '../actions/types'
+import { FEEDBACK, REACTIONS, UserData } from '../actions/types'
 import { feedbackReact, undoReact } from '../actions'
 import { getReactionIsFetching, isReacted } from '../reducers/selector'
 import appConst from '../utils/constants'
@@ -43,8 +43,9 @@ FeedbackActionReact.propTypes = {
 export interface FeedbackActionReact {
   targetId: string
   reactId: string
-  reacted: boolean
+  reacted?: boolean
   you: UserData
+  feedbackType?: FEEDBACK
 }
 
 const mapStateToProps = (

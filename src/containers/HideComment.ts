@@ -1,9 +1,9 @@
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import { toggleCommentVisibility } from '../actions'
-import MenuButton from '../components/MenuButton'
+import MenuButton, { MenuButtonProps } from '../components/MenuButton'
 
-interface HideComment {
+interface HideComment extends MenuButtonProps {
   commentId: string
 }
 

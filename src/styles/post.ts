@@ -1,10 +1,8 @@
-/* eslint-disable indent */
-/* eslint-disable prettier/prettier */
 import cssesc from 'cssesc'
-import appConst from '../utils/constants'
+import { WITH_COMPONENT } from '../utils/constants'
 import cssConst from './constants'
 import { displayFlex, alignCenter } from './page'
-import { REACTIONS } from '../actions/types'
+import { FEELINGS, REACTIONS } from '../actions/types'
 import privacyIconImg from '../assets/img/global.png'
 import reactionIconImg from '../assets/img/fb-emojis-new.png'
 import reactionButtonImg from '../assets/img/thumbUp.png'
@@ -12,11 +10,9 @@ import commentAndShareButtonImg from '../assets/img/responseShare.png'
 import relevantIconImg from '../assets/img/relevant.png'
 import blueCheckIconImg from '../assets/img/blue-check.png'
 
-const {
-  component: { COMMENT }
-} = appConst
+const { COMMENT } = WITH_COMPONENT
 
-export const imgBaseUrl = require.context('../assets/img/', true)
+export const imgBaseUrl = require['context']('../assets/img/', true)
 
 export const privacyIconStyle = `
   width: 12px;
@@ -61,41 +57,32 @@ export const reactionIconTipWrapperStyle = `
   margin-bottom: 4px;
 `
 
+const REACTIONS_ICON_MAP: FEELINGS = {
+  LIKE: 'background-position: -49px -1037px !important;',
+  HAHA: 'background-position: -68px -1018px !important;',
+  LOVE: 'background-position: -68px -1037px !important;',
+  WOW: 'background-position: -49px -1075px !important;',
+  SAD: 'background-position: -49px -1056px !important;',
+  ANGRY: 'background-position: -70px -997px !important;'
+}
+const REACTIONS_ICON_MAP_COMMENT: FEELINGS = {
+  LIKE: 'background-position: -49px -1145px !important;',
+  HAHA: 'background-position: -66px -1128px !important;',
+  LOVE: 'background-position: -66px -1145px !important;',
+  WOW: 'background-position: -34px -1168px !important;',
+  SAD: 'background-position: -0px -1168px !important;',
+  ANGRY: 'background-position: -66px -1111px !important;'
+}
 const reactionIconImgMap = {
   default: {
-    ...REACTIONS
+    ...REACTIONS_ICON_MAP
   },
   comment: {
-    ...REACTIONS
+    ...REACTIONS_ICON_MAP_COMMENT
   }
 }
 
-reactionIconImgMap.default.LIKE =
-  'background-position: -49px -1037px !important;'
-reactionIconImgMap.default.HAHA =
-  'background-position: -68px -1018px !important;'
-reactionIconImgMap.default.LOVE =
-  'background-position: -68px -1037px !important;'
-reactionIconImgMap.default.WOW =
-  'background-position: -49px -1075px !important;'
-reactionIconImgMap.default.SAD =
-  'background-position: -49px -1056px !important;'
-reactionIconImgMap.default.ANGRY =
-  'background-position: -70px -997px !important;'
-
-reactionIconImgMap.comment.LIKE =
-  'background-position: -49px -1145px !important;'
-reactionIconImgMap.comment.HAHA =
-  'background-position: -66px -1128px !important;'
-reactionIconImgMap.comment.LOVE =
-  'background-position: -66px -1145px !important;'
-reactionIconImgMap.comment.WOW =
-  'background-position: -34px -1168px !important;'
-reactionIconImgMap.comment.SAD = 'background-position: -0px -1168px !important;'
-reactionIconImgMap.comment.ANGRY =
-  'background-position: -66px -1111px !important;'
-
-export const getIconSize = withComponent => {
+export const getIconSize = (withComponent: WITH_COMPONENT) => {
   switch (withComponent) {
     default:
       return `
@@ -110,7 +97,10 @@ export const getIconSize = withComponent => {
   }
 }
 
-export const reactionIconStyle = (reactionFeeling, withComponent) => {
+export const reactionIconStyle = (
+  reactionFeeling: REACTIONS,
+  withComponent: WITH_COMPONENT
+) => {
   const iconImgStyle = reactionIconImgMap[withComponent][reactionFeeling]
   const iconBaseStyle = `
     background-image: url(${cssesc(reactionIconImg)});
@@ -182,14 +172,14 @@ export const feedbackShareButtonStyle = `
   background-position: -61px -249px !important;
 `
 
-export const relevantIconStyle = optionOpen => `
+export const relevantIconStyle = (optionOpen: boolean) => `
   background-image: url(${cssesc(relevantIconImg)});
   background-repeat: no-repeat !important;
   background-size: 500px 287px !important;
   ${
-    optionOpen ?
-      'background-position: -421px -270px !important;' :
-      'background-position: -408px -270px !important;'
+    optionOpen
+      ? 'background-position: -421px -270px !important;'
+      : 'background-position: -408px -270px !important;'
   }
   display: inline-block;
   height: 12px;

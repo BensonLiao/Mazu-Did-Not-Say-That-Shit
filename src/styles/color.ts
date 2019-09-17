@@ -23,7 +23,7 @@ export const green = '#28a745'
 export const teal = '#20c997'
 export const cyan = '#17a2b8'
 
-export const colors = c => {
+export const colors = (c: string) => {
   switch (c) {
     default:
       return blue

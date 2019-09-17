@@ -1,8 +1,8 @@
 import React from 'react'
 // import { PropTypes } from 'prop-types'
 import styled from 'styled-components'
-import { displayFlex } from '../styles'
-import { ReactDataState } from '../reducers/types'
+import { displayFlex } from '../styles/page'
+import { CommentDataState, ShareDataState } from '../reducers/types'
 import { CommentData, ShareData } from '../actions/types'
 import textFormat, { FEEDBACK_TYPE } from '../utils/textFormat'
 import FeedbackCount from './FeedbackCount'
@@ -36,9 +36,9 @@ const SharesWrapper = styled.div`
 interface CommentAndShareSummaryProps {
   isFetching: boolean
   commentIds: Array<string>
-  comments: ReactDataState
+  comments: CommentDataState
   shareIds: Array<string>
-  shares: ReactDataState
+  shares: ShareDataState
 }
 
 const CommentAndShareSummary: React.FC<CommentAndShareSummaryProps> = ({

@@ -1,9 +1,9 @@
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import { undoComment } from '../actions'
-import MenuButton from '../components/MenuButton'
+import MenuButton, { MenuButtonProps } from '../components/MenuButton'
 
-interface DeleteComment {
+interface DeleteComment extends MenuButtonProps {
   commentId: string
 }
 

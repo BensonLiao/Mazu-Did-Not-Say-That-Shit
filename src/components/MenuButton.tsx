@@ -1,11 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { displayFlex, alignYAxisCenter } from '../styles/page'
 import cssConst from '../styles/constants'
 
 interface StyledContainerProps {
-  btnIcon: string
+  btnIcon?: string
 }
 
 const MenuItemButtonWrapper = styled.div<StyledContainerProps>`
@@ -34,7 +34,20 @@ const MenuItemButton = styled.span`
   line-height: 22px;
 `
 
-const MenuButton = ({ btnIcon, btnText, onClick }) => {
+export type CallbackOrFunction = () => void
+
+export interface MenuButtonProps extends StyledContainerProps {
+  btnText?: string
+  onClick?: CallbackOrFunction
+}
+
+const MenuButton = ({
+  btnIcon = '',
+  btnText = '選單按鈕',
+  onClick = () => {
+    console.log('clicked!')
+  }
+}: MenuButtonProps) => {
   return (
     <MenuItemButtonWrapper btnIcon={btnIcon} onClick={onClick}>
       <MenuItemButton>{btnText}</MenuItemButton>
@@ -42,18 +55,18 @@ const MenuButton = ({ btnIcon, btnText, onClick }) => {
   )
 }
 
-MenuButton.propTypes = {
-  btnIcon: PropTypes.string,
-  btnText: PropTypes.string,
-  onClick: PropTypes.func
-}
+// MenuButton.propTypes = {
+//   btnIcon: PropTypes.string,
+//   btnText: PropTypes.string,
+//   onClick: PropTypes.func
+// }
 
-MenuButton.defaultProps = {
-  btnIcon: '',
-  btnText: '選單按鈕',
-  onClick: () => {
-    console.log('clicked!')
-  }
-}
+// MenuButton.defaultProps = {
+//   btnIcon: '',
+//   btnText: '選單按鈕',
+//   onClick: () => {
+//     console.log('clicked!')
+//   }
+// }
 
 export default MenuButton

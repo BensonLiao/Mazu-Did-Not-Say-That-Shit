@@ -16,7 +16,8 @@ const actionData = {
     saying: 'fakecomment',
     user: userInfo,
     targetId: FEEDBACK.TARGET,
-    isHidden: false
+    isHidden: false,
+    attachMedia: ''
   }
 }
 

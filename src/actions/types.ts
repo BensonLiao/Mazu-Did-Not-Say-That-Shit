@@ -12,6 +12,15 @@ export enum FEEDBACK {
   TARGET = 'POST'
 }
 
+export interface FEELINGS {
+  LIKE: string
+  HAHA: string
+  LOVE: string
+  WOW: string
+  SAD: string
+  ANGRY: string
+}
+
 export enum REACTIONS {
   LIKE = 'LIKE',
   HAHA = 'HAHA',

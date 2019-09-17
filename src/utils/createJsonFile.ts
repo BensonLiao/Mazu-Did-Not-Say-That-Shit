@@ -1,5 +1,5 @@
-const { writeFile }: any = require('fs')
-const { resolve }: any = require('path')
+import { writeFile } from 'fs'
+import { resolve } from 'path'
 import { createResponseData } from './dataMock'
 
 const initialPostData = createResponseData()
