@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { WITH_COMPONENT } from '../utils/constants'
 import cssConst from '../styles/constants'
@@ -10,6 +10,7 @@ import {
   wideCommentReactionSummaryStyle
 } from '../styles/post'
 import dataSummary from '../utils/dataSummary'
+import { CommentReactDataState } from '../reducers/types'
 import StyledTooltip from './StyledTooltip'
 import ReactionTopMostIcon from './ReactionTopMostIcon'
 import ReactionSecondMostIcon from './ReactionSecondMostIcon'
@@ -50,7 +51,17 @@ const CommentReactionCount = styled.span`
   font-family: Microsoft JhengHei;
 `
 
-const CommentReactionSummary = ({ commentId, reactionIds, reactions }) => {
+interface CommentReactionSummaryProps {
+  commentId: string
+  reactionIds: Array<string>
+  reactions: CommentReactDataState
+}
+
+const CommentReactionSummary = ({
+  commentId,
+  reactionIds,
+  reactions
+}: CommentReactionSummaryProps) => {
   const isNarrowComp = useCompNarrow(commentId)
   const reactionArray = reactionIds
     .map(id => reactions[id])
@@ -58,61 +69,63 @@ const CommentReactionSummary = ({ commentId, reactionIds, reactions }) => {
   const reactionSummary = dataSummary.getCommentReactionSummary(reactionArray)
   const tooltipId = 'tip-for-comment-reaction'
   const withComponent = WITH_COMPONENT.COMMENT
-  return reactionIds.length > 0 ? null : (
-    <Container
-      data-for={tooltipId}
-      data-tip={reactionSummary.forTip}
-      isNarrowComp={isNarrowComp}
-    >
-      <CommentReactionSummaryWrapper>
-        <ReactionTopMostIcon
-          reactFeeling={reactionSummary.topMost.feeling}
-          withComponent={withComponent}
+  return (
+    reactionIds.length > 0 && (
+      <Container
+        data-for={tooltipId}
+        data-tip={reactionSummary.forTip}
+        isNarrowComp={isNarrowComp}
+      >
+        <CommentReactionSummaryWrapper>
+          <ReactionTopMostIcon
+            reactFeeling={reactionSummary.topMost.feeling}
+            withComponent={withComponent}
+          />
+          {reactionSummary.secondMost.total > 0 && (
+            <ReactionSecondMostIcon
+              reactFeeling={reactionSummary.secondMost.feeling}
+              withComponent={withComponent}
+            />
+          )}
+          {reactionSummary.thirdMost.total > 0 && (
+            <ReactionThirdMostIcon
+              reactFeeling={reactionSummary.thirdMost.feeling}
+              withComponent={withComponent}
+            />
+          )}
+          <CommentReactionCount>{reactionSummary.forText}</CommentReactionCount>
+        </CommentReactionSummaryWrapper>
+        <StyledTooltip
+          id={tooltipId}
+          effect="solid"
+          html
+          bg={cssConst.tooltipBackgroundBlack}
         />
-        {reactionSummary.secondMost.total > 0 && (
-          <ReactionSecondMostIcon
-            reactFeeling={reactionSummary.secondMost.feeling}
-            withComponent={withComponent}
-          />
-        )}
-        {reactionSummary.thirdMost.total > 0 && (
-          <ReactionThirdMostIcon
-            reactFeeling={reactionSummary.thirdMost.feeling}
-            withComponent={withComponent}
-          />
-        )}
-        <CommentReactionCount>{reactionSummary.forText}</CommentReactionCount>
-      </CommentReactionSummaryWrapper>
-      <StyledTooltip
-        id={tooltipId}
-        effect="solid"
-        html
-        bg={cssConst.tooltipBackgroundBlack}
-      />
-    </Container>
+      </Container>
+    )
   )
 }
 
-CommentReactionSummary.propTypes = {
-  commentId: PropTypes.string,
-  reactionIds: PropTypes.arrayOf(PropTypes.string),
-  reactions: PropTypes.shape({
-    id: PropTypes.string,
-    user: PropTypes.shape({
-      id: PropTypes.string,
-      profileName: PropTypes.string,
-      profileLink: PropTypes.string,
-      profileImg: PropTypes.string
-    }),
-    feeling: PropTypes.string,
-    targetId: PropTypes.string
-  })
-}
+// CommentReactionSummary.propTypes = {
+//   commentId: PropTypes.string,
+//   reactionIds: PropTypes.arrayOf(PropTypes.string),
+//   reactions: PropTypes.shape({
+//     id: PropTypes.string,
+//     user: PropTypes.shape({
+//       id: PropTypes.string,
+//       profileName: PropTypes.string,
+//       profileLink: PropTypes.string,
+//       profileImg: PropTypes.string
+//     }),
+//     feeling: PropTypes.string,
+//     targetId: PropTypes.string
+//   })
+// }
 
-CommentReactionSummary.defaultProps = {
-  commentId: 'commentId',
-  reactionIds: [],
-  reactions: {}
-}
+// CommentReactionSummary.defaultProps = {
+//   commentId: 'commentId',
+//   reactionIds: [],
+//   reactions: {}
+// }
 
 export default CommentReactionSummary
