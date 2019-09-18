@@ -40,7 +40,7 @@ FeedbackActionReact.propTypes = {
   undoReactAction: PropTypes.func.isRequired
 }
 
-export interface FeedbackActionReact {
+export interface FeedbackActionReactProps {
   targetId: string
   reactId: string
   reacted?: boolean
@@ -50,7 +50,7 @@ export interface FeedbackActionReact {
 
 const mapStateToProps = (
   state: PostDataState,
-  ownProps: FeedbackActionReact
+  ownProps: FeedbackActionReactProps
 ) => {
   // Pass reacted by props if a fake react id detected,
   // otherwise pass by redux.
@@ -68,7 +68,7 @@ const mapStateToProps = (
 
 const mapDispatchToProps = (
   dispatch: Dispatch,
-  ownProps: FeedbackActionReact
+  ownProps: FeedbackActionReactProps
 ) => ({
   doReactAction: (reactId: string) => {
     const actionData = {

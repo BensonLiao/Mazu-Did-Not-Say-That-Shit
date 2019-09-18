@@ -31,6 +31,7 @@ const sharesById = produce((draft, action) => {
   switch (action.type) {
     case LOAD_DATA:
       addShareByNormalizr(draft, action)
+      break
     case FEEDBACK.SHARE:
       addShare(draft, action)
       break

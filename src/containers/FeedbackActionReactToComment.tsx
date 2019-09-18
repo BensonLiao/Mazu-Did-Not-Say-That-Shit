@@ -4,7 +4,7 @@ import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import { PostDataState } from '../reducers/types'
 import { REACTIONS } from '../actions/types'
-import { FeedbackActionReact } from './FeedbackActionReact'
+import { FeedbackActionReactProps } from './FeedbackActionReact'
 import { feedbackReactToComment, undoReactToComment } from '../actions'
 import { isReactedToComment } from '../reducers/selector'
 import appConst from '../utils/constants'
@@ -35,7 +35,7 @@ FeedbackActionReactToComment.propTypes = {
 
 const mapStateToProps = (
   state: PostDataState,
-  ownProps: FeedbackActionReact
+  ownProps: FeedbackActionReactProps
 ) => {
   // console.log('state', state)
   // console.log('ownProps', ownProps)
@@ -54,7 +54,7 @@ const mapStateToProps = (
 
 const mapDispatchToProps = (
   dispatch: Dispatch,
-  ownProps: FeedbackActionReact
+  ownProps: FeedbackActionReactProps
 ) => ({
   doReactAction: (reactId: string) => {
     const actionData = {
