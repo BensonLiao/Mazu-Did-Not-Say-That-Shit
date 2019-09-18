@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { REACTIONS } from '../actions/types'
 import StyledTooltip from './StyledTooltip'
 import { WITH_COMPONENT } from '../utils/constants'
-import cssConst from '../styles/constants'
 import { displayInlineBlock } from '../styles/page'
 import {
   styledTooltipOverrideStyle,
@@ -53,12 +52,7 @@ const ReactionThirdMostIcon = ({
         withComponent={withComponent}
       />
       {countSummary.length > 0 && (
-        <StyledTooltip
-          id={tooltipId}
-          effect="solid"
-          multiline
-          bg={cssConst.tooltipBackgroundBlack}
-        />
+        <StyledTooltip id={tooltipId} effect="solid" multiline />
       )}
     </ReactionThirdMostIconWrapper>
   )

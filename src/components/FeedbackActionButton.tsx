@@ -65,7 +65,7 @@ const FeedbackActionButton = ({
     >
       <FeedbackActionButtonIcon reacted={reacted} feedbackType={feedbackType} />
       {displayText}
-      <StyledTooltip id={tooltipId} effect="float" />
+      <StyledTooltip id={tooltipId} effect="solid" />
     </FeedbackActionButtonWrapper>
   )
 }

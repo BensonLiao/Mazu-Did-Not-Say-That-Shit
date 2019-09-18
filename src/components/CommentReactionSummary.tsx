@@ -95,12 +95,7 @@ const CommentReactionSummary = ({
           )}
           <CommentReactionCount>{reactionSummary.forText}</CommentReactionCount>
         </CommentReactionSummaryWrapper>
-        <StyledTooltip
-          id={tooltipId}
-          effect="solid"
-          html
-          bg={cssConst.tooltipBackgroundBlack}
-        />
+        <StyledTooltip id={tooltipId} effect="solid" html />
       </Container>
     )
   )

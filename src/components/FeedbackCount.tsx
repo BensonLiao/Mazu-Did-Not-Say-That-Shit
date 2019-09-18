@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import StyledTooltip from './StyledTooltip'
-import cssConst from '../styles/constants'
 import { displayBlock } from '../styles/page'
 import { styledTooltipOverrideStyle } from '../styles/post'
 
@@ -22,12 +21,7 @@ const FeedbackCount = ({ forTip, forText, type }) => {
   return (
     <FeedbackCountWrapper data-for={tooltipId} data-tip={forTip}>
       {forText}
-      <StyledTooltip
-        id={tooltipId}
-        effect="solid"
-        multiline
-        bg={cssConst.tooltipBackgroundBlack}
-      />
+      <StyledTooltip id={tooltipId} effect="solid" multiline />
     </FeedbackCountWrapper>
   )
 }

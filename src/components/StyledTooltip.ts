@@ -2,15 +2,20 @@ import ReactTooltip from 'react-tooltip'
 import styled from 'styled-components'
 import cssConst from '../styles/constants'
 
+interface IStyledTooltipProps {
+  bg?: string
+}
+
+class StyledTooltipProps implements IStyledTooltipProps {
+  bg?: string = cssConst.tooltipBackgroundBlack
+}
+
 // Quick fix to turn-off warning by adding
 // .attrs({
 //   suppressClassNameWarning: true
 // })
 // but it need fix, See https://github.com/wwayne/react-tooltip/issues/489
-const StyledTooltip = styled(ReactTooltip).attrs({
-  suppressClassNameWarning: true,
-  bg: cssConst.tooltipBackgroundGray
-})`
+const StyledTooltip = styled(ReactTooltip)<StyledTooltipProps>`
   background-color: ${({ bg }) => bg} !important;
   &.place-top {
     &:after {
