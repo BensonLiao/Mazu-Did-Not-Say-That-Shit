@@ -7,7 +7,7 @@ import { requestLoadData, loadData } from '../actions'
 // when async promise request finishes too quick
 const requestDelay = delay(2000)
 
-export function* fetchPostApi(endPoint) {
+export function* fetchPostApi(endPoint: string) {
   const result = yield axios
     .get(`api/${endPoint}.json`)
     .then(response => response.data)

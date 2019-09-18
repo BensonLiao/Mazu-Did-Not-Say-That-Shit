@@ -13,12 +13,10 @@ import {
 export const requestLoadData = () => ({
   type: REQUEST_LODA_DATA,
   payload: {
-    entities: {
-      reacts: {},
-      commentReacts: {},
-      comments: {},
-      shares: {}
-    }
+    reacts: {},
+    commentReacts: {},
+    comments: {},
+    shares: {}
   }
 })
 
