@@ -55,11 +55,13 @@ export interface CommentReactData {
 
 export interface CommentData {
   id: string
+  reactId: string
   user: UserData
   saying: string
   targetId: string | 'POST'
   isHidden: boolean
   attachMedia: string
+  time: string
 }
 
 export interface ShareData {

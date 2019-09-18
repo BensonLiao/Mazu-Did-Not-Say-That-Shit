@@ -1,5 +1,6 @@
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
+import { PostDataState } from '../reducers/types'
 import { updateComment, undoComment } from '../actions'
 import MyCommentPlaceholder from '../components/MyCommentPlaceholder'
 
@@ -8,7 +9,7 @@ export interface UpdateComment {
   saying: string
 }
 
-const mapStateToProps = (ownProps: UpdateComment) => {
+const mapStateToProps = (_state: PostDataState, ownProps: UpdateComment) => {
   return {
     inputId: ownProps.commentId,
     saying: ownProps.saying

@@ -52,8 +52,8 @@ const MyCommentPlaceholder = ({
   ...props
 }) => {
   // Make stateContext to null if this comp rendered outside of StateProvider
-  const stateContext = (useContextState() as any) || null
-  const handleKeyDown = event => {
+  const { toggleEditMode } = (useContextState() as any) || null
+  const handleKeyDown = (event: any) => {
     if (event.type === 'compositionstart') onIME = true
     if (event.type === 'compositionend') onIME = false
     if (event.key === 'Enter' && onIME) {
@@ -66,14 +66,12 @@ const MyCommentPlaceholder = ({
       } else {
         if (isFetching) return
         prepareCommentAction(inputId, doCommentAction, doDeleteComment)
-        if (stateContext) {
-          const { toggleEditMode } = stateContext
+        if (toggleEditMode) {
           toggleEditMode()
         }
       }
     } else if (event.key === 'Escape') {
-      if (stateContext) {
-        const { toggleEditMode } = stateContext
+      if (toggleEditMode) {
         toggleEditMode()
       }
     }

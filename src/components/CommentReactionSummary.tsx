@@ -70,7 +70,7 @@ const CommentReactionSummary = ({
   const tooltipId = 'tip-for-comment-reaction'
   const withComponent = WITH_COMPONENT.COMMENT
   return (
-    reactionIds.length > 0 && (
+    reactionArray.length > 0 && (
       <Container
         data-for={tooltipId}
         data-tip={reactionSummary.forTip}

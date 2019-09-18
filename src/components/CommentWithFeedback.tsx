@@ -21,7 +21,7 @@ const CommentAndFeedbackWrapper = styled.div<StyledContainerProps>`
 `
 
 const CommentWithFeedback = ({ comment }) => {
-  const { inEditMode, toggleEditMode } = useContextState() as any
+  const { inEditMode } = useContextState() as any
   const [isHover, setIsHover] = useMouseHover() as any
   const onEnter = () => {
     setIsHover(true)
@@ -50,7 +50,7 @@ const CommentWithFeedback = ({ comment }) => {
     <>
       <MyComment
         inEditMode={inEditMode}
-        toggleEditMode={toggleEditMode}
+        // toggleEditMode={toggleEditMode}
         commentId={id}
         saying={saying}
       />

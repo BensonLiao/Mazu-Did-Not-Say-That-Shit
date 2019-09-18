@@ -29,14 +29,14 @@ const MyComment = ({ inEditMode, commentId, saying }) => {
 
 MyComment.propTypes = {
   inEditMode: PropTypes.bool,
-  toggleEditMode: PropTypes.func,
+  // toggleEditMode: PropTypes.func,
   commentId: PropTypes.string,
   saying: PropTypes.string
 }
 
 MyComment.defaultProps = {
   inEditMode: false,
-  toggleEditMode: () => {},
+  // toggleEditMode: () => {},
   commentId: '',
   saying: ''
 }
