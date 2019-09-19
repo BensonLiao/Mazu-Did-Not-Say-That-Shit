@@ -61,6 +61,7 @@ const CommentWithFeedback = ({ comment }) => {
     >
       <CommentAvatar
         profileName={profileName}
+        profileLink={profileLink}
         profileImg={profileImg}
         isHidden={isHidden}
       />
