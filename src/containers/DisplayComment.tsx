@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { PostDataState } from '../reducers/types'
 import { getComment } from '../reducers/selector'
 import { StateProvider } from './StateProvider'
 import CommentWithFeedback from '../components/CommentWithFeedback'
+import { CommentData } from '../actions/types'
 
-const WithContext = ({ comment }: any) => {
+interface CommentWithContextProps {
+  comment: CommentData
+}
+
+const CommentWithContext = ({ comment }: CommentWithContextProps) => {
   const [inEditMode, setEditMode] = useState(false)
   const toggleEditMode = () => setEditMode(!inEditMode)
   return (
@@ -14,23 +18,6 @@ const WithContext = ({ comment }: any) => {
       <CommentWithFeedback comment={comment} />
     </StateProvider>
   )
-}
-
-WithContext.propTypes = {
-  comment: PropTypes.shape({
-    id: PropTypes.string,
-    reactId: PropTypes.string,
-    user: PropTypes.shape({
-      profileName: PropTypes.string,
-      profileLink: PropTypes.string,
-      profileImg: PropTypes.string,
-      isVerified: PropTypes.bool
-    }),
-    isHidden: PropTypes.bool,
-    saying: PropTypes.string,
-    attachMedia: PropTypes.string,
-    time: PropTypes.string
-  }).isRequired
 }
 
 interface DisplayComment {
@@ -43,4 +30,4 @@ const mapStateToProps = (state: PostDataState, ownProps: DisplayComment) => {
   }
 }
 
-export default connect(mapStateToProps)(WithContext)
+export default connect(mapStateToProps)(CommentWithContext)
