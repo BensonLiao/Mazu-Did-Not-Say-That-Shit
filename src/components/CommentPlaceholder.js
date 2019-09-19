@@ -30,9 +30,8 @@ const CommentPlaceholderWrapper = styled.div`
 const CommentContent = styled.span`
   ${displayInlineBlock}
   margin-left: 4px;
-  color: ${props =>
-    (props.isHashTag ? cssConst.commentFeedbackButtonTextColor : 'inherit')};
-  cursor: ${props => (props.isHashTag ? 'pointer' : 'text')};
+  color: ${({ isHashTag }) => (isHashTag ? cssConst.commentFeedbackButtonTextColor : 'inherit')};
+  cursor: ${({ isHashTag }) => (isHashTag ? 'pointer' : 'text')};
 `
 
 const CommentMediaWrapper = styled.div`

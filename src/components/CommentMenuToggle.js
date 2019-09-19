@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import menuToggle from '../assets/img/fb-emojis-new.png'
-import cssConst from '../styles/constants'
 import { displayInlineBlock } from '../styles/page'
 import useCompVisible from '../hooks/useCompVisible'
 import CommentMenu from './CommentMenu'
@@ -43,11 +42,7 @@ const CommentMenuToggle = ({ commentId, isHover, isHidden, isYour }) => {
   return toggleOrHover ? (
     <MenuToggleWrapper>
       <MenuToggle ref={ref} data-for={tooltipId} data-tip={tipText} />
-      <StyledTooltip
-        id={tooltipId}
-        effect="solid"
-        bg={cssConst.tooltipBackgroundBlack}
-      />
+      <StyledTooltip id={tooltipId} effect="solid" />
       {isCompVisible && (
         <CommentMenu
           commentId={commentId}

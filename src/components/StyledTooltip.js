@@ -10,54 +10,54 @@ import cssConst from '../styles/constants'
 const StyledTooltip = styled(ReactTooltip).attrs({
   suppressClassNameWarning: true
 })`
-  background-color: ${props => props.bg} !important;
+  background-color: ${({ bg }) => bg} !important;
   &.place-top {
     &:after {
-      border-top-color: ${props => props.bg} !important;
+      border-top-color: ${({ bg }) => bg} !important;
       border-top-style: solid;
       border-top-width: 6px;
     }
   }
   &.place-bottom {
     &:after {
-      border-bottom-color: ${props => props.bg} !important;
+      border-bottom-color: ${({ bg }) => bg} !important;
       border-bottom-style: solid;
       border-bottom-width: 6px;
     }
   }
   &.place-left {
     &:after {
-      border-left-color: ${props => props.bg} !important;
+      border-left-color: ${({ bg }) => bg} !important;
       border-left-style: solid;
       border-left-width: 6px;
     }
   }
   &.place-right {
     &:after {
-      border-right-color: ${props => props.bg} !important;
+      border-right-color: ${({ bg }) => bg} !important;
       border-right-style: solid;
       border-right-width: 6px;
     }
   }
-  border: 1px solid ${props => props.bg} !important;
+  border: 1px solid ${({ bg }) => bg} !important;
   &.place-top {
     &:before {
-      border-top: 8px solid ${props => props.bg} !important;
+      border-top: 8px solid ${({ bg }) => bg} !important;
     }
   }
   &.place-bottom {
     &:before {
-      border-bottom: 8px solid ${props => props.bg} !important;
+      border-bottom: 8px solid ${({ bg }) => bg} !important;
     }
   }
   &.place-left {
     &:before {
-      border-left: 8px solid ${props => props.bg} !important;
+      border-left: 8px solid ${({ bg }) => bg} !important;
     }
   }
   &.place-right {
     &:before {
-      border-right: 8px solid ${props => props.bg} !important;
+      border-right: 8px solid ${({ bg }) => bg} !important;
     }
   }
   span.multi-line {
@@ -65,6 +65,6 @@ const StyledTooltip = styled(ReactTooltip).attrs({
   }
 `
 
-StyledTooltip.defaultProps = { bg: cssConst.tooltipBackgroundGray }
+StyledTooltip.defaultProps = { bg: cssConst.tooltipBackgroundBlack }
 
 export default StyledTooltip

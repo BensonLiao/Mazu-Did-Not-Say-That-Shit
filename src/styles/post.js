@@ -1,5 +1,4 @@
 /* eslint-disable indent */
-/* eslint-disable prettier/prettier */
 import cssesc from 'cssesc'
 import appConst from '../utils/constants'
 import cssConst from './constants'

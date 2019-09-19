@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { REACTIONS } from '../actions'
 import StyledTooltip from './StyledTooltip'
 import appConst from '../utils/constants'
-import cssConst from '../styles/constants'
 import { displayInlineBlock } from '../styles/page'
 import {
   styledTooltipOverrideStyle,
@@ -53,12 +52,7 @@ const ReactionSecondMostIcon = ({
         withComponent={withComponent}
       />
       {countSummary.length > 0 && (
-        <StyledTooltip
-          id={tooltipId}
-          effect="solid"
-          multiline
-          bg={cssConst.tooltipBackgroundBlack}
-        />
+        <StyledTooltip id={tooltipId} effect="solid" multiline />
       )}
     </ReactionSecondMostIconWrapper>
   )

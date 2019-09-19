@@ -17,9 +17,10 @@ const CommentSection = ({ isFetching, commentIds }) => {
       <RelevantCommentToggle />
       <MyComment />
       {isFetching && <CommentShimmer />}
-      {!isFetching && commentIds.map(commentId => (
-        <DisplayComment key={commentId} commentId={commentId} />
-      ))}
+      {!isFetching &&
+        commentIds.map(commentId => (
+          <DisplayComment key={commentId} commentId={commentId} />
+        ))}
     </CommentSectionWrapper>
   )
 }
