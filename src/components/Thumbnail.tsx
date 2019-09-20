@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { imgBaseUrl } from '../styles/post'
 import { UserData } from '../actions/types'
+import { definedUsers } from '../utils/dataMock'
 
 const ThumbnailWrapper = styled.div`
   display: block;
@@ -15,12 +16,12 @@ const ThumbnailImg = styled.img`
   margin-right: 8px;
 `
 
-class ThumbnailProps implements Pick<UserData, 'profileName' | 'profileImg'> {
-  profileName: '媽祖'
-  profileImg: 'mazu.png'
+class Props implements Pick<UserData, 'profileName' | 'profileImg'> {
+  profileName: string = definedUsers.theMazu.profileName
+  profileImg: string = definedUsers.theMazu.profileImg
 }
 
-const Thumbnail = ({ profileName, profileImg }: ThumbnailProps) => {
+const Thumbnail = ({ profileName, profileImg }: Props) => {
   const imgUrl = imgBaseUrl(`./${profileImg}`)
   return (
     <ThumbnailWrapper>
@@ -28,5 +29,7 @@ const Thumbnail = ({ profileName, profileImg }: ThumbnailProps) => {
     </ThumbnailWrapper>
   )
 }
+
+Thumbnail.displayName = 'Thumbnail'
 
 export default Thumbnail

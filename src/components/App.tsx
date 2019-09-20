@@ -6,6 +6,7 @@ import Header from './Header'
 import PostContent from './PostContent'
 import FeedbackAction from './FeedbackAction'
 import DisplayCommentSection from '../containers/DisplayCommentSection'
+import { UserData } from '../actions/types'
 
 const FeedbackSummary = lazy(() => import('./FeedbackSummary'))
 // const DisplayCommentSection = lazy(() => import('../containers/DisplayCommentSection'))
@@ -35,14 +36,33 @@ const PostWrapper = styled.div`
   font-size: ${cssConst.baseFontSize};
 `
 
-const App = ({ postData }) => {
-  const { user, time, content, title } = postData
+export interface PostDataProps {
+  /**
+   * @type {UserData} Posted by who
+   */
+  user: UserData
+  /**
+   * @type {string} Post content
+   */
+  content: string
+  /**
+   * @type {string} Post title, used on HTML's title attribute
+   */
+  title: string
+  /**
+   * @type {string | number | Date} UNIX timestamp,
+   * ref: https://en.wikipedia.org/wiki/Unix_time
+   */
+  time: string | number | Date
+}
+
+const App = ({ user, time, content, title }: PostDataProps) => {
   return (
     <ThemeProvider theme={theme}>
       <Root>
         <GlobalStyle />
         <PostWrapper>
-          <Header profileInfo={user} postTime={time} />
+          <Header user={user} time={time} />
           <PostContent postContent={content} postTitle={title} />
           <FeedbackSummary />
           <FeedbackAction />
@@ -54,16 +74,14 @@ const App = ({ postData }) => {
 }
 
 App.propTypes = {
-  postData: PropTypes.shape({
-    user: PropTypes.shape({
-      profileImg: PropTypes.string.isRequired,
-      profileLink: PropTypes.string.isRequired,
-      profileName: PropTypes.string.isRequired
-    }).isRequired,
-    time: PropTypes.number.isRequired,
-    content: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired
-  }).isRequired
+  user: PropTypes.shape({
+    profileImg: PropTypes.string.isRequired,
+    profileLink: PropTypes.string.isRequired,
+    profileName: PropTypes.string.isRequired
+  }).isRequired,
+  time: PropTypes.number.isRequired,
+  content: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
 }
 
 export default App

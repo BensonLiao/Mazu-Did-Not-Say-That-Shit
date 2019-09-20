@@ -1,19 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { displayInlineBlock } from '../styles/page'
-
-const propTypes = {
-  /**
-   * Sets content on body of child <a>
-   */
-  profileName: PropTypes.string,
-
-  /**
-   * Sets href on attr of child <a>
-   */
-  profileLink: PropTypes.string
-}
+import { UserData } from '../actions/types'
+import { definedUsers } from '../utils/dataMock'
 
 const ProfileLinkWrapper = styled.div`
   ${displayInlineBlock}
@@ -29,12 +18,12 @@ const Link = styled.a`
   }
 `
 
-const defaultProps = {
-  profileName: 'Fake Name',
-  profileLink: 'https://fake.url'
+class Props implements Pick<UserData, 'profileName' | 'profileLink'> {
+  profileName: string = definedUsers.theMazu.profileName
+  profileLink: string = definedUsers.theMazu.profileLink
 }
 
-const ProfileLink = ({ profileName, profileLink }) => {
+const ProfileLink = ({ profileName, profileLink }: Props) => {
   return (
     <ProfileLinkWrapper>
       <Link target="_blank" href={profileLink}>
@@ -45,7 +34,5 @@ const ProfileLink = ({ profileName, profileLink }) => {
 }
 
 ProfileLink.displayName = 'ProfileLink'
-ProfileLink.propTypes = propTypes
-ProfileLink.defaultProps = defaultProps
 
 export default ProfileLink

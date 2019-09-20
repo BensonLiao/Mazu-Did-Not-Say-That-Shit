@@ -1,16 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import cssConst from '../styles/constants'
 import textFormat from '../utils/textFormat'
-
-const propTypes = {
-  /**
-   * Sets content on body of `PostTimeWrapper`,
-   * using UNIX timestamp, ref: https://en.wikipedia.org/wiki/Unix_time
-   */
-  postTimeStamp: PropTypes.number.isRequired
-}
+import { PostDataProps } from './App'
 
 const PostTimeWrapper = styled.abbr`
   color: ${cssConst.infoColorGray};
@@ -20,8 +12,12 @@ const PostTimeWrapper = styled.abbr`
   text-decoration: none;
 `
 
-const PostTime = ({ postTimeStamp }) => {
-  const formattedTime = textFormat.getTimeStamp(postTimeStamp)
+class Props implements Pick<PostDataProps, 'time'> {
+  time: string | number | Date = 1412743274
+}
+
+const PostTime = ({ time }: Props) => {
+  const formattedTime = textFormat.getTimeStamp(time)
   return (
     <PostTimeWrapper title={formattedTime.forTip}>
       {formattedTime.forText}
@@ -30,6 +26,5 @@ const PostTime = ({ postTimeStamp }) => {
 }
 
 PostTime.displayName = 'PostTime'
-PostTime.propTypes = propTypes
 
 export default PostTime

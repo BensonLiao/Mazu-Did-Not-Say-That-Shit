@@ -2,7 +2,7 @@ import { REACTIONS, ReactData } from '../actions/types'
 import textFormat from './textFormat'
 
 export interface FeelingsTotal {
-  feeling: string
+  feeling: REACTIONS
   total: number
 }
 
@@ -32,7 +32,7 @@ export interface CommentReactionSummary {
 export default {
   getRankingReactions(reactions: Array<ReactData>): ReactsRank {
     if (reactions.length === 0) return []
-    const reactionsCount = Object.keys(REACTIONS).map(feeling => {
+    const reactionsCount = Object.keys(REACTIONS).map((feeling: REACTIONS) => {
       const totalFeeling = reactions.filter(
         reactor => reactor.feeling === feeling
       ).length

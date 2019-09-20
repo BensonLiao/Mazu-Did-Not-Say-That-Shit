@@ -1,5 +1,4 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { displayFlex, alignCenter } from '../styles'
 import { styledTooltipOverrideStyle } from '../styles/post'
@@ -68,27 +67,5 @@ const ReactionSummary: React.FC<ReactionSummaryProps> = ({
     )
   )
 }
-
-// ReactionSummary.propTypes = {
-//   isFetching: PropTypes.bool,
-//   reactionIds: PropTypes.arrayOf(PropTypes.string),
-//   reactions: PropTypes.shape({
-//     id: PropTypes.string,
-//     user: PropTypes.shape({
-//       id: PropTypes.string,
-//       profileName: PropTypes.string,
-//       profileLink: PropTypes.string,
-//       profileImg: PropTypes.string
-//     }),
-//     feeling: PropTypes.string,
-//     targetId: PropTypes.string
-//   })
-// }
-
-// ReactionSummary.defaultProps = {
-//   isFetching: false,
-//   reactionIds: [],
-//   reactions: {}
-// }
 
 export default ReactionSummary

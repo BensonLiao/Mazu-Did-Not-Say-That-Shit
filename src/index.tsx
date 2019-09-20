@@ -45,7 +45,7 @@ const App = React.lazy(() => import('./components/App'))
 ReactDOM.render(
   <Provider store={store}>
     <Suspense fallback={<div>Loading...</div>}>
-      <App postData={post} />
+      <App {...post} />
     </Suspense>
   </Provider>,
   document.getElementById('root')

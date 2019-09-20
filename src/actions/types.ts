@@ -31,11 +31,27 @@ export enum REACTIONS {
 }
 
 // Describing the shape of the post's feedback slice of state
+
 export interface UserData {
+  /**
+   * An unique id, can be used for reference lookup
+   */
   id: string
+  /**
+   * Name of the user
+   */
   profileName: string
+  /**
+   * URL to the profile page of the user
+   */
   profileLink: string
+  /**
+   * Avatar image path of the user
+   */
   profileImg: string
+  /**
+   * Verification status of the user
+   */
   isVerified: boolean
 }
 
