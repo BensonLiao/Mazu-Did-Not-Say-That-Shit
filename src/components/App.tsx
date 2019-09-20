@@ -1,5 +1,4 @@
 import React, { lazy } from 'react'
-import PropTypes from 'prop-types'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { theme, cssConst, displayFlex, alignCenter } from '../styles'
 import Header from './Header'
@@ -71,17 +70,6 @@ const App = ({ user, time, content, title }: PostDataProps) => {
       </Root>
     </ThemeProvider>
   )
-}
-
-App.propTypes = {
-  user: PropTypes.shape({
-    profileImg: PropTypes.string.isRequired,
-    profileLink: PropTypes.string.isRequired,
-    profileName: PropTypes.string.isRequired
-  }).isRequired,
-  time: PropTypes.number.isRequired,
-  content: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired
 }
 
 export default App
