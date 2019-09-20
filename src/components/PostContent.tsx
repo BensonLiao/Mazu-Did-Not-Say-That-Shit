@@ -1,17 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
-
-const propTypes = {
-  /**
-   * Sets content on body of `PostContentWrapper`
-   */
-  postContent: PropTypes.string,
-  /**
-   * Sets content on attr title of `PostContentWrapper`
-   */
-  postTitle: PropTypes.string
-}
+import { PostDataProps } from './App'
 
 const PostContentWrapper = styled.div`
   font-size: 25px;
@@ -22,19 +11,15 @@ const PostContentWrapper = styled.div`
   padding: 12px 12px 0;
 `
 
-const defaultProps = {
-  postContent: 'Fake Post Content',
-  postTitle: 'Fake Post Title'
+class Props implements Pick<PostDataProps, 'content' | 'title'> {
+  content: string = 'Fake Post Content'
+  title: string = 'Fake Post Title'
 }
 
-const PostContent = ({ postContent, postTitle }) => {
-  return (
-    <PostContentWrapper title={postTitle}>{postContent}</PostContentWrapper>
-  )
+const PostContent = ({ content, title }: Props) => {
+  return <PostContentWrapper title={title}>{content}</PostContentWrapper>
 }
 
 PostContent.displayName = 'PostContent'
-PostContent.propTypes = propTypes
-PostContent.defaultProps = defaultProps
 
 export default PostContent

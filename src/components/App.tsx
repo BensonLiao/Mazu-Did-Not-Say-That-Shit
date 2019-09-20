@@ -63,7 +63,7 @@ const App = ({ user, time, content, title }: PostDataProps) => {
         <GlobalStyle />
         <PostWrapper>
           <Header user={user} time={time} />
-          <PostContent postContent={content} postTitle={title} />
+          <PostContent content={content} title={title} />
           <FeedbackSummary />
           <FeedbackAction />
           <DisplayCommentSection />
