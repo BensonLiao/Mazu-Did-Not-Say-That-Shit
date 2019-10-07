@@ -1,5 +1,4 @@
 /* eslint-disable global-require */
-/* eslint import/no-webpack-loader-syntax: off */
 // As of Babel 7.4.0, this package has been deprecated in favor of directly
 // including core-js/stable (to polyfill ECMAScript features)
 // and regenerator-runtime/runtime (needed to use transpiled generator functions):
@@ -22,10 +21,10 @@ import 'core-js/stable/date/now'
 import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import Worker from 'worker-loader!./worker'
 import registerServiceWorker from './registerServiceWorker'
 import configureStore from './configureStore'
 import { definedUsers } from './utils/dataMock'
+import Worker from './worker'
 
 const store = configureStore()
 
@@ -41,7 +40,7 @@ const post = {
 const worker = new Worker()
 worker.postMessage('init')
 console.log('Message posted to worker')
-worker.onmessage = (event: any) => {
+worker.onmessage = event => {
   console.log('Message received from worker')
   store.dispatch(event.data)
 }

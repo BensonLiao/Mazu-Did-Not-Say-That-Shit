@@ -3,8 +3,6 @@ import { createPostData } from './utils/dataMock'
 import { getNormalizedData, PostSchema } from './utils/dataSchema'
 import { addData } from './actions'
 
-// const ctx: Worker = self as any
-
 const preloadedState = createPostData()
 const normalizedData = getNormalizedData(preloadedState, PostSchema)
 
