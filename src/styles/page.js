@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 import cssConst from './constants'
 
 export const displayBlock = `
@@ -53,6 +53,27 @@ export const DotSeparator = styled.span`
   &:before {
     content: '·';
   }
+`
+
+export const keyframesFullView = keyframes`
+  100% {
+    width: 100%;
+  }
+`
+
+export const keyframesShimmer = keyframes`
+  0% {
+    background-position: -500px 0;
+  }
+  100% {
+    background-position: 500px 0;
+  }
+`
+
+export const shimmerAnimation = css`
+  background: linear-gradient(to right, #eff1f3 4%, #e2e2e2 25%, #eff1f3 36%);
+  background-size: 500px 100%;
+  animation: ${keyframesShimmer} 2s infinite linear;
 `
 
 export const dataTooltip = (

@@ -52,10 +52,10 @@ const App = ({ postData }) => {
           <StateProvider initialState={{ isDataInit, setDataInit }}>
             <FeedbackSummary />
             <FeedbackAction />
+            <Suspense fallback={<div>Loading...</div>}>
+              <DisplayCommentSection />
+            </Suspense>
           </StateProvider>
-          <Suspense fallback={<div>Loading...</div>}>
-            <DisplayCommentSection />
-          </Suspense>
         </PostWrapper>
       </Root>
     </ThemeProvider>
