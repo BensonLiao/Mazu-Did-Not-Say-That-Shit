@@ -30,7 +30,7 @@ const CommentAvatar = ({
   withComponent,
   isHidden
 }) => {
-  const imgUrl = imgBaseUrl(`./${profileImg}`)
+  const imgUrl = imgBaseUrl(`./${profileImg}`).default
   const renderTag = withComponent === appConst.component.COMMENT ? 'a' : 'span'
   return (
     <Container isHidden={isHidden}>

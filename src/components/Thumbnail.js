@@ -16,7 +16,7 @@ const ThumbnailImg = styled.img`
 `
 
 const Thumbnail = ({ profileName, profileImg }) => {
-  const imgUrl = imgBaseUrl(`./${profileImg}`)
+  const imgUrl = imgBaseUrl(`./${profileImg}`).default
   return (
     <ThumbnailWrapper>
       <ThumbnailImg src={imgUrl} alt={profileName} />

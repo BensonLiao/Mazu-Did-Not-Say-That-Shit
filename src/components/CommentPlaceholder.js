@@ -69,7 +69,7 @@ const getCommentContent = (
         {c.attachMedia !== '' && (
           <CommentMediaWrapper>
             <CommentMediaImage
-              src={imgBaseUrl(`./${c.attachMedia}`)}
+              src={imgBaseUrl(`./${c.attachMedia}`).default}
               alt={c.attachMedia}
             />
           </CommentMediaWrapper>
